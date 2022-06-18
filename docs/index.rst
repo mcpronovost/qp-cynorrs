@@ -1,5 +1,5 @@
 Welcome to qp-cynorrs's documentation!
-======================================
+#######################################
 
 **qp-cynorrs** is a new project.
 
@@ -20,7 +20,6 @@ Contents
    :maxdepth: 1
    :hidden:
 
-   index
    glossary
 
 .. toctree::
@@ -28,4 +27,4 @@ Contents
    :maxdepth: 2
    :hidden:
 
-   index
+   toughnesses
