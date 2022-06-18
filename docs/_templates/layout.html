@@ -2,12 +2,19 @@
 {% block footer %}
     {{ super() }}
     <style>
-        a,
+        :root {
+            --qp-primary: #27ae60;
+        }
+        a {
+            color: var(--qp-primary);
+            transition: color 0.3s, filter 0.3s;
+        }
         a:visited {
-            color: #27ae60;
+            color: var(--qp-primary);
         }
         a:hover {
             color: #57c590;
+            filter: brightness(0.9);
         }
         /* BLOCK ADMONITION */
         .rst-content .note {
@@ -15,7 +22,7 @@
         }
         /* SIDENAV */
         .wy-side-nav-search {
-            background-color: #27ae60;
+            background-color: var(--qp-primary);
         }
         .wy-side-nav-search input[type=text] {
             border: none;
@@ -28,13 +35,13 @@
         /**/
         .wy-menu-vertical header,
         .wy-menu-vertical p.caption {
-            color: #27ae60;
+            color: var(--qp-primary);
         }
         .wy-menu-vertical a {
             color: #c9c9c9;
         }
         .wy-menu-vertical a:hover {
-            color: #27ae60;
+            color: var(--qp-primary);
         }
         .wy-menu-vertical > ul {
             border-top: 1px solid #4e4b4b!important;
