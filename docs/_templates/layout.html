@@ -2,8 +2,12 @@
 {% block footer %}
     {{ super() }}
     <style>
+        a,
         a:visited {
-            color: #2980b9;
+            color: #27ae60;
+        }
+        a:hover {
+            color: #57c590;
         }
         /* BLOCK ADMONITION */
         .rst-content .note {
@@ -13,47 +17,36 @@
         .wy-side-nav-search {
             background-color: #27ae60;
         }
-        .wy-menu-vertical header,
-        .wy-menu-vertical p.caption {
-            color: #27ae60;
+        .wy-side-nav-search input[type=text] {
+            border: none;
+            border-radius: 0;
         }
         .wy-side-nav-search .wy-dropdown > a,
         .wy-side-nav-search > a {
             color: #fcfcfc;
         }
+        .wy-menu-vertical header,
+        .wy-menu-vertical p.caption {
+            color: #27ae60;
+        }
+        .wy-menu-vertical a {
+            color: #c9c9c9;
+        }
+        .wy-menu-vertical a:hover {
+            color: #27ae60;
+        }
+        .wy-menu-vertical > ul {
+            border-top: 1px solid #645e5e!important;
+        }
         .wy-menu-vertical li {
-            border-top: none;
-            border-bottom: none;
+            border-top: none!important;
+            border-bottom: none!important;
         }
-        .wy-menu-vertical li.on a {
+        .wy-menu-vertical li a {
             background-color: #4e4b4b;
+            border-top: none!important;
+            border-bottom: 1px solid #645e5e!important;
             color: #c9c9c9;
-        }
-        .wy-menu-vertical li.current,
-        .wy-menu-vertical li.current > a,
-        .wy-menu-vertical li.toctree-l2.current > a,
-        .wy-menu-vertical li.toctree-l2.current li.toctree-l3 > a {
-            background-color: #4e4b4b;
-            color: #c9c9c9;
-        }
-        .wy-menu-vertical li.current > a button.toctree-expand,
-        .wy-menu-vertical li.on a button.toctree-expand {
-            color: #c9c9c9;
-        }
-        .wy-menu-vertical li.toctree-l2 a,
-        .wy-menu-vertical li.toctree-l3 a,
-        .wy-menu-vertical li.toctree-l4 a,
-        .wy-menu-vertical li.toctree-l5 a,
-        .wy-menu-vertical li.toctree-l6 a,
-        .wy-menu-vertical li.toctree-l7 a,
-        .wy-menu-vertical li.toctree-l8 a,
-        .wy-menu-vertical li.toctree-l9 a,
-        .wy-menu-vertical li.toctree-l10 a {
-            color: #c9c9c9;
-        }
-        .wy-menu-vertical li.current > a:hover,
-        .wy-menu-vertical li.on a:hover {
-            background-color: #605b5b;
         }
     </style>
 {% endblock %}
