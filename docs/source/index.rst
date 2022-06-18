@@ -11,3 +11,20 @@ Contents
 --------
 
     Under development...
+
+
+.. Hidden TOCs
+
+.. toctree::
+   :caption: Documentation
+   :maxdepth: 2
+   :hidden:
+
+   index
+
+.. toctree::
+   :caption: Tests
+   :maxdepth: 2
+   :hidden:
+
+   index
