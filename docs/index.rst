@@ -1,5 +1,5 @@
 Welcome to qp-cynorrs's documentation!
-===================================
+======================================
 
 **qp-cynorrs** is a new project.
 
@@ -21,6 +21,7 @@ Contents
    :hidden:
 
    index
+   glossary
 
 .. toctree::
    :caption: Tests
