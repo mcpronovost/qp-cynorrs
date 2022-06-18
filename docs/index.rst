@@ -17,15 +17,10 @@ Contents
 
 .. toctree::
    :caption: Documentation
-   :maxdepth: 2
-   :hidden:
-
-   index
-
-.. toctree::
    :maxdepth: 1
    :hidden:
 
+   index
    glossary
 
 .. toctree::
