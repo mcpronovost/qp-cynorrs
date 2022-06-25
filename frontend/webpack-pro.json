@@ -11,6 +11,11 @@
       "path": "E:\\qp-cynorrs\\static\\vue\\pro\\js\\app.js",
       "publicPath": "/js/app.js"
     },
+    "css/chunk-vendors.css": {
+      "name": "css/chunk-vendors.css",
+      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\css\\chunk-vendors.css",
+      "publicPath": "/css/chunk-vendors.css"
+    },
     "js/chunk-vendors.js": {
       "name": "js/chunk-vendors.js",
       "path": "E:\\qp-cynorrs\\static\\vue\\pro\\js\\chunk-vendors.js",
@@ -29,6 +34,7 @@
   },
   "chunks": {
     "app": [
+      "css/chunk-vendors.css",
       "js/chunk-vendors.js",
       "css/app.css",
       "js/app.js"
