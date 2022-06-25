@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "qp")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["mcpronovost.pythonanywhere.com"]
 
 
 #########################################################################################
