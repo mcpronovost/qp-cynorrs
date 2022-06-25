@@ -6,10 +6,10 @@
     <div id="app"></div>
 
     {% for c in css %}
-        <link rel="stylesheet" href="{% static c %}" />
+        <link rel="stylesheet" href="{{ c }}" />
     {% endfor %}
     {% for j in js %}
-        <script type="text/javascript" src="{% static j %}"></script>
+        <script type="text/javascript" src="{{ j }}"></script>
     {% endfor %}
 
 {% endblock body %}

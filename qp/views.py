@@ -15,11 +15,11 @@ def app(request):
             for chunk in wp["chunks"]["app"]:
                 if chunk.startswith("css"):
                     css.append(
-                        static("/vue/%s/%s" % (stage, chunk))
+                        static("vue/%s/%s" % (stage, chunk))
                     )
                 elif chunk.startswith("js"):
                     js.append(
-                        static("/vue/%s/%s" % (stage, chunk))
+                        static("vue/%s/%s" % (stage, chunk))
                     )
     except Exception as e:
         print(e)
