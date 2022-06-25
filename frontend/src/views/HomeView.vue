@@ -10,7 +10,7 @@
             <qp-card>card</qp-card>
         </el-col>
         <el-col :span="8">
-            <qp-card>card</qp-card>
+            <qp-card color="primary">card</qp-card>
         </el-col>
         <el-col :span="4">
             <qp-card>card</qp-card>
