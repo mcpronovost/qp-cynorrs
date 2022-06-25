@@ -1,5 +1,7 @@
 import json
 from django.shortcuts import render
+from django.templatetags.static import static
+
 from qp.settings import DEBUG
 
 def app(request):
@@ -11,9 +13,13 @@ def app(request):
         wp = json.load(f)
         for chunk in wp["chunks"]["app"]:
             if chunk.startswith("css"):
-                css.append("/vue/%s/%s" % (stage, chunk))
+                css.append(
+                    static("/vue/%s/%s" % (stage, chunk))
+                )
             elif chunk.startswith("js"):
-                js.append("/vue/%s/%s" % (stage, chunk))
+                js.append(
+                    static("/vue/%s/%s" % (stage, chunk))
+                )
     # ===---
     context = {
         "css": css,
