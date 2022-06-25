@@ -1,0 +1,38 @@
+{
+  "status": "done",
+  "assets": {
+    "css/app.css": {
+      "name": "css/app.css",
+      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\css\\app.css",
+      "publicPath": "/css/app.css"
+    },
+    "js/app.js": {
+      "name": "js/app.js",
+      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\js\\app.js",
+      "publicPath": "/js/app.js"
+    },
+    "js/chunk-vendors.js": {
+      "name": "js/chunk-vendors.js",
+      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\js\\chunk-vendors.js",
+      "publicPath": "/js/chunk-vendors.js"
+    },
+    "favicon.ico": {
+      "name": "favicon.ico",
+      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\favicon.ico",
+      "publicPath": "/favicon.ico"
+    },
+    "index.html": {
+      "name": "index.html",
+      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\index.html",
+      "publicPath": "/index.html"
+    }
+  },
+  "chunks": {
+    "app": [
+      "js/chunk-vendors.js",
+      "css/app.css",
+      "js/app.js"
+    ]
+  },
+  "publicPath": "/"
+}

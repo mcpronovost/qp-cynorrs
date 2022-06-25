@@ -1,5 +1,19 @@
 # qp-cynorrs
+Custom project.
 
-[![Documentation Status](https://readthedocs.org/projects/qp-cynorrs/badge/?version=latest)](https://qp-cynorrs.readthedocs.io/fr/latest/?badge=latest)
+## Windows
 
-A project.
+- > py -m venv venv
+- > .\venv\Scripts\activate
+- > deactivate
+
+- > py -m pip install --upgrade pip
+- > py -m pip install django
+- > py -m pip freeze > requirements.txt
+- > py -m pip install -r requirements.txt
+
+- > django-admin startproject qp .
+
+- > py manage.py migrate
+- > py manage.py runserver
+

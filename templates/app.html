@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div id="app"></div>
+
+    {% for c in css %}
+        <link rel="stylesheet" href="{% static c %}" />
+    {% endfor %}
+    {% for j in js %}
+        <script type="text/javascript" src="{% static j %}"></script>
+    {% endfor %}
+
+{% endblock body %}

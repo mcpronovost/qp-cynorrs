@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+
+:root {
+    --qp-primary: #435259;
+    --qp-accent: #d3b018;
+    --qp-base: #dbe0e2;
+    --qp-bg: #c9cfd1;
+    --qp-light: #282826;
+    --qp-text-base: #8f999d;
+}
+html, body {
+    background-color: var(--qp-bg);
+    color: var(--qp-text-base);
+    font-family: "Roboto", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    padding: 0;
+    margin: 0;
+}
+
+a, a:link, a:visited {
+    color: var(--qp-text-base);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:focus, a:hover {
+    color: var(--qp-accent);
+    text-decoration: none;
+}
+
+#app {
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    display: block;
+    height: 100vh;
+}
+
+#qp-app-main {
+    background-color: transparent;
+    font-size: 16px;
+    line-height: 120%;
+    vertical-align: top;
+    display: inline-block;
+    height: calc(100vh - 64px);
+    width: calc(100vw - 300px - 64px);
+}
+@media (max-width: 1199px) {
+    #qp-app-main {
+        width: calc(100vw - 64px - 64px);
+    }
+}
+
+.qp-vue {
+    padding: 20px;
+}

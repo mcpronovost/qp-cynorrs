@@ -1,0 +1,12 @@
+.el-card {
+    background-color: var(--qp-dark);
+    border: none;
+    color: var(--qp-text-light);
+}
+.el-card.is-always-shadow {
+    box-shadow: none;
+}
+
+.el-col {
+    padding: 10px;
+}
