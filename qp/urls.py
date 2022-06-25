@@ -6,5 +6,5 @@ from qp.views import app
 
 urlpatterns = [
     re_path("admin/", admin.site.urls),
-    re_path("^", app)
+    #re_path("^", app)
 ]
