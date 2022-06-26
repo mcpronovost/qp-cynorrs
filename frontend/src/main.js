@@ -11,6 +11,13 @@ import "@/assets/element.css"
 
 const app = createApp(App)
 
+export const API = (
+    process.env.NODE_ENV === "production" ?
+    "https://mcpronovost.pythonanywhere.com/api" :
+    "http://localhost:8000/api"
+)
+app.config.globalProperties.$qpurl = API
+
 app.use(i18n)
 app.use(store)
 app.use(router)

@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # ===---
     "rest_framework",
-    "knox"
+    "knox",
+    # ===---
+    "qp.player"
 ]
 
 MIDDLEWARE = [
@@ -107,7 +109,8 @@ REST_FRAMEWORK = {
 }
 
 REST_KNOX = {
-  "TOKEN_TTL": timedelta(seconds=30),
+  "TOKEN_TTL": timedelta(days=30),
+  "TOKEN_LIMIT_PER_USER": 3,
   "USER_SERIALIZER": "knox.serializers.UserSerializer"
 }
 
@@ -123,7 +126,7 @@ LANGUAGES = [
 
 LANGUAGE_CODE = "fr"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "America/Toronto"
 
 USE_I18N = True
 

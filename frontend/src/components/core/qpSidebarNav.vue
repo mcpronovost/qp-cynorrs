@@ -1,11 +1,11 @@
 <template>
     <div id="qp-sidebar-nav">
-        <el-menu router :collapse="app.win.w < 1200">
-            <el-menu-item index="1" :route="{name:'Home'}">
+        <el-menu router :default-active="$route.name" :collapse="app.win.w < 1200">
+            <el-menu-item index="Home" :route="{name:'Home'}">
                 <i class="mdi mdi-home"></i>
                 <span v-text="'Home'"></span>
             </el-menu-item>
-            <el-menu-item index="2" :route="{name:'About'}">
+            <el-menu-item index="About" :route="{name:'About'}">
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'About'"></span>
             </el-menu-item>
@@ -17,8 +17,8 @@
                 <el-menu-item index="1-1">
                     <span v-text="'item one'"></span>
                 </el-menu-item>
-                <el-menu-item index="1-2">
-                    <span v-text="'item two'"></span>
+                <el-menu-item index="Profile" :route="{name:'Profile'}">
+                    <span v-text="'profile'"></span>
                 </el-menu-item>
                 <el-sub-menu index="8">
                     <template #title>

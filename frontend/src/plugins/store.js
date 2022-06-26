@@ -1,3 +1,4 @@
+import { API } from "@/main.js";
 import { createStore } from "vuex";
 import { Buffer } from "buffer";
 import VuexPersistence from "vuex-persist";
@@ -31,9 +32,9 @@ const vuexCookie = new VuexPersistence({
     saveState: (key, state) => {
         if (state) {
             (Cookies.set(
-                key, Buffer.from(JSON.stringify(state)).toString("base64"), {
-                    expires: 30
-                }
+                key,
+                Buffer.from(JSON.stringify(state)).toString("base64"),
+                { expires: 30 }
             ))
         }
     },
@@ -55,16 +56,20 @@ const store = createStore({
             }
         },
         player: (state) => {
-            return state.player
+            if (state.player.j) {
+                return JSON.parse(
+                    Buffer.from(state.player.j, "base64").toString("utf8")
+                )
+            }
+            return null
         },
         rat: (state) => {
             if (state.drat.s && state.frat.e) {
                 let s = Buffer.from(state.drat.s, "base64").toString("utf8")
                 let e = Buffer.from(state.frat.e, "base64").toString("utf8")
                 return `Token ${s}${e}`
-            } else {
-                return null
             }
+            return null
         }
     },
     modules: {
@@ -83,26 +88,80 @@ const store = createStore({
         },
         player: {
             state: () => ({
-
+                j: null
             }),
-            actions: {
-                async getPlayer () {
-                    console.log("getPlayer start")
-                    let response = await fetch(
-                        `/api/login/`, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json;charset=utf-8",
-                                //"Authorization": getters.rat
-                            },
-                            body: JSON.stringify({
-                                "username": "",
-                                "password": ""
-                            })
+            mutations: {
+                SET_PLAYER (state, payload) {
+                    if (payload) {
+                        let data = Buffer.from(state.j, "base64").toString("utf8")
+                        if (data) {
+                            data = JSON.parse(data)
+                        } else {
+                            data = {}
                         }
-                    )
-                    let result = await response.json()
-                    return result
+                        // ===---
+                        data[payload[0]] = payload[1]
+                        // ===---
+                        state.j = Buffer.from(JSON.stringify(data)).toString("base64")
+                    }
+                },
+                BATCH_PLAYER (state, payload) {
+                    if (payload) {
+                        let data = state.j
+                        if (data) {
+                            data = JSON.parse(Buffer.from(data, "base64").toString("utf8"))
+                        } else {
+                            data = {}
+                        }
+                        // ===---
+                        let items = Object.entries(payload)
+                        for (let i = 0; i < items.length; i++) {
+                            data[items[i][0]] = items[i][1]
+                        }
+                        // ===---
+                        state.j = Buffer.from(JSON.stringify(data)).toString("base64")
+                    } else {
+                        state.j = null
+                    }
+                }
+            },
+            actions: {
+                async getPlayer ({ commit, dispatch, getters }) {
+                    let r = await fetch(`${API}/`, {
+                        method: "GET",
+                        headers: {"Authorization": getters.rat}
+                    })
+                    if (r.status === 200) {
+                        let result = await r.json()
+                        commit("BATCH_PLAYER", result.player)
+                    } else if (r.status === 401) {
+                        dispatch("doLogout")
+                    }
+                },
+                async doLogin ({ commit }) {
+                    let data = new FormData()
+                    data.append("username", "")
+                    data.append("password", "")
+                    let response = await fetch(`${API}/login/`, {
+                        method: "POST",
+                        body: data
+                    })
+                    if (response.status === 200) {
+                        let result = await response.json()
+                        let token = result.token
+                        let half = Math.ceil(token.length / 2)
+                        commit("SET_DRAT", token.slice(0, half))
+                        commit("SET_FRAT", token.slice(half))
+                    }
+                },
+                async doLogout ({ commit, getters }) {
+                    await fetch(`${API}/logout/`, {
+                        method: "POST",
+                        headers: {"Authorization": getters.rat}
+                    })
+                    commit("BATCH_PLAYER", null)
+                    commit("SET_DRAT", null)
+                    commit("SET_FRAT", null)
                 }
             }
         },
@@ -113,9 +172,7 @@ const store = createStore({
             mutations: {
                 SET_DRAT (state, payload) {
                     if (payload) {
-                        let data = state.s ? Buffer.from(state.s, "base64").toString("utf8") : null
-                        data = payload
-                        state.s = Buffer.from(data).toString("base64")
+                        state.s = Buffer.from(payload).toString("base64")
                     } else {
                         state.s = null
                     }
@@ -129,9 +186,7 @@ const store = createStore({
             mutations: {
                 SET_FRAT (state, payload) {
                     if (payload) {
-                        let data = state.e ? Buffer.from(state.e, "base64").toString("utf8") : null
-                        data = payload
-                        state.e = Buffer.from(data).toString("base64")
+                        state.e = Buffer.from(payload).toString("base64")
                     } else {
                         state.e = null
                     }

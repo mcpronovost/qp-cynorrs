@@ -28,10 +28,7 @@ export default {
         }
     },
     mounted () {
-        let token = "fa3ab65b4e41d78422eb4964c6a8bfe3d9cf180755111617c8b6b4e01c2bbe1b"
-        let half = Math.ceil(token.length / 2)
-        this.$store.commit("SET_DRAT", token.slice(0, half))
-        this.$store.commit("SET_FRAT", token.slice(half))
+        //
     }
 };
 </script>

@@ -26,7 +26,7 @@ def app(request):
                         static("vue/%s/%s" % (stage, chunk))
                     )
     except Exception as e:
-        print(e)
+        print("Error on app : ", e)
     # ===---
     context = {
         "css": css,

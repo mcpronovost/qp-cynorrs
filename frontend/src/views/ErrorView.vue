@@ -9,7 +9,7 @@
 </template>
 
 <script>
-    import qpCard from "@/components/core/qpCard.vue";
+    import qpCard from "@/components/basic/qpCard.vue";
     export default {
         name: "ErrorView",
         components: {

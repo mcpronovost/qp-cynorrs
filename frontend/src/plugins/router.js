@@ -16,6 +16,11 @@ const routes = [
     component: AboutView
   },
   {
+    path: "/profile",
+    name: "Profile",
+    component: AboutView
+  },
+  {
     path: "/:catchAll(.*)",
     name: "Error",
     component: ErrorView
