@@ -58,9 +58,9 @@ const store = createStore({
             return state.player
         },
         rat: (state) => {
-            if (state.drat.drat && state.frat.frat) {
-                let s = Buffer.from(state.drat.drat, "base64").toString("utf8")
-                let e = Buffer.from(state.frat.frat, "base64").toString("utf8")
+            if (state.drat.s && state.frat.e) {
+                let s = Buffer.from(state.drat.s, "base64").toString("utf8")
+                let e = Buffer.from(state.frat.e, "base64").toString("utf8")
                 return `Token ${s}${e}`
             } else {
                 return null
@@ -84,36 +84,56 @@ const store = createStore({
         player: {
             state: () => ({
 
-            })
+            }),
+            actions: {
+                async getPlayer () {
+                    console.log("getPlayer start")
+                    let response = await fetch(
+                        `/api/login/`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json;charset=utf-8",
+                                //"Authorization": getters.rat
+                            },
+                            body: JSON.stringify({
+                                "username": "",
+                                "password": ""
+                            })
+                        }
+                    )
+                    let result = await response.json()
+                    return result
+                }
+            }
         },
         drat: {
             state: () => ({
-                drat: null,
+                s: null,
             }),
             mutations: {
                 SET_DRAT (state, payload) {
                     if (payload) {
-                        let data = state.drat ? Buffer.from(state.drat, "base64").toString("utf8") : null
+                        let data = state.s ? Buffer.from(state.s, "base64").toString("utf8") : null
                         data = payload
-                        state.drat = Buffer.from(data).toString("base64")
+                        state.s = Buffer.from(data).toString("base64")
                     } else {
-                        state.drat = null
+                        state.s = null
                     }
                 }
             }
         },
         frat: {
             state: () => ({
-                frat: null
+                e: null
             }),
             mutations: {
                 SET_FRAT (state, payload) {
                     if (payload) {
-                        let data = state.frat ? Buffer.from(state.frat, "base64").toString("utf8") : null
+                        let data = state.e ? Buffer.from(state.e, "base64").toString("utf8") : null
                         data = payload
-                        state.frat = Buffer.from(data).toString("base64")
+                        state.e = Buffer.from(data).toString("base64")
                     } else {
-                        state.frat = null
+                        state.e = null
                     }
                 }
             }

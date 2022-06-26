@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from datetime import timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -26,6 +27,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # ===---
+    "rest_framework",
+    "knox"
 ]
 
 MIDDLEWARE = [
@@ -89,6 +92,24 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"}
 ]
+
+
+#########################################################################################
+# REST framework & Knox
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "knox.auth.TokenAuthentication"
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny"
+    ]
+}
+
+REST_KNOX = {
+  "TOKEN_TTL": timedelta(seconds=30),
+  "USER_SERIALIZER": "knox.serializers.UserSerializer"
+}
 
 
 #########################################################################################

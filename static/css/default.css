@@ -1,6 +1,28 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-
 @import url("https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css");
+
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/Oswald/static/Oswald-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Indie Flower";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/Indie_Flower/IndieFlower-Regular.ttf") format("truetype");
+}
 
 :root {
     --qp-primary: #435259;
@@ -12,7 +34,7 @@
 html, body {
     background-color: var(--qp-bg);
     color: var(--qp-primary);
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
     padding: 0;
     margin: 0;
 }
@@ -31,6 +53,19 @@ a:focus, a:hover {
     color: var(--qp-accent);
     text-decoration: none;
 }
+
+/* ===--- QPSTRAP ---=== */
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+
+/* ===--- APP ---=== */
 
 #app {
     font-size: 0;

@@ -2,12 +2,12 @@
   <div class="qp-vue">
     <el-row :gutter="20">
         <el-col :span="24">
-            <qp-card>card</qp-card>
+            <qp-card><a href="https://www.flaticon.com/free-icons/killer-whale" title="killer whale icons">Killer whale icons created by edt.im - Flaticon</a></qp-card>
         </el-col>
     </el-row>
     <el-row :gutter="20">
         <el-col :md="12" :lg="8">
-            <qp-card>
+            <qp-card overflow>
                 <pre>{{ $store.state }}</pre>
             </qp-card>
         </el-col>
@@ -32,6 +32,9 @@
         name: "HomeView",
         components: {
             qpCard
+        },
+        mounted () {
+            console.log("home")
         }
     }
 </script>

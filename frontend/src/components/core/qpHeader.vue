@@ -1,9 +1,28 @@
 <template>
     <div id="qp-app-header">
-        <el-row :gutter="20">
-            <el-col :span="24">
+        <el-row :gutter="20" align="middle">
+            <el-col :span="11" :lg="8">
                 <div id="qp-header-logo">
-                    <img :src="logo" alt ="" />
+                    <div id="qp-header-logo-img">
+                        <el-image :src="logo" fit="cover">
+                            <template #error>
+                                <div class="image-slot"></div>
+                            </template>
+                        </el-image>
+                    </div>
+                    <div id="qp-header-logo-title">
+                        <span v-text="'Cynorrs'"></span>
+                    </div>
+                </div>
+            </el-col>
+            <el-col :span="2" :lg="8" class="text-center">
+                <div id="qp-header-titlse">
+                    <span v-text="'Cynorrs'"></span>
+                </div>
+            </el-col>
+            <el-col :span="11" :lg="8">
+                <div id="qp-header-menu">
+                    <span v-text="'Cynorrs'"></span>
                 </div>
             </el-col>
         </el-row>
@@ -15,7 +34,7 @@
         name: "qpHeader",
         data () {
             return {
-                logo: "/static/ico/favicon-180.png"
+                logo: "/static/ico/logo-square-trans.png"
             }
         }
     }
@@ -31,11 +50,38 @@
         z-index: 1;
     }
     #qp-header-logo {
-        width: 48px;
-        height: 48px;
+        display: inline-block;
+        transition: filter 0.4s;
     }
-    #qp-header-logo .el-image {
+    #qp-header-logo:hover {
+        cursor: pointer;
+        filter: blur(0.5px) brightness(1.1);
+    }
+    #qp-header-logo-img {
+        background-color: #505f65;
+        border-radius: 100%;
+        overflow: hidden;
+        vertical-align: middle;
+        display: inline-block;
+        width: 42px;
+        height: 42px;
+        margin: 0 12px;
+    }
+    #qp-header-logo-img .el-image {
         width: 100%;
         height: 100%;
+    }
+    #qp-header-logo-title {
+        color: var(--qp-bg);
+        font-family: "Indie Flower", sans-serif;
+        font-size: 32px;
+        line-height: 120%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    @media (max-width: 768px) {
+        #qp-header-logo-title {
+            display: none;
+        }
     }
 </style>

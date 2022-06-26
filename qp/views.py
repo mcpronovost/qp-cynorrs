@@ -1,4 +1,5 @@
 import json
+import hashlib
 from django.shortcuts import render
 from django.templatetags.static import static
 
@@ -8,6 +9,9 @@ def app(request):
     css = []
     js = []
     stage = "dev" if DEBUG else "pro"
+    print("-------------------------------")
+    print(request.headers["User-Agent"])
+    print(hashlib.sha1(request.headers["User-Agent"].encode()).hexdigest())
     # ===---
     try:
         with open("frontend/webpack-%s.json" % (stage), "r") as f:
