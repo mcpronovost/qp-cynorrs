@@ -29,9 +29,10 @@
 <style scoped>
     .qp-card {
         background-color: var(--qp-base);
-        color: var(--qp-base);
+        color: var(--qp-primary);
         border-radius: 4px;
         box-shadow: 0 0 3px rgba(67, 82, 89, 0.04);
+        height: 100%;
     }
     .qp-card.qp-card-bg-primary {
         background-color: var(--qp-primary);

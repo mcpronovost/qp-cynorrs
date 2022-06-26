@@ -26,6 +26,10 @@ export default {
         return {
             test: this.$route
         }
+    },
+    mounted () {
+        this.$store.commit("SET_DRAT", "start")
+        this.$store.commit("SET_FRAT", "end")
     }
 };
 </script>

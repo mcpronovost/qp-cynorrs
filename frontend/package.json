@@ -1,23 +1,26 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "@mcpronovost/cynorrs",
+  "version": "0.1.1",
+  "author": "M-C Pronovost",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && npm version patch",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/font": "^6.7.96",
-    "core-js": "^3.8.3",
+    "core-js": "^3.23.2",
     "element-plus": "^2.2.6",
+    "js-cookie": "^3.0.1",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.3",
-    "vuex": "^4.0.0"
+    "vue-router": "^4.0.16",
+    "vuex": "^4.0.2",
+    "vuex-persist": "^3.1.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
+    "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-eslint": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
@@ -25,7 +28,7 @@
     "@vue/cli-service": "~5.0.0",
     "clean-webpack-plugin": "^4.0.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
+    "eslint-plugin-vue": "^8.7.1",
     "webpack-bundle-tracker": "^1.6.0"
   }
 }

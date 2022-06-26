@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block head %}
+
+{% endblock %}
+    {% for c in css %}
+        <link rel="stylesheet" href="{{ c }}" />
+    {% endfor %}
 {% block body %}
 
     <div id="app"></div>
 
-    {% for c in css %}
-        <link rel="stylesheet" href="{{ c }}" />
-    {% endfor %}
     {% for j in js %}
         <script type="text/javascript" src="{{ j }}"></script>
     {% endfor %}

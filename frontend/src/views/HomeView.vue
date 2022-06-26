@@ -6,16 +6,20 @@
         </el-col>
     </el-row>
     <el-row :gutter="20">
-        <el-col :lg="8">
+        <el-col :md="12" :lg="8">
+            <qp-card>
+                <pre>{{ $store.state }}</pre>
+            </qp-card>
+        </el-col>
+        <el-col :md="12" :lg="8">
+            <qp-card color="primary">
+                <pre>{{ $store.getters }}</pre>
+            </qp-card>
+        </el-col>
+        <el-col :lg="4">
             <qp-card>card</qp-card>
         </el-col>
-        <el-col :span="8">
-            <qp-card color="primary">card</qp-card>
-        </el-col>
-        <el-col :span="4">
-            <qp-card>card</qp-card>
-        </el-col>
-        <el-col :span="4">
+        <el-col :lg="4">
             <qp-card>card</qp-card>
         </el-col>
     </el-row>
@@ -25,7 +29,7 @@
 <script>
     import qpCard from "@/components/core/qpCard.vue";
     export default {
-        name: 'HomeView',
+        name: "HomeView",
         components: {
             qpCard
         }

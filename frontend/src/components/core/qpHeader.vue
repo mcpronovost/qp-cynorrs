@@ -1,12 +1,23 @@
 <template>
     <div id="qp-app-header">
-        header
+        <el-row :gutter="20">
+            <el-col :span="24">
+                <div id="qp-header-logo">
+                    <img :src="logo" alt ="" />
+                </div>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'qpHeader'
+        name: "qpHeader",
+        data () {
+            return {
+                logo: "/static/ico/favicon-180.png"
+            }
+        }
     }
 </script>
 
@@ -18,5 +29,13 @@
         height: 64px;
         position: relative;
         z-index: 1;
+    }
+    #qp-header-logo {
+        width: 48px;
+        height: 48px;
+    }
+    #qp-header-logo .el-image {
+        width: 100%;
+        height: 100%;
     }
 </style>

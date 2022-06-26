@@ -8,12 +8,10 @@
     --qp-accent: #d3b018;
     --qp-base: #dbe0e2;
     --qp-bg: #c9cfd1;
-    --qp-light: #282826;
-    --qp-text-base: #8f999d;
 }
 html, body {
     background-color: var(--qp-bg);
-    color: var(--qp-text-base);
+    color: var(--qp-primary);
     font-family: "Roboto", sans-serif;
     padding: 0;
     margin: 0;
@@ -25,7 +23,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 a, a:link, a:visited {
-    color: var(--qp-text-base);
+    color: var(--qp-primary);
     text-decoration: none;
     transition: color 0.3s;
 }

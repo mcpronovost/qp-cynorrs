@@ -4,10 +4,17 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8" />
-        <title>Mon app</title>
+        <title>{% block title %}Cynorrs{% endblock %}</title>
+        <link rel="manifest" href="{% static 'site.webmanifest' %}" />
+        <meta name="application-name" content="Cynorrs" />
+        <link rel="icon" sizes="16x16 32x32 48x48" href="{% static 'ico/favicon.ico' %}" />
+        <link rel="icon" sizes="512x512" href="{% static 'ico/favicon-512.png' %}" />
+        <!-- STYLE -->
         <link rel="stylesheet" type="text/css" href="{% static 'css/default.css' %}" />
+        <!-- RENDER -->
+        {% block head %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock body %}
+        {% block body %}{% endblock %}
     </body>
 </html>
