@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block head %}
-
-{% endblock %}
     {% for c in css %}
         <link rel="stylesheet" href="{{ c }}" />
     {% endfor %}
+{% endblock %}
+
 {% block body %}
 
     <div id="app"></div>
