@@ -1,14 +1,14 @@
 <template>
     <div id="qp-sidebar-profile">
         <div id="qp-sidebar-banner">
-            <el-image :src="banner" fit="cover">
+            <el-image :src="player.banner" fit="cover">
                 <template #error>
                     <div class="image-slot"></div>
                 </template>
             </el-image>
         </div>
         <div id="qp-sidebar-avatar">
-            <el-image :src="avatar" fit="cover">
+            <el-image :src="player.avatar" fit="cover">
                 <template #error>
                     <div class="image-slot"></div>
                 </template>
@@ -16,7 +16,7 @@
         </div>
         <div id="qp-sidebar-name">
             <h2>
-                <span v-text="name"></span>
+                <span v-text="player.name"></span>
             </h2>
         </div>
         <div id="qp-sidebar-title">
@@ -33,15 +33,12 @@
         name: "qpSidebarProfile",
         data () {
             return {
-                banner: "",
-                avatar: "",
-                name: "M-C Pronovost",
                 title: "Qui ne fait que passer"
             }
         },
         computed: {
             ...mapGetters([
-                "app"
+                "player"
             ])
         }
     }

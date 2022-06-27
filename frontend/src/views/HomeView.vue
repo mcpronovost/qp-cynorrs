@@ -2,7 +2,7 @@
   <div class="qp-vue">
     <el-row :gutter="20">
         <el-col :span="24">
-            <qp-card><a href="https://www.flaticon.com/free-icons/killer-whale" title="killer whale icons">Killer whale icons created by edt.im - Flaticon</a></qp-card>
+            <qp-card><a href="https://www.flaticon.com/free-icons/killer-whale" target="_blank" title="killer whale icons">Killer whale icons created by edt.im - Flaticon</a></qp-card>
         </el-col>
     </el-row>
     <el-row :gutter="20">

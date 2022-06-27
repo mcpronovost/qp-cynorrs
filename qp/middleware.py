@@ -33,8 +33,8 @@ class AdminMiddleware():
             return response
         try:
             app_list = response.context_data['app_list']
-        except KeyError:
-            return response
+        except:
+            app_list = response.context_data['available_apps']
         # ===---
         app_list = self.get_app_list(app_list)
         response.context_data['app_list'] = app_list

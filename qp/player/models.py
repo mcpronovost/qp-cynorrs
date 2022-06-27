@@ -1,6 +1,17 @@
-from django.db import models
+from zoneinfo import ZoneInfo
 from django.contrib.auth import get_user_model
+from django.db import models
+from django.template.defaultfilters import slugify
+from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
+from qp.settings import TIME_ZONE
+
+
+CHOIX_GENDER = [
+    ("m", _("Male")),
+    ("f", _("Female")),
+    ("o", _("Other"))
+]
 
 
 class qpPlayer(models.Model):
@@ -18,6 +29,18 @@ class qpPlayer(models.Model):
         blank=False,
         null=False
     )
+    slug = models.SlugField(
+        verbose_name=_("Slug"),
+        unique=True,
+        blank=True,
+        null=True
+    )
+    affinity = models.PositiveIntegerField(
+        verbose_name=_("Affinity"),
+        default=0,
+        blank=False,
+        null=False
+    )
     updated_at = models.DateTimeField(
         auto_now=True
     )
@@ -27,15 +50,42 @@ class qpPlayer(models.Model):
         verbose_name_plural = _("Players")
         ordering = ["-user__last_login"]
     
+    class Qapi:
+        admin_order = 1
+    
+    def __str__(self):
+        return "%s (%s)" % (
+            str(self.playername),
+            str(self.user.username) if self.user else "-"
+        )
+
+    def get_absolute_url(self):
+        return "/players/%s/" % (
+            str(self.slug)
+        )
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(
+            str(self.playername)
+        )
+        return super().save(*args, **kwargs)
+    
     @property
     def name(self):
-        if self.playername is not None and self.playername != "":
-            return "%s" % (
-                self.playername
-            )
         return "%s" % (
-            str(_("Traveler"))
+            str(self.playername)
         )
+    
+    @property
+    def last_login(self):
+        if self.user is not None and self.user.last_login is not None:
+            return "%s" % (
+                date_format(
+                    self.user.last_login.astimezone(ZoneInfo(TIME_ZONE)),
+                    format="SHORT_DATETIME_FORMAT"
+                )
+            )
+        return "-"
 
 
 class qpPlayerCharacter(models.Model):
@@ -56,6 +106,68 @@ class qpPlayerCharacter(models.Model):
         max_length=32,
         blank=True,
         null=True
+    )
+    gender = models.CharField(
+        verbose_name=_("Gender"),
+        max_length=2,
+        choices=CHOIX_GENDER,
+        default="o",
+        blank=False,
+        null=False
+    )
+    resistance_physical = models.PositiveSmallIntegerField(
+        verbose_name=_("Physical Resistance"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    resistance_mental = models.PositiveSmallIntegerField(
+        verbose_name=_("Mental Resistance"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    resistance_spiritual = models.PositiveSmallIntegerField(
+        verbose_name=_("Spiritual Resistance"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_strength = models.PositiveIntegerField(
+        verbose_name=_("Strength"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_constitution = models.PositiveIntegerField(
+        verbose_name=_("Constitution"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_dexterity = models.PositiveIntegerField(
+        verbose_name=_("Dexterity"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_perception = models.PositiveIntegerField(
+        verbose_name=_("Perception"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_intelligence = models.PositiveIntegerField(
+        verbose_name=_("Intelligence"),
+        default=0,
+        blank=False,
+        null=False
+    )
+    attribute_composure = models.PositiveIntegerField(
+        verbose_name=_("Composure"),
+        default=0,
+        blank=False,
+        null=False
     )
     is_active = models.BooleanField(
         verbose_name=_("Active"),
@@ -86,19 +198,25 @@ class qpPlayerHero(qpPlayerCharacter):
     class Meta:
         verbose_name = _("Hero")
         verbose_name_plural = _("Heros")
+    
+    class Qapi:
+        admin_order = 2
 
 
 class qpPlayerCompanion(qpPlayerCharacter):
     player = models.ForeignKey(
         qpPlayer,
-        on_delete=models.CASCADE,
+        on_delete=models.SET_NULL,
         related_name="companions",
         verbose_name=_("Player"),
-        blank=False,
-        null=False
+        blank=True,
+        null=True
     )
 
     class Meta:
         verbose_name = _("Companion")
         verbose_name_plural = _("Companions")
+    
+    class Qapi:
+        admin_order = 3
 
