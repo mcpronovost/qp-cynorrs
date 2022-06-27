@@ -1,7 +1,7 @@
 # qp-cynorrs
 Custom project.
 
-## Windows
+## Virtual Environnement
 
 - > py -m venv venv
 - > .\venv\Scripts\activate
@@ -14,6 +14,7 @@ Custom project.
 
 - > django-admin startproject qp .
 
+- > py manage.py collectstatic
 - > py manage.py migrate
 - > py manage.py runserver
 
