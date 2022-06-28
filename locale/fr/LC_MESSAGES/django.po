@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-27 23:45-0400\n"
+"POT-Creation-Date: 2022-06-28 07:37-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,8 +63,9 @@ msgstr "Utilisateur"
 msgid "Playername"
 msgstr "Nom de joueur"
 
-#: .\qp\player\models.py:35 .\qp\world\models.py:14 .\qp\world\models.py:59
-#: .\qp\world\models.py:82 .\qp\world\models.py:105
+#: .\qp\player\models.py:35 .\qp\world\models.py:14 .\qp\world\models.py:67
+#: .\qp\world\models.py:98 .\qp\world\models.py:129 .\qp\world\models.py:160
+#: .\qp\world\models.py:191 .\qp\world\models.py:222
 msgid "Slug"
 msgstr "Slug"
 
@@ -133,7 +134,9 @@ msgid "Active"
 msgstr "Actif"
 
 #: .\qp\player\models.py:219 .\qp\player\models.py:245 .\qp\world\apps.py:6
-#: .\qp\world\models.py:27
+#: .\qp\world\models.py:27 .\qp\world\models.py:56 .\qp\world\models.py:87
+#: .\qp\world\models.py:118 .\qp\world\models.py:149 .\qp\world\models.py:180
+#: .\qp\world\models.py:211
 msgid "World"
 msgstr "Monde"
 
@@ -153,8 +156,9 @@ msgstr "Compagnon"
 msgid "Companions"
 msgstr "Compagnons"
 
-#: .\qp\world\models.py:8 .\qp\world\models.py:53 .\qp\world\models.py:76
-#: .\qp\world\models.py:99
+#: .\qp\world\models.py:8 .\qp\world\models.py:61 .\qp\world\models.py:92
+#: .\qp\world\models.py:123 .\qp\world\models.py:154 .\qp\world\models.py:185
+#: .\qp\world\models.py:216
 msgid "Name"
 msgstr "Nom"
 
@@ -162,26 +166,50 @@ msgstr "Nom"
 msgid "Worlds"
 msgstr "Mondes"
 
-#: .\qp\world\models.py:66
+#: .\qp\world\models.py:74
+msgid "Zone"
+msgstr "Zone"
+
+#: .\qp\world\models.py:75
+msgid "Zones"
+msgstr "Zones"
+
+#: .\qp\world\models.py:105
+msgid "Territory"
+msgstr "Territoire"
+
+#: .\qp\world\models.py:106
+msgid "Territories"
+msgstr "Territoires"
+
+#: .\qp\world\models.py:136
+msgid "Sector"
+msgstr "Secteur"
+
+#: .\qp\world\models.py:137
+msgid "Sectors"
+msgstr "Secteurs"
+
+#: .\qp\world\models.py:167
 msgid "Race"
 msgstr "Race"
 
-#: .\qp\world\models.py:67
+#: .\qp\world\models.py:168
 msgid "Races"
 msgstr "Races"
 
-#: .\qp\world\models.py:89
+#: .\qp\world\models.py:198
 msgid "Ethnicity"
 msgstr "Ethnie"
 
-#: .\qp\world\models.py:90
+#: .\qp\world\models.py:199
 msgid "Ethnicities"
 msgstr "Ethnies"
 
-#: .\qp\world\models.py:112
+#: .\qp\world\models.py:229
 msgid "Nationality"
 msgstr "Nationalité"
 
-#: .\qp\world\models.py:113
+#: .\qp\world\models.py:230
 msgid "Nationalities"
 msgstr "Nationalités"

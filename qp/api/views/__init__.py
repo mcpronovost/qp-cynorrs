@@ -11,7 +11,7 @@ class qpPingView(APIView):
 
     def get(self, request, format=None):
         if not request.user.is_authenticated:
-            return Response({"valid": True})
+            return Response({"valid": False}, status=status.HTTP_401_UNAUTHORIZED)
         try:
             player = request.user.player
         except ObjectDoesNotExist:
@@ -20,7 +20,9 @@ class qpPingView(APIView):
             )
         # ===---
         player_data = {
-            "name": player.name
+            "name": player.name,
+            "avatar": None,
+            "banner": None
         }
         # ===---
         return Response({

@@ -127,15 +127,17 @@ const store = createStore({
             },
             actions: {
                 async getPlayer ({ commit, dispatch, getters }) {
-                    let r = await fetch(`${API}/`, {
-                        method: "GET",
-                        headers: {"Authorization": getters.rat}
-                    })
-                    if (r.status === 200) {
-                        let result = await r.json()
-                        commit("BATCH_PLAYER", result.player)
-                    } else if (r.status === 401) {
-                        dispatch("doLogout")
+                    if (getters.rat) {
+                        let r = await fetch(`${API}/`, {
+                            method: "GET",
+                            headers: {"Authorization": getters.rat}
+                        })
+                        if (r.status === 200) {
+                            let result = await r.json()
+                            commit("BATCH_PLAYER", result.player)
+                        } else if (r.status === 401) {
+                            dispatch("doLogout")
+                        }
                     }
                 },
                 async doLogin ({ commit }) {

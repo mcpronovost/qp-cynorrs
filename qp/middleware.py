@@ -12,10 +12,17 @@ class AdminMiddleware():
     def get_app_list(self, app_list):
         for a in app_list:
             a_config = apps.get_app_config(a["app_label"])
+            # ===---
             if hasattr(a_config, "Qapi"):
                 a["qp_admin_order"] = a_config.Qapi.admin_order
             else:
-                a["qp_admin_order"] = 89
+                if a["app_label"] == "auth":
+                    a["qp_admin_order"] = 1
+                elif a["app_label"] == "knox":
+                    a["qp_admin_order"] = 2
+                else:
+                    a["qp_admin_order"] = 89
+            # ===---
             for m in a["models"]:
                 if hasattr(m["model"], "Qapi"):
                     m["qp_admin_order"] = m["model"].Qapi.admin_order
@@ -24,7 +31,9 @@ class AdminMiddleware():
                         m["qp_admin_order"] = 2
                     else:
                         m["qp_admin_order"] = 89
+            # ===---
             a["models"] = sorted(a["models"], key=lambda q: q["qp_admin_order"])
+            # ===---
         app_list = sorted(app_list, key=lambda q: q["qp_admin_order"])
         return app_list
 
