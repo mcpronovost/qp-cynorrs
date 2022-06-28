@@ -135,6 +135,17 @@
         color: var(--qp-secondary);
     }
     @media (max-width: 1199px) {
+        #qp-sidebar-nav > .el-menu {
+            margin: 0 auto;
+        }
+        #qp-sidebar-nav > ul > li {
+            justify-content:center;
+            padding: 0;
+        }
+        #qp-sidebar-nav > ul > li > i.mdi {
+            font-size: 32px!important;
+            margin: 0 auto!important;
+        }
         #qp-sidebar-nav .el-icon.el-sub-menu__icon-arrow {
             display: none;
         }

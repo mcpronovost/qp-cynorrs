@@ -6,6 +6,8 @@ from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
 from qp.settings import TIME_ZONE
 
+from qp.world.models import qpWorld
+
 
 CHOIX_GENDER = [
     ("m", _("Male")),
@@ -184,6 +186,22 @@ class qpPlayerCharacter(models.Model):
         abstract = True
         ordering = ["last_name", "middle_name", "first_name"]
 
+    def __str__(self):
+        return self.name
+    
+    @property
+    def name(self):
+        names = []
+        if self.first_name and self.first_name != "":
+            names.append(self.first_name)
+        if self.middle_name and self.middle_name != "":
+            names.append(self.middle_name)
+        if self.last_name and self.last_name != "":
+            names.append(self.last_name)
+        return "%s" % (
+            " ".join(names)
+        )
+
 
 class qpPlayerHero(qpPlayerCharacter):
     player = models.ForeignKey(
@@ -193,6 +211,14 @@ class qpPlayerHero(qpPlayerCharacter):
         verbose_name=_("Player"),
         blank=False,
         null=False
+    )
+    world = models.ForeignKey(
+        qpWorld,
+        on_delete=models.SET_NULL,
+        related_name="heros",
+        verbose_name=_("World"),
+        blank=True,
+        null=True
     )
 
     class Meta:
@@ -209,6 +235,14 @@ class qpPlayerCompanion(qpPlayerCharacter):
         on_delete=models.SET_NULL,
         related_name="companions",
         verbose_name=_("Player"),
+        blank=True,
+        null=True
+    )
+    world = models.ForeignKey(
+        qpWorld,
+        on_delete=models.SET_NULL,
+        related_name="companions",
+        verbose_name=_("World"),
         blank=True,
         null=True
     )

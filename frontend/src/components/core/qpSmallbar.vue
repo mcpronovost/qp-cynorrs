@@ -20,4 +20,10 @@
         height: calc(100vh - 64px);
         width: 64px;
     }
+    @media (max-width: 1199px) {
+        #qp-app-smallbar {
+            width: 10vw;
+            min-width: 64px;
+        }
+    }
 </style>

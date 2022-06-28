@@ -69,7 +69,8 @@
     }
     @media (max-width: 1199px) {
         #qp-app-sidebar {
-            width: 64px;
+            width: 10vw;
+            min-width: 64px;
         }
     }
 </style>

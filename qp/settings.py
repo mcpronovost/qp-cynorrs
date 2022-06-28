@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "knox",
     # ===---
-    "qp.player"
+    "qp.player",
+    "qp.world",
 ]
 
 MIDDLEWARE = [

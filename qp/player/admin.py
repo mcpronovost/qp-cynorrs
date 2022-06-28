@@ -25,6 +25,10 @@ class qpPlayerAdmin(admin.ModelAdmin):
         "last_login",
         "updated_at"
     ]
+    search_fields = [
+        "playername",
+        "user__username"
+    ]
     raw_id_fields = ["user"]
     readonly_fields = ["slug"]
     fieldsets = [
@@ -43,11 +47,26 @@ class qpPlayerAdmin(admin.ModelAdmin):
 
 
 class qpPlayerCharacterAdmin(admin.ModelAdmin):
-    raw_id_fields = ["player"]
+    list_display = [
+        "name",
+        "player",
+        "world"
+    ]
+    list_filter = [
+        "world"
+    ]
+    search_fields = [
+        "first_name",
+        "middle_name",
+        "last_name",
+        "player__playername"
+    ]
+    raw_id_fields = ["player", "world"]
     fieldsets = [
         (" ", {
             "fields": [
                 "player",
+                "world",
                 "is_active"
             ]
         }),
