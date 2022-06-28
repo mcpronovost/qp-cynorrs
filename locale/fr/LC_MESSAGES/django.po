@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-27 23:45-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\qp\api\apps.py:6
+msgid "API"
+msgstr "API"
+
+#: .\qp\api\serializers\player.py:46
+msgid "Invalid details."
+msgstr "Détails invalides."
+
+#: .\qp\player\admin.py:35 .\qp\player\admin.py:73
+msgid "Informations"
+msgstr "Informations"
+
+#: .\qp\player\admin.py:80
+msgid "Resistances"
+msgstr "Résistances"
+
+#: .\qp\player\admin.py:87
+msgid "Attributes"
+msgstr "Attributs"
+
+#: .\qp\player\apps.py:6 .\qp\player\models.py:51 .\qp\player\models.py:211
+#: .\qp\player\models.py:237
+msgid "Player"
+msgstr "Joueur"
+
+#: .\qp\player\models.py:13
+msgid "Male"
+msgstr "Masculin"
+
+#: .\qp\player\models.py:14
+msgid "Female"
+msgstr "Féminin"
+
+#: .\qp\player\models.py:15
+msgid "Other"
+msgstr "Autre"
+
+#: .\qp\player\models.py:24
+msgid "User"
+msgstr "Utilisateur"
+
+#: .\qp\player\models.py:29
+msgid "Playername"
+msgstr "Nom de joueur"
+
+#: .\qp\player\models.py:35 .\qp\world\models.py:14 .\qp\world\models.py:59
+#: .\qp\world\models.py:82 .\qp\world\models.py:105
+msgid "Slug"
+msgstr "Slug"
+
+#: .\qp\player\models.py:41
+msgid "Affinity"
+msgstr "Affinité"
+
+#: .\qp\player\models.py:52
+msgid "Players"
+msgstr "Joueurs"
+
+#: .\qp\player\models.py:95
+msgid "First Name"
+msgstr "Prénom"
+
+#: .\qp\player\models.py:101
+msgid "Middle Name"
+msgstr "Autre(s) nom(s)"
+
+#: .\qp\player\models.py:107
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: .\qp\player\models.py:113
+msgid "Gender"
+msgstr "Genre"
+
+#: .\qp\player\models.py:121
+msgid "Physical Resistance"
+msgstr "Résistance physique"
+
+#: .\qp\player\models.py:127
+msgid "Mental Resistance"
+msgstr "Résistance mentale"
+
+#: .\qp\player\models.py:133
+msgid "Spiritual Resistance"
+msgstr "Résistance spirituelle"
+
+#: .\qp\player\models.py:139
+msgid "Strength"
+msgstr "Force"
+
+#: .\qp\player\models.py:145
+msgid "Constitution"
+msgstr "Constitution"
+
+#: .\qp\player\models.py:151
+msgid "Dexterity"
+msgstr "Dextérité"
+
+#: .\qp\player\models.py:157
+msgid "Perception"
+msgstr "Perception"
+
+#: .\qp\player\models.py:163
+msgid "Intelligence"
+msgstr "Intelligence"
+
+#: .\qp\player\models.py:169
+msgid "Composure"
+msgstr "Sang-froid"
+
+#: .\qp\player\models.py:175
+msgid "Active"
+msgstr "Actif"
+
+#: .\qp\player\models.py:219 .\qp\player\models.py:245 .\qp\world\apps.py:6
+#: .\qp\world\models.py:27
+msgid "World"
+msgstr "Monde"
+
+#: .\qp\player\models.py:225
+msgid "Hero"
+msgstr "Héros"
+
+#: .\qp\player\models.py:226
+msgid "Heros"
+msgstr "Héros"
+
+#: .\qp\player\models.py:251
+msgid "Companion"
+msgstr "Compagnon"
+
+#: .\qp\player\models.py:252
+msgid "Companions"
+msgstr "Compagnons"
+
+#: .\qp\world\models.py:8 .\qp\world\models.py:53 .\qp\world\models.py:76
+#: .\qp\world\models.py:99
+msgid "Name"
+msgstr "Nom"
+
+#: .\qp\world\models.py:28
+msgid "Worlds"
+msgstr "Mondes"
+
+#: .\qp\world\models.py:66
+msgid "Race"
+msgstr "Race"
+
+#: .\qp\world\models.py:67
+msgid "Races"
+msgstr "Races"
+
+#: .\qp\world\models.py:89
+msgid "Ethnicity"
+msgstr "Ethnie"
+
+#: .\qp\world\models.py:90
+msgid "Ethnicities"
+msgstr "Ethnies"
+
+#: .\qp\world\models.py:112
+msgid "Nationality"
+msgstr "Nationalité"
+
+#: .\qp\world\models.py:113
+msgid "Nationalities"
+msgstr "Nationalités"
