@@ -11,8 +11,8 @@ from qp.api.views.player import (
 )
 
 urlpatterns = [
-    path("", qpPingView.as_view()),
-    path("register/", qpRegisterView.as_view()),
-    path("login/", qpLoginView.as_view()),
-    path("logout/", knox_views.LogoutAllView.as_view(), name="knox_logoutall")
+    re_path("", qpPingView.as_view()),
+    re_path("^register/", qpRegisterView.as_view()),
+    re_path("^login/", qpLoginView.as_view()),
+    re_path("^logout/", knox_views.LogoutAllView.as_view(), name="knox_logoutall")
 ]
