@@ -65,7 +65,7 @@ class qpGameEvent(models.Model):
         )
 
 
-class qpGameEventAction(models.Model):
+class qpGameAction(models.Model):
     event = models.ForeignKey(
         qpGameEvent,
         on_delete=models.CASCADE,
