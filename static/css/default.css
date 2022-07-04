@@ -93,5 +93,15 @@ a:focus, a:hover {
 }
 
 .qp-vue {
+    padding: 0;
+}
+.qp-container {
+    max-width: 1200px;
     padding: 20px;
+    margin: 0 auto;
+}
+
+#app .qp-flex-column {
+    display: flex;
+    flex-direction: column;
 }

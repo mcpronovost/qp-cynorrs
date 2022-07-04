@@ -1,14 +1,14 @@
 <template>
-    <div v-if="player" id="qp-sidebar-profile">
+    <div id="qp-sidebar-profile">
         <div id="qp-sidebar-banner">
-            <el-image v-if="player.banner" :src="player.banner" fit="cover">
+            <el-image v-if="player?.banner" :src="player.banner" fit="cover">
                 <template #error>
                     <div class="image-slot"></div>
                 </template>
             </el-image>
         </div>
         <div id="qp-sidebar-avatar">
-            <el-image v-if="player.avatar" :src="player.avatar" fit="cover">
+            <el-image v-if="player?.avatar" :src="player.avatar" fit="cover">
                 <template #error>
                     <div class="image-slot"></div>
                 </template>
@@ -16,7 +16,7 @@
         </div>
         <div id="qp-sidebar-name">
             <h2>
-                <span v-text="player.name"></span>
+                <span v-text="player?.name"></span>
             </h2>
         </div>
         <div id="qp-sidebar-title">

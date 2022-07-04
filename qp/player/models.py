@@ -1,3 +1,4 @@
+import hashlib
 from zoneinfo import ZoneInfo
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -196,6 +197,11 @@ class qpPlayerCharacter(models.Model):
     
     @property
     def name(self):
+        """
+        Name merge the first_name, the middle_name and the last_name into a single string.
+
+        :return: a STRING.
+        """
         names = []
         if self.first_name and self.first_name != "":
             names.append(self.first_name)
@@ -206,6 +212,24 @@ class qpPlayerCharacter(models.Model):
         return "%s" % (
             " ".join(names)
         )
+    
+    @property
+    def karma(self):
+        """
+        Karma is used to determine the luck of a character and is based on character informations to get a payload. The payload is converted in bytes, then hashed with sha224 to get a hexadecimal digest that will be used to find an INTEGER.
+
+        :return: an INTEGER between 1 et 12.
+        """
+        payload = "%s-%s-%s-%s-%s" % (
+            str(self.name),
+            str(self.gender),
+            str(self.resistance_physical),
+            str(self.resistance_mental),
+            str(self.resistance_spiritual)
+        )
+        return ((int(hashlib.sha224(
+            bytes(payload)
+        ).hexdigest(), base=16)) % 12) + 1
 
 
 class qpPlayerHero(qpPlayerCharacter):

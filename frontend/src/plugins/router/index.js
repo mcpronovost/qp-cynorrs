@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import store from "@/plugins/store"
 import HomeView from "@/views/HomeView.vue"
 import AboutView from "@/views/AboutView.vue"
+import HeroDetailView from "@/views/player/HeroDetailView.vue"
 import ErrorView from "@/views/ErrorView.vue"
 
 const routes = [
@@ -20,6 +21,13 @@ const routes = [
     name: "Profile",
     component: AboutView
   },
+  /* ===--- PLAYER ---=== */
+  {
+    path: "/heros/:pk",
+    name: "HeroDetail",
+    component: HeroDetailView
+  },
+  /* ===--- FALLBACK ---=== */
   {
     path: "/:catchAll(.*)",
     name: "Error",
