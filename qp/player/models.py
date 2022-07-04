@@ -117,6 +117,11 @@ class qpPlayerCharacter(models.Model):
         blank=False,
         null=False
     )
+    geo = models.TextField(
+        verbose_name=_("Geolocalisation"),
+        blank=True,
+        null=True
+    )
     resistance_physical = models.PositiveSmallIntegerField(
         verbose_name=_("Physical Resistance"),
         default=0,

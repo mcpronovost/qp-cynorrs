@@ -1,40 +1,53 @@
 <template>
-  <div class="qp-vue">
-    <el-row :gutter="20">
-        <el-col :span="24">
-            <qp-card><a href="https://www.flaticon.com/free-icons/killer-whale" target="_blank" title="killer whale icons">Killer whale icons created by edt.im - Flaticon</a></qp-card>
-        </el-col>
-    </el-row>
-    <el-row :gutter="20">
-        <el-col :md="12" :lg="8">
-            <qp-card overflow>
-                <pre>{{ $store.state }}</pre>
-            </qp-card>
-        </el-col>
-        <el-col :md="12" :lg="8">
-            <qp-card color="primary">
-                <pre>{{ $store.getters }}</pre>
-            </qp-card>
-        </el-col>
-        <el-col :lg="4">
-            <qp-card>card</qp-card>
-        </el-col>
-        <el-col :lg="4">
-            <qp-card>card</qp-card>
-        </el-col>
-    </el-row>
-  </div>
+    <div class="qp-vue">
+        <div v-for="(zone, n) in listZones" :key="`zones-${n}`">
+            <h1>
+                <span v-text="zone.name"></span>
+            </h1>
+            <div v-for="(territory, nn) in zone.territories" :key="`territory-${n}-${nn}`">
+                <h2>
+                    <span v-text="territory.name"></span>
+                </h2>
+                <div v-for="(sector, nnn) in territory.sectors" :key="`sector-${n}-${nn}-${nnn}`">
+                    <h3>
+                        <span v-text="sector.name"></span>
+                    </h3>
+                    <qp-action-travel :sector="sector.id" />
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-    import qpCard from "@/components/basic/qpCard.vue";
-    export default {
-        name: "HomeView",
-        components: {
-            qpCard
-        },
-        mounted () {
-            console.log("home")
+import { API } from "@/main.js";
+import qpTravel from "@/components/action/qpTravel.vue";
+export default {
+    name: "HomeView",
+    components: {
+        "qpActionTravel": qpTravel
+    },
+    data () {
+        return {
+            listZones: []
+        }
+    },
+    mounted () {
+        this.setZones()
+    },
+    methods: {
+        async setZones () {
+            let r = await fetch(`${API}/worlds/0/`, {
+                method: "GET",
+                headers: {"Authorization": this.$store.getters.rat}
+            })
+            if (r.status === 200) {
+                let result = await r.json()
+                this.listZones = result.zones
+            } else if (r.status === 401) {
+                console.log(r)
+            }
         }
     }
+}
 </script>

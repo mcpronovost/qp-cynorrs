@@ -32,7 +32,7 @@ class qpWorld(models.Model):
         admin_order = 1
     
     def __str__(self):
-        return "%s (%s)" % (
+        return "%s" % (
             str(self.name)
         )
 
@@ -77,11 +77,16 @@ class qpWorldZone(models.Model):
     
     class Qapi:
         admin_order = 2
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
 
 
 class qpWorldTerritoty(models.Model):
-    world = models.ForeignKey(
-        qpWorld,
+    zone = models.ForeignKey(
+        qpWorldZone,
         on_delete=models.CASCADE,
         related_name="territories",
         verbose_name=_("World"),
@@ -104,15 +109,20 @@ class qpWorldTerritoty(models.Model):
     class Meta:
         verbose_name = _("Territory")
         verbose_name_plural = _("Territories")
-        ordering = ["world", "name"]
+        ordering = ["zone", "name"]
     
     class Qapi:
         admin_order = 3
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
 
 
 class qpWorldSector(models.Model):
-    world = models.ForeignKey(
-        qpWorld,
+    territory = models.ForeignKey(
+        qpWorldTerritoty,
         on_delete=models.CASCADE,
         related_name="sectors",
         verbose_name=_("World"),
@@ -135,10 +145,15 @@ class qpWorldSector(models.Model):
     class Meta:
         verbose_name = _("Sector")
         verbose_name_plural = _("Sectors")
-        ordering = ["world", "name"]
+        ordering = ["territory", "name"]
     
     class Qapi:
-        admin_order = 3
+        admin_order = 4
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
 
 
 class qpWorldRace(models.Model):
@@ -170,6 +185,11 @@ class qpWorldRace(models.Model):
     
     class Qapi:
         admin_order = 20
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
 
 
 class qpWorldEthnicity(models.Model):
@@ -201,6 +221,11 @@ class qpWorldEthnicity(models.Model):
     
     class Qapi:
         admin_order = 30
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
 
 
 class qpWorldNationality(models.Model):
@@ -232,3 +257,8 @@ class qpWorldNationality(models.Model):
     
     class Qapi:
         admin_order = 40
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
