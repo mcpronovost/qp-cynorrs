@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n/index";
-import fr from "@/locales/fr";
+import fr from "@/plugins/i18n/fr";
 
 const setDateTimeFormats = {
     short: {
@@ -10,7 +10,6 @@ const setDateTimeFormats = {
 }
 
 const dateTimeFormats = {
-    en: setDateTimeFormats,
     fr: setDateTimeFormats
 }
 
