@@ -65,6 +65,7 @@
         background-color: var(--qp-secondary);
         border: 8px solid var(--qp-base);
         border-radius: 100%;
+        overflow: hidden;
         width: 120px;
         height: 120px;
         position: absolute;
