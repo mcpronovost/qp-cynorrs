@@ -37,7 +37,8 @@ export default {
     },
     methods: {
         async setZones () {
-            let r = await fetch(`${API}/worlds/0/`, {
+            // ===---
+            let r = await fetch(`${API}/worlds/1/`, {
                 method: "GET",
                 headers: {"Authorization": this.$store.getters.rat}
             })
@@ -47,6 +48,7 @@ export default {
             } else if (r.status === 401) {
                 console.log(r)
             }
+            // ===---
         }
     }
 }

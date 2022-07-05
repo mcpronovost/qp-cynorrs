@@ -1,6 +1,13 @@
 :root {
     --el-fill-color-blank: transparent;
     --el-menu-hover-bg-color: transparent;
+    --el-color-primary: var(--qp-primary);
+    --el-color-primary-light-3: var(--qp-primary-lighten-3);
+    --el-color-primary-light-5: var(--qp-primary-lighten-5);
+    --el-color-primary-light-7: var(--qp-primary-lighten-7);
+    --el-color-primary-light-8: var(--qp-primary-lighten-8);
+    --el-color-primary-light-9: var(--qp-primary-lighten-9);
+    --el-color-primary-dark-2: var(--qp-primary-darken-2);
 }
 
 .el-card {

@@ -26,6 +26,21 @@
 
 :root {
     --qp-primary: #435259;
+    --qp-primary-lighten-1: #4e5f68;
+    --qp-primary-lighten-2: #596d76;
+    --qp-primary-lighten-3: #647a85;
+    --qp-primary-lighten-4: #6f8793;
+    --qp-primary-lighten-5: #7e949e;
+    --qp-primary-lighten-6: #8ca0a9;
+    --qp-primary-lighten-7: #9bacb4;
+    --qp-primary-lighten-8: #b8c4ca;
+    --qp-primary-lighten-9: #c7d0d5;
+    --qp-primary-darken-1: #38454a;
+    --qp-primary-darken-2: #2d373c;
+    --qp-primary-darken-3: #222a2d;
+    --qp-primary-darken-4: #171c1f;
+    --qp-primary-darken-5: #0c0f10;
+    --qp-primary-darken-6: #010202;
     --qp-secondary: #8f999d;
     --qp-accent: #d3b018;
     --qp-base: #dbe0e2;

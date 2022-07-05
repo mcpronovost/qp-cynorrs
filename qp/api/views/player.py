@@ -26,8 +26,8 @@ class qpPlayerView(APIView):
     def get_player(self, player):
         result = {
             "name": player.name,
-            "avatar": None,
-            "banner": None
+            "avatar": "https://i.servimg.com/u/f80/11/34/44/55/pachua10.jpg",
+            "banner": "https://i.servimg.com/u/f80/11/34/44/55/banner14.jpg"
         }
         return result
 
@@ -95,6 +95,7 @@ class qpPlayerHeroView(APIView):
             return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
         # ===---
         print("hero : ", hero)
+        print("post : ", request.POST)
         # ===---
         heros_data = qpPlayerView.get_heros(None, player)
         # ===---

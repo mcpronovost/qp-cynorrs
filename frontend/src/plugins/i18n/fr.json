@@ -1,3 +1,9 @@
 {
-    "TextCopyrights": "&copy;&nbsp;2022 M-C Pronovost"
+    "TextCopyrights": "&copy;&nbsp;2022 M-C Pronovost",
+
+    "Cancel": "Annuler",
+    "ChooseTravellers": "Choisir les voyageurs",
+    "Confirm": "Confirmer",
+    "Continue": "Continuer",
+    "Travel": "Voyager"
 }

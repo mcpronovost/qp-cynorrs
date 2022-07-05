@@ -89,7 +89,7 @@ class qpWorldTerritoty(models.Model):
         qpWorldZone,
         on_delete=models.CASCADE,
         related_name="territories",
-        verbose_name=_("World"),
+        verbose_name=_("Zone"),
         blank=False,
         null=False
     )
@@ -125,7 +125,7 @@ class qpWorldSector(models.Model):
         qpWorldTerritoty,
         on_delete=models.CASCADE,
         related_name="sectors",
-        verbose_name=_("World"),
+        verbose_name=_("Territory"),
         blank=False,
         null=False
     )
