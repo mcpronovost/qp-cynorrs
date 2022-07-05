@@ -28,10 +28,10 @@ export default {
         }
     },
     mounted () {
-        this.$store.dispatch("doLogin", {
-            username: "",
-            password: ""
-        })
+        //this.$store.dispatch("doLogin", {
+        //    username: "",
+        //    password: ""
+        //})
     }
 };
 </script>
