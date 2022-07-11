@@ -5,6 +5,10 @@ from qp.api.views import (
     qpPingView
 )
 
+from qp.api.views.game import (
+    qpGameActionTravelView
+)
+
 from qp.api.views.player import (
     qpPlayerView,
     qpPlayerHerosView,
@@ -24,6 +28,8 @@ urlpatterns = [
     path("me/", qpPlayerView.as_view()),
     path("me/heros/", qpPlayerHerosView.as_view()),
     path("me/heros/<int:pk>/", qpPlayerHeroView.as_view()),
+
+    path("game/action/travel/", qpGameActionTravelView.as_view()),
 
     path("worlds/", qpWorldsView.as_view()),
     path("worlds/<int:pk>/", qpWorldView.as_view()),

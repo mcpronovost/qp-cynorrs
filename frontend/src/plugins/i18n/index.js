@@ -18,6 +18,8 @@ const i18n = createI18n({
     fallbackLocale: "fr",
     messages: { fr },
     dateTimeFormats,
+    legacy: false,
+    globalInjection: true,
     silentTranslationWarn: true
 })
 

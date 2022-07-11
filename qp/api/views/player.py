@@ -1,3 +1,7 @@
+import json
+
+from datetime import timedelta
+
 from django.contrib.auth.signals import user_logged_in
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
@@ -25,6 +29,7 @@ class qpPlayerView(APIView):
 
     def get_player(self, player):
         result = {
+            "id": player.pk,
             "name": player.name,
             "avatar": "https://i.servimg.com/u/f80/11/34/44/55/pachua10.jpg",
             "banner": "https://i.servimg.com/u/f80/11/34/44/55/banner14.jpg"
@@ -36,10 +41,19 @@ class qpPlayerView(APIView):
         for item in player.heros.filter(
             is_active=True
         ):
+            hero_geo = None
+            is_can_travel = True
+            if item.geo and item.geo != "":
+                hero_geo = json.loads(item.geo)
+                is_can_travel = True if (hero_geo["cooldown"] - timezone.now().timestamp()) <= 0 else False
             result.append({
+                "id": item.pk,
                 "name": item.name,
+                "initials": item.initials,
                 "world": item.world.pk,
-                "geo": item.geo
+                "geo": hero_geo,
+                "is_can_travel": is_can_travel,
+                "avatar": "https://i.servimg.com/u/f80/11/34/44/55/avatar10.jpg"
             })
         return result
 
@@ -84,10 +98,7 @@ class qpPlayerHeroView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
-        try:
-            player = request.user.player
-        except ObjectDoesNotExist:
-            return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
+        player = request.user.player
         # ===---
         try:
             hero = player.heros.get(pk=pk, is_active=True)

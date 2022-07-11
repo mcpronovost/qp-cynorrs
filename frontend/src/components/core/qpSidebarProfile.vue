@@ -1,3 +1,21 @@
+<script setup>
+
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+
+// =================================================================================== //
+// ===--- STORE
+
+const store = useStore()
+const player = computed(() => store.getters.player)
+
+// =================================================================================== //
+// ===--- DATA
+
+const title = ref("Qui ne fait que passer")
+
+</script>
+
 <template>
     <div id="qp-sidebar-profile">
         <div id="qp-sidebar-banner">
@@ -26,23 +44,6 @@
         </div>
     </div>
 </template>
-
-<script>
-    import { mapGetters } from "vuex";
-    export default {
-        name: "qpSidebarProfile",
-        data () {
-            return {
-                title: "Qui ne fait que passer"
-            }
-        },
-        computed: {
-            ...mapGetters([
-                "player"
-            ])
-        }
-    }
-</script>
 
 <style scoped>
     #qp-sidebar-profile {

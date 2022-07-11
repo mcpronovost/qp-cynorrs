@@ -1,8 +1,8 @@
 <template>
     <div class="qp-action-travel-choosetravellers">
         <el-row v-loading="isLoading" :gutter="20" justify="center">
-            <el-col v-for="(traveller, n) in listTravellerHeros" :key="`traveller-${n}`" :span="6" :lg="4">
-                <div class="qp-action-travel-traveller" @click="toggleTraveller('hero', n)">
+            <el-col v-if="!isLoading && listHeros.length" class="text-center">
+                <div v-for="(traveller, n) in listHeros" :key="`traveller-${n}`" class="qp-action-travel-traveller" @click="toggleTraveller('hero', n)">
                     <el-tooltip :content="traveller.name">
                         <div :class="`qp-action-travel-traveller-avatar${traveller.is_selected ? ' is_selected':''}`">
                             <el-image v-if="traveller.avatar" :src="traveller.avatar" fit="cover">
@@ -14,85 +14,109 @@
                     </el-tooltip>
                 </div>
             </el-col>
+            <el-col v-else-if="!listHeros.length" class="text-center">
+                <el-result icon="error" :title="$t('Error')" style="padding-top:0;padding-bottom:0;">
+                    <template #sub-title>
+                        <div v-text="$t('NoAvailableTravellers')"></div>
+                    </template>
+                </el-result>
+            </el-col>
         </el-row>
         <div class="dialog-footer text-center">
             <el-button @click="closeTravel()">
-                <span v-text="$i18n.t('Cancel')"></span>
+                <span v-text="$t('Cancel')"></span>
             </el-button>
-            <el-button :disabled="!isValidChooseTravellers" type="primary" @click="goToStep('luckyroll')">
-                <span v-text="$i18n.t('Continue')"></span>
+            <el-button :disabled="!isValidChooseTravellers" type="primary" @click="goToStep('arrive')">
+                <span v-text="$t('Continue')"></span>
             </el-button>
         </div>
     </div>
 </template>
 
-<script>
-// import { API } from "@/main.js";
-export default {
-    name: "qpActionTravelChooseTravellers",
-    data () {
-        return {
-            isLoading: false,
-            listTravellerHeros: []
-        }
-    },
-    computed: {
-        listTravellers () {
-            let result = []
-            for (let item of this.listTravellerHeros) {
-                if (item.is_selected) {
-                    item["type"] = "hero"
-                    result.push(item)
-                }
-            }
-            return result
-        },
-        isValidChooseTravellers () {
-            if (this.listTravellers.length) {
-                return true
-            }
-            return false
-        }
-    },
-    mounted () {
-        this.initTravellers()
-    },
-    methods: {
-        async initTravellers () {
-            this.isLoading = true
-            this.listTravellerHeros = []
-            // ===---
-            for (const hero of this.$store.getters.heros) {
-                if (!hero.geo || (new Date(hero.geo.cooldown) - new Date(Date.now()) <= 0)) {
-                    this.listTravellerHeros.push(hero)
-                }
-            }
-            // ===---
-            this.isLoading = false
-        },
-        toggleTraveller (type_of, index) {
-            if (type_of == "hero") {
-                this.listTravellerHeros[index]["is_selected"] = !this.listTravellerHeros[index]["is_selected"]
-            }
-            this.$emit("update", this.listTravellers)
-        },
-        goToStep (step) {
-            this.$emit("step", step)
-        },
-        closeTravel () {
-            this.$emit("close")
+<script setup>
+
+import { computed, onMounted, ref } from "vue";
+import { useStore } from "vuex";
+
+// =================================================================================== //
+// ===--- STORE
+
+const store = useStore()
+const heros = computed(() => store.getters.heros)
+
+// =================================================================================== //
+// ===--- EMIT
+
+const emit = defineEmits(["update", "step", "close"])
+
+// =================================================================================== //
+// ===--- DATA
+
+const isLoading = ref(false)
+const listHeros = ref([])
+
+const listTravellers = computed(() => {
+    let result = []
+    for (let item of listHeros.value) {
+        if (item.is_selected) {
+            item["type"] = "hero"
+            result.push(item)
         }
     }
+    return result
+})
+
+const isValidChooseTravellers = computed(() => {
+    if (listTravellers.value.length) {return true}
+    return false
+})
+
+// =================================================================================== //
+// ===--- METHODS
+
+const initTravellers = async () => {
+    isLoading.value = true
+    listHeros.value = []
+    // ===---
+    for (const hero of heros.value) {
+        if (hero.is_can_travel) {
+            listHeros.value.push(hero)
+        }
+    }
+    // ===---
+    isLoading.value = false
 }
+const toggleTraveller = (type_of, index) => {
+    if (type_of == "hero") {
+        listHeros.value[index]["is_selected"] = !listHeros.value[index]["is_selected"]
+    }
+    emit("update", listTravellers.value)
+}
+const goToStep = (step) => {
+    emit("step", step)
+}
+const closeTravel = () => {
+    emit("close")
+}
+
+// =================================================================================== //
+// ===--- MOUNTED
+
+onMounted(() => {
+  initTravellers()
+})
+
 </script>
 
 <style scoped>
 .qp-action-travel-choosetravellers .qp-action-travel-traveller {
     text-align: center;
+    display: inline-block;
+    margin: 4px;
 }
 .qp-action-travel-choosetravellers .qp-action-travel-traveller-avatar {
     background-color: var(--qp-secondary);
-    border: 6px solid var(--qp-base);
+    border: 4px solid var(--qp-base);
     border-radius: 100%;
     overflow: hidden;
     width: 64px;

@@ -214,6 +214,19 @@ class qpPlayerCharacter(models.Model):
         )
     
     @property
+    def initials(self):
+        initials = []
+        if self.first_name and self.first_name != "":
+            initials.append(self.first_name[0])
+        if self.middle_name and self.middle_name != "":
+            initials.append(self.middle_name[0])
+        if self.last_name and self.last_name != "":
+            initials.append(self.last_name[0])
+        return "%s" % (
+            "".join(initials)
+        )
+    
+    @property
     def karma(self):
         """
         Karma is used to determine the luck of a character and is based on character informations to get a payload. The payload is converted in bytes, then hashed with sha224 to get a hexadecimal digest that will be used to find an INTEGER.

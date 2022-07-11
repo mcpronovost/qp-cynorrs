@@ -1,3 +1,55 @@
+<script setup>
+
+import { computed } from "vue";
+
+// =================================================================================== //
+// ===--- PROPS
+
+const props = defineProps({
+    clickable: {
+        type: Boolean,
+        default: false
+    },
+    overflow: {
+        type: Boolean,
+        default: false
+    },
+    bgcolor: {
+        type: String,
+        default: "base"
+    },
+    h: {
+        type: String,
+        default: ""
+    },
+    mb: {
+        type: String,
+        default: ""
+    }
+})
+
+// =================================================================================== //
+// ===--- COMPUTED
+
+const isClickable = computed(() => {
+    return (props.clickable ? "qp-card-clickable" : "")
+})
+const isOverflow = computed(() => {
+    return (props.overflow ? "qp-card-overflow" : "")
+})
+const bgColor = computed(() => {
+    if (props.bgcolor != "base") {return `qp-card-bg-${props.bgcolor}`}
+    return ""
+})
+const height = computed(() => {
+    return (props.h ? `height:${props.h};` : "")
+})
+const marginBottom = computed(() => {
+    return (props.mb ? `margin-bottom:${props.mb};` : "")
+})
+
+</script>
+
 <template>
   <div :class="`qp-card ${isClickable} ${isOverflow} ${bgColor}`" :style="`${height}${marginBottom}`">
     <div class="qp-card-main">
@@ -5,54 +57,6 @@
     </div>
   </div>
 </template>
-
-<script>
-    export default {
-        name: "qpCard",
-        props: {
-            clickable: {
-                type: Boolean,
-                default: false
-            },
-            overflow: {
-                type: Boolean,
-                default: false
-            },
-            bgcolor: {
-                type: String,
-                default: "base"
-            },
-            h: {
-                type: String,
-                default: ""
-            },
-            mb: {
-                type: String,
-                default: ""
-            }
-        },
-        computed: {
-            isClickable () {
-                return (this.clickable ? "qp-card-clickable" : "")
-            },
-            isOverflow () {
-                return (this.overflow ? "qp-card-overflow" : "")
-            },
-            bgColor () {
-                if (this.bgcolor != "base") {
-                    return `qp-card-bg-${this.bgcolor}`
-                }
-                return ""
-            },
-            height () {
-                return (this.h ? `height:${this.h};` : "")
-            },
-            marginBottom () {
-                return (this.mb ? `margin-bottom:${this.mb};` : "")
-            }
-        }
-    }
-</script>
 
 <style scoped>
     .qp-card {

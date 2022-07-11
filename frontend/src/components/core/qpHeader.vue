@@ -1,3 +1,13 @@
+<script setup>
+import { ref } from "vue";
+
+// =================================================================================== //
+// ===--- DATA
+
+const logo = ref("/static/ico/logo-square-trans.png")
+
+</script>
+
 <template>
     <div id="qp-app-header">
         <el-row :gutter="20" align="middle">
@@ -28,17 +38,6 @@
         </el-row>
     </div>
 </template>
-
-<script>
-    export default {
-        name: "qpHeader",
-        data () {
-            return {
-                logo: "/static/ico/logo-square-trans.png"
-            }
-        }
-    }
-</script>
 
 <style scoped>
     #qp-app-header {

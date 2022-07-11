@@ -1,45 +1,23 @@
+<script setup>
+import qpSidebarProfile from "@/components/core/qpSidebarProfile.vue";
+import qpSidebarNav from "@/components/core/qpSidebarNav.vue";
+</script>
+
 <template>
     <div id="qp-app-sidebar">
         <el-scrollbar height="100%">
             <div id="qp-sibebar-inner">
                 <div id="qp-sibebar-main">
-                    <qp-sidebar-profile />
-                    <qp-sidebar-nav />
+                    <qpSidebarProfile />
+                    <qpSidebarNav />
                 </div>
                 <div id="qp-sidebar-footer">
-                    <span v-html="$i18n.t('TextCopyrights')"></span>
+                    <span v-html="$t('TextCopyrights')"></span>
                 </div>
             </div>
         </el-scrollbar>
     </div>
 </template>
-
-<script>
-    import { mapGetters } from "vuex";
-    import qpSidebarProfile from "@/components/core/qpSidebarProfile.vue";
-    import qpSidebarNav from "@/components/core/qpSidebarNav.vue";
-    export default {
-        name: "qpSidebar",
-        components: {
-            qpSidebarProfile,
-            qpSidebarNav
-        },
-        data () {
-            return {
-            }
-        },
-        computed: {
-            ...mapGetters([
-                "app"
-            ])
-        },
-        methods: {
-            clickMenu (e) {
-                console.log(e)
-            }
-        }
-    }
-</script>
 
 <style scoped>
     #qp-app-sidebar {

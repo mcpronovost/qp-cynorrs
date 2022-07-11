@@ -5,6 +5,9 @@ import AboutView from "@/views/AboutView.vue"
 import HeroDetailView from "@/views/player/HeroDetailView.vue"
 import ErrorView from "@/views/ErrorView.vue"
 
+import SagarsView from "@/views/test/SagarsView";
+import RhansidorView from "@/views/test/RhansidorView";
+
 const routes = [
   {
     path: "/",
@@ -26,6 +29,17 @@ const routes = [
     path: "/heros/:pk",
     name: "HeroDetail",
     component: HeroDetailView
+  },
+  /* ===--- test ---=== */
+  {
+    path: "/sagars",
+    name: "Sagars",
+    component: SagarsView
+  },
+  {
+    path: "/rhansidor",
+    name: "Rhansidor",
+    component: RhansidorView
   },
   /* ===--- FALLBACK ---=== */
   {

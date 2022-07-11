@@ -1,9 +1,14 @@
 {
     "TextCopyrights": "&copy;&nbsp;2022 M-C Pronovost",
 
+    "AnErrorOccurred": "Une erreur est survenue",
     "Cancel": "Annuler",
     "ChooseTravellers": "Choisir les voyageurs",
     "Confirm": "Confirmer",
     "Continue": "Continuer",
-    "Travel": "Voyager"
+    "Error": "Erreur",
+    "NoAvailableTravellers": "Aucun voyageur disponible",
+    "Travel": "Voyager",
+    "TravelCompleted": "Voyage complété",
+    "Youhavearrivedatyourdestination": "Vous êtes arrivé à destination"
 }

@@ -10,6 +10,11 @@
     --el-color-primary-dark-2: var(--qp-primary-darken-2);
 }
 
+.el-avatar {
+    --el-avatar-bg-color: var(--qp-secondary);
+    --el-avatar-text-color: var(--qp-bg);
+}
+
 .el-card {
     background-color: var(--qp-dark);
     border: none;

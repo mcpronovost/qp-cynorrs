@@ -1,3 +1,16 @@
+<script setup>
+
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+// =================================================================================== //
+// ===--- STORE
+
+const store = useStore()
+const app = computed(() => store.getters.app)
+
+</script>
+
 <template>
     <div id="qp-sidebar-nav">
         <el-menu router :default-active="$route.name" :collapse="app.win.w < 1200">
@@ -8,6 +21,14 @@
             <el-menu-item index="About" :route="{name:'About'}">
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'About'"></span>
+            </el-menu-item>
+            <el-menu-item index="Sagars" :route="{name:'Sagars'}">
+                <i class="mdi mdi-hops"></i>
+                <span v-text="'Sagars'"></span>
+            </el-menu-item>
+            <el-menu-item index="Rhansidor" :route="{name:'Rhansidor'}">
+                <i class="mdi mdi-hops"></i>
+                <span v-text="'Rhansidor'"></span>
             </el-menu-item>
             <el-sub-menu index="3">
                 <template #title>
@@ -20,7 +41,7 @@
                 <el-menu-item index="Profile" :route="{name:'Profile'}">
                     <span v-text="'profile'"></span>
                 </el-menu-item>
-                <el-sub-menu index="8">
+                <el-sub-menu index="Profile" :route="{name:'Profile'}">
                     <template #title>
                         <span>Navigator two</span>
                     </template>
@@ -69,27 +90,6 @@
         </el-menu>
     </div>
 </template>
-
-<script>
-    import { mapGetters } from "vuex";
-    export default {
-        name: "qpSidebar",
-        data () {
-            return {
-            }
-        },
-        computed: {
-            ...mapGetters([
-                "app"
-            ])
-        },
-        methods: {
-            clickMenu (e) {
-                console.log(e)
-            }
-        }
-    }
-</script>
 
 <style scoped>
     #qp-sidebar-nav i.mdi {
