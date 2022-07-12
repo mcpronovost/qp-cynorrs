@@ -1,15 +1,15 @@
 <template>
-    <div v-if="props.zone" class="qp-forum-zone">
-        <header v-if="false" class="qp-forum-zone-header">
-            <h2>
+    <article v-if="props.zone" class="qp-forum-zone">
+        <header class="qp-forum-header">
+            <h2 class="qp-forum-header-title">
                 <span v-text="props.zone.name"></span>
             </h2>
-            <p>aaa</p>
+            <p class="qp-forum-header-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum lacinia ex, commodo ultricies nisi tempor quis. Cras placerat ipsum non odio viverra auctor. Curabitur tincidunt tincidunt mi in lobortis.</p>
         </header>
-        <div v-for="(territory, n) in props.zone.territories" :key="`territory-${n}`">
-            <qpForumTerritory :territory="territory" />
-        </div>
-    </div>
+        <section class="qp-forum-territories">
+            <qpForumTerritory v-for="(territory, n) in props.zone.territories" :key="`territory-${n}`" :territory="territory" :singleton="props.singleton" />
+        </section>
+    </article>
 </template>
 
 <script setup>
@@ -27,6 +27,10 @@ const props = defineProps({
     zone: {
         type: Object,
         default: () => {}
+    },
+    singleton: {
+        type: String,
+        default: "zone"
     }
 })
 

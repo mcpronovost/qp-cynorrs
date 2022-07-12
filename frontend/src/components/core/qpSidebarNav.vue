@@ -1,22 +1,9 @@
-<script setup>
-
-import { computed } from "vue";
-import { useStore } from "vuex";
-
-// =================================================================================== //
-// ===--- STORE
-
-const store = useStore()
-const app = computed(() => store.getters.app)
-
-</script>
-
 <template>
     <div id="qp-sidebar-nav">
         <el-menu router :default-active="$route.name" :collapse="app.win.w < 1200">
             <el-menu-item index="Home" :route="{name:'Home'}">
                 <i class="mdi mdi-home"></i>
-                <span v-text="'Home'"></span>
+                <span v-text="$t('Home')"></span>
             </el-menu-item>
             <el-menu-item index="About" :route="{name:'About'}">
                 <i class="mdi mdi-hops"></i>
@@ -90,6 +77,21 @@ const app = computed(() => store.getters.app)
         </el-menu>
     </div>
 </template>
+
+<script setup>
+
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+// =================================================================================== //
+// ===--- STORE
+
+const store = useStore()
+const app = computed(() => store.getters.app)
+
+// =================================================================================== //
+
+</script>
 
 <style scoped>
     #qp-sidebar-nav i.mdi {

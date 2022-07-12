@@ -27,3 +27,7 @@
 .el-col {
     padding: 10px;
 }
+
+.el-menu {
+    border-right: none;
+}

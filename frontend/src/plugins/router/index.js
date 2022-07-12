@@ -3,6 +3,7 @@ import store from "@/plugins/store"
 import HomeView from "@/views/HomeView.vue"
 import AboutView from "@/views/AboutView.vue"
 import HeroDetailView from "@/views/player/HeroDetailView.vue"
+import ForumIndexView from "@/views/forum/IndexView.vue"
 import ErrorView from "@/views/ErrorView.vue"
 
 import SagarsView from "@/views/test/SagarsView";
@@ -29,6 +30,12 @@ const routes = [
     path: "/heros/:pk",
     name: "HeroDetail",
     component: HeroDetailView
+  },
+  /* ===--- WORLD ---=== */
+  {
+    path: "/w:world_pk(\\d+)-:slug",
+    name: "Forum",
+    component: ForumIndexView
   },
   /* ===--- test ---=== */
   {

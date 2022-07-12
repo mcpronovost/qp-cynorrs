@@ -119,7 +119,7 @@ a:focus, a:hover {
     padding: 0;
 }
 .qp-container {
-    max-width: 1200px;
+    max-width: 1024px;
     padding: 20px;
     margin: 0 auto;
 }
@@ -131,24 +131,83 @@ a:focus, a:hover {
 
 /* ===--- FORUM ---=== */
 
-.qp-forum-header h2 {
+.qp-forum-header {
+    padding: 12px;
+}
+.qp-forum-header-title {
     font-family: "Quicksand", sans-serif;
     font-size: 32px;
     font-weight: 400;
     line-height: 120%;
-    padding: 0 30% 0 0;
+    padding: 0 30% 12px 0;
     margin: 0;
 }
-.qp-forum-header p {
-    font-size: 16px;
-    font-weight: 400;
+.qp-forum-header-description {
+    font-size: 14px;
+    font-weight: 300;
     line-height: 120%;
-    padding: 0 30% 0 0;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 0 30% 32px 0;
     margin: 0;
+}
+.qp-forum-header-description::after {
+    content: "";
+    background-color: var(--qp-primary);
+    display: block;
+    width: 64px;
+    height: 2px;
+    position: absolute;
+    left: 0;
+    bottom: 12px;
 }
 @media (max-width: 1199px) {
     .qp-forum-header h2,
     .qp-forum-header p {
         padding-right: 0;
+    }
+}
+
+/* ===--- FORUM: Territory ---=== */
+
+.qp-forum.qp-singleton-index .qp-forum-territories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territory {
+    box-sizing: border-box;
+    flex: 0 0 50%;
+    padding: 12px;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territory-inner {
+    background-color: var(--qp-base);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    text-align: center;
+    padding: 12px;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header {
+    padding: 0;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    padding: 0;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-description {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .qp-forum.qp-singleton-index .qp-forum-territory {
+        flex-basis: 100%!important;
     }
 }

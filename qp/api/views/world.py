@@ -60,7 +60,6 @@ class qpWorldView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request, pk):
-        zones_data = []
         # ===---
         try:
             world = qpWorld.objects.get(
@@ -69,6 +68,12 @@ class qpWorldView(APIView):
         except Exception as e:
             print("Error on qpWorldView > get : ", e)
             return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
+        # ===---
+        world_data = {
+            "name": str(world.name),
+            "stylesheet": world.stylesheet,
+            "zones": []
+        }
         # ===--- zones
         for zone in world.zones.all():
             zone_data = {
@@ -81,22 +86,24 @@ class qpWorldView(APIView):
                 territory_data = {
                     "id": territory.pk,
                     "name": str(territory.name),
+                    "flexbasis": str(territory.flexbasis),
                     "sectors": []
                 }
                 # ===--- sectors
                 for sector in territory.sectors.all():
                     sector_data = {
                         "id": sector.pk,
-                        "name": str(sector.name)
+                        "name": str(sector.name),
+                        "flexbasis": str(sector.flexbasis)
                     }
                     territory_data["sectors"].append(sector_data)
                 # ===---
                 zone_data["territories"].append(territory_data)
             # ===---
-            zones_data.append(zone_data)
+            world_data["zones"].append(zone_data)
         # ===---
         return Response({
-            "zones": zones_data,
+            "world": world_data,
             "valid": True
         })
 

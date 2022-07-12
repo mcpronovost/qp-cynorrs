@@ -16,6 +16,12 @@ class qpWorld(models.Model):
         blank=True,
         null=True
     )
+    stylesheet = models.TextField(
+        verbose_name=_("Custom Stylesheet"),
+        default="",
+        blank=False,
+        null=False
+    )
     created_at = models.DateTimeField(
         auto_now_add=True
     )
@@ -99,11 +105,12 @@ class qpWorldTerritoty(models.Model):
         blank=False,
         null=False
     )
-    slug = models.SlugField(
-        verbose_name=_("Slug"),
-        unique=True,
-        blank=True,
-        null=True
+    flexbasis = models.CharField(
+        verbose_name=_("Flex Basis"),
+        max_length=5,
+        default="100%",
+        blank=False,
+        null=False
     )
 
     class Meta:
@@ -135,11 +142,12 @@ class qpWorldSector(models.Model):
         blank=False,
         null=False
     )
-    slug = models.SlugField(
-        verbose_name=_("Slug"),
-        unique=True,
-        blank=True,
-        null=True
+    flexbasis = models.CharField(
+        verbose_name=_("Flex Basis"),
+        max_length=5,
+        default="100%",
+        blank=False,
+        null=False
     )
 
     class Meta:

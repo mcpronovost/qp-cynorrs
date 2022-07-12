@@ -1,8 +1,8 @@
 <template>
     <div class="qp-vue">
-        <div class="qp-container">
-            <section v-for="(zone, n) in listZones" :key="`zones-${n}`">
-                <qpForumZone :zone="zone" />
+        <div v-if="world" class="qp-container">
+            <section v-for="(zone, n) in world.zones" :key="`zones-${n}`">
+                <qpForumZone :zone="zone" :singleton="'territory'" />
             </section>
         </div>
     </div>
@@ -18,7 +18,7 @@ export default {
     },
     data () {
         return {
-            listZones: []
+            world: null
         }
     },
     mounted () {
@@ -33,7 +33,7 @@ export default {
             })
             if (r.status === 200) {
                 let result = await r.json()
-                this.listZones = result.zones
+                this.world = result.world
             } else if (r.status === 401) {
                 console.log(r)
             }
