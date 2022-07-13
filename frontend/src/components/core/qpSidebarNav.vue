@@ -9,11 +9,11 @@
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'About'"></span>
             </el-menu-item>
-            <el-menu-item index="Sagars" :route="{name:'Sagars'}">
+            <el-menu-item index="Sagars" :route="{name:'World', params: {world_pk: 1, slug: 'sagars'}}">
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'Sagars'"></span>
             </el-menu-item>
-            <el-menu-item index="Rhansidor" :route="{name:'Rhansidor'}">
+            <el-menu-item index="Rhansidor" :route="{name:'World', params: {world_pk: 2, slug: 'rhansidor'}}">
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'Rhansidor'"></span>
             </el-menu-item>

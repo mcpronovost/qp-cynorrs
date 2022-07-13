@@ -2,7 +2,7 @@
     <div id="qp-app-smallbar">
         <el-scrollbar height="100%">
             <div id="qp-smallbar-inner">
-                <div v-for="(hero, n) in heros" :key="`hero-${n}`" class="qp-smallbar-hero">
+                <div v-for="(hero, n) in listHeros" :key="`hero-${n}`" class="qp-smallbar-hero">
                     <el-tooltip :content="hero.name" placement="left">
                         <el-avatar :src="hero.avatar">
                             <span v-text="hero.initials"></span>
@@ -18,12 +18,24 @@
 
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { useRoute } from "vue-router";
 
 // =================================================================================== //
 // ===--- STORE
 
+const route = useRoute()
+
 const store = useStore()
 const heros = computed(() => store.getters.heros)
+
+const listHeros = computed(() => {
+    if ("world_pk" in route.params) {
+        return heros.value.filter((obj) => {
+            return obj.world == route.params.world_pk
+        })
+    }
+    return heros.value
+})
 
 // =================================================================================== //
 

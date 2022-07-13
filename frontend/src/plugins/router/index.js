@@ -34,7 +34,7 @@ const routes = [
   /* ===--- WORLD ---=== */
   {
     path: "/w:world_pk(\\d+)-:slug",
-    name: "Forum",
+    name: "World",
     component: ForumIndexView
   },
   /* ===--- test ---=== */
