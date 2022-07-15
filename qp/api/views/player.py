@@ -53,7 +53,7 @@ class qpPlayerView(APIView):
                 "world": item.world.pk,
                 "geo": hero_geo,
                 "is_can_travel": is_can_travel,
-                "avatar": "https://i.servimg.com/u/f80/11/34/44/55/avatar10.jpg"
+                "avatar": None
             })
         return result
 

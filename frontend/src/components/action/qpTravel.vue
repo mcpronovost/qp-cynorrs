@@ -1,3 +1,17 @@
+<template>
+    <div class="qp-action-travel">
+        <el-button @click="doStartsTravel()">
+            <span v-text="`voyager ici : ${props.sector}`"></span>
+        </el-button>
+        <!---->
+        <el-dialog v-model="isShowTravel" :title="titleTravel" center destroy-on-close>
+            <qpActionTravelChooseTravellers v-if="step == 'choosetravellers'" @update="updateTravellers" @step="goToStep" @close="closeTravel()" />
+            <qpActionTravelArrive v-else-if="step == 'arrive'" :travellers="listTravellers" :sector="props.sector" @close="closeTravel()" />
+        </el-dialog>
+        <!---->
+    </div>
+</template>
+
 <script setup>
 
 import { ref } from "vue";
@@ -61,17 +75,3 @@ const updateTravellers = (travellers) => {
 // =================================================================================== //
 
 </script>
-
-<template>
-    <div class="qp-action-travel">
-        <el-button @click="doStartsTravel()">
-            <span v-text="`voyager ici : ${props.sector}`"></span>
-        </el-button>
-        <!---->
-        <el-dialog v-model="isShowTravel" :title="titleTravel" center destroy-on-close>
-            <qpActionTravelChooseTravellers v-if="step == 'choosetravellers'" @update="updateTravellers" @step="goToStep" @close="closeTravel()" />
-            <qpActionTravelArrive v-else-if="step == 'arrive'" :travellers="listTravellers" :sector="props.sector" @close="closeTravel()" />
-        </el-dialog>
-        <!---->
-    </div>
-</template>

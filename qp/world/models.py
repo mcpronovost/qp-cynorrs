@@ -69,9 +69,8 @@ class qpWorldZone(models.Model):
         blank=False,
         null=False
     )
-    slug = models.SlugField(
-        verbose_name=_("Slug"),
-        unique=True,
+    description = models.TextField(
+        verbose_name=_("Description"),
         blank=True,
         null=True
     )
@@ -104,6 +103,11 @@ class qpWorldTerritoty(models.Model):
         max_length=32,
         blank=False,
         null=False
+    )
+    description = models.TextField(
+        verbose_name=_("Description"),
+        blank=True,
+        null=True
     )
     flexbasis = models.CharField(
         verbose_name=_("Flex Basis"),
@@ -141,6 +145,11 @@ class qpWorldSector(models.Model):
         max_length=32,
         blank=False,
         null=False
+    )
+    description = models.TextField(
+        verbose_name=_("Description"),
+        blank=True,
+        null=True
     )
     flexbasis = models.CharField(
         verbose_name=_("Flex Basis"),

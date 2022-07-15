@@ -19,7 +19,9 @@ from qp.api.views.player import (
 
 from qp.api.views.world import (
     qpWorldsView,
-    qpWorldView
+    qpWorldView,
+    qpWorldZoneView,
+    qpWorldTerritoryView
 )
 
 urlpatterns = [
@@ -33,6 +35,8 @@ urlpatterns = [
 
     path("worlds/", qpWorldsView.as_view()),
     path("worlds/<int:pk>/", qpWorldView.as_view()),
+    path("worlds/zones/<int:pk>/", qpWorldZoneView.as_view()),
+    path("worlds/territories/<int:pk>/", qpWorldTerritoryView.as_view()),
 
     path("register/", qpRegisterView.as_view()),
     path("login/", qpLoginView.as_view()),

@@ -9,6 +9,8 @@
     "Error": "Erreur",
     "Home": "Accueil",
     "NoAvailableTravellers": "Aucun voyageur disponible",
+    "ThisTerritoryDoesntExistAnymore": "Ce territoire n'existe pas ou plus",
+    "ThisZoneDoesntExistAnymore": "Cette zone n'existe pas ou plus",
     "ThisWorldDoesntExistAnymore": "Ce monde n'existe pas ou plus",
     "Travel": "Voyager",
     "TravelCompleted": "Voyage complété",

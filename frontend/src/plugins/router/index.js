@@ -6,9 +6,6 @@ import HeroDetailView from "@/views/player/HeroDetailView.vue"
 import ForumIndexView from "@/views/forum/IndexView.vue"
 import ErrorView from "@/views/ErrorView.vue"
 
-import SagarsView from "@/views/test/SagarsView";
-import RhansidorView from "@/views/test/RhansidorView";
-
 const routes = [
   {
     path: "/",
@@ -37,16 +34,15 @@ const routes = [
     name: "World",
     component: ForumIndexView
   },
-  /* ===--- test ---=== */
   {
-    path: "/sagars",
-    name: "Sagars",
-    component: SagarsView
+    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug",
+    name: "WorldZone",
+    component: ForumIndexView
   },
   {
-    path: "/rhansidor",
-    name: "Rhansidor",
-    component: RhansidorView
+    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug",
+    name: "WorldTerritory",
+    component: ForumIndexView
   },
   /* ===--- FALLBACK ---=== */
   {
@@ -62,6 +58,11 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
+    if (!("world_pk" in to.params)) {
+        if (document.getElementById("qp-custom-style")) {
+            document.getElementById("qp-custom-style").remove();
+        }
+    }
     store.dispatch("getPlayer")
     await store.restored
     next()

@@ -1,11 +1,13 @@
 <template>
     <article v-if="props.sector" class="qp-forum-sector">
-        <header class="qp-forum-header">
-            <h2 class="qp-forum-header-title">
-                <span v-text="props.sector.name"></span>
-            </h2>
-            <p class="qp-forum-header-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum lacinia ex, commodo ultricies nisi tempor quis. Cras placerat ipsum non odio viverra auctor. Curabitur tincidunt tincidunt mi in lobortis.</p>
-        </header>
+        <div class="qp-forum-sector-inner">
+            <header class="qp-forum-header">
+                <h2 class="qp-forum-header-title">
+                    <span v-text="props.sector.name"></span>
+                </h2>
+                <p class="qp-forum-header-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum lacinia ex, commodo ultricies nisi tempor quis. Cras placerat ipsum non odio viverra auctor. Curabitur tincidunt tincidunt mi in lobortis.</p>
+            </header>
+        </div>
     </article>
 </template>
 

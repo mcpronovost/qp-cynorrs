@@ -131,6 +131,39 @@ a:focus, a:hover {
 
 /* ===--- FORUM ---=== */
 
+.qp-forum-breadcrumbs {
+    font-size: 12px;
+    line-height: 120%;
+    padding: 0;
+    margin: 0;
+}
+.qp-forum-breadcrumbs ul {
+    vertical-align: middle;
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.qp-forum-breadcrumbs li {
+    vertical-align: middle;
+    list-style: none;
+    display: inline-block;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    padding: 8px 12px 8px 0;
+    margin: 0;
+}
+.qp-forum-breadcrumbs li:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+.qp-forum-breadcrumbs li::before {
+    content: "\F0142";
+    font: normal normal normal 12px/12px "Material Design Icons";
+    display: inline-block;
+    margin: 0 8px 0 0;
+}
+
 .qp-forum-header {
     padding: 12px;
 }
@@ -168,21 +201,27 @@ a:focus, a:hover {
     }
 }
 
-/* ===--- FORUM: Territory ---=== */
+/* ===--- ---=== */
 
-.qp-forum.qp-singleton-index .qp-forum-territories {
+.qp-forum.qp-singleton-index .qp-forum-territories,
+.qp-forum.qp-singleton-zone .qp-forum-territories,
+.qp-forum.qp-singleton-territory .qp-forum-sectors {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
-.qp-forum.qp-singleton-index .qp-forum-territory {
+.qp-forum.qp-singleton-index .qp-forum-territory,
+.qp-forum.qp-singleton-zone .qp-forum-territory,
+.qp-forum.qp-singleton-territory .qp-forum-sector {
     box-sizing: border-box;
     flex: 0 0 50%;
     padding: 12px;
 }
 
-.qp-forum.qp-singleton-index .qp-forum-territory-inner {
+.qp-forum.qp-singleton-index .qp-forum-territory-inner,
+.qp-forum.qp-singleton-zone .qp-forum-territory-inner,
+.qp-forum.qp-singleton-territory .qp-forum-sector-inner {
     background-color: var(--qp-base);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
@@ -190,11 +229,15 @@ a:focus, a:hover {
     padding: 12px;
 }
 
-.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header {
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header,
+.qp-forum.qp-singleton-zone .qp-forum-territories .qp-forum-header,
+.qp-forum.qp-singleton-territory .qp-forum-sectors .qp-forum-header {
     padding: 0;
 }
 
-.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-title {
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-title,
+.qp-forum.qp-singleton-zone .qp-forum-territories .qp-forum-header-title,
+.qp-forum.qp-singleton-territory .qp-forum-sectors .qp-forum-header-title {
     font-family: "Quicksand", sans-serif;
     font-size: 20px;
     font-weight: 400;
@@ -202,12 +245,16 @@ a:focus, a:hover {
     padding: 0;
 }
 
-.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-description {
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-description,
+.qp-forum.qp-singleton-zone .qp-forum-territories .qp-forum-header-description,
+.qp-forum.qp-singleton-territory .qp-forum-sectors .qp-forum-header-description {
     display: none;
 }
 
 @media (max-width: 767px) {
-    .qp-forum.qp-singleton-index .qp-forum-territory {
+    .qp-forum.qp-singleton-index .qp-forum-territory,
+    .qp-forum.qp-singleton-zone .qp-forum-territory,
+    .qp-forum.qp-singleton-territory .qp-forum-sector {
         flex-basis: 100%!important;
     }
 }
