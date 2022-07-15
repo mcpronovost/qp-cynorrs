@@ -26,6 +26,11 @@
     --el-avatar-text-color: var(--qp-bg);
 }
 
+.el-button {
+    border-color: var(--qp-secondary);
+    color: var(--qp-primary);
+}
+
 .el-card {
     background-color: var(--qp-dark);
     border: none;

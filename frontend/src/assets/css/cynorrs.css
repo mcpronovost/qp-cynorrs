@@ -1,0 +1,439 @@
+@import url("https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css");
+
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/robotocondensed.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/quicksand.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/oswald.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Indie Flower";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/indieflower.ttf) format("truetype");
+}
+
+:root {
+    --qp-primary: #435259;
+    --qp-primary-lighten-1: #4e5f68;
+    --qp-primary-lighten-2: #596d76;
+    --qp-primary-lighten-3: #647a85;
+    --qp-primary-lighten-4: #6f8793;
+    --qp-primary-lighten-5: #7e949e;
+    --qp-primary-lighten-6: #8ca0a9;
+    --qp-primary-lighten-7: #9bacb4;
+    --qp-primary-lighten-8: #b8c4ca;
+    --qp-primary-lighten-9: #c7d0d5;
+    --qp-primary-darken-1: #38454a;
+    --qp-primary-darken-2: #2d373c;
+    --qp-primary-darken-3: #222a2d;
+    --qp-primary-darken-4: #171c1f;
+    --qp-primary-darken-5: #0c0f10;
+    --qp-primary-darken-6: #010202;
+    --qp-secondary: #8f999d;
+    --qp-accent: #d3b018;
+    --qp-base: #dbe0e2;
+    --qp-bg: #c9cfd1;
+}
+html, body {
+    background-color: var(--qp-bg);
+    color: var(--qp-primary);
+    font-family: "Roboto Condensed", sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    line-height: 120%;
+    padding: 0;
+    margin: 0;
+}
+
+a, a:link, a:visited {
+    color: var(--qp-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:focus, a:hover {
+    color: var(--qp-accent);
+    text-decoration: none;
+}
+
+/* ===--- QPSTRAP ---=== */
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+
+/* ===--- APP ---=== */
+
+#app {
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    display: block;
+    height: 100vh;
+}
+
+#qp-app-main {
+    background-color: transparent;
+    font-size: 16px;
+    line-height: 120%;
+    vertical-align: top;
+    display: inline-block;
+    height: calc(100vh - 64px);
+    width: calc(100vw - 300px - 64px);
+}
+@media (max-width: 1199px) {
+    #qp-app-main {
+        width: 80vw;
+        max-width: calc(100vw - 64px);
+    }
+    #qp-app-smallbar {
+        display: none;
+    }
+}
+
+.qp-vue {
+    padding: 0;
+}
+.qp-container {
+    max-width: 1024px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+#app .qp-flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===--- FORUM ---=== */
+
+.qp-forum-breadcrumbs {
+    font-size: 12px;
+    line-height: 120%;
+    padding: 0;
+    margin: 0;
+}
+.qp-forum-breadcrumbs ul {
+    vertical-align: middle;
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.qp-forum-breadcrumbs li {
+    vertical-align: middle;
+    list-style: none;
+    display: inline-block;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    padding: 8px 12px 8px 0;
+    margin: 0;
+}
+.qp-forum-breadcrumbs li:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+.qp-forum-breadcrumbs li::before {
+    content: "\F0142";
+    font: normal normal normal 12px/12px "Material Design Icons";
+    display: inline-block;
+    margin: 0 8px 0 0;
+}
+
+.qp-forum-header {
+    padding: 12px;
+}
+.qp-forum-header-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 120%;
+    padding: 0 30% 12px 0;
+    margin: 0;
+}
+.qp-forum-header-description {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 120%;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 0 30% 12px 0;
+    margin: 0;
+}
+.qp-forum-header-divider {
+    background-color: var(--qp-primary);
+    border: none;
+    display: block;
+    width: 64px;
+    height: 2px;
+    margin: 12px auto 12px 0;
+}
+@media (max-width: 1199px) {
+    .qp-forum-header h2,
+    .qp-forum-header p {
+        padding-right: 0;
+    }
+}
+
+/* ===--- TERRITORIES AND SECTORS ---=== */
+
+.qp-forum.qp-singleton-index .qp-forum-territories,
+.qp-forum.qp-singleton-zone .qp-forum-territories,
+.qp-forum.qp-singleton-territory .qp-forum-sectors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territory,
+.qp-forum.qp-singleton-zone .qp-forum-territory,
+.qp-forum.qp-singleton-territory .qp-forum-sector {
+    box-sizing: border-box;
+    flex: 0 0 50%;
+    padding: 12px;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territory-inner,
+.qp-forum.qp-singleton-zone .qp-forum-territory-inner,
+.qp-forum.qp-singleton-territory .qp-forum-sector-inner {
+    background-color: var(--qp-base);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    text-align: center;
+    padding: 12px;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header,
+.qp-forum.qp-singleton-zone .qp-forum-territories .qp-forum-header,
+.qp-forum.qp-singleton-territory .qp-forum-sectors .qp-forum-header,
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header {
+    padding: 0;
+}
+
+.qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-title,
+.qp-forum.qp-singleton-zone .qp-forum-territories .qp-forum-header-title,
+.qp-forum.qp-singleton-territory .qp-forum-sectors .qp-forum-header-title {
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    padding: 0;
+}
+
+@media (max-width: 767px) {
+    .qp-forum.qp-singleton-index .qp-forum-territory,
+    .qp-forum.qp-singleton-zone .qp-forum-territory,
+    .qp-forum.qp-singleton-territory .qp-forum-sector {
+        flex-basis: 100%!important;
+    }
+}
+
+/* ===--- CHAPTERS ---=== */
+
+.qp-singleton-territory .qp-forum-chapters,
+.qp-singleton-sector .qp-forum-chapters {
+    display: flex;
+    flex-wrap: wrap;
+}
+.qp-singleton-territory .qp-forum-chapters .qp-forum-chapter,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-chapter {
+    box-sizing: border-box;
+    flex: 0 0 100%;
+    padding: 12px;
+}
+.qp-singleton-territory .qp-forum-chapters .qp-forum-chapter-inner,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-chapter-inner {
+    background-color: var(--qp-base);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+}
+
+.qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile {
+    text-align: center;
+    position: relative;
+    margin: 0;
+}
+.qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-banner .el-image,
+.qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-avatar .el-image,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-banner .el-image,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-avatar .el-image {
+    width: 100%;
+    height: 100%;
+}
+.qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-banner,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-banner  {
+    background-color: var(--qp-secondary);
+    overflow: hidden;
+    height: 90px;
+    margin: 0 0 22px;
+}
+.qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-banner .el-image,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-banner .el-image {
+    opacity: 0.6;
+    transform: scale(1.1);
+    filter: blur(3px);
+}
+.qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-avatar,
+.qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-avatar {
+    background-color: var(--qp-secondary);
+    border: 6px solid var(--qp-base);
+    border-radius: 100%;
+    overflow: hidden;
+    width: 110px;
+    height: 110px;
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-title,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-title {
+    color: var(--qp-primary);
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 120%;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+    transition: color 0.3s;
+    padding: 12px 12px 6px;
+    margin: 0;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-title:hover,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-title:hover {
+    color: var(--qp-secondary);
+    cursor: pointer;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-date,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-date {
+    color: var(--qp-secondary);
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 120%;
+    display: flex;
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: center;
+    order: 1;
+    padding: 0 12px;
+    margin: 0;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos {
+    color: var(--qp-secondary);
+    list-style: none;
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    order: 3;
+    padding: 12px;
+    margin: 0;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-lastmessagedate,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-lastmessagedate {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 120%;
+    text-align: left;
+    display: flex;
+    flex: 1 1 75%;
+    align-items: center;
+    justify-content: start;
+    padding: 0 6px 0 0;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-lastmessagedate i.mdi,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-lastmessagedate i.mdi {
+    font-size: 14px;
+    line-height: 100%;
+    margin: 0 3px 0 0;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-countmessages,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-countmessages {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 120%;
+    text-align: right;
+    display: flex;
+    flex: 1 1 25%;
+    align-items: center;
+    justify-content: end;
+    padding: 0 0 0 6px;
+}
+.qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-countmessages i.mdi,
+.qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-countmessages i.mdi {
+    font-size: 14px;
+    line-height: 100%;
+    order: 2;
+    margin: 0 0 0 3px;
+}
+
+@media (min-width: 768px) {
+    .qp-singleton-territory .qp-forum-chapters .qp-forum-chapter,
+    .qp-singleton-sector .qp-forum-chapters .qp-forum-chapter {
+        flex: 1 1 33.3333%;
+    }
+}
+@media (min-width: 1200px) {
+    .qp-singleton-territory .qp-forum-chapters .qp-forum-chapter,
+    .qp-singleton-sector .qp-forum-chapters .qp-forum-chapter {
+        flex: 1 1 25%;
+    }
+}
+@media (max-width: 767px) {
+    .qp-singleton-territory .qp-forum-chapters .qp-forum-chapter,
+    .qp-singleton-sector .qp-forum-chapters .qp-forum-chapter {
+        flex: 1 1 100%;
+    }
+}
+
