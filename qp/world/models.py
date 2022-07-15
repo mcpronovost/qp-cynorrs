@@ -173,6 +173,66 @@ class qpWorldSector(models.Model):
         )
 
 
+class qpWorldChapter(models.Model):
+    territory = models.ForeignKey(
+        qpWorldTerritoty,
+        on_delete=models.SET_NULL,
+        related_name="chapters",
+        verbose_name=_("Territory"),
+        blank=True,
+        null=True
+    )
+    sector = models.ForeignKey(
+        qpWorldSector,
+        on_delete=models.SET_NULL,
+        related_name="chapters",
+        verbose_name=_("Territory"),
+        blank=True,
+        null=True
+    )
+    author = models.ForeignKey(
+        "player.qpPlayerHero",
+        on_delete=models.SET_NULL,
+        related_name="chapters",
+        verbose_name=_("Author"),
+        blank=True,
+        null=True
+    )
+    title = models.CharField(
+        verbose_name=_("Title"),
+        max_length=32,
+        blank=False,
+        null=False
+    )
+    description = models.CharField(
+        verbose_name=_("Description"),
+        max_length=200,
+        blank=True,
+        null=True
+    )
+    created_at = models.DateTimeField(
+        verbose_name=_("Created"),
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Updated"),
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = _("Chapter")
+        verbose_name_plural = _("Chapters")
+        ordering = ["territory", "sector"]
+    
+    class Qapi:
+        admin_order = 5
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.title)
+        )
+
+
 class qpWorldRace(models.Model):
     world = models.ForeignKey(
         qpWorld,

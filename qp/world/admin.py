@@ -6,6 +6,7 @@ from qp.world.models import (
     qpWorldZone,
     qpWorldTerritoty,
     qpWorldSector,
+    qpWorldChapter,
     qpWorldRace,
     qpWorldEthnicity,
     qpWorldNationality
@@ -26,6 +27,10 @@ class qpWorldTerritotyAdmin(admin.ModelAdmin):
 
 @admin.register(qpWorldSector)
 class qpWorldSectorAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(qpWorldChapter)
+class qpWorldChapterAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(qpWorldRace)

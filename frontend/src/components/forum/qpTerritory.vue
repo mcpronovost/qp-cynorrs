@@ -17,8 +17,11 @@
                     </ul>
                 </nav>
             </header>
-            <section v-if="props.singleton == 'territory'" class="qp-forum-sectors">
+            <section v-if="props.singleton == 'territory_hide'" class="qp-forum-sectors">
                 <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :sector="sector" :singleton="props.singleton" />
+            </section>
+            <section v-if="props.singleton == 'territory'" class="qp-forum-chapters">
+                aaa
             </section>
         </div>
     </article>
