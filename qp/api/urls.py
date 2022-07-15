@@ -21,7 +21,9 @@ from qp.api.views.world import (
     qpWorldsView,
     qpWorldView,
     qpWorldZoneView,
-    qpWorldTerritoryView
+    qpWorldTerritoryView,
+    qpWorldSectorView,
+    qpWorldChapterView
 )
 
 urlpatterns = [
@@ -37,6 +39,8 @@ urlpatterns = [
     path("worlds/<int:pk>/", qpWorldView.as_view()),
     path("worlds/zones/<int:pk>/", qpWorldZoneView.as_view()),
     path("worlds/territories/<int:pk>/", qpWorldTerritoryView.as_view()),
+    path("worlds/sectors/<int:pk>/", qpWorldSectorView.as_view()),
+    path("worlds/chapters/<int:pk>/", qpWorldChapterView.as_view()),
 
     path("register/", qpRegisterView.as_view()),
     path("login/", qpLoginView.as_view()),

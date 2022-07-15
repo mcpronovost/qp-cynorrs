@@ -1,6 +1,6 @@
 <template>
     <div id="qp-sidebar-nav">
-        <el-menu router :default-active="$route.name" :collapse="app.win.w < 1200">
+        <el-menu router :default-active="($route && $route.params && 'slug' in $route.params) ? $route.params.slug : $route.name" :collapse="app.win.w < 1200">
             <el-menu-item index="Home" :route="{name:'Home'}">
                 <i class="mdi mdi-home"></i>
                 <span v-text="$t('Home')"></span>
@@ -9,11 +9,11 @@
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'About'"></span>
             </el-menu-item>
-            <el-menu-item index="Sagars" :route="{name:'World', params: {world_pk: 1, slug: 'sagars'}}">
+            <el-menu-item index="sagars" :route="{name:'World', params: {world_pk: 1, slug: 'sagars'}}">
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'Sagars'"></span>
             </el-menu-item>
-            <el-menu-item index="Rhansidor" :route="{name:'World', params: {world_pk: 2, slug: 'rhansidor'}}">
+            <el-menu-item index="rhansidor" :route="{name:'World', params: {world_pk: 2, slug: 'rhansidor'}}">
                 <i class="mdi mdi-hops"></i>
                 <span v-text="'Rhansidor'"></span>
             </el-menu-item>

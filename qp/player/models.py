@@ -44,6 +44,12 @@ class qpPlayer(models.Model):
         blank=False,
         null=False
     )
+    avatar = models.ImageField(
+        verbose_name=_("Avatar"),
+        upload_to="players/avatars",
+        blank=True,
+        null=True
+    )
     updated_at = models.DateTimeField(
         auto_now=True
     )
@@ -120,6 +126,12 @@ class qpPlayerCharacter(models.Model):
     )
     geo = models.TextField(
         verbose_name=_("Geolocalisation"),
+        blank=True,
+        null=True
+    )
+    avatar = models.ImageField(
+        verbose_name=_("Avatar"),
+        upload_to="characters/avatars",
         blank=True,
         null=True
     )

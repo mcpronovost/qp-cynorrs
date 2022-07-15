@@ -1,21 +1,3 @@
-<script setup>
-
-import { computed, ref } from "vue";
-import { useStore } from "vuex";
-
-// =================================================================================== //
-// ===--- STORE
-
-const store = useStore()
-const player = computed(() => store.getters.player)
-
-// =================================================================================== //
-// ===--- DATA
-
-const title = ref("Qui ne fait que passer")
-
-</script>
-
 <template>
     <div id="qp-sidebar-profile">
         <div id="qp-sidebar-banner">
@@ -37,13 +19,37 @@ const title = ref("Qui ne fait que passer")
                 <span v-text="player?.name"></span>
             </h2>
         </div>
-        <div id="qp-sidebar-title">
+        <div v-if="rat" id="qp-sidebar-title">
             <p>
                 <span v-text="title"></span>
             </p>
         </div>
+        <div v-else>
+            <el-button>
+                <span v-text="$t('Login')"></span>
+            </el-button>
+        </div>
     </div>
 </template>
+
+<script setup>
+
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+
+// =================================================================================== //
+// ===--- STORE
+
+const store = useStore()
+const rat = computed(() => store.getters.rat)
+const player = computed(() => store.getters.player)
+
+// =================================================================================== //
+// ===--- DATA
+
+const title = ref("Qui ne fait que passer")
+
+</script>
 
 <style scoped>
     #qp-sidebar-profile {

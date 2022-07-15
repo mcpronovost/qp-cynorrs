@@ -7,7 +7,7 @@ import ElementPlus from "element-plus"
 import fr from "element-plus/es/locale/lang/fr"
 import "element-plus/dist/index.css"
 
-import "@/assets/element.css"
+import "@/assets/css/element.css"
 
 const app = createApp(App)
 

@@ -1,27 +1,19 @@
 <template>
-    <article v-if="props.territory" class="qp-forum-territory" :style="`flex-basis:${territory.flexbasis};`">
+    <article v-if="props.territory" class="qp-forum-territory" :style="`flex-basis:${props.territory.flexbasis};`">
         <div class="qp-forum-territory-inner">
             <header class="qp-forum-header">
                 <h2 class="qp-forum-header-title" @click="goToTerritory(props.territory)">
                     <span v-text="props.territory.name"></span>
                 </h2>
-                <p class="qp-forum-header-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum lacinia ex, commodo ultricies nisi tempor quis. Cras placerat ipsum non odio viverra auctor. Curabitur tincidunt tincidunt mi in lobortis.</p>
-                <nav class="qp-forum-breadcrumbs" v-if="singleton == 'territory'">
-                    <ul>
-                        <li @click="goToWorld(props.world)">
-                            <span v-text="props.world.name"></span>
-                        </li>
-                        <li @click="goToZone(props.zone)">
-                            <span v-text="props.zone.name"></span>
-                        </li>
-                    </ul>
-                </nav>
+                <p v-if="props.territory.description" class="qp-forum-header-description" v-text="props.territory.description"></p>
+                <hr v-if="singleton == 'territory'" class="qp-forum-header-divider" />
+                <qpForumBreadcrumbs v-if="singleton == 'territory'" :crumbs="listBreadcrumbs" />
             </header>
-            <section v-if="props.singleton == 'territory_hide'" class="qp-forum-sectors">
-                <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :sector="sector" :singleton="props.singleton" />
+            <section v-if="props.singleton == 'territory'" class="qp-forum-sectors">
+                <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :sector="sector" :singleton="props.singleton" />
             </section>
             <section v-if="props.singleton == 'territory'" class="qp-forum-chapters">
-                aaa
+                <qpForumChapter v-for="(chapter, n) in props.territory.chapters" :key="`chapter-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :singleton="props.singleton" />
             </section>
         </div>
     </article>
@@ -29,11 +21,13 @@
 
 <script setup>
 
-// import { ref } from "vue";
+import { computed } from "vue";
 // import i18n from "@/plugins/i18n";
 import { useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
+import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumSector from "@/components/forum/qpSector.vue";
+import qpForumChapter from "@/components/forum/qpChapter.vue";
 
 // =================================================================================== //
 
@@ -63,23 +57,31 @@ const props = defineProps({
 })
 
 // =================================================================================== //
+// ===--- DATA
+
+const listBreadcrumbs = computed(() => {
+    let result = [
+        {
+            name: props.world.name,
+            view: "world",
+            data: {
+                world: props.world
+            }
+        },
+        {
+            name: props.zone.name,
+            view: "zone",
+            data: {
+                world: props.world,
+                zone: props.zone
+            }
+        }
+    ]
+    return result
+})
+
+// =================================================================================== //
 // ===--- METHODS
-
-const goToWorld = (world) => {
-    router.push({name: "World", params: {
-        world_pk: world.id,
-        slug: world.slug
-    }})
-}
-
-const goToZone = (zone) => {
-    router.push({name: "WorldZone", params: {
-        world_pk: props.world.id,
-        slug: props.world.slug,
-        zone_pk: zone.id,
-        zone_slug: slugify(zone.name)
-    }})
-}
 
 const goToTerritory = (territory) => {
     router.push({name: "WorldTerritory", params: {

@@ -19,8 +19,8 @@ class qpWorld(models.Model):
     stylesheet = models.TextField(
         verbose_name=_("Custom Stylesheet"),
         default="",
-        blank=False,
-        null=False
+        blank=True,
+        null=True
     )
     created_at = models.DateTimeField(
         auto_now_add=True
@@ -46,12 +46,26 @@ class qpWorld(models.Model):
         return "/worlds/%s/" % (
             str(self.slug)
         )
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(
-            str(self.name)
-        )
-        return super().save(*args, **kwargs)
+    
+    @property
+    def count_chapters(self):
+        result = 0
+        try:
+            for zone in self.zones.all():
+                result += zone.count_chapters
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_messages(self):
+        result = 0
+        try:
+            for zone in self.zones.all():
+                result += zone.count_messages
+        except Exception:
+            pass
+        return result
 
 
 class qpWorldZone(models.Model):
@@ -87,9 +101,29 @@ class qpWorldZone(models.Model):
         return "%s" % (
             str(self.name)
         )
+    
+    @property
+    def count_chapters(self):
+        result = 0
+        try:
+            for territory in self.territories.all():
+                result += territory.count_chapters
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_messages(self):
+        result = 0
+        try:
+            for territory in self.territories.all():
+                result += territory.count_messages
+        except Exception:
+            pass
+        return result
 
 
-class qpWorldTerritoty(models.Model):
+class qpWorldTerritory(models.Model):
     zone = models.ForeignKey(
         qpWorldZone,
         on_delete=models.CASCADE,
@@ -111,7 +145,7 @@ class qpWorldTerritoty(models.Model):
     )
     flexbasis = models.CharField(
         verbose_name=_("Flex Basis"),
-        max_length=5,
+        max_length=9,
         default="100%",
         blank=False,
         null=False
@@ -129,11 +163,30 @@ class qpWorldTerritoty(models.Model):
         return "%s" % (
             str(self.name)
         )
+    
+    @property
+    def count_chapters(self):
+        result = 0
+        try:
+            result = self.chapters.count()
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_messages(self):
+        result = 0
+        try:
+            for chapter in self.chapters.all():
+                result += chapter.count_messages
+        except Exception:
+            pass
+        return result
 
 
 class qpWorldSector(models.Model):
     territory = models.ForeignKey(
-        qpWorldTerritoty,
+        qpWorldTerritory,
         on_delete=models.CASCADE,
         related_name="sectors",
         verbose_name=_("Territory"),
@@ -153,7 +206,7 @@ class qpWorldSector(models.Model):
     )
     flexbasis = models.CharField(
         verbose_name=_("Flex Basis"),
-        max_length=5,
+        max_length=9,
         default="100%",
         blank=False,
         null=False
@@ -171,11 +224,30 @@ class qpWorldSector(models.Model):
         return "%s" % (
             str(self.name)
         )
+    
+    @property
+    def count_chapters(self):
+        result = 0
+        try:
+            result = self.chapters.count()
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_messages(self):
+        result = 0
+        try:
+            for chapter in self.chapters.all():
+                result += chapter.count_messages
+        except Exception:
+            pass
+        return result
 
 
 class qpWorldChapter(models.Model):
     territory = models.ForeignKey(
-        qpWorldTerritoty,
+        qpWorldTerritory,
         on_delete=models.SET_NULL,
         related_name="chapters",
         verbose_name=_("Territory"),
@@ -186,7 +258,7 @@ class qpWorldChapter(models.Model):
         qpWorldSector,
         on_delete=models.SET_NULL,
         related_name="chapters",
-        verbose_name=_("Territory"),
+        verbose_name=_("Sector"),
         blank=True,
         null=True
     )
@@ -200,7 +272,7 @@ class qpWorldChapter(models.Model):
     )
     title = models.CharField(
         verbose_name=_("Title"),
-        max_length=32,
+        max_length=90,
         blank=False,
         null=False
     )
@@ -222,7 +294,7 @@ class qpWorldChapter(models.Model):
     class Meta:
         verbose_name = _("Chapter")
         verbose_name_plural = _("Chapters")
-        ordering = ["territory", "sector"]
+        ordering = ["-updated_at", "-created_at"]
     
     class Qapi:
         admin_order = 5
@@ -231,6 +303,69 @@ class qpWorldChapter(models.Model):
         return "%s" % (
             str(self.title)
         )
+    
+    @property
+    def count_messages(self):
+        result = 0
+        try:
+            result = self.messages.count()
+        except Exception:
+            pass
+        return result
+
+
+class qpWorldMessage(models.Model):
+    chapter = models.ForeignKey(
+        qpWorldChapter,
+        on_delete=models.CASCADE,
+        related_name="messages",
+        verbose_name=_("Chapter"),
+        blank=True,
+        null=True
+    )
+    author = models.ForeignKey(
+        "player.qpPlayerHero",
+        on_delete=models.SET_NULL,
+        related_name="messages",
+        verbose_name=_("Author"),
+        blank=True,
+        null=True
+    )
+    text = models.TextField(
+        verbose_name=_("Text"),
+        blank=False,
+        null=False
+    )
+    count_updates = models.PositiveSmallIntegerField(
+        verbose_name=_("Updates"),
+        default=0
+    )
+    created_at = models.DateTimeField(
+        verbose_name=_("Created"),
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        verbose_name=_("Updated"),
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = _("Message")
+        verbose_name_plural = _("Messages")
+        ordering = ["created_at"]
+    
+    class Qapi:
+        admin_order = 6
+    
+    def __str__(self):
+        return _("Message #%(pk)s") % {
+            "pk": str(self.pk)
+        }
+
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            self.count_updates += 1
+        return super().save(*args, **kwargs)
 
 
 class qpWorldRace(models.Model):

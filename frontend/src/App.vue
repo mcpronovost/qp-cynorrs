@@ -1,9 +1,3 @@
-<script setup>
-import qpHeader from "@/components/core/qpHeader.vue";
-import qpSidebar from "@/components/core/qpSidebar.vue";
-import qpSmallbar from "@/components/core/qpSmallbar.vue";
-</script>
-
 <template>
     <div id="qp-app">
         <qpHeader />
@@ -16,3 +10,13 @@ import qpSmallbar from "@/components/core/qpSmallbar.vue";
         <qpSmallbar />
     </div>
 </template>
+
+<script setup>
+import qpHeader from "@/components/core/qpHeader.vue";
+import qpSidebar from "@/components/core/qpSidebar.vue";
+import qpSmallbar from "@/components/core/qpSmallbar.vue";
+</script>
+
+<style>
+    @import url("./assets/css/cynorrs.css");
+</style>

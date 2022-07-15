@@ -11,9 +11,14 @@ SECRET_KEY = os.getenv("SECRET_KEY", "qp")
 
 DEBUG = os.getenv("DEBUG", False)
 
-ALLOWED_HOSTS = ["*"]
-
 LOGIN_REDIRECT_URL = "/"
+
+###############################################################################
+# CORS settings
+
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
 
 
 #########################################################################################
@@ -35,6 +40,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -148,6 +154,13 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+if DEBUG:
+    FRONTEND_ROOT = os.path.join(BASE_DIR, "frontend", "bundles", "dev")
+else:
+    FRONTEND_ROOT = os.path.join(BASE_DIR, "frontend", "bundles", "pro")
+
+STATICFILES_DIRS.append(FRONTEND_ROOT)
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

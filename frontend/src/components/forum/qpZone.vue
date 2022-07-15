@@ -5,14 +5,9 @@
                 <h2 class="qp-forum-header-title">
                     <span v-text="props.zone.name"></span>
                 </h2>
-                <p class="qp-forum-header-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum lacinia ex, commodo ultricies nisi tempor quis. Cras placerat ipsum non odio viverra auctor. Curabitur tincidunt tincidunt mi in lobortis.</p>
-                <nav class="qp-forum-breadcrumbs" v-if="singleton == 'zone'">
-                    <ul>
-                        <li @click="goToWorld(props.world)">
-                            <span v-text="props.world.name"></span>
-                        </li>
-                    </ul>
-                </nav>
+                <p v-if="props.zone.description" class="qp-forum-header-description" v-text="props.zone.description"></p>
+                <hr class="qp-forum-header-divider" />
+                <qpForumBreadcrumbs v-if="singleton == 'zone'" :crumbs="listBreadcrumbs" />
             </header>
             <section class="qp-forum-territories">
                 <qpForumTerritory v-for="(territory, n) in props.zone.territories" :key="`territory-${n}`" :world="props.world" :zone="props.zone" :territory="territory" :singleton="props.singleton" />
@@ -23,15 +18,14 @@
 
 <script setup>
 
-// import { ref } from "vue";
+import { computed } from "vue";
 // import i18n from "@/plugins/i18n";
-import { useRouter } from "vue-router";
 import qpForumTerritory from "@/components/forum/qpTerritory.vue";
+import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 
 // =================================================================================== //
 
 // const { t } = i18n.global
-const router = useRouter()
 
 // =================================================================================== //
 // ===--- PROPS
@@ -52,14 +46,20 @@ const props = defineProps({
 })
 
 // =================================================================================== //
-// ===--- METHODS
+// ===--- DATA
 
-const goToWorld = (world) => {
-    router.push({name: "World", params: {
-        world_pk: world.id,
-        slug: world.slug
-    }})
-}
+const listBreadcrumbs = computed(() => {
+    let result = [
+        {
+            name: props.world.name,
+            view: "world",
+            data: {
+                world: props.world
+            }
+        }
+    ]
+    return result
+})
 
 // =================================================================================== //
 

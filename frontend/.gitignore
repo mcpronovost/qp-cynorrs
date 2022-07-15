@@ -23,3 +23,6 @@ pnpm-debug.log*
 *.sw?
 
 /node_modules
+
+/bundles/dev/*
+!/bundles/dev/.empty

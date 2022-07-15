@@ -1,7 +1,6 @@
 const { defineConfig } = require("@vue/cli-service");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const BundleTracker = require("webpack-bundle-tracker");
-const path = require('path');
 const ENV = process.env.NODE_ENV
 
 module.exports = defineConfig({
@@ -12,9 +11,7 @@ module.exports = defineConfig({
             "/"
     ),
     outputDir: (
-        ENV == "production" ?
-            path.resolve(__dirname, "../static/vue/pro/") :
-            path.resolve(__dirname, "../static/vue/dev/")
+        ENV == "production" ? "bundles/pro" : "bundles/dev"
     ),
     transpileDependencies: true,
     productionSourceMap: false,

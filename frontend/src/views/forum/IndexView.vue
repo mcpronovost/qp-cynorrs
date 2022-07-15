@@ -12,6 +12,12 @@
                 <section v-else-if="route.name == 'WorldTerritory'" class="qp-forum-territories">
                     <qpForumTerritory :world="world" :zone="zone" :territory="territory" :singleton="singleton" />
                 </section>
+                <section v-else-if="route.name == 'WorldSector'" class="qp-forum-sectors">
+                    <qpForumSector :world="world" :zone="zone" :territory="territory" :sector="sector" :singleton="singleton" />
+                </section>
+                <section v-else-if="route.name == 'WorldChapter'" class="qp-forum-chapters">
+                    <qpForumChapter :world="world" :zone="zone" :territory="territory" :sector="sector" :chapter="chapter" :singleton="singleton" />
+                </section>
             </div>
 
             <div v-else-if="isLoading">
@@ -36,6 +42,8 @@ import i18n from "@/plugins/i18n";
 
 import qpForumZone from "@/components/forum/qpZone.vue";
 import qpForumTerritory from "@/components/forum/qpTerritory.vue";
+import qpForumSector from "@/components/forum/qpSector.vue";
+import qpForumChapter from "@/components/forum/qpChapter.vue";
 
 const { t } = i18n.global
 
@@ -51,6 +59,8 @@ const hasError = ref()
 const world = ref()
 const zone = ref()
 const territory = ref()
+const sector = ref()
+const chapter = ref()
 const singleton = ref("index")
 
 // =================================================================================== //
@@ -98,8 +108,12 @@ const setZone = async (zonePk) => {
 const setTerritory = async (territoryPk) => {
     isLoading.value = true
     hasError.value = null
+    let q = ""
+    if ("page" in route.query && Number(route.query.page) > 0) {
+        q = `?page=${Number(route.query.page)}`
+    }
     // ===---
-    let r = await fetch(`${API}/worlds/territories/${territoryPk}/`, {
+    let r = await fetch(`${API}/worlds/territories/${territoryPk}/${q}`, {
         method: "GET",
         headers: {"Authorization": rat}
     })
@@ -111,6 +125,59 @@ const setTerritory = async (territoryPk) => {
         initStyle(result.world.stylesheet)
     } else {
         hasError.value = t("ThisTerritoryDoesntExistAnymore")
+    }
+    isLoading.value = false
+    // ===---
+}
+
+const setSector = async (sectorPk) => {
+    isLoading.value = true
+    hasError.value = null
+    let q = ""
+    if ("page" in route.query && Number(route.query.page) > 0) {
+        q = `?page=${Number(route.query.page)}`
+    }
+    // ===---
+    let r = await fetch(`${API}/worlds/sectors/${sectorPk}/${q}`, {
+        method: "GET",
+        headers: {"Authorization": rat}
+    })
+    if (r.status === 200) {
+        let result = await r.json()
+        world.value = result.world
+        zone.value = result.zone
+        territory.value = result.territory
+        sector.value = result.sector
+        initStyle(result.world.stylesheet)
+    } else {
+        hasError.value = t("ThisSectorDoesntExistAnymore")
+    }
+    isLoading.value = false
+    // ===---
+}
+
+const setChapter = async (chapterPk) => {
+    isLoading.value = true
+    hasError.value = null
+    let q = ""
+    if ("page" in route.query && Number(route.query.page) > 0) {
+        q = `?page=${Number(route.query.page)}`
+    }
+    // ===---
+    let r = await fetch(`${API}/worlds/chapters/${chapterPk}/${q}`, {
+        method: "GET",
+        headers: {"Authorization": rat}
+    })
+    if (r.status === 200) {
+        let result = await r.json()
+        world.value = result.world
+        zone.value = result.zone
+        territory.value = result.territory
+        sector.value = result.sector
+        chapter.value = result.chapter
+        initStyle(result.world.stylesheet)
+    } else {
+        hasError.value = t("ThisChapterDoesntExistAnymore")
     }
     isLoading.value = false
     // ===---
@@ -140,6 +207,12 @@ onMounted(() => {
     } else if (route.name == 'WorldTerritory') {
         singleton.value = "territory"
         setTerritory(route.params.territory_pk)
+    } else if (route.name == 'WorldSector') {
+        singleton.value = "sector"
+        setSector(route.params.sector_pk)
+    } else if (route.name == ('WorldChapter'||'WorldSectorChapter')) {
+        singleton.value = "chapter"
+        setChapter(route.params.chapter_pk)
     }
 })
 

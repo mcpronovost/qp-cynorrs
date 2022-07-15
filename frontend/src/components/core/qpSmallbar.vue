@@ -1,5 +1,5 @@
 <template>
-    <div id="qp-app-smallbar">
+    <div v-if="rat" id="qp-app-smallbar">
         <el-scrollbar height="100%">
             <div id="qp-smallbar-inner">
                 <div v-for="(hero, n) in listHeros" :key="`hero-${n}`" class="qp-smallbar-hero">
@@ -26,6 +26,7 @@ import { useRoute } from "vue-router";
 const route = useRoute()
 
 const store = useStore()
+const rat = computed(() => store.getters.rat)
 const heros = computed(() => store.getters.heros)
 
 const listHeros = computed(() => {

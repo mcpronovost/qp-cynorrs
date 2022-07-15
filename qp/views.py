@@ -14,7 +14,7 @@ def app(request):
     #print(request.headers["User-Agent"])
     #print(hashlib.sha1(request.headers["User-Agent"].encode()).hexdigest())
     # ===---
-    print(((int(hashlib.sha224(b'M-C Pronovost').hexdigest(), base=16)) % 12) + 1)
+    # print(((int(hashlib.sha224(b'M-C Pronovost').hexdigest(), base=16)) % 12) + 1)
     #points = 32767
     #print(math.floor((math.sqrt(((points / 1024) * 8) + 1) - 1) / 2))
     # ===---
@@ -24,11 +24,19 @@ def app(request):
             for chunk in wp["chunks"]["app"]:
                 if chunk.startswith("css"):
                     css.append(
-                        static("vue/%s/%s" % (stage, chunk))
+                        "%s://%s/%s" % (
+                            str(request.scheme),
+                            str(request.META["HTTP_HOST"]),
+                            chunk
+                        )
                     )
                 elif chunk.startswith("js"):
                     js.append(
-                        static("vue/%s/%s" % (stage, chunk))
+                        "%s://%s/%s" % (
+                            str(request.scheme),
+                            str(request.META["HTTP_HOST"]),
+                            chunk
+                        )
                     )
     except Exception as e:
         print("Error on app : ", e)

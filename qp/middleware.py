@@ -40,9 +40,10 @@ class AdminMiddleware():
     def process_template_response(self, request, response):
         if not request.path.startswith(reverse('admin:index')):
             return response
-        try:
+        app_list = []
+        if "app_list" in response.context_data:
             app_list = response.context_data['app_list']
-        except:
+        elif "available_apps" in response.context_data:
             app_list = response.context_data['available_apps']
         # ===---
         app_list = self.get_app_list(app_list)

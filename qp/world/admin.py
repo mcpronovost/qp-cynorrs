@@ -4,9 +4,10 @@ from django.utils.translation import gettext_lazy as _
 from qp.world.models import (
     qpWorld,
     qpWorldZone,
-    qpWorldTerritoty,
+    qpWorldTerritory,
     qpWorldSector,
     qpWorldChapter,
+    qpWorldMessage,
     qpWorldRace,
     qpWorldEthnicity,
     qpWorldNationality
@@ -21,8 +22,8 @@ class qpWorldAdmin(admin.ModelAdmin):
 class qpWorldZoneAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(qpWorldTerritoty)
-class qpWorldTerritotyAdmin(admin.ModelAdmin):
+@admin.register(qpWorldTerritory)
+class qpWorldTerritoryAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(qpWorldSector)
@@ -32,6 +33,10 @@ class qpWorldSectorAdmin(admin.ModelAdmin):
 @admin.register(qpWorldChapter)
 class qpWorldChapterAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(qpWorldMessage)
+class qpWorldMessageAdmin(admin.ModelAdmin):
+    list_display = ["__str__", "author", "created_at", "updated_at"]
 
 @admin.register(qpWorldRace)
 class qpWorldRaceAdmin(admin.ModelAdmin):

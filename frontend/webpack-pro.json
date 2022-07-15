@@ -1,34 +1,54 @@
 {
   "status": "done",
   "assets": {
+    "fonts/robotocondensed.ttf": {
+      "name": "fonts/robotocondensed.ttf",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/robotocondensed.ttf",
+      "publicPath": "/fonts/robotocondensed.ttf"
+    },
+    "fonts/quicksand.ttf": {
+      "name": "fonts/quicksand.ttf",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/quicksand.ttf",
+      "publicPath": "/fonts/quicksand.ttf"
+    },
+    "fonts/oswald.ttf": {
+      "name": "fonts/oswald.ttf",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/oswald.ttf",
+      "publicPath": "/fonts/oswald.ttf"
+    },
+    "fonts/indieflower.ttf": {
+      "name": "fonts/indieflower.ttf",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/indieflower.ttf",
+      "publicPath": "/fonts/indieflower.ttf"
+    },
     "css/app.css": {
       "name": "css/app.css",
-      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\css\\app.css",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/css/app.css",
       "publicPath": "/css/app.css"
     },
     "js/app.js": {
       "name": "js/app.js",
-      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\js\\app.js",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/js/app.js",
       "publicPath": "/js/app.js"
     },
     "css/chunk-vendors.css": {
       "name": "css/chunk-vendors.css",
-      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\css\\chunk-vendors.css",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/css/chunk-vendors.css",
       "publicPath": "/css/chunk-vendors.css"
     },
     "js/chunk-vendors.js": {
       "name": "js/chunk-vendors.js",
-      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\js\\chunk-vendors.js",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/js/chunk-vendors.js",
       "publicPath": "/js/chunk-vendors.js"
     },
     "favicon.ico": {
       "name": "favicon.ico",
-      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\favicon.ico",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/favicon.ico",
       "publicPath": "/favicon.ico"
     },
     "index.html": {
       "name": "index.html",
-      "path": "E:\\qp-cynorrs\\static\\vue\\pro\\index.html",
+      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/index.html",
       "publicPath": "/index.html"
     }
   },
