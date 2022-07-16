@@ -246,11 +246,11 @@ class qpWorldView(APIView):
             "sector": chapter.sector.pk if chapter.sector else None,
             "count_messages": chapter.count_messages,
             "author": {
-                "avatar": chapter.author.avatar.url
+                "avatar": chapter.author.avatar.url if chapter.author.avatar else None
             } if chapter.author else None,
             "last_message": {
                 "author": {
-                    "avatar": chapter.messages.last().author.avatar.url
+                    "avatar": chapter.messages.last().author.avatar.url if chapter.messages.last().author.avatar else None
                 } if chapter.messages.count() and chapter.messages.last().author else None,
                 "date": _date(chapter.messages.last().updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i")
             } if chapter.messages.count() else None
