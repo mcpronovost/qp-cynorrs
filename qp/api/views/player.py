@@ -38,22 +38,31 @@ class qpPlayerView(APIView):
 
     def get_heros(self, player):
         result = []
-        for item in player.heros.filter(
+        for hero in player.heros.filter(
             is_active=True
         ):
+            # =-
             hero_geo = None
             is_can_travel = True
-            if item.geo and item.geo != "":
-                hero_geo = json.loads(item.geo)
+            if hero.geo and hero.geo != "":
+                hero_geo = json.loads(hero.geo)
                 is_can_travel = True if (hero_geo["cooldown"] - timezone.now().timestamp()) <= 0 else False
+            # =-
+            avatar = None
+            if hero.avatar is not None:
+                try:
+                    avatar = hero.avatar.url
+                except Exception:
+                    avatar = None
+            # =-
             result.append({
-                "id": item.pk,
-                "name": item.name,
-                "initials": item.initials,
-                "world": item.world.pk,
+                "id": hero.pk,
+                "name": hero.name,
+                "initials": hero.initials,
+                "world": hero.world.pk,
                 "geo": hero_geo,
                 "is_can_travel": is_can_travel,
-                "avatar": None
+                "avatar": avatar
             })
         return result
 

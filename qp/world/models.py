@@ -16,6 +16,26 @@ class qpWorld(models.Model):
         blank=True,
         null=True
     )
+    creator = models.ForeignKey(
+        "player.qpPlayer",
+        on_delete=models.SET_NULL,
+        related_name="creator_worlds",
+        verbose_name=_("Creator"),
+        blank=True,
+        null=True
+    )
+    administrators = models.ManyToManyField(
+        "player.qpPlayer",
+        related_name="admin_worlds",
+        verbose_name=_("Administrators"),
+        blank=True
+    )
+    moderators = models.ManyToManyField(
+        "player.qpPlayer",
+        related_name="modo_worlds",
+        verbose_name=_("Moderators"),
+        blank=True
+    )
     stylesheet = models.TextField(
         verbose_name=_("Custom Stylesheet"),
         default="",
@@ -88,11 +108,17 @@ class qpWorldZone(models.Model):
         blank=True,
         null=True
     )
+    ordering = models.PositiveSmallIntegerField(
+        verbose_name=_("Ordering"),
+        default=0,
+        blank=False,
+        null=False
+    )
 
     class Meta:
         verbose_name = _("Zone")
         verbose_name_plural = _("Zones")
-        ordering = ["world", "name"]
+        ordering = ["world", "ordering", "name"]
     
     class Qapi:
         admin_order = 2
@@ -101,6 +127,16 @@ class qpWorldZone(models.Model):
         return "%s" % (
             str(self.name)
         )
+
+    def save(self, *args, **kwargs):
+        if self.ordering == 0:
+            lastorder = qpWorldZone.objects.filter(
+                world=self.world
+            ).last().ordering if qpWorldZone.objects.filter(
+                world=self.world
+            ).last() is not None else 0
+            self.ordering = (lastorder + 1)
+        return super().save(*args, **kwargs)
     
     @property
     def count_chapters(self):
@@ -150,11 +186,17 @@ class qpWorldTerritory(models.Model):
         blank=False,
         null=False
     )
+    ordering = models.PositiveSmallIntegerField(
+        verbose_name=_("Ordering"),
+        default=0,
+        blank=False,
+        null=False
+    )
 
     class Meta:
         verbose_name = _("Territory")
         verbose_name_plural = _("Territories")
-        ordering = ["zone", "name"]
+        ordering = ["zone", "ordering", "name"]
     
     class Qapi:
         admin_order = 3
@@ -163,6 +205,22 @@ class qpWorldTerritory(models.Model):
         return "%s" % (
             str(self.name)
         )
+
+    def save(self, *args, **kwargs):
+        if self.ordering == 0:
+            lastorder = qpWorldTerritory.objects.filter(
+                zone=self.zone
+            ).last().ordering if qpWorldTerritory.objects.filter(
+                zone=self.zone
+            ).last() is not None else 0
+            self.ordering = (lastorder + 1)
+        return super().save(*args, **kwargs)
+    
+    @property
+    def world(self):
+        if self.zone is not None:
+            return self.zone.world
+        return None
     
     @property
     def count_chapters(self):
@@ -222,11 +280,17 @@ class qpWorldSector(models.Model):
         blank=False,
         null=False
     )
+    ordering = models.PositiveSmallIntegerField(
+        verbose_name=_("Ordering"),
+        default=0,
+        blank=False,
+        null=False
+    )
 
     class Meta:
         verbose_name = _("Sector")
         verbose_name_plural = _("Sectors")
-        ordering = ["territory", "name"]
+        ordering = ["territory", "ordering", "name"]
     
     class Qapi:
         admin_order = 4
@@ -235,6 +299,16 @@ class qpWorldSector(models.Model):
         return "%s" % (
             str(self.name)
         )
+
+    def save(self, *args, **kwargs):
+        if self.ordering == 0:
+            lastorder = qpWorldSector.objects.filter(
+                territory=self.territory
+            ).last().ordering if qpWorldSector.objects.filter(
+                territory=self.territory
+            ).last() is not None else 0
+            self.ordering = (lastorder + 1)
+        return super().save(*args, **kwargs)
     
     @property
     def count_chapters(self):

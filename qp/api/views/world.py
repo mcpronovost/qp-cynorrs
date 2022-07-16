@@ -67,7 +67,10 @@ class qpWorldView(APIView):
             "slug": str(world.slug),
             "stylesheet": world.stylesheet,
             "count_chapters": world.count_chapters,
-            "count_messages": world.count_messages
+            "count_messages": world.count_messages,
+            "copyright": {
+                "year": "%s-%s" % (world.created_at.year, world.updated_at.year) if world.created_at.year != world.updated_at.year else str(world.updated_at.year)
+            }
         }
         if singleton in ["index"]:
             world_data["zones"] = []

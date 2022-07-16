@@ -68,6 +68,7 @@ class qpPlayerCharacterAdmin(admin.ModelAdmin):
                 "player",
                 "world",
                 "geo",
+                "avatar",
                 "is_active"
             ]
         }),

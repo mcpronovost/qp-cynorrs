@@ -1,8 +1,13 @@
 <template>
     <div class="qp-vue">
-        <div class="qp-container">
 
-            <div v-if="!isLoading && world" :class="`qp-forum qp-singleton-${singleton}`">
+        <div v-if="!isLoading && world" :class="`qp-forum qp-singleton-${singleton}`">
+            <header class="qp-world-header">
+                <h1 class="qp-world-header-name" @click="goToIndex()">
+                    <span v-text="world.name"></span>
+                </h1>
+            </header>
+            <div class="qp-container">
                 <section v-if="route.name == 'World'" class="qp-forum-zones">
                     <qpForumZone v-for="(z, n) in world.zones" :key="`zones-${n}`" :world="world" :zone="z" :singleton="singleton" />
                 </section>
@@ -19,15 +24,21 @@
                     <qpForumChapter :world="world" :zone="zone" :territory="territory" :sector="sector" :chapter="chapter" :singleton="singleton" />
                 </section>
             </div>
+            <footer class="qp-world-footer">
+                <small>&copy;&nbsp;<span v-text="world.copyright.year"></span></small>
+            </footer>
+        </div>
 
-            <div v-else-if="isLoading">
+        <div v-else-if="isLoading">
+            <div class="qp-container">
                 <div v-loading="isLoading" element-loading-background="transparent" style="height:200px"></div>
             </div>
+        </div>
 
-            <div v-else-if="hasError">
+        <div v-else-if="hasError">
+            <div class="qp-container">
                 <el-result icon="error" :title="t('Error')" :sub-title="hasError" />
             </div>
-
         </div>
     </div>
 </template>
@@ -35,7 +46,7 @@
 <script setup>
 
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
@@ -50,6 +61,7 @@ const { t } = i18n.global
 // =================================================================================== //
 
 const route = useRoute()
+const router = useRouter()
 
 const store = useStore()
 const rat = computed(() => store.getters.rat)
@@ -193,6 +205,17 @@ const initStyle = (stylesheet) => {
     }
     styletag.innerHTML = stylesheet;
     document.head.appendChild(styletag);
+}
+
+const goToIndex = () => {
+    if (route.name == "World") {
+        router.go()
+    } else {
+        router.push({name: "World", params: {
+            world_pk: world.value.id,
+            slug: world.value.slug
+        }})
+    }
 }
 
 // =================================================================================== //

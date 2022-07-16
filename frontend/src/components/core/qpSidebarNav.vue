@@ -5,13 +5,9 @@
                 <i class="mdi mdi-home"></i>
                 <span v-text="$t('Home')"></span>
             </el-menu-item>
-            <el-menu-item index="About" :route="{name:'About'}">
+            <el-menu-item index="qalatlan" :route="{name:'World', params: {world_pk: 1, slug: 'qalatlan'}}">
                 <i class="mdi mdi-hops"></i>
-                <span v-text="'About'"></span>
-            </el-menu-item>
-            <el-menu-item index="sagars" :route="{name:'World', params: {world_pk: 1, slug: 'sagars'}}">
-                <i class="mdi mdi-hops"></i>
-                <span v-text="'Sagars'"></span>
+                <span v-text="'Qalatlán'"></span>
             </el-menu-item>
             <el-menu-item index="rhansidor" :route="{name:'World', params: {world_pk: 2, slug: 'rhansidor'}}">
                 <i class="mdi mdi-hops"></i>
@@ -20,7 +16,7 @@
             <el-sub-menu index="3">
                 <template #title>
                     <i class="mdi mdi-bookshelf"></i>
-                    <span>Navigator One</span>
+                    <span>Navigation</span>
                 </template>
                 <el-menu-item index="1-1">
                     <span v-text="'item one'"></span>
@@ -42,8 +38,8 @@
             </el-sub-menu>
             <el-sub-menu index="4">
                 <template #title>
-                    <i class="mdi mdi-home"></i>
-                    <span>Navigator One</span>
+                    <i class="mdi mdi-cog"></i>
+                    <span>Test</span>
                 </template>
                 <el-menu-item-group title="Group One">
                     <el-menu-item index="1-1">item one</el-menu-item>
@@ -59,8 +55,8 @@
             </el-sub-menu>
             <el-sub-menu index="5">
                 <template #title>
-                    <i class="mdi mdi-home"></i>
-                    <span>Navigator One</span>
+                    <i class="mdi mdi-hexagon-multiple"></i>
+                    <span>En construction</span>
                 </template>
                 <el-menu-item-group title="Group One">
                     <el-menu-item index="1-1">item one</el-menu-item>
