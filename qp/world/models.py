@@ -168,6 +168,17 @@ class qpWorldTerritory(models.Model):
     def count_chapters(self):
         result = 0
         try:
+            result = self.chapters.filter(
+                sector=None
+            ).count()
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_chapters_all(self):
+        result = 0
+        try:
             result = self.chapters.count()
         except Exception:
             pass
