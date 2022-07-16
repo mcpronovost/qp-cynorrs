@@ -155,14 +155,15 @@ class qpWorldView(APIView):
             # ===--- chapters
             territory_data["chapters"] = []
             if request.user.is_authenticated:
-                limit = 10
+                perpage = 2
             else:
-                limit = 10
+                perpage = 2
+            territory_data["perpage_chapters"] = perpage
             page = request.GET.get("page", 1)
-            offset = (int(page) * limit) - limit
+            offset = (int(page) * perpage) - perpage
             chapters = territory.chapters.filter(
                 sector=None
-            )[offset:(offset+limit)]
+            )[offset:(offset+perpage)]
             for chapter in chapters:
                 chapter_data = qpWorldView.get_chapter(request, chapter.pk, singleton)
                 territory_data["chapters"].append(chapter_data)

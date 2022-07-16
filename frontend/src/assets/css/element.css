@@ -54,3 +54,27 @@
 .el-menu {
     border-right: none;
 }
+
+.el-pagination {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    margin: 0 auto;
+}
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+    background-color: var(--qp-base);
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+}
+.el-pagination.is-background .btn-next:disabled,
+.el-pagination.is-background .btn-prev:disabled {
+    background-color: var(--qp-base);
+}
+.el-pagination.is-background .el-pager li:not(.is-disabled):hover,
+.el-pagination.is-background .btn-next:hover:not([disabled]),
+.el-pagination.is-background .btn-prev:hover:not([disabled]) {
+    opacity: 0.7;
+}

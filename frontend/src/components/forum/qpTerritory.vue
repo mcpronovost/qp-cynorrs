@@ -14,6 +14,15 @@
             </section>
             <section v-if="props.singleton == 'territory'" class="qp-forum-chapters">
                 <qpForumChapter v-for="(chapter, n) in props.territory.chapters" :key="`chapter-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :singleton="props.singleton" />
+                <el-pagination
+                    background
+                    hide-on-single-page
+                    layout="prev, pager, next"
+                    :total="props.territory.count_chapters"
+                    :page-size="props.territory.perpage_chapters"
+                    :current-page="paginateCurrentPage"
+                    @update:current-page="updateCurrentPage"
+                />
             </section>
         </div>
     </article>
@@ -23,7 +32,7 @@
 
 import { computed } from "vue";
 // import i18n from "@/plugins/i18n";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumSector from "@/components/forum/qpSector.vue";
@@ -32,6 +41,7 @@ import qpForumChapter from "@/components/forum/qpChapter.vue";
 // =================================================================================== //
 
 // const { t } = i18n.global
+const route = useRoute()
 const router = useRouter()
 
 // =================================================================================== //
@@ -80,6 +90,14 @@ const listBreadcrumbs = computed(() => {
     return result
 })
 
+const paginateCurrentPage = computed(() => {
+    let result = 1
+    if (props.singleton.includes("territory") && "page" in route.query && Number(route.query.page) > 0) {
+        result = Number(route.query.page)
+    }
+    return result
+})
+
 // =================================================================================== //
 // ===--- METHODS
 
@@ -91,6 +109,20 @@ const goToTerritory = (territory) => {
         zone_slug: slugify(props.zone.name),
         territory_pk: territory.id,
         territory_slug: slugify(territory.name)
+    }})
+}
+
+const updateCurrentPage = ($event) => {
+    router.push({name: "WorldTerritory", params: {
+        world_pk: props.world.id,
+        slug: props.world.slug,
+        zone_pk: props.zone.id,
+        zone_slug: slugify(props.zone.name),
+        territory_pk: props.territory.id,
+        territory_slug: slugify(props.territory.name)
+    },
+    query: {
+        page: $event
     }})
 }
 
