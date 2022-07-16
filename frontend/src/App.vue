@@ -4,7 +4,7 @@
         <qpSidebar />
         <div id="qp-app-main">
             <el-scrollbar height="100%">
-                <router-view :key="$route.path" />
+                <router-view :key="$route.fullPath" />
             </el-scrollbar>
         </div>
         <qpSmallbar />
