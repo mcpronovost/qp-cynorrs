@@ -85,6 +85,7 @@
     --qp-primary-darken-5: #0c0f10;
     --qp-primary-darken-6: #010202;
     --qp-secondary: #8f999d;
+    --qp-tertiary: #8ca0a9;
     --qp-accent: #d3b018;
     --qp-base: #dbe0e2;
     --qp-base-midbg: #d2d7d9;
@@ -188,9 +189,9 @@ a:focus, a:hover {
     margin: 0 0 32px;
 }
 .qp-world-header-name {
-    font-family: "Indie Flower", sans-serif;
-    font-size: 48px;
-    font-weight: 400;
+    font-family: "Quicksand", sans-serif;
+    font-size: 86px;
+    font-weight: 300;
     line-height: 120%;
     transition: opacity 0.3s;
     padding: 0;
@@ -338,7 +339,7 @@ a:focus, a:hover {
     line-height: 120%;
     flex: 0 1 auto;
     transition: opacity 0.3s;
-    padding: 24px 12px 12px;
+    padding: 24px 12px;
     margin: 0;
 }
 .qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-title:hover,
