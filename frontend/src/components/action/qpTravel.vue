@@ -1,12 +1,12 @@
 <template>
-    <div class="qp-action-travel">
-        <el-button @click="doStartsTravel()">
-            <span v-text="`voyager ici : ${props.sector}`"></span>
+    <div v-if="rat" class="qp-action-travel">
+        <el-button class="qp-action-travel-button" @click="doStartsTravel()">
+            <span v-text="$t('Travel')"></span>
         </el-button>
         <!---->
         <el-dialog v-model="isShowTravel" :title="titleTravel" center destroy-on-close>
-            <qpActionTravelChooseTravellers v-if="step == 'choosetravellers'" @update="updateTravellers" @step="goToStep" @close="closeTravel()" />
-            <qpActionTravelArrive v-else-if="step == 'arrive'" :travellers="listTravellers" :sector="props.sector" @close="closeTravel()" />
+            <qpActionTravelChooseTravellers v-if="step == 'choosetravellers'" :world="props.territory.world" @update="updateTravellers" @step="goToStep" @close="closeTravel()" />
+            <qpActionTravelArrive v-else-if="step == 'arrive'" :travellers="listTravellers" :territory="props.territory" :sector="props.sector" @close="closeTravel()" />
         </el-dialog>
         <!---->
     </div>
@@ -14,7 +14,8 @@
 
 <script setup>
 
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 import i18n from "@/plugins/i18n";
 import qpActionTravelChooseTravellers from "@/components/action/qpTravelChooseTravellers";
 import qpActionTravelArrive from "@/components/action/qpTravelArrive";
@@ -22,12 +23,21 @@ import qpActionTravelArrive from "@/components/action/qpTravelArrive";
 const { t } = i18n.global
 
 // =================================================================================== //
+
+const store = useStore()
+const rat = computed(() => store.getters.rat)
+
+// =================================================================================== //
 // ===--- PROPS
 
 const props = defineProps({
+    territory: {
+        type: Object,
+        default: () => {}
+    },
     sector: {
-        type: Number,
-        default: null
+        type: Object,
+        default: () => {}
     }
 })
 

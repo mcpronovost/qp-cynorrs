@@ -1,3 +1,11 @@
+<template>
+  <div :class="`qp-card ${isClickable} ${isOverflow} ${bgColor}`" :style="`${height}${marginBottom}`">
+    <div class="qp-card-main">
+        <slot />
+    </div>
+  </div>
+</template>
+
 <script setup>
 
 import { computed } from "vue";
@@ -50,14 +58,6 @@ const marginBottom = computed(() => {
 
 </script>
 
-<template>
-  <div :class="`qp-card ${isClickable} ${isOverflow} ${bgColor}`" :style="`${height}${marginBottom}`">
-    <div class="qp-card-main">
-        <slot />
-    </div>
-  </div>
-</template>
-
 <style scoped>
     .qp-card {
         background-color: var(--qp-base);
@@ -65,6 +65,9 @@ const marginBottom = computed(() => {
         border-radius: 4px;
         box-shadow: 0 0 3px rgba(67, 82, 89, 0.04);
         overflow: hidden;
+        text-align: center;
+        align-content: center;
+        justify-content: center;
         height: 100%;
         transition: box-shadow 0.3s, opacity 0.3s;
     }

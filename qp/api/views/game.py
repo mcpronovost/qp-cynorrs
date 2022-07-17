@@ -15,6 +15,7 @@ from qp.api.views.player import (
 )
 
 from qp.world.models import (
+    qpWorldTerritory,
     qpWorldSector
 )
 
@@ -26,45 +27,51 @@ class qpGameActionTravelView(APIView):
         player = request.user.player
         # ===---
         travellers = request.POST.get("travellers", None)
+        territory = request.POST.get("territory", None)
         sector = request.POST.get("sector", None)
         # ===---
-        if travellers is not None and sector is not None:
+        if travellers is None or territory is None:
+            return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            all_travellers = json.loads(base64.b64decode(travellers).decode("utf-8"))
+        except Exception:
+            return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
+        for traveller in all_travellers:
             try:
-                all_travellers = json.loads(base64.b64decode(travellers).decode("utf-8"))
-            except Exception:
-                return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
-            for traveller in all_travellers:
-                try:
-                    hero = player.heros.get(
-                        pk=int(traveller["id"]),
-                        player=player,
-                        world=int(traveller["world"]),
-                        is_active=True
-                    )
+                hero = player.heros.get(
+                    pk=int(traveller["id"]),
+                    player=player,
+                    world=int(traveller["world"]),
+                    is_active=True
+                )
+                territoire = qpWorldTerritory.objects.get(
+                    pk=int(territory)
+                )
+                if sector is not None:
                     secteur = qpWorldSector.objects.get(
                         pk=int(sector)
                     )
-                except ObjectDoesNotExist:
-                    return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
-                # ===---
-                cooldown_time = timedelta(hours=1)
-                if hero.geo and hero.geo != "":
-                    hero_geo = json.loads(hero.geo)
-                    if hero_geo["territory"] == secteur.territory.pk:
-                        cooldown_time = timedelta(hours=1)
-                    elif hero_geo["zone"] == secteur.territory.zone.pk:
-                        cooldown_time = timedelta(hours=2)
-                    else:
-                        cooldown_time = timedelta(hours=3)
-                # ===---
-                hero.geo = json.dumps({
-                    "world": secteur.territory.zone.world.pk,
-                    "zone": secteur.territory.zone.pk,
-                    "territory": secteur.territory.pk,
-                    "section": secteur.pk,
-                    "cooldown": (timezone.now() + cooldown_time).timestamp()
-                })
-                hero.save()
+            except ObjectDoesNotExist:
+                return Response({"valid": False}, status=status.HTTP_400_BAD_REQUEST)
+            # ===---
+            cooldown_time = timedelta(hours=1)
+            if hero.geo and hero.geo != "":
+                hero_geo = json.loads(hero.geo)
+                if hero_geo["territory"] == territoire.pk:
+                    cooldown_time = timedelta(hours=1)
+                elif hero_geo["zone"] == territoire.zone.pk:
+                    cooldown_time = timedelta(hours=2)
+                else:
+                    cooldown_time = timedelta(hours=3)
+            # ===---
+            hero.geo = json.dumps({
+                "world": territoire.zone.world.pk,
+                "zone": territoire.zone.pk,
+                "territory": territoire.pk,
+                "section": secteur.pk if sector is not None and secteur is not None else None,
+                "cooldown": (timezone.now() + cooldown_time).timestamp()
+            })
+            hero.save()
         # ===---
         heros_data = qpPlayerView.get_heros(None, player)
         # ===---

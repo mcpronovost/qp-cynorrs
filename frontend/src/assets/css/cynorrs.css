@@ -95,6 +95,9 @@ html, body {
     background-color: var(--qp-bg);
     color: var(--qp-primary);
     font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 120%;
     overflow: hidden;
     padding: 0;
     margin: 0;
@@ -174,6 +177,33 @@ a:focus, a:hover {
 #app .qp-flex-column {
     display: flex;
     flex-direction: column;
+}
+
+/* =================================================================================== */
+/* ==================================--- ACTIONS ---================================== */
+/* =================================================================================== */
+
+.qp-action-travel-button.el-button {
+    background-color: var(--qp-base);
+    border: 1px solid var(--qp-base);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    color: var(--qp-primary);
+}
+.qp-action-travel-button.el-button:hover,
+.qp-action-travel-button.el-button:focus {
+    background-color: var(--qp-primary);
+    border: 1px solid var(--qp-primary);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    color: var(--qp-base);
+}
+.qp-action-travel-button.el-button:active {
+    background-color: var(--qp-base);
+    border: 1px solid var(--qp-primary);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    color: var(--qp-primary);
 }
 
 /* =================================================================================== */

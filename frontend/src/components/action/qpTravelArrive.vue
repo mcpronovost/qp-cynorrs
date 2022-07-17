@@ -1,3 +1,32 @@
+<template>
+    <div class="qp-action-travel-arrive">
+        <el-row v-loading="isLoading" :gutter="20" justify="center">
+            <el-col v-if="!isLoading && !hasError" class="text-center">
+                <el-result icon="success" :title="$t('TravelCompleted')" style="padding-top:0">
+                    <template #sub-title>
+                        <div v-html="hasSuccess"></div>
+                    </template>
+                </el-result>
+            </el-col>
+            <el-col v-else-if="hasError" class="text-center">
+                <el-result icon="error" :title="$t('Error')" style="padding-top:0">
+                    <template #sub-title>
+                        <div v-html="hasError"></div>
+                    </template>
+                </el-result>
+            </el-col>
+        </el-row>
+        <div class="dialog-footer text-center">
+            <el-button v-if="!isLoading && !hasError" type="primary" @click="closeTravel()">
+                <span v-text="$t('Continue')"></span>
+            </el-button>
+            <el-button v-else-if="hasError" @click="closeTravel()">
+                <span v-text="$t('Cancel')"></span>
+            </el-button>
+        </div>
+    </div>
+</template>
+
 <script setup>
 
 import { computed, onMounted, ref } from "vue";
@@ -27,9 +56,13 @@ const props = defineProps({
         type: Array,
         default: () => []
     },
+    territory: {
+        type: Object,
+        default: () => {}
+    },
     sector: {
-        type: Number,
-        default: null
+        type: Object,
+        default: () => {}
     }
 })
 
@@ -50,7 +83,10 @@ const doSendTravelArrive = async () => {
     // ===---
     let data = new FormData()
     data.append("travellers", Buffer.from(JSON.stringify(props.travellers)).toString("base64"))
-    data.append("sector", props.sector)
+    data.append("territory", props.territory.id)
+    if (props.sector) {
+        data.append("sector", props.sector.id)
+    }
     // ===---
     const r = await fetch(`${API}/game/action/travel/`, {
         method: "POST",
@@ -59,6 +95,7 @@ const doSendTravelArrive = async () => {
     })
     if (r.status === 200) {
         let result = await r.json()
+        console.log(result)
         hasSuccess.value = t('Youhavearrivedatyourdestination')
         store.commit("BATCH_HEROS", result.heros)
     } else {
@@ -80,35 +117,6 @@ onMounted(() => {
 })
 
 </script>
-
-<template>
-    <div class="qp-action-travel-arrive">
-        <el-row v-loading="isLoading" :gutter="20" justify="center">
-            <el-col v-if="!isLoading && !hasError" class="text-center">
-                <el-result icon="success" :title="$t('TravelCompleted')" style="padding-top:0">
-                    <template #sub-title>
-                        <div v-html="hasSuccess"></div>
-                    </template>
-                </el-result>
-            </el-col>
-            <el-col v-else-if="hasError" class="text-center">
-                <el-result icon="error" :title="$t('Error')" style="padding-top:0">
-                    <template #sub-title>
-                        <div v-html="hasError"></div>
-                    </template>
-                </el-result>
-            </el-col>
-        </el-row>
-        <div class="dialog-footer text-center">
-            <el-button v-if="!isLoading && !hasError" type="primary" @click="closeTravel()">
-                <span v-text="$t('Continue')"></span>
-            </el-button>
-            <el-button v-else-if="hasError" @click="closeTravel()">
-                <span v-text="$t('Cancel')"></span>
-            </el-button>
-        </div>
-    </div>
-</template>
 
 <style scoped>
 .qp-action-travel-choosetravellers .qp-action-travel-traveller {

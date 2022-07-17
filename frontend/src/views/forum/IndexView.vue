@@ -213,7 +213,7 @@ const initStyle = (stylesheet) => {
         styletag.setAttribute("id", "qp-custom-style");
     }
     styletag.innerHTML = stylesheet;
-    document.head.appendChild(styletag);
+    // document.head.appendChild(styletag);
 }
 
 const goToIndex = () => {

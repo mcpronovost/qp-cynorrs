@@ -13,6 +13,9 @@
                     </template>
                 </el-popover>
                 <p v-if="['sector'].includes(props.singleton) && props.sector.description" class="qp-forum-header-description" v-text="props.sector.description"></p>
+                <div v-if="['sector'].includes(props.singleton)">
+                    <qpActionTravel :territory="props.territory" :sector="props.sector" />
+                </div>
                 <hr v-if="['sector'].includes(props.singleton)" class="qp-forum-header-divider" />
                 <qpForumBreadcrumbs v-if="['sector'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
@@ -38,6 +41,8 @@ import { computed } from "vue";
 // import i18n from "@/plugins/i18n";
 import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
+
+import qpActionTravel from "@/components/action/qpTravel.vue";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumChapter from "@/components/forum/qpChapter.vue";
 

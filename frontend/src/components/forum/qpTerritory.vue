@@ -29,6 +29,9 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="['territory'].includes(props.singleton)">
+                    <qpActionTravel :territory="props.territory" />
+                </div>
                 <hr v-if="['territory'].includes(props.singleton)" class="qp-forum-header-divider" />
                 <qpForumBreadcrumbs v-if="['territory'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
@@ -57,6 +60,8 @@ import { computed } from "vue";
 // import i18n from "@/plugins/i18n";
 import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
+
+import qpActionTravel from "@/components/action/qpTravel.vue";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumSector from "@/components/forum/qpSector.vue";
 import qpForumChapter from "@/components/forum/qpChapter.vue";

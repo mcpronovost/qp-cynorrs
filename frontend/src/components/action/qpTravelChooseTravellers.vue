@@ -15,7 +15,8 @@
                 </div>
             </el-col>
             <el-col v-else-if="!listHeros.length" class="text-center">
-                <el-result icon="error" :title="$t('Error')" style="padding-top:0;padding-bottom:0;">
+                <el-result style="padding-top:0;padding-bottom:0;">
+                    <template #icon><i></i></template>
                     <template #sub-title>
                         <div v-text="$t('NoAvailableTravellers')"></div>
                     </template>
@@ -50,6 +51,16 @@ const heros = computed(() => store.getters.heros)
 const emit = defineEmits(["update", "step", "close"])
 
 // =================================================================================== //
+// ===--- PROPS
+
+const props = defineProps({
+    world: {
+        type: Number,
+        default: null
+    }
+})
+
+// =================================================================================== //
 // ===--- DATA
 
 const isLoading = ref(false)
@@ -79,7 +90,7 @@ const initTravellers = async () => {
     listHeros.value = []
     // ===---
     for (const hero of heros.value) {
-        if (hero.is_can_travel) {
+        if (hero.world == props.world && hero.is_can_travel) {
             listHeros.value.push(hero)
         }
     }
