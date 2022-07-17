@@ -84,7 +84,7 @@ const setWorld = async (worldPk) => {
     // ===---
     let r = await fetch(`${API}/worlds/${worldPk}/`, {
         method: "GET",
-        headers: {"Authorization": rat}
+        headers: {"Authorization": rat.value, "Accept-Language": "fr"}
     })
     if (r.status === 200) {
         let result = await r.json()
@@ -103,7 +103,7 @@ const setZone = async (zonePk) => {
     // ===---
     let r = await fetch(`${API}/worlds/zones/${zonePk}/`, {
         method: "GET",
-        headers: {"Authorization": rat}
+        headers: {"Authorization": rat.value}
     })
     if (r.status === 200) {
         let result = await r.json()
@@ -127,7 +127,7 @@ const setTerritory = async (territoryPk) => {
     // ===---
     let r = await fetch(`${API}/worlds/territories/${territoryPk}/${q}`, {
         method: "GET",
-        headers: {"Authorization": rat}
+        headers: {"Authorization": rat.value}
     })
     if (r.status === 200) {
         let result = await r.json()
@@ -152,7 +152,7 @@ const setSector = async (sectorPk) => {
     // ===---
     let r = await fetch(`${API}/worlds/sectors/${sectorPk}/${q}`, {
         method: "GET",
-        headers: {"Authorization": rat}
+        headers: {"Authorization": rat.value}
     })
     if (r.status === 200) {
         let result = await r.json()
@@ -178,7 +178,7 @@ const setChapter = async (chapterPk) => {
     // ===---
     let r = await fetch(`${API}/worlds/chapters/${chapterPk}/${q}`, {
         method: "GET",
-        headers: {"Authorization": rat}
+        headers: {"Authorization": rat.value}
     })
     if (r.status === 200) {
         let result = await r.json()
