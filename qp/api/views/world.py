@@ -1,7 +1,5 @@
 from zoneinfo import ZoneInfo
-
 from django.template.defaultfilters import date as _date
-
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.views import APIView
