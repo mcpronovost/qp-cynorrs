@@ -11,6 +11,11 @@ import "@/assets/css/element.css"
 
 const app = createApp(App)
 
+export const SITE = {
+    "name": "Cynorrhodonnismes"
+}
+app.config.globalProperties.$qpsite = SITE
+
 export const API = (
     process.env.NODE_ENV === "production" ?
     "https://mcpronovost.pythonanywhere.com/api" :

@@ -11,8 +11,8 @@
                         </el-image>
                     </div>
                     <div class="qp-forum-header-profile-avatar">
-                        <el-avatar :src="props.chapter.last_message.author.avatar">
-                            <span v-text="props.chapter.last_message.author.initials"></span>
+                        <el-avatar :src="props.chapter.last_message?.author?.avatar">
+                            <span v-text="props.chapter.last_message?.author?.initials"></span>
                         </el-avatar>
                     </div>
                 </div>
@@ -45,9 +45,9 @@
 
 <script setup>
 
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 // import i18n from "@/plugins/i18n";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumMessage from "@/components/forum/qpMessage.vue";
@@ -55,6 +55,7 @@ import qpForumMessage from "@/components/forum/qpMessage.vue";
 // =================================================================================== //
 
 // const { t } = i18n.global
+const route = useRoute()
 const router = useRouter()
 
 // =================================================================================== //
@@ -152,6 +153,15 @@ const goToChapter = (chapter) => {
         chapter_slug: slugify(chapter.title)
     }})
 }
+
+onMounted(() => {
+    if (route.hash && route.hash.startsWith("#c")) {
+        const el = document.getElementById(route.hash.replace("#", ""))
+        if (el) {
+            el.scrollIntoView({behavior: "smooth"})
+        }
+    }
+})
 
 // =================================================================================== //
 

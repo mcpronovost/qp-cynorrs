@@ -4,7 +4,7 @@
             <header class="qp-forum-header">
                 <el-popover :disabled="!props.territory.description || !['index', 'zone'].includes(props.singleton)" :show-after="1000">
                     <template #reference>
-                        <h2 class="qp-forum-header-title" @click="goToTerritory(props.territory)">
+                        <h2 class="qp-forum-header-title" @click="goToTerritory(props.territory)" :style="props.territory.colour ? `color:${props.territory.colour};` : ''">
                             <span v-text="props.territory.name"></span>
                         </h2>
                     </template>
@@ -13,6 +13,22 @@
                     </template>
                 </el-popover>
                 <p v-if="['territory'].includes(props.singleton) && props.territory.description" class="qp-forum-header-description" v-text="props.territory.description"></p>
+                <div v-if="['index', 'zone'].includes(props.singleton)" class="qp-forum-header-lastmessage">
+                    <div class="qp-forum-header-lastmessage-avatar">
+                        <el-avatar v-if="props.territory.last_message" :src="props.territory.last_message?.author?.avatar">
+                            <span v-text="props.territory.last_message?.author?.initials"></span>
+                        </el-avatar>
+                        <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-gotolast">
+                            <el-icon class="mdi mdi-arrow-bottom-right-thin-circle-outline" />
+                        </div>
+                    </div>
+                    <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-infos">
+                        <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_message.route)">
+                            <span class="title" v-text="props.territory.last_message.title"></span>
+                            <span class="date" v-text="props.territory.last_message.date"></span>
+                        </div>
+                    </div>
+                </div>
                 <hr v-if="['territory'].includes(props.singleton)" class="qp-forum-header-divider" />
                 <qpForumBreadcrumbs v-if="['territory'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
@@ -108,6 +124,12 @@ const paginateCurrentPage = computed(() => {
 // =================================================================================== //
 // ===--- METHODS
 
+const goToRoute = (last_route) => {
+    if (last_route) {
+        router.push(last_route)
+    }
+}
+
 const goToTerritory = (territory) => {
     router.push({name: "WorldTerritory", params: {
         world_pk: props.world.id,
@@ -136,3 +158,76 @@ const updateCurrentPage = ($event) => {
 // =================================================================================== //
 
 </script>
+
+<style scoped>
+
+.qp-forum-header-lastmessage {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    padding: 12px;
+}
+.qp-forum-header-lastmessage-avatar {
+    border-radius: 100%;
+    overflow: hidden;
+    flex: 0 0 auto;
+    align-self: flex-end;
+    width: 110px;
+    height: 110px;
+    position: relative;
+    margin: 0 auto;
+}
+.qp-forum-header-lastmessage-avatar .el-avatar {
+    width: 100%;
+    height: 100%;
+}
+.qp-forum-header-lastmessage-avatar:hover {
+    cursor: pointer;
+}
+.qp-forum-header-lastmessage-gotolast {
+    background-color: var(--qp-base);
+    border-radius: 100%;
+    font-size: 64px;
+    line-height: 106px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.qp-forum-header-lastmessage-avatar:hover .qp-forum-header-lastmessage-gotolast {
+    opacity: 0.8;
+}
+.qp-forum-header-lastmessage-infos {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 120%;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 24px 12px 12px;
+}
+.qp-forum-header-lastmessage-infos-link {
+    transition: opacity 0.3s;
+}
+.qp-forum-header-lastmessage-infos-link:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+.qp-forum-header-lastmessage-infos-link span.title {
+    color: var(--qp-primary);
+    display: block;
+    padding: 0 6px;
+}
+.qp-forum-header-lastmessage-infos-link span.date {
+    color: var(--qp-tertiary);
+    display: block;
+    padding: 4px 6px 0;
+}
+
+</style>

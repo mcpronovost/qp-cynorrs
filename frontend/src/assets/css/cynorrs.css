@@ -94,6 +94,7 @@ html, body {
     background-color: var(--qp-bg);
     color: var(--qp-primary);
     font-family: "Roboto Condensed", sans-serif;
+    overflow: hidden;
     padding: 0;
     margin: 0;
 }
@@ -311,6 +312,8 @@ a:focus, a:hover {
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
     text-align: center;
+    align-content: center;
+    justify-content: center;
     height: 100%;
     padding: 0;
 }
@@ -320,6 +323,9 @@ a:focus, a:hover {
 .qp-forum.qp-singleton-territory .qp-forum-sectors .qp-forum-header,
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 0;
 }
 
@@ -330,8 +336,9 @@ a:focus, a:hover {
     font-size: 16px;
     font-weight: 600;
     line-height: 120%;
+    flex: 0 1 auto;
     transition: opacity 0.3s;
-    padding: 12px;
+    padding: 24px 12px 12px;
     margin: 0;
 }
 .qp-forum.qp-singleton-index .qp-forum-territories .qp-forum-header-title:hover,

@@ -45,10 +45,10 @@
 
 <script setup>
 
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { API } from "@/main.js";
+import { API, SITE } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
 import qpForumZone from "@/components/forum/qpZone.vue";
@@ -90,6 +90,7 @@ const setWorld = async (worldPk) => {
         let result = await r.json()
         world.value = result.world
         initStyle(result.world.stylesheet)
+        initMetadata(result.world.name)
     } else {
         hasError.value = t("ThisWorldDoesntExistAnymore")
     }
@@ -110,6 +111,7 @@ const setZone = async (zonePk) => {
         world.value = result.world
         zone.value = result.zone
         initStyle(result.world.stylesheet)
+        initMetadata(`${result.zone.name} - ${result.world.name}`)
     } else {
         hasError.value = t("ThisZoneDoesntExistAnymore")
     }
@@ -135,6 +137,7 @@ const setTerritory = async (territoryPk) => {
         zone.value = result.zone
         territory.value = result.territory
         initStyle(result.world.stylesheet)
+        initMetadata(`${result.territory.name} - ${result.world.name}`)
     } else {
         hasError.value = t("ThisTerritoryDoesntExistAnymore")
     }
@@ -161,6 +164,7 @@ const setSector = async (sectorPk) => {
         territory.value = result.territory
         sector.value = result.sector
         initStyle(result.world.stylesheet)
+        initMetadata(`${result.sector.name} - ${result.world.name}`)
     } else {
         hasError.value = t("ThisSectorDoesntExistAnymore")
     }
@@ -188,11 +192,16 @@ const setChapter = async (chapterPk) => {
         sector.value = result.sector
         chapter.value = result.chapter
         initStyle(result.world.stylesheet)
+        initMetadata(`${result.chapter.title} - ${result.world.name}`)
     } else {
         hasError.value = t("ThisChapterDoesntExistAnymore")
     }
     isLoading.value = false
     // ===---
+}
+
+const initMetadata = (pagetitle) => {
+     document.title = `${pagetitle} - ${SITE.name}`
 }
 
 const initStyle = (stylesheet) => {
@@ -237,6 +246,10 @@ onMounted(() => {
         singleton.value = "chapter"
         setChapter(route.params.chapter_pk)
     }
+})
+
+onUnmounted(() => {
+    initMetadata(SITE.name)
 })
 
 // =================================================================================== //

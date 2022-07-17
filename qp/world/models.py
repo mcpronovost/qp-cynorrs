@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
+from colorfield.fields import ColorField
 
 
 class qpWorld(models.Model):
@@ -179,6 +180,11 @@ class qpWorldTerritory(models.Model):
         blank=True,
         null=True
     )
+    colour = ColorField(
+        verbose_name=_("Colour"),
+        blank=True,
+        null=True
+    )
     flexbasis = models.CharField(
         verbose_name=_("Flex Basis"),
         max_length=9,
@@ -282,6 +288,11 @@ class qpWorldSector(models.Model):
     )
     description = models.TextField(
         verbose_name=_("Description"),
+        blank=True,
+        null=True
+    )
+    colour = ColorField(
+        verbose_name=_("Colour"),
         blank=True,
         null=True
     )
@@ -391,6 +402,14 @@ class qpWorldChapter(models.Model):
         blank=True,
         null=True
     )
+    last_message = models.OneToOneField(
+        "world.qpWorldMessage",
+        on_delete=models.SET_NULL,
+        related_name="lastmessage_chapter",
+        verbose_name=_("Last Message"),
+        blank=True,
+        null=True
+    )
     created_at = models.DateTimeField(
         verbose_name=_("Created"),
         auto_now_add=True
@@ -403,7 +422,7 @@ class qpWorldChapter(models.Model):
     class Meta:
         verbose_name = _("Chapter")
         verbose_name_plural = _("Chapters")
-        ordering = ["-updated_at", "-created_at"]
+        ordering = ["-last_message__created_at", "-updated_at", "-created_at"]
     
     class Qapi:
         admin_order = 5
@@ -412,6 +431,13 @@ class qpWorldChapter(models.Model):
         return "%s" % (
             str(self.title)
         )
+
+    def save(self, *args, **kwargs):
+        try:
+            self.last_message = self.messages.last()
+        except IndexError:
+            pass
+        return super().save(*args, **kwargs)
     
     @property
     def count_messages(self):
@@ -422,17 +448,28 @@ class qpWorldChapter(models.Model):
             pass
         return result
     
-    @property
-    def last_message(self):
-        result = None
-        try:
-            if self.count_messages:
-                result = qpWorldMessage.objects.filter(
-                    chapter=self
-                ).last()
-        except Exception:
-            pass
+    def get_route(self):
+        result = {"name": "WorldChapter", "params": {
+            "world_pk": self.territory.world.id,
+            "slug": self.territory.world.slug,
+            "zone_pk": self.territory.zone.id,
+            "zone_slug": slugify(self.territory.zone.name),
+            "territory_pk": self.territory.id,
+            "territory_slug": slugify(self.territory.name),
+            "chapter_pk": self.id,
+            "chapter_slug": slugify(self.title)
+        }, "hash": "#c%s" % (self.id)}
+        if self.sector is not None:
+            result["params"]["sector_pk"] = self.sector.pk
+            result["params"]["sector_slug"] = slugify(self.sector.name)
         return result
+
+    def update_last_message(self):
+        try:
+            self.last_message = self.messages.last()
+            self.save()
+        except IndexError:
+            pass
 
 
 class qpWorldMessage(models.Model):
@@ -486,7 +523,14 @@ class qpWorldMessage(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is not None:
             self.count_updates += 1
-        return super().save(*args, **kwargs)
+        super().save(*args, **kwargs)
+        self.chapter.update_last_message()
+        return
+
+    def delete(self):
+        super().delete()
+        self.chapter.update_last_message()
+        return
 
 
 class qpWorldRace(models.Model):

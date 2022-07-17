@@ -146,13 +146,16 @@ class qpWorldView(APIView):
             "zone": territory.zone.pk,
             "count_chapters": territory.count_chapters,
             "count_messages": territory.count_messages,
+            "colour": territory.colour,
             "flexbasis": str(territory.flexbasis),
             "last_message": {
+                "title": territory.last_message.chapter.title,
                 "author": {
                     "initials": territory.last_message.author.initials,
                     "avatar": territory.last_message.author.avatar.url if territory.last_message.author.avatar else None
                 } if territory.last_message.author else None,
-                "date": _date(territory.last_message.updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i")
+                "date": _date(territory.last_message.updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i"),
+                "route": territory.last_message.chapter.get_route()
             } if territory.last_message else None
         }
         if singleton in ["territory"]:
@@ -209,6 +212,7 @@ class qpWorldView(APIView):
             "territory": sector.territory.pk,
             "count_chapters": sector.count_chapters,
             "count_messages": sector.count_messages,
+            "colour": sector.colour,
             "flexbasis": str(sector.flexbasis)
         }
         if singleton in ["sector"]:
