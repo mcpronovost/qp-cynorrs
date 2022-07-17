@@ -25,7 +25,13 @@
                 </section>
             </div>
             <footer class="qp-world-footer">
-                <small>&copy;&nbsp;<span v-text="world.copyright.year"></span></small>
+                <small>
+                    <span v-text="world.name"></span>
+                    <span>&nbsp;&copy;&nbsp;</span>
+                    <span v-text="world.copyright.year"></span>
+                    <span>&nbsp;</span>
+                    <span v-text="world.copyright.creator"></span>
+                </small>
             </footer>
         </div>
 
@@ -213,7 +219,7 @@ const initStyle = (stylesheet) => {
         styletag.setAttribute("id", "qp-custom-style");
     }
     styletag.innerHTML = stylesheet;
-    // document.head.appendChild(styletag);
+    document.head.appendChild(styletag);
 }
 
 const goToIndex = () => {
