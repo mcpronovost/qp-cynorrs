@@ -50,6 +50,18 @@ class qpPlayer(models.Model):
         blank=True,
         null=True
     )
+    settings_perpage_chapters = models.PositiveSmallIntegerField(
+        verbose_name=_("Chapitres par page"),
+        default=20,
+        blank=False,
+        null=False
+    )
+    settings_perpage_messages = models.PositiveSmallIntegerField(
+        verbose_name=_("Messages par page"),
+        default=20,
+        blank=False,
+        null=False
+    )
     updated_at = models.DateTimeField(
         auto_now=True
     )

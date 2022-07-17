@@ -3,6 +3,10 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from colorfield.fields import ColorField
 
+from qp.world.utils import (
+    get_perpage
+)
+
 
 class qpWorld(models.Model):
     name = models.CharField(
@@ -531,6 +535,27 @@ class qpWorldMessage(models.Model):
         super().delete()
         self.chapter.update_last_message()
         return
+    
+    def get_route(self, request, last = False):
+        result = {"name": "WorldChapter", "params": {
+            "world_pk": self.chapter.territory.world.id,
+            "slug": self.chapter.territory.world.slug,
+            "zone_pk": self.chapter.territory.zone.id,
+            "zone_slug": slugify(self.chapter.territory.zone.name),
+            "territory_pk": self.chapter.territory.id,
+            "territory_slug": slugify(self.chapter.territory.name),
+            "chapter_pk": self.chapter.id,
+            "chapter_slug": slugify(self.chapter.title)
+        }, "hash": "#m%s" % (self.id)}
+        if self.chapter.sector is not None:
+            result["params"]["sector_pk"] = self.chapter.sector.pk
+            result["params"]["sector_slug"] = slugify(self.chapter.sector.name)
+        if last:
+            perpage = get_perpage(request, "messages")
+            result["query"] = {
+                "page": self.chapter.messages.count() / perpage
+            }
+        return result
 
 
 class qpWorldRace(models.Model):

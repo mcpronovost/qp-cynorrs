@@ -36,7 +36,14 @@ class qpPlayerAdmin(admin.ModelAdmin):
             "fields": [
                 "user",
                 ("playername", "slug"),
+                "avatar",
                 "affinity"
+            ]
+        }),
+        (_("Settings"), {
+            "fields": [
+                "settings_perpage_chapters",
+                "settings_perpage_messages"
             ]
         })
     ]

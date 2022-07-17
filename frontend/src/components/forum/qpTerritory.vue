@@ -18,12 +18,12 @@
                         <el-avatar v-if="props.territory.last_message" :src="props.territory.last_message?.author?.avatar">
                             <span v-text="props.territory.last_message?.author?.initials"></span>
                         </el-avatar>
-                        <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-gotolast">
+                        <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-gotolast" @click="goToRoute(props.territory.last_message.routes.message)">
                             <el-icon class="mdi mdi-arrow-bottom-right-thin-circle-outline" />
                         </div>
                     </div>
                     <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-infos">
-                        <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_message.route)">
+                        <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_message.routes.chapter)">
                             <span class="title" v-text="props.territory.last_message.title"></span>
                             <span class="date" v-text="props.territory.last_message.date"></span>
                         </div>

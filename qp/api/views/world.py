@@ -16,6 +16,10 @@ from qp.world.models import (
     qpWorldMessage
 )
 
+from qp.world.utils import (
+    get_perpage
+)
+
 
 class qpWorldsView(APIView):
 
@@ -155,7 +159,10 @@ class qpWorldView(APIView):
                     "avatar": territory.last_message.author.avatar.url if territory.last_message.author.avatar else None
                 } if territory.last_message.author else None,
                 "date": _date(territory.last_message.updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i"),
-                "route": territory.last_message.chapter.get_route()
+                "routes": {
+                    "chapter": territory.last_message.chapter.get_route(),
+                    "message": territory.last_message.get_route(request, True)
+                }
             } if territory.last_message else None
         }
         if singleton in ["territory"]:
@@ -166,11 +173,8 @@ class qpWorldView(APIView):
                 territory_data["sectors"].append(sector_data)
         if singleton in ["territory"]:
             # ===--- chapters
+            perpage = get_perpage(request, "chapters")
             territory_data["chapters"] = []
-            if request.user.is_authenticated:
-                perpage = 2
-            else:
-                perpage = 2
             territory_data["perpage_chapters"] = perpage
             page = request.GET.get("page", 1)
             offset = (int(page) * perpage) - perpage
@@ -216,14 +220,12 @@ class qpWorldView(APIView):
             "flexbasis": str(sector.flexbasis)
         }
         if singleton in ["sector"]:
+            perpage = get_perpage(request, "chapters")
             sector_data["chapters"] = []
-            if request.user.is_authenticated:
-                limit = 10
-            else:
-                limit = 10
+            sector_data["perpage_chapters"] = perpage
             page = request.GET.get("page", 1)
-            offset = (int(page) * limit) - limit
-            chapters = sector.chapters.all()[offset:(offset+limit)]
+            offset = (int(page) * perpage) - perpage
+            chapters = sector.chapters.all()[offset:(offset+perpage)]
             # ===--- chapters
             for chapter in chapters:
                 chapter_data = qpWorldView.get_chapter(request, chapter.pk, singleton)
@@ -271,9 +273,14 @@ class qpWorldView(APIView):
             } if chapter.last_message else None
         }
         if singleton in ["chapter"]:
+            perpage = get_perpage(request, "messages")
             chapter_data["messages"] = []
-            # ===--- chapters
-            for message in chapter.messages.all():
+            chapter_data["perpage_messages"] = perpage
+            page = request.GET.get("page", 1)
+            offset = (int(page) * perpage) - perpage
+            messages = chapter.messages.all()[offset:(offset+perpage)]
+            # ===--- messages
+            for message in messages:
                 message_data = qpWorldView.get_message(request, message.pk, singleton)
                 chapter_data["messages"].append(message_data)
         # ===---

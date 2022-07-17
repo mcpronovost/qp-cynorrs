@@ -38,6 +38,15 @@
             </header>
             <section v-if="props.singleton == 'chapter'" class="qp-forum-messages">
                 <qpForumMessage v-for="(message, n) in props.chapter.messages" :key="`message-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :message="message" :singleton="props.singleton" />
+                <el-pagination
+                    background
+                    hide-on-single-page
+                    layout="prev, pager, next"
+                    :total="props.chapter.count_messages"
+                    :page-size="props.chapter.perpage_messages"
+                    :current-page="paginateCurrentPage"
+                    @update:current-page="updateCurrentPage"
+                />
             </section>
         </div>
     </article>
@@ -138,6 +147,14 @@ const listBreadcrumbs = computed(() => {
     return result
 })
 
+const paginateCurrentPage = computed(() => {
+    let result = 1
+    if (["chapter"].includes(props.singleton) && "page" in route.query && Number(route.query.page) > 0) {
+        result = Number(route.query.page)
+    }
+    return result
+})
+
 // =================================================================================== //
 // ===--- METHODS
 
@@ -154,8 +171,29 @@ const goToChapter = (chapter) => {
     }})
 }
 
+const updateCurrentPage = ($event) => {
+    router.push({name: "WorldChapter", params: {
+        world_pk: props.world.id,
+        slug: props.world.slug,
+        zone_pk: props.zone.id,
+        zone_slug: slugify(props.zone.name),
+        territory_pk: props.territory.id,
+        territory_slug: slugify(props.territory.name),
+        chapter_pk: props.chapter.id,
+        chapter_slug: slugify(props.chapter.title)
+    },
+    query: {
+        page: $event
+    }})
+}
+
 onMounted(() => {
     if (route.hash && route.hash.startsWith("#c")) {
+        const el = document.getElementById(route.hash.replace("#", ""))
+        if (el) {
+            el.scrollIntoView({behavior: "smooth"})
+        }
+    } else if (route.hash && route.hash.startsWith("#m")) {
         const el = document.getElementById(route.hash.replace("#", ""))
         if (el) {
             el.scrollIntoView({behavior: "smooth"})
