@@ -42,7 +42,7 @@ const logo = ref(require("@/assets/img/logo-square-trans.png"))
 <style scoped>
     #qp-app-header {
         background-color: var(--qp-primary);
-        box-shadow: 0 0 3px rgba(67, 82, 89, 0.04);
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
         box-sizing: border-box;
         height: 64px;
         position: relative;

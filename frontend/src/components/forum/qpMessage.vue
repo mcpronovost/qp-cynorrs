@@ -67,7 +67,7 @@ const props = defineProps({
 .qp-forum-message-inner {
     background-color: var(--qp-base);
     border-radius: 4px;
-    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
     text-align: center;
     align-content: center;
     justify-content: center;
