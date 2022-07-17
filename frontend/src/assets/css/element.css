@@ -43,7 +43,7 @@
 .el-card__body {
     background-color: var(--qp-base);
     border-radius: 4px;
-    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
     text-align: center;
     align-content: center;
     justify-content: center;
@@ -78,7 +78,7 @@
 .el-pagination.is-background .btn-prev,
 .el-pagination.is-background .el-pager li {
     background-color: var(--qp-base);
-    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
 }
 .el-pagination.is-background .btn-next:disabled,
 .el-pagination.is-background .btn-prev:disabled {
