@@ -59,3 +59,19 @@ const props = defineProps({
 // =================================================================================== //
 
 </script>
+
+<style scoped>
+.qp-forum-message {
+    padding: 12px;
+}
+.qp-forum-message-inner {
+    background-color: var(--qp-base);
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(67, 82, 89, 4%);
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+}
+</style>

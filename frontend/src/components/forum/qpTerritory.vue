@@ -165,7 +165,7 @@ const updateCurrentPage = ($event) => {
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    padding: 12px;
+    padding: 0 12px 12px;
 }
 .qp-forum-header-lastmessage-avatar {
     border-radius: 100%;
