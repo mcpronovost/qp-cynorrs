@@ -9,7 +9,7 @@ def get_perpage(request, view):
             result = request.user.player.settings_perpage_messages
     else:
         perpage_defaults = {
-            "chapters": 20,
+            "chapters": 12,
             "messages": 20
         }
         result = perpage_defaults[view]

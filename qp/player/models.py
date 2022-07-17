@@ -52,7 +52,7 @@ class qpPlayer(models.Model):
     )
     settings_perpage_chapters = models.PositiveSmallIntegerField(
         verbose_name=_("Chapitres par page"),
-        default=20,
+        default=12,
         blank=False,
         null=False
     )
