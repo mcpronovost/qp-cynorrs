@@ -1,3 +1,4 @@
+import math
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
@@ -553,7 +554,7 @@ class qpWorldMessage(models.Model):
         if last:
             perpage = get_perpage(request, "messages")
             result["query"] = {
-                "page": self.chapter.messages.count() / perpage
+                "page": math.ceil(self.chapter.messages.count() / perpage)
             }
         return result
 
