@@ -251,6 +251,18 @@ class qpWorldTerritory(models.Model):
         except Exception:
             pass
         return result
+    
+    @property
+    def last_message(self):
+        result = None
+        try:
+            if self.count_messages:
+                result = qpWorldMessage.objects.filter(
+                    chapter__territory=self
+                ).last()
+        except Exception:
+            pass
+        return result
 
 
 class qpWorldSector(models.Model):
@@ -328,6 +340,18 @@ class qpWorldSector(models.Model):
         except Exception:
             pass
         return result
+    
+    @property
+    def last_message(self):
+        result = None
+        try:
+            if self.count_messages:
+                result = qpWorldMessage.objects.filter(
+                    chapter__sector=self
+                ).last()
+        except Exception:
+            pass
+        return result
 
 
 class qpWorldChapter(models.Model):
@@ -394,6 +418,18 @@ class qpWorldChapter(models.Model):
         result = 0
         try:
             result = self.messages.count()
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def last_message(self):
+        result = None
+        try:
+            if self.count_messages:
+                result = qpWorldMessage.objects.filter(
+                    chapter=self
+                ).last()
         except Exception:
             pass
         return result

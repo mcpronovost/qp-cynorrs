@@ -146,7 +146,14 @@ class qpWorldView(APIView):
             "zone": territory.zone.pk,
             "count_chapters": territory.count_chapters,
             "count_messages": territory.count_messages,
-            "flexbasis": str(territory.flexbasis)
+            "flexbasis": str(territory.flexbasis),
+            "last_message": {
+                "author": {
+                    "initials": territory.last_message.author.initials,
+                    "avatar": territory.last_message.author.avatar.url if territory.last_message.author.avatar else None
+                } if territory.last_message.author else None,
+                "date": _date(territory.last_message.updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i")
+            } if territory.last_message else None
         }
         if singleton in ["territory"]:
             # ===--- sectors
@@ -253,11 +260,11 @@ class qpWorldView(APIView):
             } if chapter.author else None,
             "last_message": {
                 "author": {
-                    "initials": chapter.messages.last().author.initials,
-                    "avatar": chapter.messages.last().author.avatar.url if chapter.messages.last().author.avatar else None
-                } if chapter.messages.count() and chapter.messages.last().author else None,
-                "date": _date(chapter.messages.last().updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i")
-            } if chapter.messages.count() else None
+                    "initials": chapter.last_message.author.initials,
+                    "avatar": chapter.last_message.author.avatar.url if chapter.last_message.author.avatar else None
+                } if chapter.last_message.author else None,
+                "date": _date(chapter.last_message.updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i")
+            } if chapter.last_message else None
         }
         if singleton in ["chapter"]:
             chapter_data["messages"] = []
