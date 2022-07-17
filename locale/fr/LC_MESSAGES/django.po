@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-28 07:37-0400\n"
+"POT-Creation-Date: 2022-07-16 22:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,190 +26,350 @@ msgstr "API"
 msgid "Invalid details."
 msgstr "Détails invalides."
 
-#: .\qp\player\admin.py:35 .\qp\player\admin.py:73
-msgid "Informations"
-msgstr "Informations"
+#: .\qp\game\apps.py:6
+msgid "Game"
+msgstr "Jeu"
 
-#: .\qp\player\admin.py:80
-msgid "Resistances"
-msgstr "Résistances"
+#: .\qp\game\models.py:12
+msgid "Travel"
+msgstr "Voyage"
 
-#: .\qp\player\admin.py:87
-msgid "Attributes"
-msgstr "Attributs"
+#: .\qp\game\models.py:13
+msgid "Ressource"
+msgstr "Ressource"
 
-#: .\qp\player\apps.py:6 .\qp\player\models.py:51 .\qp\player\models.py:211
-#: .\qp\player\models.py:237
-msgid "Player"
-msgstr "Joueur"
-
-#: .\qp\player\models.py:13
-msgid "Male"
-msgstr "Masculin"
-
-#: .\qp\player\models.py:14
-msgid "Female"
-msgstr "Féminin"
-
-#: .\qp\player\models.py:15
-msgid "Other"
-msgstr "Autre"
-
-#: .\qp\player\models.py:24
-msgid "User"
-msgstr "Utilisateur"
-
-#: .\qp\player\models.py:29
-msgid "Playername"
-msgstr "Nom de joueur"
-
-#: .\qp\player\models.py:35 .\qp\world\models.py:14 .\qp\world\models.py:67
-#: .\qp\world\models.py:98 .\qp\world\models.py:129 .\qp\world\models.py:160
-#: .\qp\world\models.py:191 .\qp\world\models.py:222
-msgid "Slug"
-msgstr "Slug"
-
-#: .\qp\player\models.py:41
-msgid "Affinity"
-msgstr "Affinité"
-
-#: .\qp\player\models.py:52
-msgid "Players"
-msgstr "Joueurs"
-
-#: .\qp\player\models.py:95
-msgid "First Name"
-msgstr "Prénom"
-
-#: .\qp\player\models.py:101
-msgid "Middle Name"
-msgstr "Autre(s) nom(s)"
-
-#: .\qp\player\models.py:107
-msgid "Last Name"
-msgstr "Nom de famille"
-
-#: .\qp\player\models.py:113
-msgid "Gender"
-msgstr "Genre"
-
-#: .\qp\player\models.py:121
-msgid "Physical Resistance"
-msgstr "Résistance physique"
-
-#: .\qp\player\models.py:127
-msgid "Mental Resistance"
-msgstr "Résistance mentale"
-
-#: .\qp\player\models.py:133
-msgid "Spiritual Resistance"
-msgstr "Résistance spirituelle"
-
-#: .\qp\player\models.py:139
-msgid "Strength"
-msgstr "Force"
-
-#: .\qp\player\models.py:145
-msgid "Constitution"
-msgstr "Constitution"
-
-#: .\qp\player\models.py:151
-msgid "Dexterity"
-msgstr "Dextérité"
-
-#: .\qp\player\models.py:157
-msgid "Perception"
-msgstr "Perception"
-
-#: .\qp\player\models.py:163
-msgid "Intelligence"
-msgstr "Intelligence"
-
-#: .\qp\player\models.py:169
-msgid "Composure"
-msgstr "Sang-froid"
-
-#: .\qp\player\models.py:175
-msgid "Active"
-msgstr "Actif"
-
-#: .\qp\player\models.py:219 .\qp\player\models.py:245 .\qp\world\apps.py:6
-#: .\qp\world\models.py:27 .\qp\world\models.py:56 .\qp\world\models.py:87
-#: .\qp\world\models.py:118 .\qp\world\models.py:149 .\qp\world\models.py:180
-#: .\qp\world\models.py:211
-msgid "World"
-msgstr "Monde"
-
-#: .\qp\player\models.py:225
-msgid "Hero"
-msgstr "Héros"
-
-#: .\qp\player\models.py:226
-msgid "Heros"
-msgstr "Héros"
-
-#: .\qp\player\models.py:251
-msgid "Companion"
-msgstr "Compagnon"
-
-#: .\qp\player\models.py:252
-msgid "Companions"
-msgstr "Compagnons"
-
-#: .\qp\world\models.py:8 .\qp\world\models.py:61 .\qp\world\models.py:92
-#: .\qp\world\models.py:123 .\qp\world\models.py:154 .\qp\world\models.py:185
-#: .\qp\world\models.py:216
-msgid "Name"
-msgstr "Nom"
-
-#: .\qp\world\models.py:28
-msgid "Worlds"
-msgstr "Mondes"
-
-#: .\qp\world\models.py:74
-msgid "Zone"
-msgstr "Zone"
-
-#: .\qp\world\models.py:75
-msgid "Zones"
-msgstr "Zones"
-
-#: .\qp\world\models.py:105
-msgid "Territory"
-msgstr "Territoire"
-
-#: .\qp\world\models.py:106
-msgid "Territories"
-msgstr "Territoires"
-
-#: .\qp\world\models.py:136
+#: .\qp\game\models.py:19 .\qp\world\admin.py:174 .\qp\world\models.py:291
+#: .\qp\world\models.py:346
 msgid "Sector"
 msgstr "Secteur"
 
-#: .\qp\world\models.py:137
+#: .\qp\game\models.py:24 .\qp\game\models.py:164
+msgid "Type"
+msgstr "Type"
+
+#: .\qp\game\models.py:31 .\qp\game\models.py:122 .\qp\world\models.py:359
+msgid "Title"
+msgstr "Titre"
+
+#: .\qp\game\models.py:37 .\qp\game\models.py:128 .\qp\game\models.py:177
+#: .\qp\world\models.py:107 .\qp\world\models.py:178 .\qp\world\models.py:272
+#: .\qp\world\models.py:365
+msgid "Description"
+msgstr "Description"
+
+#: .\qp\game\models.py:42 .\qp\game\models.py:133 .\qp\world\models.py:112
+#: .\qp\world\models.py:190 .\qp\world\models.py:284
+msgid "Ordering"
+msgstr "Ordre"
+
+#: .\qp\game\models.py:48
+msgid "Counter"
+msgstr "Compteur"
+
+#: .\qp\game\models.py:54 .\qp\player\models.py:193
+msgid "Active"
+msgstr "Actif"
+
+#: .\qp\game\models.py:58
+msgid "Lucky Roll"
+msgstr "Jet de chance"
+
+#: .\qp\game\models.py:63 .\qp\game\models.py:81 .\qp\game\models.py:117
+msgid "Event"
+msgstr "Évènement"
+
+#: .\qp\game\models.py:64
+msgid "Events"
+msgstr "Évènements"
+
+#: .\qp\game\models.py:86
+msgid "Success Roll"
+msgstr "Jet de succès"
+
+#: .\qp\game\models.py:92
+msgid "Success Message"
+msgstr "Message de succès"
+
+#: .\qp\game\models.py:97
+msgid "Failure Message"
+msgstr "Message d'échec"
+
+#: .\qp\game\models.py:103
+msgid "Lucky Roll Entry"
+msgstr "Entrée de jet de chance"
+
+#: .\qp\game\models.py:104
+msgid "Lucky Roll Entries"
+msgstr "Entrées de jet de chance"
+
+#: .\qp\game\models.py:140
+msgid "Action"
+msgstr "Action"
+
+#: .\qp\game\models.py:141
+msgid "Actions"
+msgstr "Actions"
+
+#: .\qp\game\models.py:152
+msgid "Bonus"
+msgstr "Bonus"
+
+#: .\qp\game\models.py:153
+msgid "Malus"
+msgstr "Malus"
+
+#: .\qp\game\models.py:159 .\qp\player\models.py:273 .\qp\player\models.py:299
+#: .\qp\world\admin.py:53 .\qp\world\admin.py:74 .\qp\world\admin.py:114
+#: .\qp\world\admin.py:156 .\qp\world\apps.py:6 .\qp\world\models.py:53
+#: .\qp\world\models.py:96 .\qp\world\models.py:461 .\qp\world\models.py:497
+#: .\qp\world\models.py:533
+msgid "World"
+msgstr "Monde"
+
+#: .\qp\game\models.py:171 .\qp\world\models.py:8 .\qp\world\models.py:101
+#: .\qp\world\models.py:172 .\qp\world\models.py:266 .\qp\world\models.py:466
+#: .\qp\world\models.py:502 .\qp\world\models.py:538
+msgid "Name"
+msgstr "Nom"
+
+#: .\qp\game\models.py:183 .\qp\game\models.py:184
+msgid "Bonus / Malus"
+msgstr "Bonus / Malus"
+
+#: .\qp\player\admin.py:35 .\qp\player\admin.py:75
+msgid "Informations"
+msgstr "Informations"
+
+#: .\qp\player\admin.py:82
+msgid "Resistances"
+msgstr "Résistances"
+
+#: .\qp\player\admin.py:89
+msgid "Attributes"
+msgstr "Attributs"
+
+#: .\qp\player\apps.py:6 .\qp\player\models.py:58 .\qp\player\models.py:265
+#: .\qp\player\models.py:291
+msgid "Player"
+msgstr "Joueur"
+
+#: .\qp\player\models.py:14
+msgid "Male"
+msgstr "Masculin"
+
+#: .\qp\player\models.py:15
+msgid "Female"
+msgstr "Féminin"
+
+#: .\qp\player\models.py:16
+msgid "Other"
+msgstr "Autre"
+
+#: .\qp\player\models.py:25
+msgid "User"
+msgstr "Utilisateur"
+
+#: .\qp\player\models.py:30
+msgid "Playername"
+msgstr "Nom de joueur"
+
+#: .\qp\player\models.py:36 .\qp\world\models.py:14 .\qp\world\models.py:472
+#: .\qp\world\models.py:508 .\qp\world\models.py:544
+msgid "Slug"
+msgstr "Slug"
+
+#: .\qp\player\models.py:42
+msgid "Affinity"
+msgstr "Affinité"
+
+#: .\qp\player\models.py:48 .\qp\player\models.py:133
+msgid "Avatar"
+msgstr "Avatar"
+
+#: .\qp\player\models.py:59
+msgid "Players"
+msgstr "Joueurs"
+
+#: .\qp\player\models.py:102
+msgid "First Name"
+msgstr "Prénom"
+
+#: .\qp\player\models.py:108
+msgid "Middle Name"
+msgstr "Autre(s) nom(s)"
+
+#: .\qp\player\models.py:114
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: .\qp\player\models.py:120
+msgid "Gender"
+msgstr "Genre"
+
+#: .\qp\player\models.py:128
+msgid "Geolocalisation"
+msgstr "Localisation"
+
+#: .\qp\player\models.py:139
+msgid "Physical Resistance"
+msgstr "Résistance physique"
+
+#: .\qp\player\models.py:145
+msgid "Mental Resistance"
+msgstr "Résistance mentale"
+
+#: .\qp\player\models.py:151
+msgid "Spiritual Resistance"
+msgstr "Résistance spirituelle"
+
+#: .\qp\player\models.py:157
+msgid "Strength"
+msgstr "Force"
+
+#: .\qp\player\models.py:163
+msgid "Constitution"
+msgstr "Constitution"
+
+#: .\qp\player\models.py:169
+msgid "Dexterity"
+msgstr "Dextérité"
+
+#: .\qp\player\models.py:175
+msgid "Perception"
+msgstr "Perception"
+
+#: .\qp\player\models.py:181
+msgid "Intelligence"
+msgstr "Intelligence"
+
+#: .\qp\player\models.py:187
+msgid "Composure"
+msgstr "Sang-froid"
+
+#: .\qp\player\models.py:279
+msgid "Hero"
+msgstr "Héros"
+
+#: .\qp\player\models.py:280
+msgid "Heros"
+msgstr "Héros"
+
+#: .\qp\player\models.py:305
+msgid "Companion"
+msgstr "Compagnon"
+
+#: .\qp\player\models.py:306
+msgid "Companions"
+msgstr "Compagnons"
+
+#: .\qp\world\admin.py:80 .\qp\world\admin.py:120 .\qp\world\admin.py:162
+#: .\qp\world\models.py:119 .\qp\world\models.py:167
+msgid "Zone"
+msgstr "Zone"
+
+#: .\qp\world\admin.py:108 .\qp\world\admin.py:150 .\qp\world\models.py:354
+#: .\qp\world\models.py:415
+msgid "Author"
+msgstr "Auteur"
+
+#: .\qp\world\admin.py:168 .\qp\world\models.py:197 .\qp\world\models.py:261
+#: .\qp\world\models.py:338
+msgid "Territory"
+msgstr "Territoire"
+
+#: .\qp\world\models.py:23
+msgid "Creator"
+msgstr "Créateur"
+
+#: .\qp\world\models.py:30
+msgid "Administrators"
+msgstr "Administrateurs"
+
+#: .\qp\world\models.py:36
+msgid "Moderators"
+msgstr "Modérateurs"
+
+#: .\qp\world\models.py:40
+msgid "Custom Stylesheet"
+msgstr "Feuille de style personnalisée"
+
+#: .\qp\world\models.py:54
+msgid "Worlds"
+msgstr "Mondes"
+
+#: .\qp\world\models.py:120
+msgid "Zones"
+msgstr "Zones"
+
+#: .\qp\world\models.py:183 .\qp\world\models.py:277
+msgid "Flex Basis"
+msgstr "Flex Basis"
+
+#: .\qp\world\models.py:198
+msgid "Territories"
+msgstr "Territoires"
+
+#: .\qp\world\models.py:292
 msgid "Sectors"
 msgstr "Secteurs"
 
-#: .\qp\world\models.py:167
+#: .\qp\world\models.py:371 .\qp\world\models.py:429
+msgid "Created"
+msgstr "Créé"
+
+#: .\qp\world\models.py:375 .\qp\world\models.py:433
+msgid "Updated"
+msgstr "Mis à jour"
+
+#: .\qp\world\models.py:380 .\qp\world\models.py:407
+msgid "Chapter"
+msgstr "Chapitre"
+
+#: .\qp\world\models.py:381
+msgid "Chapters"
+msgstr "Chapitres"
+
+#: .\qp\world\models.py:420
+msgid "Text"
+msgstr "Texte"
+
+#: .\qp\world\models.py:425
+msgid "Updates"
+msgstr "Mises à jour"
+
+#: .\qp\world\models.py:438
+msgid "Message"
+msgstr "Message"
+
+#: .\qp\world\models.py:439
+msgid "Messages"
+msgstr "Messages"
+
+#: .\qp\world\models.py:446
+#, python-format
+msgid "Message #%(pk)s"
+msgstr "Message #%(pk)s"
+
+#: .\qp\world\models.py:479
 msgid "Race"
 msgstr "Race"
 
-#: .\qp\world\models.py:168
+#: .\qp\world\models.py:480
 msgid "Races"
 msgstr "Races"
 
-#: .\qp\world\models.py:198
+#: .\qp\world\models.py:515
 msgid "Ethnicity"
 msgstr "Ethnie"
 
-#: .\qp\world\models.py:199
+#: .\qp\world\models.py:516
 msgid "Ethnicities"
 msgstr "Ethnies"
 
-#: .\qp\world\models.py:229
+#: .\qp\world\models.py:551
 msgid "Nationality"
 msgstr "Nationalité"
 
-#: .\qp\world\models.py:230
+#: .\qp\world\models.py:552
 msgid "Nationalities"
 msgstr "Nationalités"
