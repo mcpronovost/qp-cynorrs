@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # ===---
     "rest_framework",
     "knox",
+    "colorfield",
     # ===---
     "qp.player",
     "qp.world",
