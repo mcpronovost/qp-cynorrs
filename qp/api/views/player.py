@@ -24,6 +24,10 @@ from qp.player.models import (
     qpPlayer
 )
 
+from qp.world.models import (
+    qpWorld
+)
+
 
 class qpPlayerView(APIView):
 
@@ -66,6 +70,22 @@ class qpPlayerView(APIView):
             })
         return result
 
+    def get_worlds(self, player):
+        result = []
+        all_worlds = player.admin_worlds.all()
+        all_worlds |= player.modo_worlds.all()
+        for c in player.heros.all():
+            if c.world is not None:
+                all_worlds |= qpWorld.objects.filter(pk=c.world.pk)
+        # =-
+        for world in all_worlds.distinct():
+            result.append({
+                "id": world.pk,
+                "name": world.name,
+                "slug": world.slug
+            })
+        return result
+
     def get(self, request):
         if not request.user.is_authenticated:
             return Response({"valid": False}, status=status.HTTP_401_UNAUTHORIZED)
@@ -76,12 +96,14 @@ class qpPlayerView(APIView):
                 user=request.user
             )
         # ===---
-        player_data = self.get_player(player)
-        heros_data = self.get_heros(player)
+        player_data = qpPlayerView.get_player(None, player)
+        heros_data = qpPlayerView.get_heros(None, player)
+        worlds_data = qpPlayerView.get_worlds(None, player)
         # ===---
         return Response({
             "player": player_data,
             "heros": heros_data,
+            "worlds": worlds_data,
             "valid": True
         })
 

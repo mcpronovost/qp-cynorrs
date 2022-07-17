@@ -1,5 +1,5 @@
 <template>
-    <article v-if="props.message" class="qp-forum-message">
+    <article v-if="props.message" :id="`m${props.message.id}`" class="qp-forum-message">
         <div class="qp-forum-message-inner">
             <header class="qp-forum-header">
                 <div v-text="props.message.author.name"></div>

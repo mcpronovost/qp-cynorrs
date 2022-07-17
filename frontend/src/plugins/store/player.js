@@ -19,11 +19,21 @@ export const getterHeros = (state) => {
     return []
 }
 
+export const getterWorlds = (state) => {
+    if (state.player.w) {
+        return JSON.parse(
+            Buffer.from(state.player.w, "base64").toString("utf8")
+        )
+    }
+    return []
+}
+
 export const modulePlayer = {
     state: () => ({
         j: null,
         h: null,
-        c: null
+        c: null,
+        w: null
     }),
     mutations: {
         SET_PLAYER (state, payload) {
@@ -65,6 +75,13 @@ export const modulePlayer = {
             } else {
                 state.h = null
             }
+        },
+        BATCH_WORLDS (state, payload) {
+            if (payload) {
+                state.w = Buffer.from(JSON.stringify(payload)).toString("base64")
+            } else {
+                state.w = null
+            }
         }
     },
     actions: {
@@ -78,6 +95,7 @@ export const modulePlayer = {
                     let result = await r.json()
                     commit("BATCH_PLAYER", result.player)
                     commit("BATCH_HEROS", result.heros)
+                    commit("BATCH_WORLDS", result.worlds)
                 } else if (r.status === 401) {
                     dispatch("doLogout")
                 }

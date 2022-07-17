@@ -1,5 +1,5 @@
 <template>
-    <article v-if="props.chapter" class="qp-forum-chapter">
+    <article v-if="props.chapter" :id="`c${props.chapter.id}`" class="qp-forum-chapter">
         <div class="qp-forum-chapter-inner">
             <header class="qp-forum-header">
                 <div v-if="['territory', 'sector'].includes(singleton)" class="qp-forum-header-profile">

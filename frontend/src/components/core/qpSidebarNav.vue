@@ -5,71 +5,36 @@
                 <i class="mdi mdi-home"></i>
                 <span v-text="$t('Home')"></span>
             </el-menu-item>
-            <el-menu-item index="qalatlan" :route="{name:'World', params: {world_pk: 1, slug: 'qalatlan'}}">
-                <i class="mdi mdi-hops"></i>
-                <span v-text="'Qalatlán'"></span>
-            </el-menu-item>
-            <el-menu-item index="rhansidor" :route="{name:'World', params: {world_pk: 2, slug: 'rhansidor'}}">
-                <i class="mdi mdi-hops"></i>
-                <span v-text="'Rhansidor'"></span>
-            </el-menu-item>
-            <el-sub-menu index="3">
-                <template #title>
-                    <i class="mdi mdi-bookshelf"></i>
-                    <span>Navigation</span>
-                </template>
-                <el-menu-item index="1-1">
-                    <span v-text="'item one'"></span>
-                </el-menu-item>
-                <el-menu-item index="Profile" :route="{name:'Profile'}">
-                    <span v-text="'profile'"></span>
-                </el-menu-item>
-                <el-sub-menu index="Profile" :route="{name:'Profile'}">
+            <!---->
+            <template v-for="(world, n) in worlds">
+                <el-sub-menu :key="`world-nav-group-${n}`" v-if="$route.params.slug && $route.params.slug == world.slug" :index="world.slug">
                     <template #title>
-                        <span>Navigator two</span>
+                        <i class="mdi mdi-hops"></i>
+                        <span v-text="world.name"></span>
                     </template>
-                    <el-menu-item index="1-1">
-                        <span v-text="'item one'"></span>
+                    <el-menu-item :index="`${world.slug}-rules`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                        <i class="mdi mdi-scale-balance"></i>
+                        <span v-text="$t('Rules')"></span>
                     </el-menu-item>
-                    <el-menu-item index="1-2">
-                        <span v-text="'item two'"></span>
+                    <el-menu-item :index="`${world.slug}-context`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                        <i class="mdi mdi-script-text"></i>
+                        <span v-text="$t('Context')"></span>
+                    </el-menu-item>
+                    <el-menu-item :index="world.slug" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                        <i class="mdi mdi-forum-outline"></i>
+                        <span v-text="$t('Forum')"></span>
+                    </el-menu-item>
+                    <el-menu-item :index="`${world.slug}-community`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                        <i class="mdi mdi-account-group"></i>
+                        <span v-text="$t('Community')"></span>
                     </el-menu-item>
                 </el-sub-menu>
-            </el-sub-menu>
-            <el-sub-menu index="4">
-                <template #title>
-                    <i class="mdi mdi-cog"></i>
-                    <span>Test</span>
-                </template>
-                <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item one</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                    <template #title>item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
-                </el-sub-menu>
-            </el-sub-menu>
-            <el-sub-menu index="5">
-                <template #title>
-                    <i class="mdi mdi-hexagon-multiple"></i>
-                    <span>En construction</span>
-                </template>
-                <el-menu-item-group title="Group One">
-                    <el-menu-item index="1-1">item one</el-menu-item>
-                    <el-menu-item index="1-2">item one</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="Group Two">
-                    <el-menu-item index="1-3">item three</el-menu-item>
-                </el-menu-item-group>
-                <el-sub-menu index="1-4">
-                    <template #title>item four</template>
-                    <el-menu-item index="1-4-1">item one</el-menu-item>
-                </el-sub-menu>
-            </el-sub-menu>
+                <el-menu-item :key="`world-nav-${n}`" v-else :index="world.slug" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                    <i class="mdi mdi-hops"></i>
+                    <span v-text="world.name"></span>
+                </el-menu-item>
+            </template>
+            <!---->
         </el-menu>
     </div>
 </template>
@@ -84,6 +49,7 @@ import { useStore } from "vuex";
 
 const store = useStore()
 const app = computed(() => store.getters.app)
+const worlds = computed(() => store.getters.worlds)
 
 // =================================================================================== //
 

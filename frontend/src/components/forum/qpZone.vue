@@ -1,5 +1,5 @@
 <template>
-    <article v-if="props.zone" class="qp-forum-zone">
+    <article v-if="props.zone" :id="`z${props.zone.id}`" class="qp-forum-zone">
         <div class="qp-forum-zone-inner">
             <header class="qp-forum-header">
                 <h2 class="qp-forum-header-title">

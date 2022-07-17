@@ -1,5 +1,5 @@
 <template>
-    <article v-if="props.sector" class="qp-forum-sector" :style="`flex-basis:${props.sector.flexbasis};`">
+    <article v-if="props.sector" :id="`s${props.sector.id}`" class="qp-forum-sector" :style="`flex-basis:${props.sector.flexbasis};`">
         <div class="qp-forum-sector-inner">
             <header class="qp-forum-header">
                 <h2 class="qp-forum-header-title" @click="goToSector(props.sector)">

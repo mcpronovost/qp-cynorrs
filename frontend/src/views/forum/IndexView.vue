@@ -1,7 +1,7 @@
 <template>
     <div class="qp-vue">
 
-        <div v-if="!isLoading && world" :class="`qp-forum qp-singleton-${singleton}`">
+        <div v-if="!isLoading && world" :id="`w${world.id}`" :class="`qp-forum qp-singleton-${singleton}`">
             <header class="qp-world-header">
                 <h1 class="qp-world-header-name" @click="goToIndex()">
                     <span v-text="world.name"></span>

@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 import { Buffer } from "buffer";
 import { getterApp, moduleApp } from "@/plugins/store/app";
 import { getterRat, moduleDrat, moduleFrat } from "@/plugins/store/rat";
-import { getterPlayer, modulePlayer, getterHeros } from "@/plugins/store/player";
+import { getterPlayer, modulePlayer, getterHeros, getterWorlds } from "@/plugins/store/player";
 import VuexPersistence from "vuex-persist";
 import Cookies from "js-cookie";
 
@@ -55,7 +55,8 @@ const store = createStore({
         app: getterApp,
         rat: getterRat,
         player: getterPlayer,
-        heros: getterHeros
+        heros: getterHeros,
+        worlds: getterWorlds
     },
     modules: {
         app: moduleApp,
