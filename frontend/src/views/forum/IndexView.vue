@@ -84,7 +84,7 @@ const setWorld = async (worldPk) => {
     // ===---
     let r = await fetch(`${API}/worlds/${worldPk}/`, {
         method: "GET",
-        headers: {"Authorization": rat.value, "Accept-Language": "fr"}
+        headers: {"Authorization": rat.value}
     })
     if (r.status === 200) {
         let result = await r.json()
