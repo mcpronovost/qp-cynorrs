@@ -11,11 +11,9 @@
                         </el-image>
                     </div>
                     <div class="qp-forum-header-profile-avatar">
-                        <el-image v-if="props.chapter.last_message?.author?.avatar" :src="props.chapter.last_message.author.avatar" fit="cover">
-                            <template #error>
-                                <div class="image-slot"></div>
-                            </template>
-                        </el-image>
+                        <el-avatar :src="props.chapter.last_message.author.avatar">
+                            <span v-text="props.chapter.last_message.author.initials"></span>
+                        </el-avatar>
                     </div>
                 </div>
                 <h2 class="qp-forum-header-title" @click="goToChapter(props.chapter)">

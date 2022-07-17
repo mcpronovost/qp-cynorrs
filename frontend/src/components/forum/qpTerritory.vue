@@ -2,17 +2,24 @@
     <article v-if="props.territory" :id="`t${props.territory.id}`" class="qp-forum-territory" :style="`flex-basis:${props.territory.flexbasis};`">
         <div class="qp-forum-territory-inner">
             <header class="qp-forum-header">
-                <h2 class="qp-forum-header-title" @click="goToTerritory(props.territory)">
-                    <span v-text="props.territory.name"></span>
-                </h2>
-                <p v-if="props.territory.description" class="qp-forum-header-description" v-text="props.territory.description"></p>
-                <hr v-if="props.singleton.includes('territory')" class="qp-forum-header-divider" />
-                <qpForumBreadcrumbs v-if="props.singleton.includes('territory')" :crumbs="listBreadcrumbs" />
+                <el-popover :disabled="!props.territory.description || !['index', 'zone'].includes(props.singleton)" :show-after="1000">
+                    <template #reference>
+                        <h2 class="qp-forum-header-title" @click="goToTerritory(props.territory)">
+                            <span v-text="props.territory.name"></span>
+                        </h2>
+                    </template>
+                    <template #default>
+                        <p class="qp-forum-header-description" v-text="props.territory.description"></p>
+                    </template>
+                </el-popover>
+                <p v-if="['territory'].includes(props.singleton) && props.territory.description" class="qp-forum-header-description" v-text="props.territory.description"></p>
+                <hr v-if="['territory'].includes(props.singleton)" class="qp-forum-header-divider" />
+                <qpForumBreadcrumbs v-if="['territory'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
-            <section v-if="props.singleton.includes('territory')" class="qp-forum-sectors">
+            <section v-if="['territory'].includes(props.singleton)" class="qp-forum-sectors">
                 <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :sector="sector" :singleton="props.singleton" />
             </section>
-            <section v-if="props.singleton.includes('territory')" class="qp-forum-chapters">
+            <section v-if="['territory'].includes(props.singleton)" class="qp-forum-chapters">
                 <qpForumChapter v-for="(chapter, n) in props.territory.chapters" :key="`chapter-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :singleton="props.singleton" />
                 <el-pagination
                     background

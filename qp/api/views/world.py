@@ -253,6 +253,7 @@ class qpWorldView(APIView):
             } if chapter.author else None,
             "last_message": {
                 "author": {
+                    "initials": chapter.messages.last().author.initials,
                     "avatar": chapter.messages.last().author.avatar.url if chapter.messages.last().author.avatar else None
                 } if chapter.messages.count() and chapter.messages.last().author else None,
                 "date": _date(chapter.messages.last().updated_at.astimezone(ZoneInfo("America/Toronto")), "d F Y H:i")

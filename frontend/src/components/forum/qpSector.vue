@@ -2,15 +2,31 @@
     <article v-if="props.sector" :id="`s${props.sector.id}`" class="qp-forum-sector" :style="`flex-basis:${props.sector.flexbasis};`">
         <div class="qp-forum-sector-inner">
             <header class="qp-forum-header">
-                <h2 class="qp-forum-header-title" @click="goToSector(props.sector)">
-                    <span v-text="props.sector.name"></span>
-                </h2>
-                <p v-if="singleton == 'sector' && props.sector.description" class="qp-forum-header-description" v-text="props.sector.description"></p>
-                <hr v-if="singleton == 'sector'" class="qp-forum-header-divider" />
-                <qpForumBreadcrumbs v-if="singleton == 'sector'" :crumbs="listBreadcrumbs" />
+                <el-popover :disabled="!props.sector.description || !['territory'].includes(props.singleton)" :show-after="1000">
+                    <template #reference>
+                        <h2 class="qp-forum-header-title" @click="goToSector(props.sector)">
+                            <span v-text="props.sector.name"></span>
+                        </h2>
+                    </template>
+                    <template #default>
+                        <p class="qp-forum-header-description" v-text="props.sector.description"></p>
+                    </template>
+                </el-popover>
+                <p v-if="['sector'].includes(props.singleton) && props.sector.description" class="qp-forum-header-description" v-text="props.sector.description"></p>
+                <hr v-if="['sector'].includes(props.singleton)" class="qp-forum-header-divider" />
+                <qpForumBreadcrumbs v-if="['sector'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
-            <section v-if="props.singleton == 'sector'" class="qp-forum-chapters">
+            <section v-if="['sector'].includes(props.singleton)" class="qp-forum-chapters">
                 <qpForumChapter v-for="(chapter, n) in props.sector.chapters" :key="`chapter-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :sector="sector" :chapter="chapter" :singleton="props.singleton" />
+                <el-pagination
+                    background
+                    hide-on-single-page
+                    layout="prev, pager, next"
+                    :total="props.territory.count_chapters"
+                    :page-size="props.territory.perpage_chapters"
+                    :current-page="paginateCurrentPage"
+                    @update:current-page="updateCurrentPage"
+                />
             </section>
         </div>
     </article>
@@ -20,7 +36,7 @@
 
 import { computed } from "vue";
 // import i18n from "@/plugins/i18n";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumChapter from "@/components/forum/qpChapter.vue";
@@ -28,6 +44,7 @@ import qpForumChapter from "@/components/forum/qpChapter.vue";
 // =================================================================================== //
 
 // const { t } = i18n.global
+const route = useRoute()
 const router = useRouter()
 
 // =================================================================================== //
@@ -89,6 +106,14 @@ const listBreadcrumbs = computed(() => {
     return result
 })
 
+const paginateCurrentPage = computed(() => {
+    let result = 1
+    if (props.singleton.includes("sector") && "page" in route.query && Number(route.query.page) > 0) {
+        result = Number(route.query.page)
+    }
+    return result
+})
+
 // =================================================================================== //
 // ===--- METHODS
 
@@ -102,6 +127,22 @@ const goToSector = (sector) => {
         territory_slug: slugify(props.territory.name),
         sector_pk: sector.id,
         sector_slug: slugify(sector.name)
+    }})
+}
+
+const updateCurrentPage = ($event) => {
+    router.push({name: "WorldSector", params: {
+        world_pk: props.world.id,
+        slug: props.world.slug,
+        zone_pk: props.zone.id,
+        zone_slug: slugify(props.zone.name),
+        territory_pk: props.territory.id,
+        territory_slug: slugify(props.territory.name),
+        sector_pk: props.sector.id,
+        sector_slug: slugify(props.sector.name)
+    },
+    query: {
+        page: $event
     }})
 }
 
