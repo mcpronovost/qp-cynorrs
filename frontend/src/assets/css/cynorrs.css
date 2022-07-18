@@ -84,8 +84,8 @@
     --qp-primary-darken-4: #171c1f;
     --qp-primary-darken-5: #0c0f10;
     --qp-primary-darken-6: #010202;
-    --qp-secondary: #8f999d;
-    --qp-tertiary: #8ca0a9;
+    --qp-secondary: #7a8489;
+    --qp-tertiary: #a3abb0;
     --qp-accent: #d3b018;
     --qp-base: #dbe0e2;
     --qp-base-midbg: #d2d7d9;
@@ -289,8 +289,9 @@ a:focus, a:hover {
     margin: 0;
 }
 .qp-forum-header-description {
+    color: var(--qp-tertiary);
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 120%;
     letter-spacing: 1px;
     position: relative;
@@ -303,7 +304,7 @@ a:focus, a:hover {
     display: block;
     width: 64px;
     height: 2px;
-    margin: 12px auto 12px 0;
+    margin: 12px auto 12px 2px;
 }
 @media (max-width: 1199px) {
     .qp-forum-header h2,
@@ -587,6 +588,7 @@ a:focus, a:hover {
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-lastmessagedate,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-lastmessagedate {
+    color: var(--qp-tertiary);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 12px;
     font-weight: 400;
@@ -606,6 +608,7 @@ a:focus, a:hover {
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-countmessages,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-countmessages {
+    color: var(--qp-tertiary);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 12px;
     font-weight: 400;

@@ -11,12 +11,12 @@
                         </el-image>
                     </div>
                     <div id="qp-header-logo-title">
-                        <span v-text="'Cynorrs'"></span>
+                        <span v-text="SITE.shortname"></span>
                     </div>
                 </div>
             </el-col>
             <el-col :span="2" :lg="8" class="text-center">
-                <div id="qp-header-titlse">
+                <div id="qp-header-title">
                     <span v-text="'Cynorrs'"></span>
                 </div>
             </el-col>
@@ -31,6 +31,7 @@
 
 <script setup>
 import { ref } from "vue";
+import { SITE } from "@/main.js";
 
 // =================================================================================== //
 // ===--- DATA

@@ -16,12 +16,19 @@
     "NewChapter": "Nouveau chapitre",
     "NoAvailableTravellers": "Aucun voyageur disponible",
     "Rules": "Règlements",
+    "Send": "Envoyer",
+    "Text": "Texte",
+    "Thisfieldisrequired": "Ce champs est requis.",
     "ThisChapterDoesntExistAnymore": "Ce chapitre n'existe pas ou plus",
     "ThisSectorDoesntExistAnymore": "Ce secteur n'existe pas ou plus",
     "ThisTerritoryDoesntExistAnymore": "Ce territoire n'existe pas ou plus",
     "ThisZoneDoesntExistAnymore": "Cette zone n'existe pas ou plus",
     "ThisWorldDoesntExistAnymore": "Ce monde n'existe pas ou plus",
+    "Title": "Titre",
+    "Titleofthenewchapter": "Titre du nouveau chapitre",
     "Travel": "Voyager",
     "TravelCompleted": "Voyage complété",
-    "Youhavearrivedatyourdestination": "Vous êtes arrivé à destination"
+    "Writing": "Rédaction",
+    "Youhavearrivedatyourdestination": "Vous êtes arrivé à destination",
+    "YourMessage": "Votre message"
 }

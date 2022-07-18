@@ -12,11 +12,11 @@
                         <i class="mdi mdi-hops"></i>
                         <span v-text="world.name"></span>
                     </template>
-                    <el-menu-item :index="`${world.slug}-rules`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                    <el-menu-item disabled :index="`${world.slug}-rules`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
                         <i class="mdi mdi-scale-balance"></i>
                         <span v-text="$t('Rules')"></span>
                     </el-menu-item>
-                    <el-menu-item :index="`${world.slug}-context`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                    <el-menu-item disabled :index="`${world.slug}-context`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
                         <i class="mdi mdi-script-text"></i>
                         <span v-text="$t('Context')"></span>
                     </el-menu-item>
@@ -24,7 +24,7 @@
                         <i class="mdi mdi-forum-outline"></i>
                         <span v-text="$t('Forum')"></span>
                     </el-menu-item>
-                    <el-menu-item :index="`${world.slug}-community`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                    <el-menu-item disabled :index="`${world.slug}-community`" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
                         <i class="mdi mdi-account-group"></i>
                         <span v-text="$t('Community')"></span>
                     </el-menu-item>
