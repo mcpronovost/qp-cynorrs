@@ -43,19 +43,6 @@ const listHeros = computed(() => {
 </script>
 
 <style scoped>
-    #qp-app-smallbar {
-        background-color: var(--qp-base);
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
-        box-sizing: border-box;
-        vertical-align: top;
-        display: inline-block;
-        height: calc(100vh - 64px);
-        width: 64px;
-        transition: width 0.4s;
-    }
-    #qp-app-sidebar.qp-collapsed + #qp-app-main + #qp-app-smallbar {
-        width: 0;
-    }
     #qp-smallbar-inner {
         padding: 12px 0;
     }

@@ -30,20 +30,6 @@ const app = computed(() => store.getters.app)
 </script>
 
 <style scoped>
-    #qp-app-sidebar {
-        background-color: var(--qp-base);
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
-        box-sizing: border-box;
-        display: inline-block;
-        vertical-align: top;
-        height: calc(100vh - 64px);
-        width: 300px;
-        transition: width 0.4s;
-    }
-    #qp-app-sidebar.qp-collapsed {
-        width: 64px;
-        min-width: 64px;
-    }
     #qp-sibebar-inner {
         display: flex;
         flex-direction: column;

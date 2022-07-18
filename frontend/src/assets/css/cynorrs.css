@@ -130,15 +130,49 @@ a:focus, a:hover {
     text-align: right;
 }
 
-/* ===--- APP ---=== */
+/* =================================================================================== */
+/* ===================================--- LAYOUT ---================================== */
+/* =================================================================================== */
 
 #app {
     font-size: 0;
     line-height: 0;
     overflow: hidden;
-    display: block;
     height: 100vh;
 }
+
+#qp-app {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* ===--- header ---=== */
+
+#qp-app-header {
+    background-color: var(--qp-primary);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    flex: 1 0 100%;
+    height: 64px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===--- sidebar ---=== */
+
+#qp-app-sidebar {
+    background-color: var(--qp-base);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    vertical-align: top;
+    width: 300px;
+    transition: width 0.4s;
+}
+#qp-app-sidebar.qp-collapsed {
+    width: 64px;
+}
+
+/* ===--- main ---=== */
 
 #qp-app-main {
     background-color: transparent;
@@ -146,25 +180,38 @@ a:focus, a:hover {
     line-height: 120%;
     vertical-align: top;
     display: inline-block;
-    height: calc(100vh - 64px);
-    width: calc(100vw - 300px - 64px);
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
     transition: width 0.6s;
 }
-#qp-app-sidebar.qp-collapsed + #qp-app-main {
-    width: 100vw;
-    max-width: calc(100vw - 64px);
+
+/* ===--- smallbar ---=== */
+
+#qp-app-smallbar {
+    background-color: var(--qp-base);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
+    box-sizing: border-box;
+    vertical-align: top;
+    display: inline-block;
+    height: calc(100vh - 64px);
+    width: 64px;
+    transition: width 0.4s;
 }
+#qp-app-sidebar.qp-collapsed + #qp-app-main + #qp-app-smallbar {
+    width: 0;
+}
+
+/* ===--- MAIN SCROLLBAR ---=== */
+
 #qp-app-main > .el-scrollbar > .el-scrollbar__wrap {
     overflow-x: hidden;
 }
 #qp-app-main > .el-scrollbar > .el-scrollbar__bar.is-horizontal {
     display: none;
 }
-@media (max-width: 1199px) {
-    #qp-app-smallbar {
-        display: none;
-    }
-}
+
+/* ===--- GRID ---=== */
 
 .qp-vue {
     padding: 0;
@@ -175,10 +222,6 @@ a:focus, a:hover {
     margin: 0 auto;
 }
 
-#app .qp-flex-column {
-    display: flex;
-    flex-direction: column;
-}
 
 /* =================================================================================== */
 /* ==================================--- ACTIONS ---================================== */

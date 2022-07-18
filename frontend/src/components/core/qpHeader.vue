@@ -15,7 +15,10 @@
                     </div>
                 </div>
                 <div v-if="app.win.w >= 1200" id="qp-header-toggle-sidebar" @click="toggleSidebar()">
-                    <el-icon class="mdi mdi-menu" />
+                    <el-icon>
+                        <Expand v-if="app.sidebar.collapse" />
+                        <Fold v-else />
+                    </el-icon>
                 </div>
             </el-col>
             <el-col :span="2" :lg="8" class="text-center">
@@ -38,6 +41,8 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import { SITE } from "@/main.js";
 
+import { Expand, Fold } from "@element-plus/icons-vue";
+
 // =================================================================================== //
 
 const store = useStore()
@@ -55,14 +60,6 @@ const toggleSidebar = () => {
 </script>
 
 <style scoped>
-    #qp-app-header {
-        background-color: var(--qp-primary);
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
-        box-sizing: border-box;
-        height: 64px;
-        position: relative;
-        z-index: 1;
-    }
     /* ===--- logo ---=== */
     #qp-header-logo {
         display: inline-block;
@@ -99,7 +96,7 @@ const toggleSidebar = () => {
     /* ===--- toggle-sidebar ---=== */
     #qp-header-toggle-sidebar {
         color: var(--qp-bg);
-        font-size: 32px;
+        font-size: 24px;
         line-height: 120%;
         vertical-align: middle;
         display: inline-block;
