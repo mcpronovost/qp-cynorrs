@@ -24,7 +24,7 @@
                         </el-form>
                     </el-col>
                     <el-col>
-                        <el-button>
+                        <el-button @click="closeWriting()">
                             <span v-text="$t('Cancel')"></span>
                         </el-button>
                         <el-button type="primary">
@@ -48,6 +48,11 @@ import qpCard from "@/components/basic/qpCard.vue";
 
 const store = useStore()
 const app = computed(() => store.getters.app)
+
+// =================================================================================== //
+// ===--- EMIT
+
+const emit = defineEmits(["close"])
 
 // =================================================================================== //
 // ===--- PROPS
@@ -75,6 +80,15 @@ const formNewChapter = reactive({
     description: "",
     text: ""
 })
+
+// =================================================================================== //
+// ===--- METHODS
+
+const closeWriting = () => {
+    emit("close")
+}
+
+// =================================================================================== //
 
 </script>
 

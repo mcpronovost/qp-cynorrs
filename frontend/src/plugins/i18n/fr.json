@@ -42,5 +42,7 @@
     "Discover": "Découvrir",
     "Browse": "Parcourir",
     "Quests": "Quêtes",
-    "SeeAllQuests": "Voir toutes les quêtes"
+    "SeeAllQuests": "Voir toutes les quêtes",
+    "Description": "Description",
+    "Descriptionofthenewchapter": "Courte description facultative"
 }

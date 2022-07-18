@@ -37,7 +37,7 @@
                 <qpForumBreadcrumbs v-if="['territory'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
             <template v-if="showNewChapter">
-                <qpForumWriting type="chapter" :territory="props.territory" />
+                <qpForumWriting type="chapter" :territory="props.territory" @close="closeNewChapter()" />
             </template>
             <template v-else>
                 <section v-if="['territory'].includes(props.singleton)" class="qp-forum-sectors">
@@ -46,7 +46,9 @@
                 </section>
                 <el-row v-if="['territory'].includes(props.singleton)">
                     <el-col :span="24" :md="12" :lg="17">
-                        <qpCard>aaa</qpCard>
+                        <qpCard>
+                            (en construction)
+                        </qpCard>
                     </el-col>
                     <el-col :span="24" :md="12" :lg="7">
                         <qpCard clickable bgcolor="primary" @click="openNewChapter()">
@@ -189,6 +191,10 @@ const updateCurrentPage = ($event) => {
 
 const openNewChapter = () => {
     showNewChapter.value = true
+}
+
+const closeNewChapter = () => {
+    showNewChapter.value = false
 }
 
 // =================================================================================== //

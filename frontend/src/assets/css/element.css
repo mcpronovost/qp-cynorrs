@@ -114,6 +114,9 @@
 .el-input__inner,
 .el-textarea__inner {
     color: var(--qp-secondary);
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 16px;
+    line-height: 120%;
 }
 .el-input__inner:hover,
 .el-input__inner:focus,
