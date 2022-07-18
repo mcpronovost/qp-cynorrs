@@ -139,9 +139,37 @@
     stroke-width: 6px;
 }
 
+/* ===--- MENU ---=== */
+
 .el-menu {
-    border-right: none;
+    border: none;
 }
+.el-menu--horizontal > .el-menu-item,
+.el-menu--horizontal > .el-menu-item.is-active {
+    border: none;
+    align-self: center;
+}
+.el-menu--horizontal > .el-sub-menu .el-sub-menu__title,
+.el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover,
+.el-menu--horizontal > .el-sub-menu.is-active .el-sub-menu__title {
+    background-color: transparent;
+    border: none;
+}
+.el-menu--horizontal .el-menu .el-menu-item.qp-multiline {
+    line-height: 120%;
+    white-space: normal;
+    display: block;
+    height: auto;
+    padding: 10px;
+}
+.el-menu hr {
+    background-color: var(--qp-secondary);
+    border: none;
+    height: 1px;
+    opacity: 0.25;
+}
+
+/* ===--- PAGINATION ---=== */
 
 .el-pagination {
     flex: 1 1 100%;
@@ -165,6 +193,13 @@
 .el-pagination.is-background .btn-next:hover:not([disabled]),
 .el-pagination.is-background .btn-prev:hover:not([disabled]) {
     opacity: 0.7;
+}
+
+.el-popper.is-light {
+    background-color: var(--qp-base-midbg);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
 }
 
 .el-result__title p {

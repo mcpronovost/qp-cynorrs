@@ -1,8 +1,8 @@
 <template>
     <div id="qp-app-header">
         <el-row :gutter="20" align="middle">
-            <el-col :span="11" :lg="8">
-                <div id="qp-header-logo">
+            <el-col :span="12" class="text-left">
+                <div id="qp-header-logo" @click="$router.push({name: 'Home'})">
                     <div id="qp-header-logo-img">
                         <el-image :src="logo" fit="cover">
                             <template #error>
@@ -20,16 +20,19 @@
                         <Fold v-else />
                     </el-icon>
                 </div>
-            </el-col>
-            <el-col :span="2" :lg="8" class="text-center">
-                <div id="qp-header-title">
-                    <span v-text="'Cynorrs'"></span>
+                <div id="qp-header-menu-app">
+                    <el-menu router mode="horizontal" menu-trigger="click">
+                        <el-menu-item index="discover">
+                            <span v-text="$t('Discover')"></span>
+                        </el-menu-item>
+                        <el-menu-item index="browse">
+                            <span v-text="$t('Browse')"></span>
+                        </el-menu-item>
+                    </el-menu>
                 </div>
             </el-col>
-            <el-col :span="11" :lg="8">
-                <div id="qp-header-menu">
-                    <span v-text="'Cynorrs'"></span>
-                </div>
+            <el-col :span="12" class="text-right">
+                <qpHeaderNavPlayer />
             </el-col>
         </el-row>
     </div>
@@ -42,6 +45,7 @@ import { useStore } from "vuex";
 import { SITE } from "@/main.js";
 
 import { Expand, Fold } from "@element-plus/icons-vue";
+import qpHeaderNavPlayer from "@/components/core/qpHeaderNavPlayer.vue";
 
 // =================================================================================== //
 
@@ -65,7 +69,7 @@ const toggleSidebar = () => {
         display: inline-block;
         transition: opacity 0.4s;
         padding: 0 32px 0 0;
-        margin: 0px 75px 0px 8px;
+        margin: 0px 75px 0px 0;
     }
     #qp-header-logo:hover {
         cursor: pointer;
@@ -93,11 +97,26 @@ const toggleSidebar = () => {
         vertical-align: middle;
         display: inline-block;
     }
+    @media (max-width: 1199px) {
+        #qp-header-logo {
+            padding: 0;
+            margin: 0;
+        }
+    }
+    @media (max-width: 768px) {
+        #qp-header-logo {
+            padding: 0;
+            margin: 0;
+        }
+        #qp-header-logo-title {
+            display: none;
+        }
+    }
     /* ===--- toggle-sidebar ---=== */
     #qp-header-toggle-sidebar {
         color: var(--qp-bg);
         font-size: 24px;
-        line-height: 120%;
+        line-height: 0;
         vertical-align: middle;
         display: inline-block;
         transition: opacity 0.4s;
@@ -106,10 +125,22 @@ const toggleSidebar = () => {
         cursor: pointer;
         opacity: 0.6;
     }
-    /* ===--- ---=== */
+    /* ===--- MENU-APP ---=== */
+    #qp-header-menu-app {
+        vertical-align: middle;
+        display: inline-block;
+        width: calc(100% - 350px);
+        margin: 0 0 0 32px;
+    }
+    @media (max-width: 1199px) {
+        #qp-header-menu-app {
+            width: calc(100% - 230px);
+        }
+    }
     @media (max-width: 768px) {
-        #qp-header-logo-title {
-            display: none;
+        #qp-header-menu-app {
+            width: calc(100% - 90px);
+            margin: 0;
         }
     }
 </style>

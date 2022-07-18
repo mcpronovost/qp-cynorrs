@@ -24,11 +24,6 @@
                 <span v-text="title"></span>
             </p>
         </div>
-        <div v-else>
-            <el-button>
-                <span v-text="$t('Login')"></span>
-            </el-button>
-        </div>
     </div>
 </template>
 
@@ -56,6 +51,7 @@ const title = ref("Qui ne fait que passer")
         text-align: center;
         min-height: 240px;
         position: relative;
+        transition: min-height 0.4s;
         margin: 0 0 32px;
     }
     #qp-app-sidebar.qp-collapsed #qp-sidebar-profile {
@@ -69,6 +65,7 @@ const title = ref("Qui ne fait que passer")
     #qp-sidebar-banner {
         background-color: var(--qp-secondary);
         height: 120px;
+        transition: height 0.4s;
         margin: 0 0 96px;
     }
     #qp-app-sidebar.qp-collapsed #qp-sidebar-banner {
@@ -86,6 +83,7 @@ const title = ref("Qui ne fait que passer")
         top: 60px;
         left: 0;
         right: 0;
+        transition: border-width 0.4s, height 0.4s, width 0.4s, top 0.4s;
         margin: 0 auto;
     }
     #qp-app-sidebar.qp-collapsed #qp-sidebar-avatar {
