@@ -63,6 +63,7 @@ const toggleSidebar = () => {
         position: relative;
         z-index: 1;
     }
+    /* ===--- logo ---=== */
     #qp-header-logo {
         display: inline-block;
         transition: opacity 0.4s;
@@ -95,13 +96,20 @@ const toggleSidebar = () => {
         vertical-align: middle;
         display: inline-block;
     }
+    /* ===--- toggle-sidebar ---=== */
     #qp-header-toggle-sidebar {
         color: var(--qp-bg);
         font-size: 32px;
         line-height: 120%;
         vertical-align: middle;
         display: inline-block;
+        transition: opacity 0.4s;
     }
+    #qp-header-toggle-sidebar:hover {
+        cursor: pointer;
+        opacity: 0.6;
+    }
+    /* ===--- ---=== */
     @media (max-width: 768px) {
         #qp-header-logo-title {
             display: none;

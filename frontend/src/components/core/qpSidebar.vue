@@ -38,6 +38,7 @@ const app = computed(() => store.getters.app)
         vertical-align: top;
         height: calc(100vh - 64px);
         width: 300px;
+        transition: width 0.4s;
     }
     #qp-app-sidebar.qp-collapsed {
         width: 64px;

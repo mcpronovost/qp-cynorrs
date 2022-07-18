@@ -51,6 +51,10 @@ const listHeros = computed(() => {
         display: inline-block;
         height: calc(100vh - 64px);
         width: 64px;
+        transition: width 0.4s;
+    }
+    #qp-app-sidebar.qp-collapsed + #qp-app-main + #qp-app-smallbar {
+        width: 0;
     }
     #qp-smallbar-inner {
         padding: 12px 0;
