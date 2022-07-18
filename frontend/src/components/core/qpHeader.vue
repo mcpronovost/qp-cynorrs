@@ -14,6 +14,9 @@
                         <span v-text="'Cynorrs'"></span>
                     </div>
                 </div>
+                <div v-if="app.win.w >= 1200" id="qp-header-toggle-sidebar" @click="toggleSidebar()">
+                    <el-icon class="mdi mdi-menu" />
+                </div>
             </el-col>
             <el-col :span="2" :lg="8" class="text-center">
                 <div id="qp-header-titlse">
@@ -30,12 +33,23 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
+
+// =================================================================================== //
+
+const store = useStore()
+const app = computed(() => store.getters.app)
 
 // =================================================================================== //
 // ===--- DATA
 
 const logo = ref(require("@/assets/img/logo-square-trans.png"))
+
+const toggleSidebar = () => {
+    store.commit("TOGGLE_SIDEBAR")
+}
 
 </script>
 
@@ -50,11 +64,13 @@ const logo = ref(require("@/assets/img/logo-square-trans.png"))
     }
     #qp-header-logo {
         display: inline-block;
-        transition: filter 0.4s;
+        transition: opacity 0.4s;
+        padding: 0 32px 0 0;
+        margin: 0px 75px 0px 8px;
     }
     #qp-header-logo:hover {
         cursor: pointer;
-        filter: blur(0.5px) brightness(1.1);
+        opacity: 0.6;
     }
     #qp-header-logo-img {
         background-color: #505f65;
@@ -73,6 +89,13 @@ const logo = ref(require("@/assets/img/logo-square-trans.png"))
     #qp-header-logo-title {
         color: var(--qp-bg);
         font-family: "Indie Flower", sans-serif;
+        font-size: 32px;
+        line-height: 120%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+    #qp-header-toggle-sidebar {
+        color: var(--qp-bg);
         font-size: 32px;
         line-height: 120%;
         vertical-align: middle;

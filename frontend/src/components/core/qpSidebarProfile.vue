@@ -58,6 +58,9 @@ const title = ref("Qui ne fait que passer")
         position: relative;
         margin: 0 0 32px;
     }
+    #qp-app-sidebar.qp-collapsed #qp-sidebar-profile {
+        min-height: 76px;
+    }
     #qp-sidebar-banner .el-image,
     #qp-sidebar-avatar .el-image {
         width: 100%;
@@ -67,6 +70,10 @@ const title = ref("Qui ne fait que passer")
         background-color: var(--qp-secondary);
         height: 120px;
         margin: 0 0 96px;
+    }
+    #qp-app-sidebar.qp-collapsed #qp-sidebar-banner {
+        height: 48px;
+        margin-bottom: 48px;
     }
     #qp-sidebar-avatar {
         background-color: var(--qp-secondary);
@@ -80,6 +87,12 @@ const title = ref("Qui ne fait que passer")
         left: 0;
         right: 0;
         margin: 0 auto;
+    }
+    #qp-app-sidebar.qp-collapsed #qp-sidebar-avatar {
+        border-width: 4px;
+        width: 48px;
+        height: 48px;
+        top: 18px;
     }
     #qp-sidebar-name h2 {
         color: var(--qp-primary);
@@ -100,23 +113,8 @@ const title = ref("Qui ne fait que passer")
         padding: 0;
         margin: 0;
     }
-    @media (max-width: 1199px) {
-        #qp-sidebar-profile {
-            min-height: 76px;
-        }
-        #qp-sidebar-banner {
-            height: 48px;
-            margin-bottom: 48px;
-        }
-        #qp-sidebar-avatar {
-            border-width: 4px;
-            width: 48px;
-            height: 48px;
-            top: 18px;
-        }
-        #qp-sidebar-name,
-        #qp-sidebar-title {
-            display: none;
-        }
+    #qp-app-sidebar.qp-collapsed #qp-sidebar-name,
+    #qp-app-sidebar.qp-collapsed #qp-sidebar-title {
+        display: none;
     }
 </style>

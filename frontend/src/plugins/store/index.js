@@ -10,7 +10,8 @@ const vuexLocal = new VuexPersistence({
     key: "qpcynorrs",
     storage: window.localStorage,
     reducer: (state) => ({
-        drat: state.drat
+        drat: state.drat,
+        app: state.app
     })
 })
 

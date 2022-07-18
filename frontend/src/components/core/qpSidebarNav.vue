@@ -1,6 +1,6 @@
 <template>
     <div id="qp-sidebar-nav">
-        <el-menu router :default-active="($route && $route.params && 'slug' in $route.params) ? $route.params.slug : $route.name" :collapse="app.win.w < 1200">
+        <el-menu router :default-active="($route && $route.params && 'slug' in $route.params) ? $route.params.slug : $route.name" :collapse="app.win.w < 1200 || app.sidebar?.collapse">
             <el-menu-item index="Home" :route="{name:'Home'}">
                 <i class="mdi mdi-home"></i>
                 <span v-text="$t('Home')"></span>

@@ -1,10 +1,5 @@
-<script setup>
-import qpSidebarProfile from "@/components/core/qpSidebarProfile.vue";
-import qpSidebarNav from "@/components/core/qpSidebarNav.vue";
-</script>
-
 <template>
-    <div id="qp-app-sidebar">
+    <div id="qp-app-sidebar" :class="app.win.w < 1200 || app.sidebar?.collapse ? 'qp-collapsed' : ''">
         <el-scrollbar height="100%">
             <div id="qp-sibebar-inner">
                 <div id="qp-sibebar-main">
@@ -19,6 +14,21 @@ import qpSidebarNav from "@/components/core/qpSidebarNav.vue";
     </div>
 </template>
 
+<script setup>
+
+import { computed } from "vue";
+import { useStore } from "vuex";
+
+import qpSidebarProfile from "@/components/core/qpSidebarProfile.vue";
+import qpSidebarNav from "@/components/core/qpSidebarNav.vue";
+
+// =================================================================================== //
+
+const store = useStore()
+const app = computed(() => store.getters.app)
+
+</script>
+
 <style scoped>
     #qp-app-sidebar {
         background-color: var(--qp-base);
@@ -28,6 +38,10 @@ import qpSidebarNav from "@/components/core/qpSidebarNav.vue";
         vertical-align: top;
         height: calc(100vh - 64px);
         width: 300px;
+    }
+    #qp-app-sidebar.qp-collapsed {
+        width: 64px;
+        min-width: 64px;
     }
     #qp-sibebar-inner {
         display: flex;

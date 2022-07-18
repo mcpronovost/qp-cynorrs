@@ -1,7 +1,7 @@
 <template>
-    <div v-if="rat" id="qp-app-smallbar">
+    <div id="qp-app-smallbar">
         <el-scrollbar height="100%">
-            <div id="qp-smallbar-inner">
+            <div v-if="rat" id="qp-smallbar-inner">
                 <div v-for="(hero, n) in listHeros" :key="`hero-${n}`" class="qp-smallbar-hero">
                     <el-tooltip :content="hero.name" placement="left">
                         <el-avatar :src="hero.avatar">

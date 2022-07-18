@@ -149,6 +149,10 @@ a:focus, a:hover {
     height: calc(100vh - 64px);
     width: calc(100vw - 300px - 64px);
 }
+#qp-app-sidebar.qp-collapsed + #qp-app-main {
+    width: 100vw;
+    max-width: calc(100vw - 64px);
+}
 #qp-app-main > .el-scrollbar > .el-scrollbar__wrap {
     overflow-x: hidden;
 }
@@ -156,10 +160,6 @@ a:focus, a:hover {
     display: none;
 }
 @media (max-width: 1199px) {
-    #qp-app-main {
-        width: 80vw;
-        max-width: calc(100vw - 64px);
-    }
     #qp-app-smallbar {
         display: none;
     }
