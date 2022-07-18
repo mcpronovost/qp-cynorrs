@@ -27,8 +27,39 @@
 }
 
 .el-button {
+    background-color: var(--qp-base);
+    border-color: var(--qp-tertiary);
+    color: var(--qp-secondary);
+}
+.el-button:hover,
+.el-button:focus {
+    background-color: var(--qp-base);
     border-color: var(--qp-secondary);
     color: var(--qp-primary);
+}
+.el-button:active {
+    background-color: var(--qp-base);
+    border-color: var(--qp-secondary);
+    color: var(--qp-primary);
+    opacity: 0.5;
+}
+.el-button.el-button--primary {
+    background-color: var(--qp-primary);
+    border-color: var(--qp-primary);
+    color: var(--qp-base);
+}
+.el-button.el-button--primary:hover,
+.el-button.el-button--primary:focus {
+    background-color: var(--qp-primary);
+    border-color: var(--qp-primary);
+    color: var(--qp-base);
+    opacity: 0.7;
+}
+.el-button.el-button--primary:active {
+    background-color: var(--qp-primary);
+    border-color: var(--qp-primary);
+    color: var(--qp-base);
+    opacity: 0.5;
 }
 
 .el-card {
@@ -53,6 +84,44 @@
 
 .el-col {
     padding: 12px;
+}
+
+.el-dialog {
+    background-color: var(--qp-base);
+    color: var(--qp-secondary);
+}
+.el-dialog__title {
+    color: var(--qp-primary);
+}
+.el-dialog__body {
+    color: var(--qp-secondary);
+}
+
+.el-input__wrapper,
+.el-input__wrapper:hover,
+.el-input__wrapper.is-focus,
+.el-textarea__inner,
+.el-textarea__inner:hover,
+.el-textarea__inner:focus,
+.el-textarea__inner.is-focus {
+    background-color: var(--qp-base-midbg);
+    border-radius: 0;
+    color: var(--qp-secondary);
+    box-shadow: none;
+}
+.el-input__inner,
+.el-textarea__inner {
+    color: var(--qp-secondary);
+}
+.el-input__inner:hover,
+.el-input__inner:focus,
+.el-textarea__inner:hover,
+.el-textarea__inner:focus {
+    color: var(--qp-secondary);
+}
+.el-input__inner::placeholder,
+.el-textarea__inner::placeholder {
+    color: var(--qp-tertiary);
 }
 
 .el-loading-spinner {
@@ -88,4 +157,8 @@
 .el-pagination.is-background .btn-next:hover:not([disabled]),
 .el-pagination.is-background .btn-prev:hover:not([disabled]) {
     opacity: 0.7;
+}
+
+.el-result__title p {
+    color: var(--qp-secondary);
 }

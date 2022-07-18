@@ -71,7 +71,10 @@ class qpWorldView(APIView):
             "count_chapters": world.count_chapters,
             "count_messages": world.count_messages,
             "copyright": {
-                "year": "%s-%s" % (world.created_at.year, world.updated_at.year) if world.created_at.year != world.updated_at.year else str(world.updated_at.year)
+                "year": "%s-%s" % (world.created_at.year, world.updated_at.year) if world.created_at.year != world.updated_at.year else str(world.updated_at.year),
+                "creator": "%s" % (
+                    world.creator.name if world.creator else ", ".join([a.playername for a in world.administrators.all().order_by("playername")]) if world.administrators.count() else ""
+                )
             }
         }
         if singleton in ["index"]:

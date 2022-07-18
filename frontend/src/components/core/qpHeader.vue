@@ -11,7 +11,7 @@
                         </el-image>
                     </div>
                     <div id="qp-header-logo-title">
-                        <span v-text="'Cynorrs'"></span>
+                        <span v-text="SITE.shortname"></span>
                     </div>
                 </div>
                 <div v-if="app.win.w >= 1200" id="qp-header-toggle-sidebar" @click="toggleSidebar()">
@@ -19,7 +19,7 @@
                 </div>
             </el-col>
             <el-col :span="2" :lg="8" class="text-center">
-                <div id="qp-header-titlse">
+                <div id="qp-header-title">
                     <span v-text="'Cynorrs'"></span>
                 </div>
             </el-col>
@@ -36,6 +36,7 @@
 
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
+import { SITE } from "@/main.js";
 
 // =================================================================================== //
 

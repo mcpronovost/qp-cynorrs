@@ -13,6 +13,23 @@
                     </template>
                 </el-popover>
                 <p v-if="['sector'].includes(props.singleton) && props.sector.description" class="qp-forum-header-description" v-text="props.sector.description"></p>
+                <div v-if="['territory'].includes(props.singleton)" class="qp-forum-header-lastmessage">
+                    <div :class="`qp-forum-header-lastmessage-avatar ${props.sector.last_message ? '' : 'qp-empty'}`">
+                        <el-avatar v-if="props.sector.last_message" :src="props.sector.last_message?.author?.avatar">
+                            <span v-text="props.sector.last_message?.author?.initials"></span>
+                        </el-avatar>
+                        <div v-if="props.sector.last_message" class="qp-forum-header-lastmessage-gotolast" @click="goToRoute(props.sector.last_message.routes.message)">
+                            <el-icon class="mdi mdi-arrow-bottom-right-thin-circle-outline" />
+                        </div>
+                    </div>
+                    <div class="qp-forum-header-lastmessage-infos">
+                        <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.sector.last_message.routes.chapter)">
+                            <span v-if="props.sector.last_message" class="title" v-text="props.sector.last_message.title"></span>
+                            <span v-if="props.sector.last_message" class="date" v-text="props.sector.last_message.date"></span>
+                            <span v-else class="date" v-text="$t('Never')"></span>
+                        </div>
+                    </div>
+                </div>
                 <div v-if="['sector'].includes(props.singleton)">
                     <qpActionTravel :territory="props.territory" :sector="props.sector" />
                 </div>

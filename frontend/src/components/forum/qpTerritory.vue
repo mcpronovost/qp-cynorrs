@@ -14,7 +14,7 @@
                 </el-popover>
                 <p v-if="['territory'].includes(props.singleton) && props.territory.description" class="qp-forum-header-description" v-text="props.territory.description"></p>
                 <div v-if="['index', 'zone'].includes(props.singleton)" class="qp-forum-header-lastmessage">
-                    <div class="qp-forum-header-lastmessage-avatar">
+                    <div :class="`qp-forum-header-lastmessage-avatar ${props.territory.last_message ? '' : 'qp-empty'}`">
                         <el-avatar v-if="props.territory.last_message" :src="props.territory.last_message?.author?.avatar">
                             <span v-text="props.territory.last_message?.author?.initials"></span>
                         </el-avatar>
@@ -22,10 +22,11 @@
                             <el-icon class="mdi mdi-arrow-bottom-right-thin-circle-outline" />
                         </div>
                     </div>
-                    <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-infos">
+                    <div class="qp-forum-header-lastmessage-infos">
                         <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_message.routes.chapter)">
-                            <span class="title" v-text="props.territory.last_message.title"></span>
-                            <span class="date" v-text="props.territory.last_message.date"></span>
+                            <span v-if="props.territory.last_message" class="title" v-text="props.territory.last_message.title"></span>
+                            <span v-if="props.territory.last_message" class="date" v-text="props.territory.last_message.date"></span>
+                            <span v-else class="date" v-text="$t('Never')"></span>
                         </div>
                     </div>
                 </div>
@@ -35,36 +36,61 @@
                 <hr v-if="['territory'].includes(props.singleton)" class="qp-forum-header-divider" />
                 <qpForumBreadcrumbs v-if="['territory'].includes(props.singleton)" :crumbs="listBreadcrumbs" />
             </header>
-            <section v-if="['territory'].includes(props.singleton)" class="qp-forum-sectors">
-                <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :sector="sector" :singleton="props.singleton" />
-            </section>
-            <section v-if="['territory'].includes(props.singleton)" class="qp-forum-chapters">
-                <qpForumChapter v-for="(chapter, n) in props.territory.chapters" :key="`chapter-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :singleton="props.singleton" />
-                <el-pagination
-                    background
-                    hide-on-single-page
-                    layout="prev, pager, next"
-                    :total="props.territory.count_chapters"
-                    :page-size="props.territory.perpage_chapters"
-                    :current-page="paginateCurrentPage"
-                    @update:current-page="updateCurrentPage"
-                />
-            </section>
+            <template v-if="showNewChapter">
+                <qpForumWriting type="chapter" :territory="props.territory" />
+            </template>
+            <template v-else>
+                <section v-if="['territory'].includes(props.singleton)" class="qp-forum-sectors">
+                    <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :sector="sector" :singleton="props.singleton" />
+                </section>
+                <el-row v-if="['territory'].includes(props.singleton)">
+                    <el-col :span="24" :lg="9">
+                        <qpCard>aaa</qpCard>
+                    </el-col>
+                    <el-col :span="24" :md="12" :lg="8">
+                        <qpCard>aaa</qpCard>
+                    </el-col>
+                    <el-col :span="24" :md="12" :lg="7">
+                        <qpCard clickable @click="openNewChapter()">
+                            <span v-text="$t('NewChapter')"></span>
+                        </qpCard>
+                    </el-col>
+                    <el-col :span="24" :lg="17" style="padding:0">
+                        <section v-if="['territory'].includes(props.singleton)" class="qp-forum-chapters">
+                            <qpForumChapter v-for="(chapter, n) in props.territory.chapters" :key="`chapter-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :singleton="props.singleton" />
+                            <el-pagination
+                                background
+                                hide-on-single-page
+                                layout="prev, pager, next"
+                                :total="props.territory.count_chapters"
+                                :page-size="props.territory.perpage_chapters"
+                                :current-page="paginateCurrentPage"
+                                @update:current-page="updateCurrentPage"
+                            />
+                        </section>
+                    </el-col>
+                    <el-col :span="24" :lg="7">
+                        <qpCard>quêtes</qpCard>
+                    </el-col>
+                </el-row>
+            </template>
         </div>
     </article>
 </template>
 
 <script setup>
 
-import { computed } from "vue";
+import { computed, ref } from "vue";
 // import i18n from "@/plugins/i18n";
 import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
 
+import qpCard from "@/components/basic/qpCard.vue";
 import qpActionTravel from "@/components/action/qpTravel.vue";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumSector from "@/components/forum/qpSector.vue";
 import qpForumChapter from "@/components/forum/qpChapter.vue";
+import qpForumWriting from "@/components/forum/qpWriting.vue";
 
 // =================================================================================== //
 
@@ -126,6 +152,8 @@ const paginateCurrentPage = computed(() => {
     return result
 })
 
+const showNewChapter = ref(false)
+
 // =================================================================================== //
 // ===--- METHODS
 
@@ -160,79 +188,10 @@ const updateCurrentPage = ($event) => {
     }})
 }
 
+const openNewChapter = () => {
+    showNewChapter.value = true
+}
+
 // =================================================================================== //
 
 </script>
-
-<style scoped>
-
-.qp-forum-header-lastmessage {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-    padding: 0 12px 12px;
-}
-.qp-forum-header-lastmessage-avatar {
-    border-radius: 100%;
-    overflow: hidden;
-    flex: 0 0 auto;
-    align-self: flex-end;
-    width: 110px;
-    height: 110px;
-    position: relative;
-    margin: 0 auto;
-}
-.qp-forum-header-lastmessage-avatar .el-avatar {
-    width: 100%;
-    height: 100%;
-}
-.qp-forum-header-lastmessage-avatar:hover {
-    cursor: pointer;
-}
-.qp-forum-header-lastmessage-gotolast {
-    background-color: var(--qp-base);
-    border-radius: 100%;
-    font-size: 64px;
-    line-height: 106px;
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-.qp-forum-header-lastmessage-avatar:hover .qp-forum-header-lastmessage-gotolast {
-    opacity: 0.8;
-}
-.qp-forum-header-lastmessage-infos {
-    font-family: "Roboto Condensed", sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 120%;
-    letter-spacing: 1px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: 24px 12px 12px;
-}
-.qp-forum-header-lastmessage-infos-link {
-    transition: opacity 0.3s;
-}
-.qp-forum-header-lastmessage-infos-link:hover {
-    opacity: 0.7;
-    cursor: pointer;
-}
-.qp-forum-header-lastmessage-infos-link span.title {
-    color: var(--qp-primary);
-    display: block;
-    padding: 0 6px;
-}
-.qp-forum-header-lastmessage-infos-link span.date {
-    color: var(--qp-tertiary);
-    display: block;
-    padding: 4px 6px 0;
-}
-
-</style>

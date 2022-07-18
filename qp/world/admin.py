@@ -21,6 +21,10 @@ class qpWorldAdmin(admin.ModelAdmin):
         "slug",
         "creator"
     ]
+    filter_horizontal = [
+        "administrators",
+        "moderators"
+    ]
 
 @admin.register(qpWorldZone)
 class qpWorldZoneAdmin(admin.ModelAdmin):
@@ -84,6 +88,7 @@ class qpWorldChapterAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         "get_author",
+        "get_messages",
         "sector",
         "territory",
         "get_zone",
@@ -106,6 +111,12 @@ class qpWorldChapterAdmin(admin.ModelAdmin):
             )
         return str(obj.author)
     get_author.short_description = str(_("Author"))
+
+    def get_messages(self, obj):
+        return "%s" % (
+            obj.count_messages
+        )
+    get_messages.short_description = str(_("Messages"))
 
     def get_world(self, obj):
         if obj.territory and obj.territory.zone:
