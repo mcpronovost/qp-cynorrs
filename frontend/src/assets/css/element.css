@@ -97,6 +97,8 @@
     color: var(--qp-secondary);
 }
 
+/* ===--- FORM ---=== */
+
 .el-input__wrapper,
 .el-input__wrapper:hover,
 .el-input__wrapper.is-focus,
@@ -123,6 +125,12 @@
 .el-textarea__inner::placeholder {
     color: var(--qp-tertiary);
 }
+
+.el-form-item__label {
+    color: var(--qp-secondary);
+}
+
+/* ===--- LOADING ---=== */
 
 .el-loading-spinner {
     transform: scale(2);
