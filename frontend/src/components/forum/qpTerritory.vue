@@ -42,16 +42,14 @@
             <template v-else>
                 <section v-if="['territory'].includes(props.singleton)" class="qp-forum-sectors">
                     <qpForumSector v-for="(sector, n) in props.territory.sectors" :key="`sector-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :sector="sector" :singleton="props.singleton" />
+                    <hr v-if="props.territory.sectors.length" />
                 </section>
                 <el-row v-if="['territory'].includes(props.singleton)">
-                    <el-col :span="24" :lg="9">
-                        <qpCard>aaa</qpCard>
-                    </el-col>
-                    <el-col :span="24" :md="12" :lg="8">
+                    <el-col :span="24" :md="12" :lg="17">
                         <qpCard>aaa</qpCard>
                     </el-col>
                     <el-col :span="24" :md="12" :lg="7">
-                        <qpCard clickable @click="openNewChapter()">
+                        <qpCard clickable bgcolor="primary" @click="openNewChapter()">
                             <span v-text="$t('NewChapter')"></span>
                         </qpCard>
                     </el-col>
@@ -70,7 +68,7 @@
                         </section>
                     </el-col>
                     <el-col :span="24" :lg="7">
-                        <qpCard>quêtes</qpCard>
+                        <qpCardQuestsList />
                     </el-col>
                 </el-row>
             </template>
@@ -86,6 +84,7 @@ import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
 
 import qpCard from "@/components/basic/qpCard.vue";
+import qpCardQuestsList from "@/components/widget/qpCardQuestsList.vue";
 import qpActionTravel from "@/components/action/qpTravel.vue";
 import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
 import qpForumSector from "@/components/forum/qpSector.vue";

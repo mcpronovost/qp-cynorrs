@@ -91,6 +91,7 @@
     --qp-base-midbg: #d2d7d9;
     --qp-bg: #c9cfd1;
 }
+
 html, body {
     background-color: var(--qp-bg);
     color: var(--qp-primary);
@@ -119,7 +120,21 @@ a:focus, a:hover {
     text-decoration: none;
 }
 
+hr {
+    background-color: var(--qp-base);
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
+    display: block;
+    width: 100%;
+    height: 1px;
+    opacity: 0.5;
+    padding: 0;
+    margin: 12px;
+}
+
 /* ===--- QPSTRAP ---=== */
+
 .text-left {
     text-align: left;
 }
@@ -184,7 +199,7 @@ a:focus, a:hover {
     height: calc(100vh - 64px);
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: auto;
+    flex-basis: min-content;
     transition: width 0.6s;
 }
 
@@ -291,6 +306,7 @@ a:focus, a:hover {
     font-size: 86px;
     font-weight: 300;
     line-height: 120%;
+    word-break: break-word;
     transition: opacity 0.3s;
     padding: 0;
     margin: 0;
@@ -353,6 +369,7 @@ a:focus, a:hover {
     font-size: 52px;
     font-weight: 300;
     line-height: 120%;
+    word-break: break-word;
     padding: 0 30% 12px 0;
     margin: 0;
 }
@@ -671,7 +688,7 @@ a:focus, a:hover {
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-lastmessagedate i.mdi,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-lastmessagedate i.mdi {
     font-size: 14px;
-    line-height: 100%;
+    line-height: 120%;
     margin: 0 3px 0 0;
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-countmessages,

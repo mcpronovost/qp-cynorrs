@@ -1,5 +1,10 @@
 <template>
   <div :class="`qp-card ${isClickable} ${isOverflow} ${bgColor}`" :style="`${height}${marginBottom}`">
+    <div v-if="$slots.header" class="qp-card-header">
+        <div class="qp-card-header-title">
+            <slot name="header" />
+        </div>
+    </div>
     <div class="qp-card-main">
         <slot />
     </div>
@@ -72,7 +77,7 @@ const marginBottom = computed(() => {
         transition: box-shadow 0.3s, color 0.3s, opacity 0.3s;
     }
     .qp-card.qp-card-clickable:hover {
-        color: var(--qp-primary);
+        opacity: 0.7;
         cursor: pointer;
     }
     .qp-card.qp-card-overflow {
@@ -82,6 +87,17 @@ const marginBottom = computed(() => {
         background-color: var(--qp-primary);
         color: var(--qp-base);
     }
+    /* ===--- header ---=== */
+    .qp-card-header {
+        padding: 20px 20px 0;
+    }
+    .qp-card-header-title {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 120%;
+        text-align: left;
+    }
+    /* ===--- main ---=== */
     .qp-card-main {
         padding: 20px;
     }

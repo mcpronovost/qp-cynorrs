@@ -28,7 +28,7 @@
 
 .el-button {
     background-color: var(--qp-base);
-    border-color: var(--qp-tertiary);
+    border-color: #bac2c5;
     color: var(--qp-secondary);
 }
 .el-button:hover,
@@ -195,12 +195,27 @@
     opacity: 0.7;
 }
 
+/* ===--- POPPER ---=== */
+
 .el-popper.is-light {
-    background-color: var(--qp-base-midbg);
+    --el-popover-bg-color: #e6e9eb;
+    background-color: var(--el-popover-bg-color);
     border: none;
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
 }
+.el-popper.is-light .el-popper__arrow::before {
+    background-color: var(--el-popover-bg-color);
+    border: none;
+}
+
+/* ===--- PROGRESS ---=== */
+
+.el-progress-bar__outer {
+    background-color: var(--qp-bg);
+}
+
+/* ===--- RESULT ---=== */
 
 .el-result__title p {
     color: var(--qp-secondary);
