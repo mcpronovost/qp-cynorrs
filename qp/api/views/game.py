@@ -14,9 +14,9 @@ from qp.api.views.player import (
     qpPlayerView
 )
 
-from qp.world.models import (
-    qpWorldTerritory,
-    qpWorldSector
+from qp.forum.models import (
+    qpForumTerritory,
+    qpForumSector
 )
 
 
@@ -44,11 +44,11 @@ class qpGameActionTravelView(APIView):
                     world=int(traveller["world"]),
                     is_active=True
                 )
-                territoire = qpWorldTerritory.objects.get(
+                territoire = qpForumTerritory.objects.get(
                     pk=int(territory)
                 )
                 if sector is not None:
-                    secteur = qpWorldSector.objects.get(
+                    secteur = qpForumSector.objects.get(
                         pk=int(sector)
                     )
             except ObjectDoesNotExist:

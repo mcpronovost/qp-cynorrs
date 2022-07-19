@@ -18,12 +18,12 @@ from qp.api.views.player import (
 )
 
 from qp.api.views.world import (
-    qpWorldsView,
-    qpWorldView,
-    qpWorldZoneView,
-    qpWorldTerritoryView,
-    qpWorldSectorView,
-    qpWorldChapterView
+    qpForumsView,
+    qpForumView,
+    qpForumZoneView,
+    qpForumTerritoryView,
+    qpForumSectorView,
+    qpForumChapterView
 )
 
 urlpatterns = [
@@ -35,12 +35,12 @@ urlpatterns = [
 
     path("game/action/travel/", qpGameActionTravelView.as_view()),
 
-    path("worlds/", qpWorldsView.as_view()),
-    path("worlds/<int:pk>/", qpWorldView.as_view()),
-    path("worlds/zones/<int:pk>/", qpWorldZoneView.as_view()),
-    path("worlds/territories/<int:pk>/", qpWorldTerritoryView.as_view()),
-    path("worlds/sectors/<int:pk>/", qpWorldSectorView.as_view()),
-    path("worlds/chapters/<int:pk>/", qpWorldChapterView.as_view()),
+    path("worlds/", qpForumsView.as_view()),
+    path("worlds/<int:pk>/", qpForumView.as_view()),
+    path("worlds/zones/<int:pk>/", qpForumZoneView.as_view()),
+    path("worlds/territories/<int:pk>/", qpForumTerritoryView.as_view()),
+    path("worlds/sectors/<int:pk>/", qpForumSectorView.as_view()),
+    path("worlds/chapters/<int:pk>/", qpForumChapterView.as_view()),
 
     path("register/", qpRegisterView.as_view()),
     path("login/", qpLoginView.as_view()),

@@ -147,6 +147,9 @@
 .el-menu {
     border: none;
 }
+.el-menu--horizontal {
+    border: none;
+}
 .el-menu--horizontal > .el-menu-item,
 .el-menu--horizontal > .el-menu-item.is-active {
     border: none;
@@ -166,10 +169,14 @@
     padding: 10px;
 }
 .el-menu hr {
-    background-color: var(--qp-secondary);
+    background-color: var(--qp-tertiary);
     border: none;
+    border-radius: 0;
+    box-shadow: none;
     height: 1px;
     opacity: 0.25;
+    padding: 0;
+    margin: 0;
 }
 
 /* ===--- PAGINATION ---=== */

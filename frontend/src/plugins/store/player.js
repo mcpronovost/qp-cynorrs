@@ -115,6 +115,28 @@ export const modulePlayer = {
                 }
             }
         },
+        async doRegister ({ username, email, password}) {
+            let data = new FormData()
+            data.append("username", username)
+            data.append("email", email)
+            data.append("password", password)
+            let response = await fetch(`${API}/register/`, {
+                method: "POST",
+                body: data
+            })
+            let result = await response.json()
+            if (response.status === 200) {
+                return {
+                    "valid": true,
+                    "data": result
+                }
+            } else {
+                return {
+                    "valid": false,
+                    "data": result
+                }
+            }
+        },
         async doLogin ({ commit }, { username, password}) {
             let data = new FormData()
             data.append("username", username)
@@ -129,16 +151,22 @@ export const modulePlayer = {
                 let half = Math.ceil(token.length / 2)
                 commit("SET_DRAT", token.slice(0, half))
                 commit("SET_FRAT", token.slice(half))
+                return true
+            } else {
+                return false
             }
         },
         async doLogout ({ commit, getters }) {
-            await fetch(`${API}/logout/`, {
+            let response = await fetch(`${API}/logout/`, {
                 method: "POST",
                 headers: {"Authorization": getters.rat}
             })
             commit("BATCH_PLAYER", null)
+            commit("BATCH_HEROS", null)
+            commit("BATCH_WORLDS", null)
             commit("SET_DRAT", null)
             commit("SET_FRAT", null)
+            return response
         }
     }
 }

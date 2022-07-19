@@ -1,13 +1,13 @@
 <template>
     <div id="qp-app">
-        <qpHeader />
-        <qpSidebar />
-        <div id="qp-app-main" :class="rat ? '' : 'qp-nosmallbar'">
+        <qpHeader v-if="!$route.name || !$route.name.startsWith('Auth')" />
+        <qpSidebar v-if="!$route.name || !$route.name.startsWith('Auth')" />
+        <div id="qp-app-main" :class="`${(rat ? '' : ' qp-nosmallbar')}${($route.name && $route.name.startsWith('Auth') ? ' qp-fullview' : '')}`">
             <el-scrollbar height="100%">
                 <router-view :key="$route.fullPath" />
             </el-scrollbar>
         </div>
-        <qpSmallbar />
+        <qpSmallbar v-if="!$route.name || !$route.name.startsWith('Auth')" />
     </div>
 </template>
 
