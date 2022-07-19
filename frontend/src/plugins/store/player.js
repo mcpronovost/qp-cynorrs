@@ -115,21 +115,24 @@ export const modulePlayer = {
                 }
             }
         },
-        async doRegister ({ username, email, password}) {
+        async doRegister ({ dispatch }, { username, email, password}) {
             let data = new FormData()
-            data.append("username", username)
-            data.append("email", email)
-            data.append("password", password)
+            if (username) {
+                data.append("username", username)
+            }
+            if (email) {
+                data.append("email", email)
+            }
+            if (password) {
+                data.append("password", password)
+            }
             let response = await fetch(`${API}/register/`, {
                 method: "POST",
                 body: data
             })
             let result = await response.json()
             if (response.status === 200) {
-                return {
-                    "valid": true,
-                    "data": result
-                }
+                dispatch("doLogin", {username, password})
             } else {
                 return {
                     "valid": false,

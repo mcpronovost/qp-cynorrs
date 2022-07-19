@@ -45,6 +45,17 @@
     "SeeAllQuests": "Voir toutes les quêtes",
     "Description": "Description",
     "Descriptionofthenewchapter": "Courte description facultative",
-    "Enter a valid email address.": "Veuillez entrez un courriel valide.",
-    "email": "Courriel"
+    "Enter a valid email address.": "Saisissez une adresse courriel valide.",
+    "Saisissez une adresse e-mail valide.": "Saisissez une adresse courriel valide.",
+    "email": "Courriel",
+    "Email": "Courriel",
+    "YourEmailAddress": "Votre adresse de courriel",
+    "username": "Nom d'utilisateur",
+    "Username": "Nom d'utilisateur",
+    "Ce champ est obligatoire.": "Ce champ est obligatoire.",
+    "YourPersonalUsername": "Votre nom d'utilisateur personnel",
+    "password": "Mot de passe",
+    "Password": "Mot de passe",
+    "AlreadyHaveAnAccount": "Déjà inscrit ?",
+    "DontHaveAnAccount": "Pas encore inscrit ?"
 }
