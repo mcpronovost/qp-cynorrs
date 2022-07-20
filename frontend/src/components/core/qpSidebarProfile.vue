@@ -1,14 +1,14 @@
 <template>
     <div id="qp-sidebar-profile">
         <div id="qp-sidebar-banner">
-            <el-image v-if="player?.banner" :src="player.banner" fit="cover">
+            <el-image :src="player?.banner" fit="cover">
                 <template #error>
                     <div class="image-slot"></div>
                 </template>
             </el-image>
         </div>
         <div id="qp-sidebar-avatar">
-            <el-avatar :src="player.avatar">
+            <el-avatar :src="player?.avatar">
                 <el-icon>
                     <User />
                 </el-icon>
