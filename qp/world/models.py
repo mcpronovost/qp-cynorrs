@@ -23,6 +23,18 @@ class qpWorld(models.Model):
         blank=True,
         null=True
     )
+    administrators = models.ManyToManyField(
+        "player.qpPlayer",
+        related_name="admin_worlds",
+        verbose_name=_("Administrators"),
+        blank=True
+    )
+    moderators = models.ManyToManyField(
+        "player.qpPlayer",
+        related_name="modo_worlds",
+        verbose_name=_("Moderators"),
+        blank=True
+    )
     created_at = models.DateTimeField(
         auto_now_add=True
     )
