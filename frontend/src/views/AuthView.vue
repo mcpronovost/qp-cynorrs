@@ -37,7 +37,7 @@
                                     </el-alert>
                                 </el-col>
                                 <el-col>
-                                    <el-button :loading="isLoadingSend" @click="goToHome()">
+                                    <el-button :disabled="isLoadingSend" @click="goToHome()">
                                         <span v-text="$t('Cancel')"></span>
                                     </el-button>
                                     <el-button type="primary" :loading="isLoadingSend" @click="doRegister()">
@@ -81,7 +81,7 @@
                                     </el-alert>
                                 </el-col>
                                 <el-col>
-                                    <el-button :loading="isLoadingSend" @click="goToHome()">
+                                    <el-button :disabled="isLoadingSend" @click="goToHome()">
                                         <span v-text="$t('Cancel')"></span>
                                     </el-button>
                                     <el-button type="primary" :loading="isLoadingSend" @click="doLogin()">
