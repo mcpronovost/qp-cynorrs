@@ -135,6 +135,12 @@
 
 /* ===--- LOADING ---=== */
 
+.el-image__placeholder {
+    background-color: var(--qp-secondary);
+}
+
+/* ===--- LOADING ---=== */
+
 .el-loading-spinner {
     transform: scale(2);
 }
