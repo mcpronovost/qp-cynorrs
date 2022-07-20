@@ -12,7 +12,7 @@
             </el-menu-item>
         </el-menu>
         <!---->
-        <el-menu v-else router mode="horizontal" menu-trigger="click">
+        <el-menu v-else router mode="horizontal" menu-trigger="click" :default-active="($route && $route.name) ? $route.name : null">
             <el-menu-item disabled index="notifications">
                 <el-badge :hidden="true" is-dot>
                     <el-icon class="mdi mdi-bell-outline" />
@@ -35,10 +35,10 @@
                 <el-menu-item disabled index="profile">
                     <span v-text="$t('YourProfile')"></span>
                 </el-menu-item>
-                <el-menu-item disabled index="characters">
+                <el-menu-item index="MeCharacters" :route="{name:'MeCharacters'}" :disabled="($route.name && $route.name == 'MeCharacters')">
                     <span v-text="$t('YourCharacters')"></span>
                 </el-menu-item>
-                <el-menu-item disabled index="worlds">
+                <el-menu-item index="MeWorlds" :route="{name:'MeWorlds'}" :disabled="($route.name && $route.name == 'MeWorlds')">
                     <span v-text="$t('YourWorlds')"></span>
                 </el-menu-item>
                 <hr />
@@ -49,7 +49,7 @@
                     <span v-text="$t('Settings')"></span>
                 </el-menu-item>
                 <hr />
-                <el-menu-item index="logout" :route="{name:'AuthLogout'}">
+                <el-menu-item index="AuthLogout" :route="{name:'AuthLogout'}">
                     <span v-text="$t('Logout')"></span>
                 </el-menu-item>
             </el-sub-menu>
