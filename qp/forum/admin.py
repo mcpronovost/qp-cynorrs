@@ -15,12 +15,7 @@ from qp.forum.models import (
 class qpForumAdmin(admin.ModelAdmin):
     list_display = [
         "name",
-        "creator",
         "world"
-    ]
-    filter_horizontal = [
-        "administrators",
-        "moderators"
     ]
 
 @admin.register(qpForumZone)

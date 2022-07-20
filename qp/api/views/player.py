@@ -4,6 +4,7 @@ from datetime import timedelta
 
 from django.contrib.auth.signals import user_logged_in
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 from django.utils import timezone
 
 from rest_framework import generics, status
@@ -35,8 +36,8 @@ class qpPlayerView(APIView):
         result = {
             "id": player.pk,
             "name": player.name,
-            "avatar": "https://i.servimg.com/u/f80/11/34/44/55/pachua10.jpg",
-            "banner": "https://i.servimg.com/u/f80/11/34/44/55/banner14.jpg"
+            "avatar": None,
+            "banner": None
         }
         return result
 
@@ -72,11 +73,22 @@ class qpPlayerView(APIView):
 
     def get_worlds(self, player):
         result = []
-        all_worlds = player.admin_worlds.all()
-        all_worlds |= player.modo_worlds.all()
-        for c in player.heros.all():
-            if c.world is not None:
-                all_worlds |= qpWorld.objects.filter(pk=c.world.pk)
+        all_worlds = player.admin_worlds.filter(
+            is_active=True
+        )
+        all_worlds |= player.modo_worlds.filter(
+            is_active=True
+        )
+        for h in player.heros.filter(is_active=True):
+            # if world exist and
+            # visibility is "everyone" or "registered players" or "players" or
+            # visibility is "validated players" and player is validated
+            if h.world is not None and (
+                h.world.visibility == 0 or h.world.visibility == 5 or h.world.visibility == 6 or (
+                    h.world.visibility == 4 and h.is_valid
+                )
+            ):
+                all_worlds |= qpWorld.objects.filter(pk=h.world.pk, is_active=True)
         # =-
         for world in all_worlds.distinct():
             result.append({

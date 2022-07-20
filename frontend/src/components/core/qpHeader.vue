@@ -22,10 +22,10 @@
                 </div>
                 <div id="qp-header-menu-app">
                     <el-menu router mode="horizontal" menu-trigger="click">
-                        <el-menu-item index="discover">
+                        <el-menu-item disabled index="discover">
                             <span v-text="$t('Discover')"></span>
                         </el-menu-item>
-                        <el-menu-item index="browse">
+                        <el-menu-item disabled index="browse">
                             <span v-text="$t('Browse')"></span>
                         </el-menu-item>
                     </el-menu>

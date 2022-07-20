@@ -7,7 +7,7 @@
             </el-menu-item>
             <!---->
             <template v-for="(world, n) in worlds">
-                <el-sub-menu :key="`world-nav-group-${n}`" v-if="$route.params.slug && $route.params.slug == world.slug" :index="world.slug">
+                <el-sub-menu v-if="$route.params.slug && $route.params.slug == world.slug" :key="`world-nav-group-${n}`" :index="world.slug">
                     <template #title>
                         <i class="mdi mdi-hops"></i>
                         <span v-text="world.name"></span>
@@ -20,7 +20,7 @@
                         <i class="mdi mdi-script-text"></i>
                         <span v-text="$t('Context')"></span>
                     </el-menu-item>
-                    <el-menu-item :index="world.slug" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                    <el-menu-item :index="world.slug" :route="{name:'WorldForum', params: {world_pk: world.id, slug: world.slug}}">
                         <i class="mdi mdi-forum-outline"></i>
                         <span v-text="$t('Forum')"></span>
                     </el-menu-item>
@@ -29,7 +29,7 @@
                         <span v-text="$t('Community')"></span>
                     </el-menu-item>
                 </el-sub-menu>
-                <el-menu-item :key="`world-nav-${n}`" v-else :index="world.slug" :route="{name:'World', params: {world_pk: world.id, slug: world.slug}}">
+                <el-menu-item v-else :key="`world-nav-${n}`" :index="world.slug" :route="{name:'WorldForum', params: {world_pk: world.id, slug: world.slug}}">
                     <i class="mdi mdi-hops"></i>
                     <span v-text="world.name"></span>
                 </el-menu-item>

@@ -201,6 +201,10 @@ class qpPlayerCharacter(models.Model):
         blank=False,
         null=False
     )
+    is_valid = models.BooleanField(
+        verbose_name=_("Valid"),
+        default=False
+    )
     is_active = models.BooleanField(
         verbose_name=_("Active"),
         default=True

@@ -165,7 +165,7 @@ const goToRoute = (last_route) => {
 }
 
 const goToTerritory = (territory) => {
-    router.push({name: "WorldTerritory", params: {
+    router.push({name: "WorldForumTerritory", params: {
         world_pk: props.world.id,
         slug: props.world.slug,
         zone_pk: props.zone.id,
@@ -176,7 +176,7 @@ const goToTerritory = (territory) => {
 }
 
 const updateCurrentPage = ($event) => {
-    router.push({name: "WorldTerritory", params: {
+    router.push({name: "WorldForumTerritory", params: {
         world_pk: props.world.id,
         slug: props.world.slug,
         zone_pk: props.zone.id,

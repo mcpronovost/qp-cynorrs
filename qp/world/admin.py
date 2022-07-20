@@ -16,6 +16,10 @@ class qpWorldAdmin(admin.ModelAdmin):
         "slug",
         "creator"
     ]
+    filter_horizontal = [
+        "administrators",
+        "moderators"
+    ]
 
 @admin.register(qpWorldRace)
 class qpWorldRaceAdmin(admin.ModelAdmin):

@@ -1,5 +1,6 @@
 <template>
     <div id="qp-header-menu-player">
+        <!---->
         <el-menu v-if="!rat" router mode="horizontal" menu-trigger="click">
             <el-menu-item index="AuthLogin" :route="{name:'AuthLogin'}">
                 <el-icon class="mdi mdi-power" />
@@ -10,14 +11,15 @@
                 <span v-text="$t('Register')"></span>
             </el-menu-item>
         </el-menu>
+        <!---->
         <el-menu v-else router mode="horizontal" menu-trigger="click">
-            <el-menu-item index="notifications">
-                <el-badge is-dot>
+            <el-menu-item disabled index="notifications">
+                <el-badge :hidden="true" is-dot>
                     <el-icon class="mdi mdi-bell-outline" />
                 </el-badge>
             </el-menu-item>
-            <el-menu-item index="messages">
-                <el-badge :value="123" :max="99">
+            <el-menu-item disabled index="messages">
+                <el-badge :hidden="true" :value="123" :max="99">
                     <el-icon class="mdi mdi-email-outline" />
                 </el-badge>
             </el-menu-item>
@@ -25,7 +27,7 @@
                 <template #title>
                     <span v-text="'Qamuy'"></span>
                 </template>
-                <el-menu-item index="profile" class="qp-multiline">
+                <el-menu-item disabled index="profile" class="qp-multiline">
                     <span v-text="$t('SignedInAs')"></span><br />
                     <strong v-text="'Qamuy'"></strong>
                 </el-menu-item>
@@ -43,7 +45,7 @@
                 <el-menu-item disabled index="help">
                     <span v-text="$t('Help')"></span>
                 </el-menu-item>
-                <el-menu-item index="settings">
+                <el-menu-item disabled index="settings">
                     <span v-text="$t('Settings')"></span>
                 </el-menu-item>
                 <hr />
@@ -52,6 +54,7 @@
                 </el-menu-item>
             </el-sub-menu>
         </el-menu>
+        <!---->
     </div>
 </template>
 

@@ -140,7 +140,7 @@ const paginateCurrentPage = computed(() => {
 // ===--- METHODS
 
 const goToSector = (sector) => {
-    router.push({name: "WorldSector", params: {
+    router.push({name: "WorldForumSector", params: {
         world_pk: props.world.id,
         slug: props.world.slug,
         zone_pk: props.zone.id,
@@ -153,7 +153,7 @@ const goToSector = (sector) => {
 }
 
 const updateCurrentPage = ($event) => {
-    router.push({name: "WorldSector", params: {
+    router.push({name: "WorldForumSector", params: {
         world_pk: props.world.id,
         slug: props.world.slug,
         zone_pk: props.zone.id,

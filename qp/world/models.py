@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from qp.utils import (
+    CHOIX_VISIBILITY
+)
+
 
 class qpWorld(models.Model):
     name = models.CharField(
@@ -34,6 +38,17 @@ class qpWorld(models.Model):
         related_name="modo_worlds",
         verbose_name=_("Moderators"),
         blank=True
+    )
+    visibility = models.PositiveSmallIntegerField(
+        verbose_name=_("Visibility"),
+        choices=CHOIX_VISIBILITY,
+        default=1,
+        blank=False,
+        null=False
+    )
+    is_active = models.BooleanField(
+        verbose_name=_("Active"),
+        default=True
     )
     created_at = models.DateTimeField(
         auto_now_add=True

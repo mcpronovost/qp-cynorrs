@@ -1,14 +1,5 @@
 from django.utils.translation import gettext_lazy as _
 
-CHOIX_VISIBILITY = [
-    (0, _("Everyone")),
-    (1, _("Creator Only")),
-    (2, _("Administrators")),
-    (3, _("Moderators")),
-    (4, _("Validated Players")),
-    (5, _("Players"))
-]
-
 def get_perpage(request, view):
     result = 1
     # ===---

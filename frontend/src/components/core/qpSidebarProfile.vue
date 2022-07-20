@@ -8,11 +8,11 @@
             </el-image>
         </div>
         <div id="qp-sidebar-avatar">
-            <el-image v-if="player?.avatar" :src="player.avatar" fit="cover">
-                <template #error>
-                    <div class="image-slot"></div>
-                </template>
-            </el-image>
+            <el-avatar :src="player.avatar">
+                <el-icon>
+                    <User />
+                </el-icon>
+            </el-avatar>
         </div>
         <div id="qp-sidebar-name">
             <h2>
@@ -31,16 +31,11 @@
 
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-
-// =================================================================================== //
-// ===--- STORE
+import { User } from "@element-plus/icons-vue";
 
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 const player = computed(() => store.getters.player)
-
-// =================================================================================== //
-// ===--- DATA
 
 const title = ref("Qui ne fait que passer")
 
@@ -58,7 +53,7 @@ const title = ref("Qui ne fait que passer")
         min-height: 76px;
     }
     #qp-sidebar-banner .el-image,
-    #qp-sidebar-avatar .el-image {
+    #qp-sidebar-avatar .el-avatar {
         width: 100%;
         height: 100%;
     }
@@ -76,6 +71,8 @@ const title = ref("Qui ne fait que passer")
         background-color: var(--qp-secondary);
         border: 8px solid var(--qp-base);
         border-radius: 100%;
+        font-size: 48px;
+        line-height: 100%;
         overflow: hidden;
         width: 120px;
         height: 120px;
@@ -91,6 +88,17 @@ const title = ref("Qui ne fait que passer")
         width: 48px;
         height: 48px;
         top: 18px;
+    }
+    #qp-sidebar-avatar .el-icon {
+        font-size: 48px;
+        line-height: 100%;
+        width: auto;
+        height: auto;
+        transition: font-size 0.4s;
+    }
+    #qp-app-sidebar.qp-collapsed #qp-sidebar-avatar .el-icon {
+        font-size: 34px;
+        line-height: 100%;
     }
     #qp-sidebar-name h2 {
         color: var(--qp-primary);

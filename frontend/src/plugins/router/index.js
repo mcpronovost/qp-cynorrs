@@ -47,32 +47,32 @@ const routes = [
   /* ===--- WORLD ---=== */
   {
     path: "/w:world_pk(\\d+)-:slug",
-    name: "World",
+    name: "WorldForum",
     component: ForumIndexView
   },
   {
     path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug",
-    name: "WorldZone",
+    name: "WorldForumZone",
     component: ForumIndexView
   },
   {
     path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug",
-    name: "WorldTerritory",
+    name: "WorldForumTerritory",
     component: ForumIndexView
   },
   {
     path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/s:sector_pk(\\d+)-:sector_slug",
-    name: "WorldSector",
+    name: "WorldForumSector",
     component: ForumIndexView
   },
   {
     path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/c:chapter_pk(\\d+)-:chapter_slug",
-    name: "WorldChapter",
+    name: "WorldForumChapter",
     component: ForumIndexView
   },
   {
     path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/s:sector_pk(\\d+)-:sector_slug/c:chapter_pk(\\d+)-:chapter_slug",
-    name: "WorldSectorChapter",
+    name: "WorldForumSectorChapter",
     component: ForumIndexView
   },
   /* ===--- FALLBACK ---=== */

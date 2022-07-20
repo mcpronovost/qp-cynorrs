@@ -4,8 +4,11 @@ from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from colorfield.fields import ColorField
 
+from qp.utils import (
+    CHOIX_VISIBILITY
+)
+
 from qp.forum.utils import (
-    CHOIX_VISIBILITY,
     get_perpage
 )
 
@@ -24,26 +27,6 @@ class qpForum(models.Model):
         max_length=32,
         blank=False,
         null=False
-    )
-    creator = models.ForeignKey(
-        "player.qpPlayer",
-        on_delete=models.SET_NULL,
-        related_name="creator_forums",
-        verbose_name=_("Creator"),
-        blank=True,
-        null=True
-    )
-    administrators = models.ManyToManyField(
-        "player.qpPlayer",
-        related_name="admin_forums",
-        verbose_name=_("Administrators"),
-        blank=True
-    )
-    moderators = models.ManyToManyField(
-        "player.qpPlayer",
-        related_name="modo_forums",
-        verbose_name=_("Moderators"),
-        blank=True
     )
     visibility = models.PositiveSmallIntegerField(
         verbose_name=_("Visibility"),
