@@ -5,7 +5,7 @@
             <slot name="header" />
         </div>
     </div>
-    <div class="qp-card-main">
+    <div class="qp-card-main" :style="`${padding}`">
         <slot />
     </div>
   </div>
@@ -35,6 +35,10 @@ const props = defineProps({
         type: String,
         default: ""
     },
+    pa: {
+        type: String,
+        default: "20px"
+    },
     mb: {
         type: String,
         default: ""
@@ -56,6 +60,9 @@ const bgColor = computed(() => {
 })
 const height = computed(() => {
     return (props.h ? `height:${props.h};` : "")
+})
+const padding = computed(() => {
+    return (props.pa ? `padding:${props.pa};` : "")
 })
 const marginBottom = computed(() => {
     return (props.mb ? `margin-bottom:${props.mb};` : "")

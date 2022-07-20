@@ -3,81 +3,98 @@
 
         <div v-if="!isLoading && !hasError && view">
             <div id="qp-auth">
-                <template v-if="view == 'register'">
-                    <qpCard h="auto">
-                        <div id="qp-auth-banner"></div>
-                        <el-row>
-                            <el-col>
-                                <el-form ref="formRegisterRef" :model="formRegister" :label-position="app.win.w < 1200 ? 'top' : 'right'" label-width="180px" status-icon>
-                                    <el-form-item :label="$t('Username')" prop="username" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
-                                        <el-input v-model="formRegister.username" type="text" maxlength="32" show-word-limit :placeholder="$t('YourPersonalUsername')" :prefix-icon="User" />
-                                    </el-form-item>
-                                    <el-form-item :label="$t('Email')" prop="email" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
-                                        <el-input v-model="formRegister.email" type="email" maxlength="250" :placeholder="$t('YourEmailAddress')" :prefix-icon="Message" />
-                                    </el-form-item>
-                                    <el-form-item :label="$t('Password')" prop="password" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
-                                        <el-input v-model="formRegister.password" type="password" maxlength="250" :prefix-icon="Lock" />
-                                    </el-form-item>
-                                </el-form>
-                            </el-col>
-                            <el-col v-if="hasErrorSend">
-                                <el-alert type="error" show-icon>
-                                    <template #default>
-                                        <div v-html="hasErrorSend"></div>
-                                    </template>
-                                </el-alert>
-                            </el-col>
-                            <el-col>
-                                <el-button>
-                                    <span v-text="$t('Cancel')"></span>
-                                </el-button>
-                                <el-button type="primary" @click="doRegister()">
-                                    <span v-text="$t('Send')"></span>
-                                </el-button>
-                            </el-col>
-                            <el-col>
-                                <el-link @click="goToLogin()">
-                                    <span v-text="$t('AlreadyHaveAnAccount')"></span>
-                                </el-link>
-                            </el-col>
-                        </el-row>
+                <template v-if="!rat && view == 'register'">
+                    <qpCard h="auto" pa="0">
+                        <el-scrollbar max-height="90vh">
+                            <div id="qp-auth-banner"></div>
+                            <div id="qp-auth-title">
+                                <h2>
+                                    <span v-text="$t('Register')"></span>
+                                </h2>
+                            </div>
+                            <el-row>
+                                <el-col>
+                                    <el-form ref="formRegisterRef" :model="formRegister" :label-position="app.win.w < 1200 ? 'top' : 'right'" label-width="120px" status-icon>
+                                        <el-form-item :label="$t('Username')" prop="username" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
+                                            <el-input v-model="formRegister.username" type="text" maxlength="32" show-word-limit :placeholder="$t('YourPersonalUsername')" :prefix-icon="User" />
+                                        </el-form-item>
+                                        <el-form-item :label="$t('Playername')" prop="playername" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
+                                            <el-input v-model="formRegister.playername" type="text" maxlength="32" show-word-limit :placeholder="$t('YourPublicPlayername')" :prefix-icon="User" />
+                                        </el-form-item>
+                                        <el-form-item :label="$t('Email')" prop="email" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
+                                            <el-input v-model="formRegister.email" type="email" maxlength="250" :placeholder="$t('YourEmailAddress')" :prefix-icon="Message" />
+                                        </el-form-item>
+                                        <el-form-item :label="$t('Password')" prop="password" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
+                                            <el-input v-model="formRegister.password" type="password" maxlength="250" :prefix-icon="Lock" @keyup.enter="doRegister()" />
+                                        </el-form-item>
+                                    </el-form>
+                                </el-col>
+                                <el-col v-if="hasErrorSend">
+                                    <el-alert type="error" show-icon>
+                                        <template #default>
+                                            <div v-html="hasErrorSend"></div>
+                                        </template>
+                                    </el-alert>
+                                </el-col>
+                                <el-col>
+                                    <el-button :loading="isLoadingSend">
+                                        <span v-text="$t('Cancel')"></span>
+                                    </el-button>
+                                    <el-button type="primary" :loading="isLoadingSend" @click="doRegister()">
+                                        <span v-text="$t('Send')"></span>
+                                    </el-button>
+                                </el-col>
+                                <el-col>
+                                    <el-link :disabled="isLoadingSend" @click="goToLogin()">
+                                        <span v-text="$t('AlreadyHaveAnAccount')"></span>
+                                    </el-link>
+                                </el-col>
+                            </el-row>
+                        </el-scrollbar>
                     </qpCard>
                 </template>
-                <template v-if="view == 'login'">
-                    <qpCard h="auto">
-                        <div id="qp-auth-banner"></div>
-                        <el-row>
-                            <el-col>
-                                <el-form ref="formRegisterRef" :model="formRegister" :label-position="app.win.w < 1200 ? 'top' : 'right'" label-width="180px" status-icon>
-                                    <el-form-item :label="$t('Username')" prop="username" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
-                                        <el-input v-model="formRegister.username" type="text" maxlength="32" show-word-limit :placeholder="$t('YourPersonalUsername')" :prefix-icon="User" />
-                                    </el-form-item>
-                                    <el-form-item :label="$t('Password')" prop="password" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
-                                        <el-input v-model="formRegister.password" type="password" maxlength="250" :prefix-icon="Lock" />
-                                    </el-form-item>
-                                </el-form>
-                            </el-col>
-                            <el-col v-if="hasErrorSend">
-                                <el-alert type="error" show-icon>
-                                    <template #default>
-                                        <div v-html="hasErrorSend"></div>
-                                    </template>
-                                </el-alert>
-                            </el-col>
-                            <el-col>
-                                <el-button>
-                                    <span v-text="$t('Cancel')"></span>
-                                </el-button>
-                                <el-button type="primary" @click="doRegister()">
-                                    <span v-text="$t('Send')"></span>
-                                </el-button>
-                            </el-col>
-                            <el-col>
-                                <el-link @click="goToRegister()">
-                                    <span v-text="$t('DontHaveAnAccount')"></span>
-                                </el-link>
-                            </el-col>
-                        </el-row>
+                <template v-if="!rat && view == 'login'">
+                    <qpCard h="auto" pa="0">
+                        <el-scrollbar max-height="90vh">
+                            <div id="qp-auth-banner"></div>
+                            <div id="qp-auth-title">
+                                <h2>
+                                    <span v-text="$t('Login')"></span>
+                                </h2>
+                            </div>
+                            <el-row>
+                                <el-col>
+                                    <el-form ref="formLoginRef" :model="formLogin" :label-position="app.win.w < 1200 ? 'top' : 'right'" label-width="120px" status-icon>
+                                        <el-form-item :label="$t('Username')" prop="username" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
+                                            <el-input v-model="formLogin.username" type="text" maxlength="32" show-word-limit :placeholder="$t('YourPersonalUsername')" :prefix-icon="User" />
+                                        </el-form-item>
+                                        <el-form-item :label="$t('Password')" prop="password" :rules="[{required: true, message: $t('Thisfieldisrequired'), trigger: 'blur'}]">
+                                            <el-input v-model="formLogin.password" type="password" maxlength="250" :prefix-icon="Lock" @keyup.enter="doLogin()" />
+                                        </el-form-item>
+                                    </el-form>
+                                </el-col>
+                                <el-col v-if="hasErrorSend">
+                                    <el-alert type="error" show-icon>
+                                        <template #default>
+                                            <div v-html="hasErrorSend"></div>
+                                        </template>
+                                    </el-alert>
+                                </el-col>
+                                <el-col>
+                                    <el-button>
+                                        <span v-text="$t('Cancel')"></span>
+                                    </el-button>
+                                    <el-button type="primary" @click="doLogin()">
+                                        <span v-text="$t('Send')"></span>
+                                    </el-button>
+                                </el-col>
+                                <el-col>
+                                    <el-link @click="goToRegister()">
+                                        <span v-text="$t('DontHaveAnAccount')"></span>
+                                    </el-link>
+                                </el-col>
+                            </el-row>
+                        </el-scrollbar>
                     </qpCard>
                 </template>
                 <template v-if="view == 'logout'">
@@ -100,7 +117,10 @@
         <div v-else>
             <div id="qp-auth">
                 <qpCard h="auto">
-                    <el-result icon="error" :title="$t('Error')" :sub-title="hasError" />
+                    <el-result icon="error" :title="$t('Error')" :sub-title="hasError" style="padding-bottom:24px" />
+                    <el-button @click="goToHome()" style="margin-bottom:40px">
+                        <span v-text="$t('BackToHome')"></span>
+                    </el-button>
                 </qpCard>
             </div>
         </div>
@@ -127,16 +147,18 @@ const router = useRouter()
 const store = useStore()
 
 const app = computed(() => store.getters.app)
+const rat = computed(() => store.getters.rat)
 
 const isLoading = ref(true)
+const isLoadingSend = ref(false)
 const hasError = ref(null)
 const hasErrorSend = ref(null)
 const view = ref(null)
 
 onMounted(() => {
-    if (route.name == "AuthRegister") {
+    if (!rat.value && route.name == "AuthRegister") {
         goToRegister()
-    } else if (route.name == "AuthLogin") {
+    } else if (!rat.value && route.name == "AuthLogin") {
         goToLogin()
     } else if (route.name == "AuthLogout") {
         view.value = "logout"
@@ -149,21 +171,29 @@ onMounted(() => {
 
 const goToRegister = () => {
     view.value = "register"
+    history.pushState(history.state, null, "/register")
 }
 
 const goToLogin = () => {
     view.value = "login"
+    history.pushState(history.state, null, "/login");
+}
+
+const goToHome = () => {
+    router.push({name: "Home"})
 }
 
 const formRegisterRef = ref()
 const formRegister = reactive({
     username: "",
+    playername: "",
     email: "",
     password: ""
 })
 
 const doRegister = async () => {
     hasErrorSend.value = null
+    isLoadingSend.value = true
     await formRegisterRef.value.validate((valid, fields) => {
         if (valid) {
             sendRegister()
@@ -174,21 +204,64 @@ const doRegister = async () => {
                     hasErrorSend.value = `${k} : ${v.message}`
                 }
             }
+            isLoadingSend.value = false
         }
     })
 }
 
 const sendRegister = async () => {
     hasErrorSend.value = null
+    isLoadingSend.value = true
     const r = await store.dispatch("doRegister", formRegister)
     if (r.valid) {
-        console.log(r)
+        router.push({name: "Home"})
     } else {
         for (let [key, val] of Object.entries(r.data)) {
             let k = t(`${key}`)
             let v = t(`${val}`)
             hasErrorSend.value = `${k} : ${v}`
         }
+        isLoadingSend.value = false
+    }
+}
+
+const formLoginRef = ref()
+const formLogin = reactive({
+    username: "",
+    password: ""
+})
+
+const doLogin = async () => {
+    hasErrorSend.value = null
+    isLoadingSend.value = true
+    await formLoginRef.value.validate((valid, fields) => {
+        if (valid) {
+            sendLogin()
+        } else {
+            for (let [key, val] of Object.entries(fields)) {
+                let k = t(`${key}`)
+                for (let v of val) {
+                    hasErrorSend.value = `${k} : ${v.message}`
+                }
+            }
+            isLoadingSend.value = false
+        }
+    })
+}
+
+const sendLogin = async () => {
+    hasErrorSend.value = null
+    isLoadingSend.value = true
+    const r = await store.dispatch("doLogin", formLogin)
+    if (r.valid) {
+        router.push({name: "Home"})
+    } else {
+        for (let [key, val] of Object.entries(r.data)) {
+            let k = t(`${key}`)
+            let v = t(`${val}`)
+            hasErrorSend.value = `${k} : ${v}`
+        }
+        isLoadingSend.value = false
     }
 }
 
@@ -202,9 +275,31 @@ const doLogout = async () => {
 </script>
 
 <style scoped>
+#qp-auth {
+    background-color: var(--qp-primary);
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    margin: 0 auto;
+}
+#qp-auth .qp-card {
+    max-width: 500px;
+}
 #qp-auth-banner {
     background-color: #8f999e;
     height: 200px;
-    margin: -20px -20px 20px;
+    margin: 0 0 20px;
+}
+#qp-auth-title h2 {
+    font-family: "Quicksand", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 120%;
+    padding: 12px;
+    margin: 0 0 12px;
 }
 </style>

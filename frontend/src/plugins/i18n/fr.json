@@ -57,5 +57,14 @@
     "password": "Mot de passe",
     "Password": "Mot de passe",
     "AlreadyHaveAnAccount": "Déjà inscrit ?",
-    "DontHaveAnAccount": "Pas encore inscrit ?"
+    "DontHaveAnAccount": "Pas encore inscrit ?",
+    "YourPublicPlayername": "Votre nom de joueur public",
+    "Playername": "Nom de joueur",
+    "playername": "Nom de joueur",
+    "A user with that username already exists.": "Un joueur avec ce nom existe déjà.",
+    "A user with that email already exists.": "Un joueur avec cette adresse courriel existe déjà.",
+    "A player with that playername already exists.": "Un joueur avec ce nom existe déjà.",
+    "That password is too short.": "Ce mot de passe est trop court.",
+    "non_field_errors": "Erreur",
+    "BackToHome": "Retour à l'accueil"
 }

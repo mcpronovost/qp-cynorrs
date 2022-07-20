@@ -115,10 +115,13 @@ export const modulePlayer = {
                 }
             }
         },
-        async doRegister ({ dispatch }, { username, email, password}) {
+        async doRegister ({ dispatch }, { username, playername, email, password}) {
             let data = new FormData()
             if (username) {
                 data.append("username", username)
+            }
+            if (playername) {
+                data.append("playername", playername)
             }
             if (email) {
                 data.append("email", email)
@@ -132,7 +135,7 @@ export const modulePlayer = {
             })
             let result = await response.json()
             if (response.status === 200) {
-                dispatch("doLogin", {username, password})
+                return dispatch("doLogin", {username, password})
             } else {
                 return {
                     "valid": false,
@@ -148,15 +151,18 @@ export const modulePlayer = {
                 method: "POST",
                 body: data
             })
+            let result = await response.json()
             if (response.status === 200) {
-                let result = await response.json()
                 let token = result.token
                 let half = Math.ceil(token.length / 2)
                 commit("SET_DRAT", token.slice(0, half))
                 commit("SET_FRAT", token.slice(half))
-                return true
+                return {"valid": true}
             } else {
-                return false
+                return {
+                    "valid": false,
+                    "data": result
+                }
             }
         },
         async doLogout ({ commit, getters }) {

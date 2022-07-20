@@ -147,16 +147,17 @@ class qpPlayerHeroView(APIView):
         })
 
 
-class qpRegisterView(generics.GenericAPIView):
+class qpRegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = qpPlayerCreateSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        return Response({
-            "valid": True
-        })
+        if serializer.is_valid(raise_exception=True):
+            serializer.create(request.data)
+            return Response({
+                "valid": True
+            })
 
 
 class qpLoginView(generics.GenericAPIView):

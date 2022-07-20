@@ -42,7 +42,7 @@ urlpatterns = [
     path("worlds/sectors/<int:pk>/", qpForumSectorView.as_view()),
     path("worlds/chapters/<int:pk>/", qpForumChapterView.as_view()),
 
-    path("register/", qpRegisterView.as_view()),
+    path("register/", qpRegisterView.as_view(), name="auth_register"),
     path("login/", qpLoginView.as_view()),
     path("logout/", knox_views.LogoutAllView.as_view(), name="knox_logoutall")
 ]
