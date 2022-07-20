@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory } from "vue-router"
 import store from "@/plugins/store"
-import HomeView from "@/views/HomeView.vue"
-import AuthView from "@/views/AuthView.vue"
-import AboutView from "@/views/AboutView.vue"
-import HeroDetailView from "@/views/player/HeroDetailView.vue"
-import ForumIndexView from "@/views/forum/IndexView.vue"
-import ErrorView from "@/views/ErrorView.vue"
+
+import HomeView from "@/views/HomeView.vue";
+import MeWorldsView from "@/views/player/MeWorldsView.vue";
+import HeroDetailView from "@/views/player/HeroDetailView.vue";
+import ErrorView from "@/views/ErrorView.vue";
+
+import { authRoutes } from "@/plugins/router/auth";
+import { worldRoutes } from "@/plugins/router/world";
 
 const routes = [
   {
@@ -13,67 +15,21 @@ const routes = [
     name: "Home",
     component: HomeView
   },
-  {
-    path: "/register",
-    name: "AuthRegister",
-    component: AuthView
-  },
-  {
-    path: "/login",
-    name: "AuthLogin",
-    component: AuthView
-  },
-  {
-    path: "/logout",
-    name: "AuthLogout",
-    component: AuthView
-  },
-  {
-    path: "/about",
-    name: "About",
-    component: AboutView
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: AboutView
-  },
   /* ===--- PLAYER ---=== */
+  {
+    path: "/me/characters",
+    name: "MeCharacters",
+    component: MeWorldsView
+  },
+  {
+    path: "/me/worlds",
+    name: "MeWorlds",
+    component: MeWorldsView
+  },
   {
     path: "/heros/:pk",
     name: "HeroDetail",
     component: HeroDetailView
-  },
-  /* ===--- WORLD ---=== */
-  {
-    path: "/w:world_pk(\\d+)-:slug",
-    name: "WorldForum",
-    component: ForumIndexView
-  },
-  {
-    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug",
-    name: "WorldForumZone",
-    component: ForumIndexView
-  },
-  {
-    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug",
-    name: "WorldForumTerritory",
-    component: ForumIndexView
-  },
-  {
-    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/s:sector_pk(\\d+)-:sector_slug",
-    name: "WorldForumSector",
-    component: ForumIndexView
-  },
-  {
-    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/c:chapter_pk(\\d+)-:chapter_slug",
-    name: "WorldForumChapter",
-    component: ForumIndexView
-  },
-  {
-    path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/s:sector_pk(\\d+)-:sector_slug/c:chapter_pk(\\d+)-:chapter_slug",
-    name: "WorldForumSectorChapter",
-    component: ForumIndexView
   },
   /* ===--- FALLBACK ---=== */
   {
@@ -82,6 +38,9 @@ const routes = [
     component: ErrorView
   }
 ]
+
+routes.push(...authRoutes)
+routes.push(...worldRoutes)
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
