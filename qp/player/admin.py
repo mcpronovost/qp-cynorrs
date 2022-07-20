@@ -40,6 +40,12 @@ class qpPlayerAdmin(admin.ModelAdmin):
                 "affinity"
             ]
         }),
+        (_("Limits"), {
+            "fields": [
+                "limits_create_worlds",
+                "limits_create_heros"
+            ]
+        }),
         (_("Settings"), {
             "fields": [
                 "settings_perpage_chapters",

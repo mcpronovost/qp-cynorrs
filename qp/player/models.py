@@ -50,14 +50,26 @@ class qpPlayer(models.Model):
         blank=True,
         null=True
     )
+    limits_create_worlds = models.PositiveSmallIntegerField(
+        verbose_name=_("World Creation Limit"),
+        default=2,
+        blank=False,
+        null=False
+    )
+    limits_create_heros = models.PositiveSmallIntegerField(
+        verbose_name=_("Hero Creation Limit"),
+        default=10,
+        blank=False,
+        null=False
+    )
     settings_perpage_chapters = models.PositiveSmallIntegerField(
-        verbose_name=_("Chapitres par page"),
+        verbose_name=_("Chapitres per page"),
         default=12,
         blank=False,
         null=False
     )
     settings_perpage_messages = models.PositiveSmallIntegerField(
-        verbose_name=_("Messages par page"),
+        verbose_name=_("Messages per page"),
         default=20,
         blank=False,
         null=False
