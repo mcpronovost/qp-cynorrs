@@ -31,17 +31,26 @@
     border-color: #bac2c5;
     color: var(--qp-secondary);
 }
-.el-button:hover,
-.el-button:focus {
+.el-button:not(.is-disabled):hover,
+.el-button:not(.is-disabled):focus {
     background-color: var(--qp-base);
     border-color: var(--qp-secondary);
     color: var(--qp-primary);
 }
-.el-button:active {
+.el-button:not(.is-disabled):active {
     background-color: var(--qp-base);
     border-color: var(--qp-secondary);
     color: var(--qp-primary);
     opacity: 0.5;
+}
+.el-button.is-disabled,
+.el-button.is-disabled:hover,
+.el-button.is-disabled:focus,
+.el-button.is-disabled:active {
+    background-color: var(--qp-base);
+    border-color: #bac2c5;
+    color: var(--qp-tertiary);
+    opacity: 0.7;
 }
 .el-button.el-button--primary {
     background-color: var(--qp-primary);
@@ -235,4 +244,11 @@
 
 .el-result__title p {
     color: var(--qp-secondary);
+}
+
+/* ===--- TAG ---=== */
+
+.el-tag--plain.el-tag--danger {
+    --el-tag-border-color: var(--el-color-danger);
+    --el-tag-hover-color: var(--el-color-danger);
 }

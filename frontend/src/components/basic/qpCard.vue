@@ -83,9 +83,14 @@ const marginBottom = computed(() => {
         height: 100%;
         transition: box-shadow 0.3s, color 0.3s, opacity 0.3s;
     }
-    .qp-card.qp-card-clickable:hover {
-        opacity: 0.7;
+    .qp-card.qp-card-clickable:hover,
+    .qp-card.qp-card-clickable:focus {
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        opacity: 0.9;
         cursor: pointer;
+    }
+    .qp-card.qp-card-clickable:active {
+        opacity: 0.5;
     }
     .qp-card.qp-card-overflow {
         overflow: visible;

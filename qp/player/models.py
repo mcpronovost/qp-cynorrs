@@ -119,6 +119,16 @@ class qpPlayer(models.Model):
                 )
             )
         return "-"
+    
+    def can_create_worlds(self):
+        if self.creator_worlds.count() < self.limits_create_worlds:
+            return True
+        return False
+    
+    def can_create_heros(self):
+        if self.heros.count() < self.limits_create_heros:
+            return True
+        return False
 
 
 class qpPlayerCharacter(models.Model):

@@ -66,5 +66,11 @@
     "A player with that playername already exists.": "Un joueur avec ce nom existe déjà.",
     "That password is too short.": "Ce mot de passe est trop court.",
     "non_field_errors": "Erreur",
-    "BackToHome": "Retour à l'accueil"
+    "BackToHome": "Retour à l'accueil",
+    "CreateWorld": "Créer un monde",
+    "Closed": "Fermé",
+    "Player": "Joueur | Joueur | Joueurs",
+    "Character": "Personnage | Personnage | Personnages",
+    "Chapter": "Chapitre | Chapitre | Chapitres",
+    "Message": "Message | Message | Messages"
 }

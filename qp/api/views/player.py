@@ -37,8 +37,18 @@ class qpPlayerView(APIView):
             "id": player.pk,
             "name": player.name,
             "avatar": None,
-            "banner": None
+            "banner": None,
+            "limits": {
+                "create_worlds": player.limits_create_worlds,
+                "can_create_worlds": player.can_create_worlds(),
+                "create_heros": player.limits_create_heros,
+                "can_create_heros": player.can_create_heros()
+            }
         }
+
+        # ===---
+
+        # ===---
         return result
 
     def get_heros(self, player):
