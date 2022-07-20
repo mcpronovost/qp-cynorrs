@@ -37,7 +37,7 @@
                                     </el-alert>
                                 </el-col>
                                 <el-col>
-                                    <el-button :loading="isLoadingSend">
+                                    <el-button :loading="isLoadingSend" @click="goToHome()">
                                         <span v-text="$t('Cancel')"></span>
                                     </el-button>
                                     <el-button type="primary" :loading="isLoadingSend" @click="doRegister()">
@@ -81,15 +81,15 @@
                                     </el-alert>
                                 </el-col>
                                 <el-col>
-                                    <el-button>
+                                    <el-button :loading="isLoadingSend" @click="goToHome()">
                                         <span v-text="$t('Cancel')"></span>
                                     </el-button>
-                                    <el-button type="primary" @click="doLogin()">
+                                    <el-button type="primary" :loading="isLoadingSend" @click="doLogin()">
                                         <span v-text="$t('Send')"></span>
                                     </el-button>
                                 </el-col>
                                 <el-col>
-                                    <el-link @click="goToRegister()">
+                                    <el-link :disabled="isLoadingSend" @click="goToRegister()">
                                         <span v-text="$t('DontHaveAnAccount')"></span>
                                     </el-link>
                                 </el-col>
