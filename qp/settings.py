@@ -114,7 +114,9 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny"
-    ]
+    ],
+    "DEFAULT_PAGINATION_CLASS": "qp.api.pagination.qpPagination",
+    "PAGE_SIZE": 100
 }
 
 REST_KNOX = {

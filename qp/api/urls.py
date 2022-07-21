@@ -17,13 +17,18 @@ from qp.api.views.player import (
     qpLoginView
 )
 
-from qp.api.views.world import (
+from qp.api.views.forum import (
     qpForumsView,
     qpForumView,
     qpForumZoneView,
     qpForumTerritoryView,
     qpForumSectorView,
     qpForumChapterView
+)
+
+from qp.api.views.world import (
+    qpWorldsListView,
+    qpWorldsCreateView
 )
 
 urlpatterns = [
@@ -35,7 +40,9 @@ urlpatterns = [
 
     path("game/action/travel/", qpGameActionTravelView.as_view()),
 
-    path("worlds/", qpForumsView.as_view()),
+    path("worlds/", qpWorldsListView.as_view()),
+    path("worlds/create/", qpWorldsCreateView.as_view()),
+
     path("worlds/<int:pk>/", qpForumView.as_view()),
     path("worlds/zones/<int:pk>/", qpForumZoneView.as_view()),
     path("worlds/territories/<int:pk>/", qpForumTerritoryView.as_view()),

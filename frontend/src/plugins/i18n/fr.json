@@ -72,5 +72,6 @@
     "Player": "Joueur | Joueur | Joueurs",
     "Character": "Personnage | Personnage | Personnages",
     "Chapter": "Chapitre | Chapitre | Chapitres",
-    "Message": "Message | Message | Messages"
+    "Message": "Message | Message | Messages",
+    "NoWorldCreated": "Aucun monde créé"
 }

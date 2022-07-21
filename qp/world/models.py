@@ -19,6 +19,12 @@ class qpWorld(models.Model):
         blank=True,
         null=True
     )
+    description = models.CharField(
+        verbose_name=_("Description"),
+        max_length=250,
+        blank=True,
+        null=True
+    )
     creator = models.ForeignKey(
         "player.qpPlayer",
         on_delete=models.SET_NULL,
@@ -69,6 +75,37 @@ class qpWorld(models.Model):
         return "%s" % (
             str(self.name)
         )
+    
+    @property
+    def count_players(self):
+        result = 0
+        try:
+            result = self.heros.filter(is_active=True).values_list("player").distinct().count()
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_heros(self):
+        return self.heros.filter(is_active=True).count()
+    
+    @property
+    def count_chapters(self):
+        result = 0
+        try:
+            result = self.forum.count_chapters
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_messages(self):
+        result = 0
+        try:
+            result = self.forum.count_messages
+        except Exception:
+            pass
+        return result
 
 
 class qpWorldRace(models.Model):
