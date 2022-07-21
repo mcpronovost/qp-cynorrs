@@ -1,10 +1,23 @@
+import WorldView from "@/views/WorldView.vue"
 import ForumIndexView from "@/views/forum/IndexView.vue"
 
 export const worldRoutes = [
   {
+    path: "/w/:slug",
+    name: "World",
+    component: WorldView,
+    children: [
+      {
+        path: "forum",
+        name: "WorldForum",
+        component: ForumIndexView
+      }
+    ]
+  },
+  {
     path: "/w:world_pk(\\d+)-:slug",
-    name: "WorldForum",
-    component: ForumIndexView
+    name: "World2",
+    component: WorldView
   },
   {
     path: "/w:world_pk(\\d+)-:slug/z:zone_pk(\\d+)-:zone_slug",

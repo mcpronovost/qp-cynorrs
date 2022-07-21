@@ -73,5 +73,6 @@
     "Character": "Personnage | Personnage | Personnages",
     "Chapter": "Chapitre | Chapitre | Chapitres",
     "Message": "Message | Message | Messages",
-    "NoWorldCreated": "Aucun monde créé"
+    "NoWorldCreated": "Aucun monde créé",
+    "ThisForumDoesntExistAnymore": "Ce forum n'existe pas ou plus"
 }

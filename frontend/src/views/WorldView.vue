@@ -1,12 +1,13 @@
 <template>
     <div class="qp-vue">
 
-        <div v-if="!isLoading && !hasError && forum">
-            <div class="qp-container">
-                <section v-if="route.name == 'WorldForum'" class="qp-forum-zones">
-                    <qpForumZone v-for="(z, n) in forum.zones" :key="`zones-${n}`" :world="props.world" :forum="forum" :zone="z" :singleton="singleton" />
-                </section>
-            </div>
+        <div v-if="!isLoading && !hasError && world">
+            <header class="qp-world-header">
+                <h1 class="qp-world-header-name">
+                    <span v-text="world.name"></span>
+                </h1>
+            </header>
+            <router-view :world="world" />
         </div>
 
         <div v-else-if="isLoading">
@@ -35,7 +36,6 @@ import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
 import qpCard from "@/components/basic/qpCard.vue";
-import qpForumZone from "@/components/forum/qpZone.vue";
 
 const { t } = i18n.global
 
@@ -43,46 +43,39 @@ const route = useRoute()
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 
-const props = defineProps({
-    world: {
-        type: Object,
-        default: () => {}
-    }
-})
-
 const isLoading = ref(true)
 const hasError = ref(null)
-const singleton = ref("index")
 
 onMounted(() => {
     initWorld()
 })
 
-const forum = ref(null)
+const world = ref(null)
 
 const initWorld = async () => {
     isLoading.value = true
     hasError.value = null
     // ===---
     try {
-        let response = await fetch(`${API}/worlds/forums/1/`, {
+        let response = await fetch(`${API}/worlds/${route.params.slug}/`, {
             method: "GET",
             headers: {"Authorization": rat.value}
         })
         let r = await response.json()
         if (response.status === 200) {
-            forum.value = r
+            world.value = r
         } else {
             throw response
         }
     } catch (e) {
         if (e.status === 404) {
-            hasError.value = t("ThisForumDoesntExistAnymore")
+            hasError.value = t("ThisWorldDoesntExistAnymore")
         } else {
             hasError.value = t("AnErrorOccurred")
         }
     }
     // ===---
+    console.log("what")
     isLoading.value = false
 }
 
