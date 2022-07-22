@@ -1,13 +1,12 @@
 <template>
-    <div class="qp-vue">
+    <div class="qp-vue qp-forum qp-singleton-zone">
 
-        <div v-if="!isLoading && !hasError && world">
-            <header class="qp-world-header">
-                <h1 class="qp-world-header-name">
-                    <span v-text="world.name"></span>
-                </h1>
-            </header>
-            <router-view :world="world" />
+        <div v-if="!isLoading && !hasError && zone">
+            <div class="qp-container">
+                <section class="qp-forum-zones">
+                    <qpForumZone :world="props.world" :zone="zone" :singleton="'zone'" />
+                </section>
+            </div>
         </div>
 
         <qpForumLoadError v-else :isloading="isLoading" :hasError="hasError" />
@@ -23,6 +22,7 @@ import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
+import qpForumZone from "@/components/forum/qpZone.vue";
 import qpForumLoadError from "@/components/forum/qpLoadError.vue";
 
 const { t } = i18n.global
@@ -31,35 +31,42 @@ const route = useRoute()
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 
+const props = defineProps({
+    world: {
+        type: Object,
+        default: () => {}
+    }
+})
+
 const isLoading = ref(true)
 const hasError = ref(null)
 
 onMounted(() => {
-    initWorld()
+    initForumZone()
 })
 
-const world = ref(null)
+const zone = ref(null)
 
-const initWorld = async () => {
+const initForumZone = async () => {
     isLoading.value = true
     hasError.value = null
     // ===---
     try {
-        let response = await fetch(`${API}/worlds/${route.params.slug}/`, {
+        let response = await fetch(`${API}/worlds/zones/${route.params.zone_pk}/`, {
             method: "GET",
             headers: {"Authorization": rat.value}
         })
         let r = await response.json()
         if (response.status === 200) {
-            world.value = r
+            zone.value = r
         } else {
             throw response
         }
     } catch (e) {
         if (e.status === 403) {
-            hasError.value = t("YouDoesntHaveAccessToThisWorld")
+            hasError.value = t("YouDoesntHaveAccessToThisZone")
         } else if (e.status === 404) {
-            hasError.value = t("ThisWorldDoesntExistAnymore")
+            hasError.value = t("ThisZoneDoesntExistAnymore")
         } else {
             hasError.value = t("AnErrorOccurred")
         }

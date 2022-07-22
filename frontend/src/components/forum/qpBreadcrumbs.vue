@@ -36,19 +36,16 @@ const props = defineProps({
 const goToView = (view, data) => {
     if (view == "world") {
         router.push({name: "WorldForum", params: {
-            world_pk: data.world.id,
             slug: data.world.slug
         }})
     } else if (view == "zone") {
         router.push({name: "WorldForumZone", params: {
-            world_pk: data.world.id,
             slug: data.world.slug,
             zone_pk: data.zone.id,
             zone_slug: slugify(data.zone.name)
         }})
     } else if (view == "territory") {
         router.push({name: "WorldForumTerritory", params: {
-            world_pk: data.world.id,
             slug: data.world.slug,
             zone_pk: data.zone.id,
             zone_slug: slugify(data.zone.name),
@@ -57,7 +54,6 @@ const goToView = (view, data) => {
         }})
     } else if (view == "sector") {
         router.push({name: "WorldForumSector", params: {
-            world_pk: data.world.id,
             slug: data.world.slug,
             zone_pk: data.zone.id,
             zone_slug: slugify(data.zone.name),

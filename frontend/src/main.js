@@ -38,6 +38,10 @@ app.config.globalProperties.$filters = {
             return num >= item.value;
         });
         return item ? (num / item.value).toFixed(digits).replace(rx, "$1") + item.symbol : "0";
+    },
+    date_to_str(date) {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", hour12: false };
+        return new Date(date).toLocaleString("fr", options)
     }
 }
 

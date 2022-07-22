@@ -76,6 +76,37 @@ class qpWorld(models.Model):
             str(self.name)
         )
     
+    def get_is_visible(self, request):
+        try:
+            player = request.user.player or request.user.is_authenticated
+            if player is None:
+                return self.visibility == 0 and self.is_active
+            else:
+                return self.creator == player or (
+                    (self.is_active and (
+                        self.visibility == 0 or self.visibility == 6 or (
+                            self.visibility == 2 and player in self.administrators.all()
+                        ) or (
+                            self.visibility == 3 and (player in self.administrators.all() or player in self.moderators.all())
+                        ) or (
+                            self.visibility == 4 and (
+                                player in self.administrators.all() or 
+                                player in self.moderators.all() or 
+                                player.heros.filter(world=self, is_valid=True, is_active=True).count()
+                            )
+                        ) or (
+                            self.visibility == 5 and (
+                                player in self.administrators.all() or 
+                                player in self.moderators.all() or 
+                                player.heros.filter(world=self, is_active=True).count()
+                            )
+                        )
+                    ))
+                )
+        except:
+            pass
+        return False
+    
     @property
     def count_players(self):
         result = 0

@@ -39,6 +39,7 @@
             <section v-if="props.singleton == 'chapter'" class="qp-forum-messages">
                 <qpForumMessage v-for="(message, n) in props.chapter.messages" :key="`message-${n}`" :world="props.world" :zone="props.zone" :territory="props.territory" :chapter="chapter" :message="message" :singleton="props.singleton" />
                 <el-pagination
+                    v-if="props.chapter.messages.length"
                     background
                     hide-on-single-page
                     layout="prev, pager, next"
@@ -149,7 +150,7 @@ const listBreadcrumbs = computed(() => {
 
 const paginateCurrentPage = computed(() => {
     let result = 1
-    if (["chapter"].includes(props.singleton) && "page" in route.query && Number(route.query.page) > 0) {
+    if ("page" in route.query && Number(route.query.page) > 0) {
         result = Number(route.query.page)
     }
     return result

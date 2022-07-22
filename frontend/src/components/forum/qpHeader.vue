@@ -5,7 +5,7 @@
         </h2>
         <p v-if="props.description" class="qp-forum-header-description" v-text="props.description"></p>
         <hr class="qp-forum-header-divider" />
-        <qpForumBreadcrumbs v-if="showBreacrumbs" :crumbs="props.crumbs" />
+        <qpForumBreadcrumbs v-if="props.crumbs?.length" :crumbs="props.crumbs" />
     </header>
 </template>
 
@@ -21,10 +21,6 @@ const props = defineProps({
     description: {
         type: String,
         default: null
-    },
-    showBreacrumbs: {
-        type: Boolean,
-        default: false
     },
     crumbs: {
         type: Object,

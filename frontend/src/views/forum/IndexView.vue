@@ -1,27 +1,15 @@
 <template>
-    <div class="qp-vue">
+    <div class="qp-vue qp-forum qp-singleton-index">
 
         <div v-if="!isLoading && !hasError && forum">
             <div class="qp-container">
-                <section v-if="route.name == 'WorldForum'" class="qp-forum-zones">
-                    <qpForumZone v-for="(z, n) in forum.zones" :key="`zones-${n}`" :world="props.world" :forum="forum" :zone="z" :singleton="singleton" />
+                <section v-if="$route.name == 'WorldForum'" class="qp-forum-zones">
+                    <qpForumZone v-for="(z, n) in forum.zones" :key="`zones-${n}`" :world="props.world" :zone="z" />
                 </section>
             </div>
         </div>
 
-        <div v-else-if="isLoading">
-            <div class="qp-container">
-                <div v-loading="isLoading" element-loading-background="transparent" style="height:60vh"></div>
-            </div>
-        </div>
-
-        <div v-else>
-            <div class="qp-container">
-                <qpCard h="auto">
-                    <el-result icon="error" :title="$t('Error')" :sub-title="hasError" />
-                </qpCard>
-            </div>
-        </div>
+        <qpForumLoadError v-else :isloading="isLoading" :hasError="hasError" />
 
     </div>
 </template>
@@ -29,17 +17,15 @@
 <script setup>
 
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
-import qpCard from "@/components/basic/qpCard.vue";
 import qpForumZone from "@/components/forum/qpZone.vue";
+import qpForumLoadError from "@/components/forum/qpLoadError.vue";
 
 const { t } = i18n.global
 
-const route = useRoute()
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 
@@ -52,20 +38,19 @@ const props = defineProps({
 
 const isLoading = ref(true)
 const hasError = ref(null)
-const singleton = ref("index")
 
 onMounted(() => {
-    initWorld()
+    initForumIndex()
 })
 
 const forum = ref(null)
 
-const initWorld = async () => {
+const initForumIndex = async () => {
     isLoading.value = true
     hasError.value = null
     // ===---
     try {
-        let response = await fetch(`${API}/worlds/forums/1/`, {
+        let response = await fetch(`${API}/worlds/forums/${props.world.forum.id}/`, {
             method: "GET",
             headers: {"Authorization": rat.value}
         })
@@ -76,7 +61,9 @@ const initWorld = async () => {
             throw response
         }
     } catch (e) {
-        if (e.status === 404) {
+        if (e.status === 403) {
+            hasError.value = t("YouDoesntHaveAccessToThisForum")
+        } else if (e.status === 404) {
             hasError.value = t("ThisForumDoesntExistAnymore")
         } else {
             hasError.value = t("AnErrorOccurred")

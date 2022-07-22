@@ -59,6 +59,37 @@ class qpForum(models.Model):
             str(self.name)
         )
     
+    def get_is_visible(self, request):
+        try:
+            player = request.user.player or request.user.is_authenticated
+            if player is None:
+                return self.visibility == 0 and self.is_active
+            else:
+                return self.world.creator == player or (
+                    (self.is_active and (
+                        self.visibility == 0 or self.visibility == 6 or (
+                            self.visibility == 2 and player in self.world.administrators.all()
+                        ) or (
+                            self.visibility == 3 and (player in self.world.administrators.all() or player in self.world.moderators.all())
+                        ) or (
+                            self.visibility == 4 and (
+                                player in self.world.administrators.all() or 
+                                player in self.world.moderators.all() or 
+                                player.heros.filter(world=self.world, is_valid=True, is_active=True).count()
+                            )
+                        ) or (
+                            self.visibility == 5 and (
+                                player in self.world.administrators.all() or 
+                                player in self.world.moderators.all() or 
+                                player.heros.filter(world=self.world, is_active=True).count()
+                            )
+                        )
+                    ))
+                )
+        except:
+            pass
+        return False
+    
     @property
     def count_chapters(self):
         result = 0
