@@ -281,6 +281,18 @@ class qpForumTerritory(models.Model):
         return result
     
     @property
+    def last_chapter(self):
+        result = None
+        try:
+            if self.count_messages:
+                result = qpForumMessage.objects.filter(
+                    chapter__territory=self
+                ).last().chapter
+        except Exception:
+            pass
+        return result
+    
+    @property
     def last_message(self):
         result = None
         try:
@@ -492,9 +504,11 @@ class qpForumChapter(models.Model):
         return result
     
     def get_route(self):
-        result = {"name": "ForumChapter", "params": {
-            "forum_pk": self.territory.forum.id,
-            "slug": self.territory.forum.slug,
+        route_name = "WorldForumTerritoryChapter"
+        if self.sector:
+            route_name = "WorldForumSectorChapter"
+        result = {"name": route_name, "params": {
+            "slug": self.territory.forum.world.slug,
             "zone_pk": self.territory.zone.id,
             "zone_slug": slugify(self.territory.zone.name),
             "territory_pk": self.territory.id,
@@ -576,9 +590,11 @@ class qpForumMessage(models.Model):
         return
     
     def get_route(self, request, last = False):
-        result = {"name": "ForumChapter", "params": {
-            "forum_pk": self.chapter.territory.forum.id,
-            "slug": self.chapter.territory.forum.slug,
+        route_name = "WorldForumTerritoryChapter"
+        if self.chapter.sector:
+            route_name = "WorldForumSectorChapter"
+        result = {"name": route_name, "params": {
+            "slug": self.chapter.territory.forum.world.slug,
             "zone_pk": self.chapter.territory.zone.id,
             "zone_slug": slugify(self.chapter.territory.zone.name),
             "territory_pk": self.chapter.territory.id,

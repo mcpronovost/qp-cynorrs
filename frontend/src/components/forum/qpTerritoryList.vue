@@ -13,19 +13,18 @@
                     </template>
                 </el-popover>
                 <div class="qp-forum-header-lastmessage">
-                    <div :class="`qp-forum-header-lastmessage-avatar ${props.territory.last_message ? '' : 'qp-empty'}`">
-                        <el-avatar v-if="props.territory.last_message" :src="props.territory.last_message?.author?.avatar">
-                            <span v-text="props.territory.last_message?.author?.initials"></span>
+                    <div :class="`qp-forum-header-lastmessage-avatar ${props.territory.last_chapter?.last_message ? '' : 'qp-empty'}`">
+                        <el-avatar v-if="props.territory.last_chapter?.last_message" :src="props.territory.last_chapter.last_message.author?.avatar">
+                            <span v-text="props.territory.last_chapter.last_message.author?.initials"></span>
                         </el-avatar>
-                        <div v-if="props.territory.last_message" class="qp-forum-header-lastmessage-gotolast" @click="goToRoute(props.territory.last_message.routes.message)">
+                        <div v-if="props.territory.last_chapter?.last_message" class="qp-forum-header-lastmessage-gotolast" @click="goToRoute(props.territory.last_chapter.last_message.route)">
                             <el-icon class="mdi mdi-arrow-bottom-right-thin-circle-outline" />
                         </div>
                     </div>
-                    <div class="qp-forum-header-lastmessage-infos">
-                        <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_message.routes.chapter)">
-                            <span v-if="props.territory.last_message" class="title" v-text="props.territory.last_message.chapter.title"></span>
-                            <span v-if="props.territory.last_message" class="date" v-text="datetostr(props.territory.last_message.created_at)"></span>
-                            <span v-else class="date" v-text="$t('Never')"></span>
+                    <div v-if="props.territory.last_chapter?.last_message" class="qp-forum-header-lastmessage-infos">
+                        <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_chapter.route)">
+                            <span class="title" v-text="props.territory.last_chapter.last_message.chapter.title"></span>
+                            <span class="date" v-text="datetostr(props.territory.last_chapter.last_message.chapter.created_at)"></span>
                         </div>
                     </div>
                 </div>

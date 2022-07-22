@@ -13,16 +13,23 @@ from qp.forum.models import (
 
 
 class qpForumMessageSerializer(serializers.ModelSerializer):
+    route = serializers.SerializerMethodField(source="get_route")
+
     class Meta:
         model = qpForumMessage
-        fields = ["id", "author", "chapter", "text", "created_at", "updated_at"]
-        depth = 1
+        fields = ["id", "author", "chapter", "text", "route", "created_at", "updated_at"]
+        depth = 2
+    
+    def get_route(self, obj):
+        return obj.get_route(self.context["request"])
 
 
 class qpForumChapterSerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
     last_message = qpForumMessageSerializer()
+    route = serializers.ReadOnlyField(source="get_route")
+
     class Meta:
         model = qpForumChapter
         fields = "__all__"
@@ -33,15 +40,28 @@ class qpForumTerritorySerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
     chapters = qpForumChapterSerializer(many=True)
-    last_message = qpForumMessageSerializer()
+    last_chapter = qpForumChapterSerializer()
+    
     class Meta:
         model = qpForumTerritory
-        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_chapters", "count_messages", "chapters", "zone", "last_message"]
+        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_chapters", "count_messages", "chapters", "zone", "last_chapter"]
+        depth = 1
+
+
+class qpForumTerritoryListSerializer(serializers.ModelSerializer):
+    count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
+    count_messages = serializers.ReadOnlyField(default=0)
+    last_chapter = qpForumChapterSerializer()
+    
+    class Meta:
+        model = qpForumTerritory
+        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_chapters", "count_messages", "last_chapter", "zone"]
         depth = 1
 
 
 class qpForumZoneSerializer(serializers.ModelSerializer):
-    territories = qpForumTerritorySerializer(many=True, read_only=True)
+    territories = qpForumTerritoryListSerializer(many=True, read_only=True)
+
     class Meta:
         model = qpForumZone
         fields = ["id", "name", "description", "ordering", "territories"]
@@ -50,6 +70,7 @@ class qpForumZoneSerializer(serializers.ModelSerializer):
 
 class qpForumSerializer(serializers.ModelSerializer):
     zones = qpForumZoneSerializer(many=True, read_only=True)
+
     class Meta:
         model = qpForum
         fields = ["id", "name", "visibility", "is_active", "zones"]
