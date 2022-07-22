@@ -23,7 +23,7 @@ import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
-import qpForumLoadError from "@/components/forum/qpLoadError.vue";
+import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
 
 const { t } = i18n.global
 

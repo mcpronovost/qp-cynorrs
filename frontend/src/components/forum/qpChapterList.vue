@@ -16,7 +16,7 @@
                         </el-avatar>
                     </div>
                 </div>
-                <h2 class="qp-forum-header-title" @click="goToChapter(props.chapter)">
+                <h2 class="qp-forum-header-title" @click="goToChapter()">
                     <span v-text="props.chapter.title"></span>
                 </h2>
                 <p class="qp-forum-header-date">
@@ -25,7 +25,7 @@
                 <ul class="qp-forum-header-infos">
                     <li class="qp-forum-header-infos-lastmessagedate">
                         <el-icon class="mdi mdi-clock-outline" />
-                        <span v-if="props.chapter.last_message" v-text="$filters.date_to_str(props.chapter.last_message.created_at)"></span>
+                        <span v-if="props.chapter.last_message" v-text="datetostr(props.chapter.last_message.created_at)"></span>
                         <span v-else v-text="$t('Never')"></span>
                     </li>
                     <li class="qp-forum-header-infos-countmessages">
@@ -41,6 +41,7 @@
 <script setup>
 
 import { useRouter } from "vue-router";
+import { datetostr } from "@/plugins/filters/datetostr";
 import { slugify } from "@/plugins/filters/slugify";
 
 const router = useRouter()
@@ -50,15 +51,7 @@ const props = defineProps({
         type: Object,
         default: () => {}
     },
-    zone: {
-        type: Object,
-        default: () => {}
-    },
     territory: {
-        type: Object,
-        default: () => {}
-    },
-    sector: {
         type: Object,
         default: () => {}
     },
@@ -68,16 +61,15 @@ const props = defineProps({
     }
 })
 
-const goToChapter = (chapter) => {
-    router.push({name: "WorldForumChapter", params: {
-        world_pk: props.world.id,
+const goToChapter = () => {
+    router.push({name: "WorldForumTerritoryChapter", params: {
         slug: props.world.slug,
-        zone_pk: props.zone.id,
-        zone_slug: slugify(props.zone.name),
+        zone_pk: props.territory.zone.id,
+        zone_slug: slugify(props.territory.zone.name),
         territory_pk: props.territory.id,
         territory_slug: slugify(props.territory.name),
-        chapter_pk: chapter.id,
-        chapter_slug: slugify(chapter.title)
+        chapter_pk: props.chapter.id,
+        chapter_slug: slugify(props.chapter.title)
     }})
 }
 

@@ -11,7 +11,7 @@
 
 <script setup>
 
-import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
+import qpForumBreadcrumbs from "@/components/forum/core/qpBreadcrumbs.vue";
 
 const props = defineProps({
     title: {

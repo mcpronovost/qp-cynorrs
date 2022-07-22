@@ -26,7 +26,7 @@ class qpForumChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model = qpForumChapter
         fields = "__all__"
-        depth = 1
+        depth = 2
 
 
 class qpForumTerritorySerializer(serializers.ModelSerializer):
@@ -56,7 +56,7 @@ class qpForumSerializer(serializers.ModelSerializer):
         depth = 1
 
     def to_representation(self, instance):
-        ret = super(qpForumSerializer, self).to_representation(instance)
+        ret = super().to_representation(instance)
         forum = qpForum.objects.get(pk=ret.get("id"))
         forum_is_visible = forum.get_is_visible(self.context["request"])
         world_is_visible = forum.world.get_is_visible(self.context["request"])

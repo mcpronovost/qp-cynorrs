@@ -4,7 +4,14 @@
         <div v-if="!isLoading && !hasError && zone">
             <div class="qp-container">
                 <section class="qp-forum-zones">
-                    <qpForumZone :world="props.world" :zone="zone" :singleton="'zone'" />
+                    <article :id="`z${zone.id}`" class="qp-forum-zone">
+                        <div class="qp-forum-zone-inner">
+                            <qpForumHeader :title="zone.name" :description="zone.description" :crumbs="listBreadcrumbs" />
+                            <section class="qp-forum-territories">
+                                <qpForumTerritory v-for="(t, n) in zone.territories" :key="`territory-${n}`" :world="props.world" :territory="t" />
+                            </section>
+                        </div>
+                    </article>
                 </section>
             </div>
         </div>
@@ -22,8 +29,9 @@ import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
-import qpForumZone from "@/components/forum/qpZone.vue";
-import qpForumLoadError from "@/components/forum/qpLoadError.vue";
+import qpForumHeader from "@/components/forum/core/qpHeader.vue";
+import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
+import qpForumTerritory from "@/components/forum/qpTerritoryList.vue";
 
 const { t } = i18n.global
 
@@ -74,5 +82,15 @@ const initForumZone = async () => {
     // ===---
     isLoading.value = false
 }
+
+const listBreadcrumbs = computed(() => {
+    let result = [
+        {
+            name: props.world.name,
+            go: `/w/${route.params.slug}/forum`
+        }
+    ]
+    return result
+})
 
 </script>

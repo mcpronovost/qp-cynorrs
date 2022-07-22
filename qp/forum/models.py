@@ -462,6 +462,27 @@ class qpForumChapter(models.Model):
         return super().save(*args, **kwargs)
     
     @property
+    def world(self):
+        try:
+            return self.territory.zone.forum.world
+        except:
+            return None
+    
+    @property
+    def forum(self):
+        try:
+            return self.territory.zone.forum
+        except:
+            return None
+    
+    @property
+    def zone(self):
+        try:
+            return self.territory.zone
+        except:
+            return None
+    
+    @property
     def count_messages(self):
         result = 0
         try:

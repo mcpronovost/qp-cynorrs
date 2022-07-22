@@ -2,6 +2,7 @@ import WorldView from "@/views/WorldView.vue"
 import ForumIndexView from "@/views/forum/IndexView.vue"
 import ForumZoneView from "@/views/forum/ZoneView.vue"
 import ForumTerritoryView from "@/views/forum/TerritoryView.vue"
+import ForumChapterView from "@/views/forum/ChapterView.vue"
 
 export const worldRoutes = [
   {
@@ -23,6 +24,11 @@ export const worldRoutes = [
         path: "forum/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug",
         name: "WorldForumTerritory",
         component: ForumTerritoryView
+      },
+      {
+        path: "forum/z:zone_pk(\\d+)-:zone_slug/t:territory_pk(\\d+)-:territory_slug/c:chapter_pk(\\d+)-:chapter_slug",
+        name: "WorldForumTerritoryChapter",
+        component: ForumChapterView
       }
     ]
   },

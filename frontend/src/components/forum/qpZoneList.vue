@@ -14,7 +14,7 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 
-import qpForumHeader from "@/components/forum/qpHeader.vue";
+import qpForumHeader from "@/components/forum/core/qpHeader.vue";
 import qpForumTerritory from "@/components/forum/qpTerritoryList.vue";
 
 const route = useRoute()

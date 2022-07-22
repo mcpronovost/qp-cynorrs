@@ -27,16 +27,7 @@
                                         <el-col :span="24" :lg="17" style="padding:0">
                                             <section class="qp-forum-chapters">
                                                 <qpForumChapter v-for="(c, n) in territory.chapters" :key="`chapter-${n}`" :world="props.world" :territory="territory" :chapter="c" />
-                                                <el-pagination
-                                                    v-if="territory.chapters.length"
-                                                    background
-                                                    hide-on-single-page
-                                                    layout="prev, pager, next"
-                                                    :total="territory.count_chapters"
-                                                    :page-size="territory.perpage_chapters"
-                                                    :current-page="paginateCurrentPage"
-                                                    @update:current-page="updateCurrentPage"
-                                                />
+                                                <el-pagination v-if="territory.chapters.length" background hide-on-single-page layout="prev, pager, next" :total="territory.count_chapters" :page-size="territory.perpage_chapters" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                                             </section>
                                         </el-col>
                                         <el-col :span="24" :lg="7">
@@ -70,8 +61,8 @@ import i18n from "@/plugins/i18n";
 
 import qpCard from "@/components/basic/qpCard.vue";
 import qpCardQuestsList from "@/components/widget/qpCardQuestsList.vue";
-import qpForumHeader from "@/components/forum/qpHeader.vue";
-import qpForumLoadError from "@/components/forum/qpLoadError.vue";
+import qpForumHeader from "@/components/forum/core/qpHeader.vue";
+import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
 import qpForumWriting from "@/components/forum/qpWriting.vue";
 import qpForumSector from "@/components/forum/qpSector.vue";
 import qpForumChapter from "@/components/forum/qpChapterList.vue";
@@ -97,20 +88,15 @@ const listBreadcrumbs = computed(() => {
     let result = [
         {
             name: props.world.name,
-            view: "world",
-            data: {
-                world: props.world
-            }
-        },
-        {
-            name: territory.value.zone.name,
-            view: "zone",
-            data: {
-                world: props.world,
-                zone: territory.value.zone
-            }
+            go: `/w/${route.params.slug}/forum`
         }
     ]
+    if (territory.value) {
+        result.push({
+            name: territory.value.zone.name,
+            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}`
+        })
+    }
     return result
 })
 

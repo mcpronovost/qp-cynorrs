@@ -39,7 +39,7 @@ class qpWorldSerializer(serializers.ModelSerializer):
         depth = 1
 
     def to_representation(self, instance):
-        ret = super(qpWorldSerializer, self).to_representation(instance)
+        ret = super().to_representation(instance)
         world = qpWorld.objects.get(pk=ret.get("id"))
         world_is_visible = world.get_is_visible(self.context["request"])
         if world_is_visible:

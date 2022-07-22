@@ -60,8 +60,8 @@ import { useRoute, useRouter } from "vue-router";
 import { slugify } from "@/plugins/filters/slugify";
 
 import qpActionTravel from "@/components/action/qpTravel.vue";
-import qpForumBreadcrumbs from "@/components/forum/qpBreadcrumbs.vue";
-import qpForumChapter from "@/components/forum/qpChapter.vue";
+import qpForumBreadcrumbs from "@/components/forum/core/qpBreadcrumbs.vue";
+import qpForumChapter from "@/components/forum/qpChapterList.vue";
 
 // =================================================================================== //
 

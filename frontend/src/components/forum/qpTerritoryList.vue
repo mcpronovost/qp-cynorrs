@@ -24,7 +24,7 @@
                     <div class="qp-forum-header-lastmessage-infos">
                         <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.territory.last_message.routes.chapter)">
                             <span v-if="props.territory.last_message" class="title" v-text="props.territory.last_message.chapter.title"></span>
-                            <span v-if="props.territory.last_message" class="date" v-text="$filters.date_to_str(props.territory.last_message.created_at)"></span>
+                            <span v-if="props.territory.last_message" class="date" v-text="datetostr(props.territory.last_message.created_at)"></span>
                             <span v-else class="date" v-text="$t('Never')"></span>
                         </div>
                     </div>
@@ -37,6 +37,7 @@
 <script setup>
 
 import { useRoute, useRouter } from "vue-router";
+import { datetostr } from "@/plugins/filters/datetostr";
 import { slugify } from "@/plugins/filters/slugify";
 
 const route = useRoute()
