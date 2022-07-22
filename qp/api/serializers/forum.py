@@ -25,6 +25,18 @@ class qpForumMessageSerializer(serializers.ModelSerializer):
 
 
 class qpForumChapterSerializer(serializers.ModelSerializer):
+    messages = qpForumMessageSerializer(many=True)
+    count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
+    count_messages = serializers.ReadOnlyField(default=0)
+    route = serializers.ReadOnlyField(source="get_route")
+
+    class Meta:
+        model = qpForumChapter
+        fields = "__all__"
+        depth = 1
+
+
+class qpForumChapterListSerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
     last_message = qpForumMessageSerializer()
@@ -39,8 +51,8 @@ class qpForumChapterSerializer(serializers.ModelSerializer):
 class qpForumTerritorySerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
-    chapters = qpForumChapterSerializer(many=True)
-    last_chapter = qpForumChapterSerializer()
+    chapters = qpForumChapterListSerializer(many=True)
+    last_chapter = qpForumChapterListSerializer()
     
     class Meta:
         model = qpForumTerritory
@@ -51,7 +63,7 @@ class qpForumTerritorySerializer(serializers.ModelSerializer):
 class qpForumTerritoryListSerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
-    last_chapter = qpForumChapterSerializer()
+    last_chapter = qpForumChapterListSerializer()
     
     class Meta:
         model = qpForumTerritory

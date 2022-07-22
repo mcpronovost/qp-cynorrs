@@ -8,7 +8,7 @@
                         <div class="qp-forum-chapter-inner">
                             <qpForumHeader :title="chapter.title" :description="chapter.description" :crumbs="listBreadcrumbs" />
                             <section v-if="chapter.messages?.length" class="qp-forum-messages">
-                                <qpForumMessage v-for="(message, n) in chapter.messages" :key="`message-${n}`" :world="props.world" :chapter="chapter" :message="message" />
+                                <qpForumMessage v-for="(m, n) in chapter.messages" :key="`message-${n}`" :world="props.world" :chapter="chapter" :message="m" />
                                 <el-pagination background hide-on-single-page layout="prev, pager, next" :total="chapter.count_messages" :page-size="chapter.perpage_messages" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                             </section>
                         </div>

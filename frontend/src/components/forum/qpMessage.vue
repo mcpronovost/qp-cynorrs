@@ -15,30 +15,8 @@
 
 <script setup>
 
-// import { computed } from "vue";
-// import i18n from "@/plugins/i18n";
-
-// =================================================================================== //
-
-// const { t } = i18n.global
-
-// =================================================================================== //
-// ===--- PROPS
-
 const props = defineProps({
     world: {
-        type: Object,
-        default: () => {}
-    },
-    zone: {
-        type: Object,
-        default: () => {}
-    },
-    territory: {
-        type: Object,
-        default: () => {}
-    },
-    sector: {
         type: Object,
         default: () => {}
     },
@@ -49,14 +27,8 @@ const props = defineProps({
     message: {
         type: Object,
         default: () => {}
-    },
-    singleton: {
-        type: String,
-        default: "chapter"
     }
 })
-
-// =================================================================================== //
 
 </script>
 
