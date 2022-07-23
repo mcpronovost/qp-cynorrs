@@ -9,7 +9,7 @@
                             <qpForumHeader :title="chapter.title" :description="chapter.description" :crumbs="listBreadcrumbs" />
                             <section v-if="chapter.messages?.length" class="qp-forum-messages">
                                 <qpForumMessage v-for="(m, n) in chapter.messages" :key="`message-${n}`" :world="props.world" :chapter="chapter" :message="m" />
-                                <el-pagination background hide-on-single-page layout="prev, pager, next" :total="chapter.count_messages" :page-size="chapter.perpage_messages" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
+                                <el-pagination v-if="chapter.messages.length" background hide-on-single-page layout="prev, pager, next" :total="chapter.count_messages" :page-size="chapter.perpage_messages" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                             </section>
                         </div>
                     </article>
@@ -25,7 +25,7 @@
 <script setup>
 
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
@@ -37,6 +37,7 @@ import qpForumMessage from "@/components/forum/qpMessage.vue";
 const { t } = i18n.global
 
 const route = useRoute()
+const router = useRouter()
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 
@@ -119,5 +120,30 @@ const paginateCurrentPage = computed(() => {
     }
     return result
 })
+
+const updateCurrentPage = ($event) => {
+    let routename = "WorldForumTerritoryChapter"
+    let routeobj = {
+        name: routename,
+        params: {
+            slug: route.params.slug,
+            zone_pk: route.params.zone_pk,
+            zone_slug: route.params.zone_slug,
+            territory_pk: route.params.territory_pk,
+            territory_slug: route.params.territory_slug,
+            chapter_pk: route.params.chapter_pk,
+            chapter_slug: route.params.chapter_slug
+        },
+        query: {
+            page: $event
+        }
+    }
+    if (chapter.value?.sector) {
+        routeobj.name = "WorldForumSectorChapter"
+        routeobj.params["sector_pk"] = route.params.sector_pk
+        routeobj.params["sector_slug"] = route.params.sector_slug
+    }
+    router.push(routeobj)
+}
 
 </script>
