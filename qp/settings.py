@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     # ===---
     "qp.player",
     "qp.world",
-    "qp.forum"
+    "qp.forum",
+    # ===---
+    "qp.test"
 ]
 
 MIDDLEWARE = [
