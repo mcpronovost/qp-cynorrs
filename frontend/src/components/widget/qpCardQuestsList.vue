@@ -10,7 +10,7 @@
                 </div>
                 <div class="qp-quests-item-text">
                     <p class="qp-quests-item-title" v-text="'Récolter des plantes'"></p>
-                    <p class="qp-quests-item-description" v-text="'Vous parcourez les alentours pour trouver des plantes utiles.'"></p>
+                    <p class="qp-quests-item-description" v-text="'Parcourir les alentours pour trouver des plantes utiles.'"></p>
                 </div>
                 <div class="qp-quests-item-progress">
                     <el-progress :percentage="50" :stroke-width="4" :show-text="false" />
@@ -22,7 +22,7 @@
                 </div>
                 <div class="qp-quests-item-text">
                     <p class="qp-quests-item-title" v-text="'Problème de vermine'"></p>
-                    <p class="qp-quests-item-description" v-text="'Vous éliminez les créatures qui ont envahi la région et détruisent les récoltes.'"></p>
+                    <p class="qp-quests-item-description" v-text="'Éliminer les créatures qui ont envahi la région et détruisent les récoltes.'"></p>
                 </div>
                 <div class="qp-quests-item-progress">
                     <el-progress :percentage="50" :stroke-width="4" :show-text="false" />

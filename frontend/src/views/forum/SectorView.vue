@@ -1,17 +1,13 @@
 <template>
-    <div class="qp-vue qp-forum qp-singleton-territory">
+    <div class="qp-vue qp-forum qp-singleton-sector">
 
-        <div v-if="!isLoading && !hasError && territory">
+        <div v-if="!isLoading && !hasError && sector">
             <div class="qp-container">
                 <section class="qp-forum-territories">
-                    <article :id="`t${territory.id}`" class="qp-forum-territory">
-                        <div class="qp-forum-territory-inner">
-                            <qpForumHeader :title="territory.name" :description="territory.description" :crumbs="listBreadcrumbs" />
+                    <article :id="`s${sector.id}`" class="qp-forum-sector">
+                        <div class="qp-forum-sector-inner">
+                            <qpForumHeader :title="sector.name" :description="sector.description" :crumbs="listBreadcrumbs" />
                             <template v-if="!showNewChapter">
-                                <section class="qp-forum-sectors">
-                                    <qpForumSector v-for="(s, n) in territory.sectors" :key="`sector-${n}`" :world="props.world" :territory="territory" :sector="s" />
-                                    <hr v-if="territory.sectors?.length" />
-                                </section>
                                 <section>
                                     <el-row >
                                         <el-col :span="24" :md="12" :lg="17">
@@ -26,8 +22,8 @@
                                         </el-col>
                                         <el-col :span="24" :lg="17" style="padding:0">
                                             <section class="qp-forum-chapters">
-                                                <qpForumChapter v-for="(c, n) in territory.chapters" :key="`chapter-${n}`" :world="props.world" :territory="territory" :chapter="c" />
-                                                <el-pagination v-if="territory.chapters.length" background hide-on-single-page layout="prev, pager, next" :total="territory.count_chapters" :page-size="territory.perpage_chapters" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
+                                                <qpForumChapter v-for="(c, n) in sector.chapters" :key="`chapter-${n}`" :world="props.world" :territory="sector.territory" :sector="sector" :chapter="c" />
+                                                <el-pagination v-if="sector.chapters.length" background hide-on-single-page layout="prev, pager, next" :total="sector.count_chapters" :page-size="sector.perpage_chapters" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                                             </section>
                                         </el-col>
                                         <el-col :span="24" :lg="7">
@@ -37,7 +33,7 @@
                                 </section>
                             </template>
                             <template v-else>
-                                <qpForumWriting type="chapter" :territory="props.territory" @close="closeNewChapter()" />
+                                <qpForumWriting type="chapter" :territory="props.territory" :sector="sector" @close="closeNewChapter()" />
                             </template>
                         </div>
                     </article>
@@ -64,7 +60,6 @@ import qpCardQuestsList from "@/components/widget/qpCardQuestsList.vue";
 import qpForumHeader from "@/components/forum/core/qpHeader.vue";
 import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
 import qpForumWriting from "@/components/forum/qpWriting.vue";
-import qpForumSector from "@/components/forum/qpSectorList.vue";
 import qpForumChapter from "@/components/forum/qpChapterList.vue";
 
 const { t } = i18n.global
@@ -87,45 +82,51 @@ const hasError = ref(null)
 const listBreadcrumbs = computed(() => {
     let result = [
         {
-            name: territory.value.forum.name,
+            name: sector.value.forum.name,
             go: `/w/${route.params.slug}/forum`
         }
     ]
-    if (territory.value) {
+    if (sector.value?.zone) {
         result.push({
-            name: territory.value.zone.name,
+            name: sector.value.zone.name,
             go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}`
+        })
+    }
+    if (sector.value?.territory) {
+        result.push({
+            name: sector.value.territory.name,
+            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}/t${route.params.territory_pk}-${route.params.territory_slug}`
         })
     }
     return result
 })
 
 onMounted(() => {
-    initForumTerritory()
+    initForumSector()
 })
 
-const territory = ref(null)
+const sector = ref(null)
 
-const initForumTerritory = async () => {
+const initForumSector = async () => {
     isLoading.value = true
     hasError.value = null
     // ===---
     try {
-        let response = await fetch(`${API}/worlds/territories/${route.params.territory_pk}/`, {
+        let response = await fetch(`${API}/worlds/sectors/${route.params.sector_pk}/`, {
             method: "GET",
             headers: {"Authorization": rat.value}
         })
         let r = await response.json()
         if (response.status === 200) {
-            territory.value = r
+            sector.value = r
         } else {
             throw response
         }
     } catch (e) {
         if (e.status === 403) {
-            hasError.value = t("YouDoesntHaveAccessToThisTerritory")
+            hasError.value = t("YouDoesntHaveAccessToThisSector")
         } else if (e.status === 404) {
-            hasError.value = t("ThisTerritoryDoesntExistAnymore")
+            hasError.value = t("ThisSectorDoesntExistAnymore")
         } else {
             hasError.value = t("AnErrorOccurred")
         }
@@ -143,12 +144,14 @@ const paginateCurrentPage = computed(() => {
 })
 
 const updateCurrentPage = ($event) => {
-    router.push({name: "WorldForumTerritory", params: {
+    router.push({name: "WorldForumSector", params: {
         slug: route.params.slug,
         zone_pk: route.params.zone_pk,
         zone_slug: route.params.zone_slug,
-        territory_pk: territory.value.id,
-        territory_slug: slugify(territory.value.name)
+        territory_pk: route.params.territory_pk,
+        territory_slug: route.params.territory_slug,
+        sector_pk: sector.value.id,
+        sector_slug: slugify(sector.value.name)
     },
     query: {
         page: $event

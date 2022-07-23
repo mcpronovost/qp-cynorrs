@@ -416,6 +416,18 @@ class qpForumSector(models.Model):
         return result
     
     @property
+    def last_chapter(self):
+        result = None
+        try:
+            if self.count_messages:
+                result = qpForumMessage.objects.filter(
+                    chapter__sector=self
+                ).last().chapter
+        except Exception:
+            pass
+        return result
+    
+    @property
     def last_message(self):
         result = None
         try:
