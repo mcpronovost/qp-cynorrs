@@ -1,0 +1,88 @@
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../fonts/robotocondensed-light.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/robotocondensed.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Roboto Condensed";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(../fonts/robotocondensed-bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../fonts/quicksand-light.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/quicksand.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url(../fonts/quicksand-semibold.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Quicksand";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(../fonts/quicksand-bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url(../fonts/poppins-light.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/poppins.ttf) format("truetype");
+}
+@font-face {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url(../fonts/poppins-bold.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Oswald";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/oswald.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Indie Flower";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../fonts/indieflower.ttf) format("truetype");
+}
