@@ -11,7 +11,7 @@
                                 <qpForumMessage v-for="(m, n) in messages.results" :key="`message-${n}`" :world="props.world" :chapter="chapter" :message="m" />
                             </section>
                             <qpForumFooter show-btn-reply :crumbs="listBreadcrumbs" @open-new-reply="openNewReply()" />
-                            <el-pagination v-if="messages.results.length" background hide-on-single-page layout="prev, pager, next" :total="messages.count" :page-size="messages.size" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
+                            <el-pagination v-if="messages?.results.length" background hide-on-single-page layout="prev, pager, next" :total="messages.count" :page-size="messages.size" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                         </div>
                     </article>
                 </section>
@@ -132,7 +132,6 @@ const initForumChapterMessages = async () => {
         })
         let r = await response.json()
         if (response.status === 200) {
-            console.log(r)
             messages.value = r
             scrollToHash()
         } else {
