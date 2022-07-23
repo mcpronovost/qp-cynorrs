@@ -22,7 +22,8 @@ from qp.api.views.forum import (
     qpForumZoneRetrieveAPIView,
     qpForumTerritoryRetrieveAPIView,
     qpForumSectorRetrieveAPIView,
-    qpForumChapterRetrieveAPIView
+    qpForumChapterRetrieveAPIView,
+    qpForumChapterMessagesListAPIView
 )
 
 from qp.api.views.world import (
@@ -48,6 +49,7 @@ urlpatterns = [
     path("worlds/territories/<int:pk>/", qpForumTerritoryRetrieveAPIView.as_view()),
     path("worlds/sectors/<int:pk>/", qpForumSectorRetrieveAPIView.as_view()),
     path("worlds/chapters/<int:pk>/", qpForumChapterRetrieveAPIView.as_view()),
+    path("worlds/chapters/<int:pk>/messages/", qpForumChapterMessagesListAPIView.as_view()),
 
     path("register/", qpRegisterView.as_view(), name="auth_register"),
     path("login/", qpLoginView.as_view()),

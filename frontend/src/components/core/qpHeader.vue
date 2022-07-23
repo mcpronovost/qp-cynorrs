@@ -103,7 +103,7 @@ const toggleSidebar = () => {
             margin: 0;
         }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         #qp-header-logo {
             padding: 0;
             margin: 0;
@@ -137,7 +137,7 @@ const toggleSidebar = () => {
             width: calc(100% - 230px);
         }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         #qp-header-menu-app {
             width: calc(100% - 90px);
             margin: 0;

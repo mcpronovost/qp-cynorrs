@@ -1,12 +1,6 @@
 <template>
     <section class="qp-forum-writing-newchapter">
-        <header class="qp-forum-header">
-            <h3 class="qp-forum-header-title">
-                <span v-text="$t('Writing')"></span>
-            </h3>
-            <p v-if="props.type == 'chapter'" class="qp-forum-header-description" v-text="$t('NewChapter')"></p>
-            <hr class="qp-forum-header-divider" />
-        </header>
+        <qpForumHeader :title="$t('Writing')" :description="$t('ToReply')" />
         <section class="qp-forum-writing-newchapter-form">
             <qpCard>
                 <el-row>
@@ -24,7 +18,7 @@
                         </el-form>
                     </el-col>
                     <el-col>
-                        <el-button @click="closeWriting()">
+                        <el-button @click="$emit('close')">
                             <span v-text="$t('Cancel')"></span>
                         </el-button>
                         <el-button type="primary">
@@ -39,29 +33,16 @@
 
 <script setup>
 
-import { computed, reactive } from "vue";
+import { computed, onMounted, reactive } from "vue";
 import { useStore } from "vuex";
 
 import qpCard from "@/components/basic/qpCard.vue";
-
-// =================================================================================== //
+import qpForumHeader from "@/components/forum/core/qpHeader.vue";
 
 const store = useStore()
 const app = computed(() => store.getters.app)
 
-// =================================================================================== //
-// ===--- EMIT
-
-const emit = defineEmits(["close"])
-
-// =================================================================================== //
-// ===--- PROPS
-
 const props = defineProps({
-    type: {
-        type: String,
-        default: "chapter"
-    },
     territory: {
         type: Object,
         default: () => {}
@@ -72,23 +53,15 @@ const props = defineProps({
     }
 })
 
-// =================================================================================== //
-// ===--- DATA
-
 const formNewChapter = reactive({
     title: "",
     description: "",
     text: ""
 })
 
-// =================================================================================== //
-// ===--- METHODS
-
-const closeWriting = () => {
-    emit("close")
-}
-
-// =================================================================================== //
+onMounted(() => {
+    console.log(props)
+})
 
 </script>
 

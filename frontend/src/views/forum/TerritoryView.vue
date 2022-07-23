@@ -37,7 +37,7 @@
                                 </section>
                             </template>
                             <template v-else>
-                                <qpForumWriting type="chapter" :territory="props.territory" @close="closeNewChapter()" />
+                                <qpForumWritingChapter :territory="props.territory" @close="closeNewChapter()" />
                             </template>
                         </div>
                     </article>
@@ -63,7 +63,7 @@ import qpCard from "@/components/basic/qpCard.vue";
 import qpCardQuestsList from "@/components/widget/qpCardQuestsList.vue";
 import qpForumHeader from "@/components/forum/core/qpHeader.vue";
 import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
-import qpForumWriting from "@/components/forum/qpWriting.vue";
+import qpForumWritingChapter from "@/components/forum/qpWritingChapter.vue";
 import qpForumSector from "@/components/forum/qpSectorList.vue";
 import qpForumChapter from "@/components/forum/qpChapterList.vue";
 

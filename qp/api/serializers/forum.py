@@ -3,6 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 from rest_framework import serializers
 
+from qp.player.models import (
+    qpPlayerHero
+)
+
 from qp.forum.models import (
     qpForum,
     qpForumZone,
@@ -13,7 +17,21 @@ from qp.forum.models import (
 )
 
 
+class qpForumAuthorSerializer(serializers.ModelSerializer):
+    name = serializers.ReadOnlyField()
+    initials = serializers.ReadOnlyField()
+
+    class Meta:
+        model = qpPlayerHero
+        fields = ["id", "name", "initials", "avatar"]
+        depth = 1
+    
+    def get_route(self, obj):
+        return obj.get_route(self.context["request"])
+
+
 class qpForumMessageSerializer(serializers.ModelSerializer):
+    author = qpForumAuthorSerializer()
     route = serializers.SerializerMethodField(source="get_route")
 
     class Meta:
@@ -29,7 +47,6 @@ class qpForumChapterSerializer(serializers.ModelSerializer):
     world = serializers.SerializerMethodField(source="get_world")
     forum = serializers.SerializerMethodField(source="get_forum")
     zone = serializers.SerializerMethodField(source="get_zone")
-    messages = qpForumMessageSerializer(many=True)
     count_messages = serializers.ReadOnlyField(default=0)
     route = serializers.ReadOnlyField(source="get_route")
 

@@ -1,4 +1,4 @@
-from rest_framework.generics import RetrieveAPIView
+from rest_framework.generics import RetrieveAPIView, ListAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from qp.forum.models import (
@@ -15,7 +15,8 @@ from qp.api.serializers.forum import (
     qpForumZoneSerializer,
     qpForumTerritorySerializer,
     qpForumSectorSerializer,
-    qpForumChapterSerializer
+    qpForumChapterSerializer,
+    qpForumMessageSerializer
 )
 
 class qpForumRetrieveAPIView(RetrieveAPIView):
@@ -47,3 +48,16 @@ class qpForumChapterRetrieveAPIView(RetrieveAPIView):
     serializer_class = qpForumChapterSerializer
     queryset = qpForumChapter.objects.all()
     lookup_field = "pk"
+
+class qpForumChapterMessagesListAPIView(ListAPIView):
+    model = qpForumMessage
+    permission_classes = [AllowAny]
+    serializer_class = qpForumMessageSerializer
+    pagination_limit = "settings_perpage_messages"
+
+    def get_queryset(self):
+        pk = self.kwargs["pk"]
+        queryset = self.model.objects.filter(
+            chapter=pk
+        )
+        return queryset

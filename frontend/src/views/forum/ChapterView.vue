@@ -6,13 +6,17 @@
                 <section class="qp-forum-chapters">
                     <article v-if="chapter" :id="`c${chapter.id}`" class="qp-forum-chapter">
                         <div class="qp-forum-chapter-inner">
-                            <qpForumHeader :title="chapter.title" :description="chapter.description" :crumbs="listBreadcrumbs" />
-                            <section v-if="chapter.messages?.length" class="qp-forum-messages">
-                                <qpForumMessage v-for="(m, n) in chapter.messages" :key="`message-${n}`" :world="props.world" :chapter="chapter" :message="m" />
-                                <el-pagination v-if="chapter.messages.length" background hide-on-single-page layout="prev, pager, next" :total="chapter.count_messages" :page-size="chapter.perpage_messages" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
+                            <qpForumHeader show-btn-reply :title="chapter.title" :description="chapter.description" :crumbs="listBreadcrumbs" @open-new-reply="openNewReply()" />
+                            <section v-if="messages" class="qp-forum-messages">
+                                <qpForumMessage v-for="(m, n) in messages.results" :key="`message-${n}`" :world="props.world" :chapter="chapter" :message="m" />
                             </section>
+                            <qpForumFooter show-btn-reply :crumbs="listBreadcrumbs" @open-new-reply="openNewReply()" />
+                            <el-pagination v-if="messages.results.length" background hide-on-single-page layout="prev, pager, next" :total="messages.count" :page-size="messages.size" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                         </div>
                     </article>
+                </section>
+                <section v-if="showWritingReply" id="reply" class="qp-forum-writing">
+                    <qpForumWritingReply :world="props.world" @close="closeNewReply()" />
                 </section>
             </div>
         </div>
@@ -31,8 +35,10 @@ import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
 import qpForumHeader from "@/components/forum/core/qpHeader.vue";
+import qpForumFooter from "@/components/forum/core/qpFooter.vue";
 import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
 import qpForumMessage from "@/components/forum/qpMessage.vue";
+import qpForumWritingReply from "@/components/forum/qpWritingReply.vue";
 
 const { t } = i18n.global
 
@@ -84,6 +90,7 @@ onMounted(() => {
 })
 
 const chapter = ref(null)
+const messages = ref(null)
 
 const initForumChapter = async () => {
     isLoading.value = true
@@ -97,6 +104,7 @@ const initForumChapter = async () => {
         let r = await response.json()
         if (response.status === 200) {
             chapter.value = r
+            initForumChapterMessages()
         } else {
             throw response
         }
@@ -111,6 +119,47 @@ const initForumChapter = async () => {
     }
     // ===---
     isLoading.value = false
+}
+
+const initForumChapterMessages = async () => {
+    isLoading.value = true
+    hasError.value = null
+    // ===---
+    try {
+        let response = await fetch(`${API}/worlds/chapters/${route.params.chapter_pk}/messages/?page=${paginateCurrentPage.value}`, {
+            method: "GET",
+            headers: {"Authorization": rat.value}
+        })
+        let r = await response.json()
+        if (response.status === 200) {
+            console.log(r)
+            messages.value = r
+            scrollToHash()
+        } else {
+            throw response
+        }
+    } catch (e) {
+        if (e.status === 403) {
+            hasError.value = t("YouDoesntHaveAccessToThisChapter")
+        } else if (e.status === 404) {
+            hasError.value = t("ThisPageDoesntExistAnymore")
+        } else {
+            hasError.value = t("AnErrorOccurred")
+        }
+    }
+    // ===---
+    isLoading.value = false
+}
+
+const scrollToHash = () => {
+    setTimeout(() => {
+        if (route.hash && (route.hash.startsWith("#c") || route.hash.startsWith("#m"))) {
+            const el = document.getElementById(route.hash.replace("#", ""))
+            if (el) {
+                el.scrollIntoView({behavior: "smooth"})
+            }
+        }
+    }, 600)
 }
 
 const paginateCurrentPage = computed(() => {
@@ -144,6 +193,20 @@ const updateCurrentPage = ($event) => {
         routeobj.params["sector_slug"] = route.params.sector_slug
     }
     router.push(routeobj)
+}
+
+const showWritingReply = ref(false)
+
+const openNewReply = () => {
+    showWritingReply.value = true
+    setTimeout(() => {
+        const el = document.getElementById("reply")
+        el?.scrollIntoView()
+    }, 100)
+}
+
+const closeNewReply = () => {
+    showWritingReply.value = false
 }
 
 </script>

@@ -81,5 +81,9 @@
     "YouDoesntHaveAccessToThisZone": "Vous n'avez pas accès à cette zone",
     "YouDoesntHaveAccessToThisTerritory": "Vous n'avez pas accès à ce territoire",
     "YouDoesntHaveAccessToThisChapter": "Vous n'avez pas accès à ce chapitre",
-    "YouDoesntHaveAccessToThisSector": "Vous n'avez pas accès à ce secteur"
+    "YouDoesntHaveAccessToThisSector": "Vous n'avez pas accès à ce secteur",
+    "ToReply": "Répondre",
+    "ChooseACharacter": "Choisir un personnage",
+    "YourReply": "Votre réponse",
+    "ThisPageDoesntExistAnymore": "Cette page n'existe pas ou plus"
 }
