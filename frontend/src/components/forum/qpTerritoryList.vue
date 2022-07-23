@@ -2,14 +2,36 @@
     <article v-if="props.territory" :id="`t${props.territory.id}`" class="qp-forum-territory" :style="`flex-basis:${props.territory.flexbasis};`">
         <div class="qp-forum-territory-inner">
             <header class="qp-forum-header">
-                <el-popover :disabled="!props.territory.description" :show-after="1000">
+                <el-popover :show-after="1000" popper-class="qp-forum-header-popper">
                     <template #reference>
                         <h2 class="qp-forum-header-title" @click="goToTerritory()" :style="props.territory.colour ? `color:${props.territory.colour};` : ''">
                             <span v-text="props.territory.name"></span>
                         </h2>
                     </template>
                     <template #default>
-                        <p class="qp-forum-header-description" v-text="props.territory.description"></p>
+                        <el-row>
+                            <el-col v-if="props.territory.description" :span="24">
+                                <p class="qp-forum-popheader-description" v-text="props.territory.description"></p>
+                            </el-col>
+                            <el-col v-if="props.territory.count_sectors" :span="8" align="center">
+                                <span v-text="numtostr(props.territory.count_sectors)"></span>
+                                <div>
+                                    <span v-text="$t('Sector', props.territory.count_sectors)"></span>
+                                </div>
+                            </el-col>
+                            <el-col :span="props.territory.count_sectors ? 8 : 12" align="center">
+                                <span v-text="numtostr(props.territory.count_chapters)"></span>
+                                <div>
+                                    <span v-text="$t('Chapter', props.territory.count_chapters)"></span>
+                                </div>
+                            </el-col>
+                            <el-col :span="props.territory.count_sectors ? 8 : 12" align="center">
+                                <span v-text="numtostr(props.territory.count_messages)"></span>
+                                <div>
+                                    <span v-text="$t('Message', props.territory.count_messages)"></span>
+                                </div>
+                            </el-col>
+                        </el-row>
                     </template>
                 </el-popover>
                 <div class="qp-forum-header-lastmessage">
@@ -37,6 +59,7 @@
 
 import { useRoute, useRouter } from "vue-router";
 import { datetostr } from "@/plugins/filters/datetostr";
+import { numtostr } from "@/plugins/filters/numtostr";
 import { slugify } from "@/plugins/filters/slugify";
 
 const route = useRoute()

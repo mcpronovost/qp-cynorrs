@@ -406,6 +406,10 @@ hr {
     height: 2px;
     margin: 12px auto 12px 2px;
 }
+.qp-forum-header-popper.el-popper.el-popover {
+    word-break: break-word;
+    min-width: 300px;
+}
 @media (max-width: 1199px) {
     .qp-forum-header h2,
     .qp-forum-header p {

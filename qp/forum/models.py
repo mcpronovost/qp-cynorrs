@@ -91,6 +91,16 @@ class qpForum(models.Model):
         return False
     
     @property
+    def count_sectors(self):
+        result = 0
+        try:
+            for zone in self.zones.all():
+                result += zone.count_sectors
+        except Exception:
+            pass
+        return result
+    
+    @property
     def count_chapters(self):
         result = 0
         try:
@@ -160,6 +170,16 @@ class qpForumZone(models.Model):
             ).last() is not None else 0
             self.ordering = (lastorder + 1)
         return super().save(*args, **kwargs)
+    
+    @property
+    def count_sectors(self):
+        result = 0
+        try:
+            for territory in self.territories.all():
+                result += territory.count_sectors
+        except Exception:
+            pass
+        return result
     
     @property
     def count_chapters(self):
@@ -249,6 +269,15 @@ class qpForumTerritory(models.Model):
         if self.zone is not None:
             return self.zone.forum
         return None
+    
+    @property
+    def count_sectors(self):
+        result = 0
+        try:
+            result = self.sectors.count()
+        except Exception:
+            pass
+        return result
     
     @property
     def count_chapters(self):
