@@ -87,7 +87,7 @@ const hasError = ref(null)
 const listBreadcrumbs = computed(() => {
     let result = [
         {
-            name: props.world.name,
+            name: territory.value.forum.name,
             go: `/w/${route.params.slug}/forum`
         }
     ]

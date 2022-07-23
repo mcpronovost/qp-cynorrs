@@ -51,6 +51,34 @@ const props = defineProps({
 const isLoading = ref(true)
 const hasError = ref(null)
 
+const listBreadcrumbs = computed(() => {
+    let result = [
+        {
+            name: chapter.value.forum.name,
+            go: `/w/${route.params.slug}/forum`
+        }
+    ]
+    if (chapter.value) {
+        result.push({
+            name: chapter.value.zone.name,
+            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}`
+        })
+    }
+    if (chapter.value) {
+        result.push({
+            name: chapter.value.territory.name,
+            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}/t${route.params.territory_pk}-${route.params.territory_slug}`
+        })
+    }
+    if (chapter.value?.sector) {
+        result.push({
+            name: chapter.value.sector.name,
+            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}/t${route.params.territory_pk}-${route.params.territory_slug}/s${route.params.sector_pk}-${route.params.sector_slug}`
+        })
+    }
+    return result
+})
+
 onMounted(() => {
     initForumChapter()
 })
@@ -84,34 +112,6 @@ const initForumChapter = async () => {
     // ===---
     isLoading.value = false
 }
-
-const listBreadcrumbs = computed(() => {
-    let result = [
-        {
-            name: props.world.name,
-            go: `/w/${route.params.slug}/forum`
-        }
-    ]
-    if (chapter.value) {
-        result.push({
-            name: chapter.value.territory.zone.name,
-            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}`
-        })
-    }
-    if (chapter.value) {
-        result.push({
-            name: chapter.value.territory.name,
-            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}/t${route.params.territory_pk}-${route.params.territory_slug}`
-        })
-    }
-    if (chapter.value?.sector) {
-        result.push({
-            name: chapter.value.sector.name,
-            go: `/w/${route.params.slug}/forum/z${route.params.zone_pk}-${route.params.zone_slug}/t${route.params.territory_pk}-${route.params.territory_slug}/s${route.params.sector_pk}-${route.params.sector_slug}`
-        })
-    }
-    return result
-})
 
 const paginateCurrentPage = computed(() => {
     let result = 1

@@ -49,6 +49,16 @@ const props = defineProps({
 const isLoading = ref(true)
 const hasError = ref(null)
 
+const listBreadcrumbs = computed(() => {
+    let result = [
+        {
+            name: zone.value.forum.name,
+            go: `/w/${route.params.slug}/forum`
+        }
+    ]
+    return result
+})
+
 onMounted(() => {
     initForumZone()
 })
@@ -82,15 +92,5 @@ const initForumZone = async () => {
     // ===---
     isLoading.value = false
 }
-
-const listBreadcrumbs = computed(() => {
-    let result = [
-        {
-            name: props.world.name,
-            go: `/w/${route.params.slug}/forum`
-        }
-    ]
-    return result
-})
 
 </script>
