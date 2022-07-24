@@ -50,6 +50,12 @@ class qpPlayer(models.Model):
         blank=True,
         null=True
     )
+    banner = models.ImageField(
+        verbose_name=_("Banner"),
+        upload_to="players/banners",
+        blank=True,
+        null=True
+    )
     limits_create_worlds = models.PositiveSmallIntegerField(
         verbose_name=_("World Creation Limit"),
         default=2,

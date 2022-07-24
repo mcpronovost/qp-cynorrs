@@ -37,6 +37,7 @@ class qpPlayerAdmin(admin.ModelAdmin):
                 "user",
                 ("playername", "slug"),
                 "avatar",
+                "banner",
                 "affinity"
             ]
         }),

@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from qp.api.views.player import (
-    qpPlayerView
+    qpPlayerRetrieveView
 )
 
 from qp.forum.models import (
@@ -73,7 +73,7 @@ class qpGameActionTravelView(APIView):
             })
             hero.save()
         # ===---
-        heros_data = qpPlayerView.get_heros(None, player)
+        heros_data = [] # qpPlayerView.get_heros(None, player)
         # ===---
         return Response({
             "heros": heros_data,

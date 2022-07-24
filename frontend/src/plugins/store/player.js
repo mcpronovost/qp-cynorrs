@@ -93,9 +93,7 @@ export const modulePlayer = {
                 })
                 if (r.status === 200) {
                     let result = await r.json()
-                    commit("BATCH_PLAYER", result.player)
-                    commit("BATCH_HEROS", result.heros)
-                    commit("BATCH_WORLDS", result.worlds)
+                    commit("BATCH_PLAYER", result)
                 } else if (r.status === 401) {
                     dispatch("doLogout")
                 }

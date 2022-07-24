@@ -10,54 +10,51 @@ from qp.api.views.game import (
 )
 
 from qp.api.views.player import (
-    qpPlayerView,
-    qpPlayerHerosView,
-    qpPlayerHeroView,
+    qpPlayerRetrieveView
+)
+
+from qp.api.views.forum import (
+    qpForumRetrieveView,
+    qpForumZoneRetrieveView,
+    qpForumTerritoryRetrieveView,
+    qpForumSectorRetrieveView,
+    qpForumChapterRetrieveView,
+    qpForumChapterCreateView,
+    qpForumChapterMessagesListView,
+    qpForumChapterMessageCreateView,
+    qpForumChapterMessageEditView
+)
+
+from qp.api.views.user import (
     qpRegisterView,
     qpLoginView
 )
 
-from qp.api.views.forum import (
-    qpForumRetrieveAPIView,
-    qpForumZoneRetrieveAPIView,
-    qpForumTerritoryRetrieveAPIView,
-    qpForumSectorRetrieveAPIView,
-    qpForumChapterRetrieveAPIView,
-    qpForumChapterCreateAPIView,
-    qpForumChapterMessagesListAPIView,
-    qpForumChapterMessageCreateAPIView,
-    qpForumChapterMessageEditAPIView
-)
-
 from qp.api.views.world import (
     qpWorldsListView,
-    qpWorldsCreateView,
     qpWorldsRetrieveAPIView
 )
 
 urlpatterns = [
     path("", qpPingView.as_view()),
 
-    path("me/", qpPlayerView.as_view()),
-    path("me/heros/", qpPlayerHerosView.as_view()),
-    path("me/heros/<int:pk>/", qpPlayerHeroView.as_view()),
-    path("me/worlds/create/", qpWorldsCreateView.as_view()),
+    path("me/", qpPlayerRetrieveView.as_view()),
 
     path("game/action/travel/", qpGameActionTravelView.as_view()),
 
     path("worlds/", qpWorldsListView.as_view()),
     path("worlds/<slug:slug>/", qpWorldsRetrieveAPIView.as_view()),
-    path("worlds/forums/<int:pk>/", qpForumRetrieveAPIView.as_view()),
-    path("worlds/zones/<int:pk>/", qpForumZoneRetrieveAPIView.as_view()),
-    path("worlds/territories/<int:pk>/", qpForumTerritoryRetrieveAPIView.as_view()),
-    path("worlds/territories/<int:pk>/chapters/create/", qpForumChapterCreateAPIView.as_view()),
-    path("worlds/sectors/<int:pk>/", qpForumSectorRetrieveAPIView.as_view()),
-    path("worlds/sectors/<int:pk>/chapters/create/", qpForumChapterCreateAPIView.as_view()),
-    path("worlds/chapters/<int:pk>/", qpForumChapterRetrieveAPIView.as_view()),
-    path("worlds/chapters/<int:pk>/messages/", qpForumChapterMessagesListAPIView.as_view()),
-    path("worlds/chapters/<int:pk>/messages/create/", qpForumChapterMessageCreateAPIView.as_view()),
-    path("worlds/messages/<int:pk>/edit/", qpForumChapterMessageEditAPIView.as_view()),
-    path("worlds/messages/<int:pk>/delete/", qpForumChapterMessageEditAPIView.as_view()),
+    path("worlds/forums/<int:pk>/", qpForumRetrieveView.as_view()),
+    path("worlds/zones/<int:pk>/", qpForumZoneRetrieveView.as_view()),
+    path("worlds/territories/<int:pk>/", qpForumTerritoryRetrieveView.as_view()),
+    path("worlds/territories/<int:pk>/chapters/create/", qpForumChapterCreateView.as_view()),
+    path("worlds/sectors/<int:pk>/", qpForumSectorRetrieveView.as_view()),
+    path("worlds/sectors/<int:pk>/chapters/create/", qpForumChapterCreateView.as_view()),
+    path("worlds/chapters/<int:pk>/", qpForumChapterRetrieveView.as_view()),
+    path("worlds/chapters/<int:pk>/messages/", qpForumChapterMessagesListView.as_view()),
+    path("worlds/chapters/<int:pk>/messages/create/", qpForumChapterMessageCreateView.as_view()),
+    path("worlds/messages/<int:pk>/edit/", qpForumChapterMessageEditView.as_view()),
+    path("worlds/messages/<int:pk>/delete/", qpForumChapterMessageEditView.as_view()),
 
     path("register/", qpRegisterView.as_view(), name="auth_register"),
     path("login/", qpLoginView.as_view()),

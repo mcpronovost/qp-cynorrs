@@ -16,7 +16,7 @@
         </div>
         <div id="qp-sidebar-name">
             <h2>
-                <span v-text="player?.name"></span>
+                <span v-text="player?.playername"></span>
             </h2>
         </div>
         <div v-if="rat" id="qp-sidebar-title">

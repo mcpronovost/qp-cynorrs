@@ -25,37 +25,37 @@ from qp.api.serializers.forum import (
     qpForumChapterCreateSerializer
 )
 
-class qpForumRetrieveAPIView(RetrieveAPIView):
+class qpForumRetrieveView(RetrieveAPIView):
     permission_classes = [AllowAny]
     serializer_class = qpForumSerializer
     queryset = qpForum.objects.all()
     lookup_field = "pk"
 
-class qpForumZoneRetrieveAPIView(RetrieveAPIView):
+class qpForumZoneRetrieveView(RetrieveAPIView):
     permission_classes = [AllowAny]
     serializer_class = qpForumZoneSerializer
     queryset = qpForumZone.objects.all()
     lookup_field = "pk"
 
-class qpForumTerritoryRetrieveAPIView(RetrieveAPIView):
+class qpForumTerritoryRetrieveView(RetrieveAPIView):
     permission_classes = [AllowAny]
     serializer_class = qpForumTerritorySerializer
     queryset = qpForumTerritory.objects.all()
     lookup_field = "pk"
 
-class qpForumSectorRetrieveAPIView(RetrieveAPIView):
+class qpForumSectorRetrieveView(RetrieveAPIView):
     permission_classes = [AllowAny]
     serializer_class = qpForumSectorSerializer
     queryset = qpForumSector.objects.all()
     lookup_field = "pk"
 
-class qpForumChapterRetrieveAPIView(RetrieveAPIView):
+class qpForumChapterRetrieveView(RetrieveAPIView):
     permission_classes = [AllowAny]
     serializer_class = qpForumChapterSerializer
     queryset = qpForumChapter.objects.all()
     lookup_field = "pk"
 
-class qpForumChapterMessagesListAPIView(ListAPIView):
+class qpForumChapterMessagesListView(ListAPIView):
     model = qpForumMessage
     permission_classes = [AllowAny]
     serializer_class = qpForumMessageSerializer
@@ -68,15 +68,15 @@ class qpForumChapterMessagesListAPIView(ListAPIView):
         )
         return queryset
 
-class qpForumChapterCreateAPIView(CreateAPIView):
+class qpForumChapterCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = qpForumChapterCreateSerializer
 
-class qpForumChapterMessageCreateAPIView(CreateAPIView):
+class qpForumChapterMessageCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = qpForumMessageEditSerializer
 
-class qpForumChapterMessageEditAPIView(RetrieveUpdateDestroyAPIView):
+class qpForumChapterMessageEditView(RetrieveUpdateDestroyAPIView):
     model = qpForumMessage
     permission_classes = [IsAuthenticated]
     serializer_class = qpForumMessageEditSerializer
@@ -101,7 +101,7 @@ class qpForumChapterMessageEditAPIView(RetrieveUpdateDestroyAPIView):
                     instance._prefetched_objects_cache = {}
                 return Response(serializer.data)
         except Exception as e:
-            print("Error on qpForumChapterMessageEditAPIView > patch : ", e)
+            print("Error on qpForumChapterMessageEditView > patch : ", e)
         return Response(status=HTTP_400_BAD_REQUEST)
 
     def delete(self, request, *args, **kwargs):
@@ -113,5 +113,5 @@ class qpForumChapterMessageEditAPIView(RetrieveUpdateDestroyAPIView):
                 self.perform_destroy(instance)
                 return Response(status=HTTP_204_NO_CONTENT)
         except Exception as e:
-            print("Error on qpForumChapterMessageEditAPIView > delete : ", e)
+            print("Error on qpForumChapterMessageEditView > delete : ", e)
         return Response(status=HTTP_400_BAD_REQUEST)
