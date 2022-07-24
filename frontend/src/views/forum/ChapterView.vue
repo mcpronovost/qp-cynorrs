@@ -158,7 +158,7 @@ const scrollToHash = () => {
                 el.scrollIntoView({behavior: "smooth"})
             }
         }
-    }, 400)
+    }, 200)
 }
 
 const paginateCurrentPage = computed(() => {

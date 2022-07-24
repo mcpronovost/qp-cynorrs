@@ -17,12 +17,12 @@ from qp.forum.models import (
 )
 
 
-class qpForumMessageCreateSerializer(serializers.ModelSerializer):
+class qpForumMessageEditSerializer(serializers.ModelSerializer):
     route = serializers.SerializerMethodField(source="get_route")
 
     class Meta:
         model = qpForumMessage
-        fields = ["author", "chapter", "text", "route"]
+        fields = ["id", "author", "chapter", "text", "route"]
     
     def get_route(self, obj):
         return obj.get_route(self.context["request"], True)
@@ -39,11 +39,20 @@ class qpForumChapterCreateSerializer(serializers.ModelSerializer):
 class qpForumAuthorSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField()
     initials = serializers.ReadOnlyField()
+    player = serializers.SerializerMethodField(source="get_player")
 
     class Meta:
         model = qpPlayerHero
-        fields = ["id", "name", "initials", "avatar"]
+        fields = ["id", "name", "initials", "avatar", "player"]
         depth = 1
+    
+    def get_player(self, obj):
+        if obj.player:
+            return {
+                "id": obj.player.id,
+                "playername": obj.player.playername
+            }
+        return None
 
 
 class qpForumMessageSerializer(serializers.ModelSerializer):

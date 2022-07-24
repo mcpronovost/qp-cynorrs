@@ -15,6 +15,12 @@ export const qpcode = (text) => {
         .replaceAll("[/s]", "</span>")
         .replaceAll("[b]", '<span style="text-decoration:line-through;">')
         .replaceAll("[/b]", "</span>")
+        .replaceAll("[gauche]", '<div style="text-align:left;">')
+        .replaceAll("[/gauche]", "</div>")
+        .replaceAll("[centre]", '<div style="text-align:center;">')
+        .replaceAll("[/centre]", "</div>")
+        .replaceAll("[droite]", '<div style="text-align:right;">')
+        .replaceAll("[/droite]", "</div>")
         .replace(/\[c=#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})\]/g, '<span style="color:#$1;">')
         .replace(/\[c=([a-zA-Z0-9_]+)\]/g, '<span style="color:var(--c-$1);">')
         .replaceAll("[/c]", "</span>")
@@ -24,6 +30,7 @@ export const qpcode = (text) => {
         .replaceAll("[/url]", "</a>")
         .replace(/\[urlo=([^<>[\]]+)\]/g, '<a href="$1" target="_blank">')
         .replaceAll("[/urlo]", "</a>")
+        .replace(/\[img=([^<>[\]]+)\]/g, '<img src="$1" alt="" />')
         .replace(/\[ico=([a-z- ]+)\]/g, '<i class="mdi $1"></i>')
     return result
 }

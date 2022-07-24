@@ -1,30 +1,30 @@
 {
   "status": "done",
   "assets": {
-    "fonts/robotocondensed.ttf": {
-      "name": "fonts/robotocondensed.ttf",
-      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed.ttf",
-      "publicPath": "/fonts/robotocondensed.ttf"
-    },
     "fonts/robotocondensed-light.ttf": {
       "name": "fonts/robotocondensed-light.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-light.ttf",
       "publicPath": "/fonts/robotocondensed-light.ttf"
+    },
+    "fonts/robotocondensed.ttf": {
+      "name": "fonts/robotocondensed.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed.ttf",
+      "publicPath": "/fonts/robotocondensed.ttf"
     },
     "fonts/robotocondensed-bold.ttf": {
       "name": "fonts/robotocondensed-bold.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-bold.ttf",
       "publicPath": "/fonts/robotocondensed-bold.ttf"
     },
-    "fonts/quicksand.ttf": {
-      "name": "fonts/quicksand.ttf",
-      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand.ttf",
-      "publicPath": "/fonts/quicksand.ttf"
-    },
     "fonts/quicksand-light.ttf": {
       "name": "fonts/quicksand-light.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-light.ttf",
       "publicPath": "/fonts/quicksand-light.ttf"
+    },
+    "fonts/quicksand.ttf": {
+      "name": "fonts/quicksand.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand.ttf",
+      "publicPath": "/fonts/quicksand.ttf"
     },
     "fonts/quicksand-semibold.ttf": {
       "name": "fonts/quicksand-semibold.ttf",

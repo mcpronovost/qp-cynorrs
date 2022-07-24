@@ -1,9 +1,9 @@
 from django.core.exceptions import BadRequest
 
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_201_CREATED
+from rest_framework.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
 
 from qp.forum.models import (
     qpForum,
@@ -21,7 +21,7 @@ from qp.api.serializers.forum import (
     qpForumSectorSerializer,
     qpForumChapterSerializer,
     qpForumMessageSerializer,
-    qpForumMessageCreateSerializer,
+    qpForumMessageEditSerializer,
     qpForumChapterCreateSerializer
 )
 
@@ -74,4 +74,23 @@ class qpForumChapterCreateAPIView(CreateAPIView):
 
 class qpForumChapterMessageCreateAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = qpForumMessageCreateSerializer
+    serializer_class = qpForumMessageEditSerializer
+
+class qpForumChapterMessageDeleteAPIView(DestroyAPIView):
+    model = qpForumMessage
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpForumMessageEditSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs["pk"]
+        queryset = self.model.objects.filter(
+            pk=pk
+        )
+        return queryset
+
+    def delete(self, request, *args, **kwargs):
+        print("------------------------------ DELETE")
+        instance = self.get_object()
+        print(instance)
+        self.perform_destroy(instance)
+        return Response({"valid": True}, status=HTTP_204_NO_CONTENT)

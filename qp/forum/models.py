@@ -631,7 +631,10 @@ class qpForumMessage(models.Model):
     def delete(self):
         try:
             super().delete()
-            self.chapter.update_last_message()
+            if self.chapter.messages.count() > 0:
+                self.chapter.update_last_message()
+            else:
+                self.chapter.delete()
         except:
             pass
         return

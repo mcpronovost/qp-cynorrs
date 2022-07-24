@@ -89,5 +89,11 @@
     "errorcharacter": "Personnage",
     "errortext": "Texte",
     "AllRightsReserved": "Tous droits réservés",
-    "NewChapterTitle": "Titre du nouveau chapitre"
+    "NewChapterTitle": "Titre du nouveau chapitre",
+    "Edit": "Modifier",
+    "Delete": "Supprimer",
+    "EditMessage": "Modifier le message",
+    "DeleteMessage": "Supprimer le message",
+    "Success": "Succès",
+    "MessageDeletedSuccessfully": "Message supprimé avec succès !"
 }
