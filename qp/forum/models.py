@@ -16,7 +16,7 @@ from qp.forum.utils import (
 class qpForum(models.Model):
     world = models.OneToOneField(
         "world.qpWorld",
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name="forum",
         verbose_name=_("World"),
         blank=True,

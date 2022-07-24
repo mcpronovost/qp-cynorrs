@@ -74,7 +74,7 @@ class qpPlayerView(APIView):
                 "id": hero.pk,
                 "name": hero.name,
                 "initials": hero.initials,
-                "world": hero.world.pk,
+                "world": hero.world.pk if hero.world else None,
                 "geo": hero_geo,
                 "is_can_travel": is_can_travel,
                 "avatar": avatar

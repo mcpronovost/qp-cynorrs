@@ -14,7 +14,7 @@
                         <el-col>
                             <div class="qp-world-footer-copyright">
                                 <small>
-                                    <span v-text="`&copy;&nbsp;${world.copyright}&nbsp;${world.creator?.playername} - ${$t('AllRightsReserved')}`"></span>
+                                    <span v-text="`&copy;&nbsp;${world.copyright} - ${$t('AllRightsReserved')}`"></span>
                                 </small>
                             </div>
                         </el-col>

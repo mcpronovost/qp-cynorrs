@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.core.management.base import BaseCommand, CommandError
 
 from qp.world.models import qpWorld
@@ -19,8 +20,12 @@ class Command(BaseCommand):
 
         try:
             world, created = qpWorld.objects.get_or_create(
-                name=str("Rhansidor")
+                name=str("Rhansidor"),
+                slug=str("rhansidor"),
+                visibility=0
             )
+            world.created_at = datetime(2015, 1, 1, 0, 0, 0)
+            world.save()
             self.stdout.write("World : %s" % str(world.name))
             forum, created = qpForum.objects.get_or_create(
                 world=world,

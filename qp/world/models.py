@@ -115,9 +115,12 @@ class qpWorld(models.Model):
                 str(year),
                 str(self.updated_at.year)
             )
-        return "%s" % (
-            str(year)
-        )
+        if self.creator:
+            return "%s %s" % (
+                str(year),
+                str(self.creator.playername)
+            )
+        return "%s" % (str(year))
     
     @property
     def count_players(self):
