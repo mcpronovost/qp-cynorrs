@@ -25,11 +25,11 @@
             </el-menu-item>
             <el-sub-menu index="1">
                 <template #title>
-                    <span v-text="'Qamuy'"></span>
+                    <span v-text="player?.name"></span>
                 </template>
                 <el-menu-item disabled index="profile" class="qp-multiline">
                     <span v-text="$t('SignedInAs')"></span><br />
-                    <strong v-text="'Qamuy'"></strong>
+                    <strong v-text="player?.name"></strong>
                 </el-menu-item>
                 <hr />
                 <el-menu-item disabled index="profile">
@@ -63,10 +63,9 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 
-// =================================================================================== //
-
 const store = useStore()
 const rat = computed(() => store.getters.rat)
+const player = computed(() => store.getters.player)
 
 </script>
 

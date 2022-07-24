@@ -28,6 +28,14 @@ class qpForumMessageCreateSerializer(serializers.ModelSerializer):
         return obj.get_route(self.context["request"], True)
 
 
+class qpForumChapterCreateSerializer(serializers.ModelSerializer):
+    route = serializers.ReadOnlyField(source="get_route")
+
+    class Meta:
+        model = qpForumChapter
+        fields = ["author", "territory", "sector", "title", "route"]
+
+
 class qpForumAuthorSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField()
     initials = serializers.ReadOnlyField()

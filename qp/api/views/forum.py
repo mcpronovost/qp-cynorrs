@@ -21,7 +21,8 @@ from qp.api.serializers.forum import (
     qpForumSectorSerializer,
     qpForumChapterSerializer,
     qpForumMessageSerializer,
-    qpForumMessageCreateSerializer
+    qpForumMessageCreateSerializer,
+    qpForumChapterCreateSerializer
 )
 
 class qpForumRetrieveAPIView(RetrieveAPIView):
@@ -66,6 +67,10 @@ class qpForumChapterMessagesListAPIView(ListAPIView):
             chapter=pk
         )
         return queryset
+
+class qpForumChapterCreateAPIView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpForumChapterCreateSerializer
 
 class qpForumChapterMessageCreateAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]

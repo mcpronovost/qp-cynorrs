@@ -37,7 +37,7 @@
                                 </section>
                             </template>
                             <template v-else>
-                                <qpForumWritingChapter :territory="props.territory" @close="closeNewChapter()" />
+                                <qpForumWritingChapter :world="world" :territory="territory" @close="closeNewChapter()" />
                             </template>
                         </div>
                     </article>

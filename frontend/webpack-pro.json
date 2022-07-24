@@ -6,15 +6,15 @@
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-light.ttf",
       "publicPath": "/fonts/robotocondensed-light.ttf"
     },
-    "fonts/robotocondensed.ttf": {
-      "name": "fonts/robotocondensed.ttf",
-      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed.ttf",
-      "publicPath": "/fonts/robotocondensed.ttf"
-    },
     "fonts/robotocondensed-bold.ttf": {
       "name": "fonts/robotocondensed-bold.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-bold.ttf",
       "publicPath": "/fonts/robotocondensed-bold.ttf"
+    },
+    "fonts/robotocondensed.ttf": {
+      "name": "fonts/robotocondensed.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed.ttf",
+      "publicPath": "/fonts/robotocondensed.ttf"
     },
     "fonts/quicksand-light.ttf": {
       "name": "fonts/quicksand-light.ttf",
