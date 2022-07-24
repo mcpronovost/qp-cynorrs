@@ -212,6 +212,16 @@ const closeEditMessage = () => {
     width: 100%;
     height: 100%;
 }
+@media (max-width: 767px) {
+    .qp-forum-header-profile-banner  {
+        height: 100px;
+    }
+    .qp-forum-header-profile-avatar {
+        width: 100px;
+        height: 100px;
+        top: 40px;
+    }
+}
 /* =- infos */
 .qp-forum-header-profile-infos {
     text-align: center;
@@ -230,6 +240,15 @@ const closeEditMessage = () => {
     opacity: 0.6;
     margin: 0 0 0 1px;
 }
+@media (max-width: 767px) {
+    .qp-forum-header-profile-infos {
+        padding: 56px 12px 12px;
+    }
+    .qp-forum-header-profile-name {
+        font-size: 24px;
+        line-height: 120%;
+    }
+}
 /* ===--- TEXT ---=== */
 .qp-forum-message-text {
     padding: 24px 32px;
@@ -242,6 +261,16 @@ const closeEditMessage = () => {
     max-width: 640px;
     padding: 0;
     margin: 0 auto;
+}
+@media (max-width: 767px) {
+    .qp-forum-message-text {
+        padding: 24px 12px;
+    }
+    .qp-forum-message-text-inner {
+        font-size: 16px;
+        line-height: 200%;
+        text-align: left;
+    }
 }
 /* ================================--- FOOTER ---=== */
 .qp-forum-message-footer {

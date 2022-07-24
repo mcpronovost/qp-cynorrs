@@ -1,15 +1,15 @@
 {
   "status": "done",
   "assets": {
-    "fonts/robotocondensed-light.ttf": {
-      "name": "fonts/robotocondensed-light.ttf",
-      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-light.ttf",
-      "publicPath": "/fonts/robotocondensed-light.ttf"
-    },
     "fonts/robotocondensed.ttf": {
       "name": "fonts/robotocondensed.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed.ttf",
       "publicPath": "/fonts/robotocondensed.ttf"
+    },
+    "fonts/robotocondensed-light.ttf": {
+      "name": "fonts/robotocondensed-light.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-light.ttf",
+      "publicPath": "/fonts/robotocondensed-light.ttf"
     },
     "fonts/robotocondensed-bold.ttf": {
       "name": "fonts/robotocondensed-bold.ttf",
@@ -31,15 +31,15 @@
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-semibold.ttf",
       "publicPath": "/fonts/quicksand-semibold.ttf"
     },
-    "fonts/quicksand-bold.ttf": {
-      "name": "fonts/quicksand-bold.ttf",
-      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-bold.ttf",
-      "publicPath": "/fonts/quicksand-bold.ttf"
-    },
     "fonts/poppins-light.ttf": {
       "name": "fonts/poppins-light.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\poppins-light.ttf",
       "publicPath": "/fonts/poppins-light.ttf"
+    },
+    "fonts/quicksand-bold.ttf": {
+      "name": "fonts/quicksand-bold.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-bold.ttf",
+      "publicPath": "/fonts/quicksand-bold.ttf"
     },
     "fonts/poppins.ttf": {
       "name": "fonts/poppins.ttf",

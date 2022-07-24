@@ -87,6 +87,10 @@ const props = defineProps({
     text-align: right;
 }
 @media (max-width: 767px) {
+    .qp-forum-header-title {
+        font-size: 9vw;
+        line-height: 120%;
+    }
     .qp-forum-header-buttons {
         text-align: left;
     }

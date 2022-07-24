@@ -1,7 +1,7 @@
 <template>
     <div id="qp-app-header">
         <el-row :gutter="20" align="middle">
-            <el-col :span="12" class="text-left">
+            <el-col :span="10" class="text-left">
                 <div id="qp-header-logo" @click="$router.push({name: 'Home'})">
                     <div id="qp-header-logo-img">
                         <el-image :src="logo" fit="cover">
@@ -31,7 +31,7 @@
                     </el-menu>
                 </div>
             </el-col>
-            <el-col :span="12" class="text-right">
+            <el-col :span="14" class="text-right">
                 <qpHeaderNavPlayer />
             </el-col>
         </el-row>

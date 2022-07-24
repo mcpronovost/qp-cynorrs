@@ -302,4 +302,9 @@ const doLogout = async () => {
     padding: 12px;
     margin: 0 0 12px;
 }
+@media (max-width: 767px) {
+    #qp-auth-banner {
+        height: 120px;
+    }
+}
 </style>

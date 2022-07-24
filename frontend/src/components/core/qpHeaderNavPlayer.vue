@@ -25,11 +25,11 @@
             </el-menu-item>
             <el-sub-menu index="1">
                 <template #title>
-                    <span v-text="player?.name"></span>
+                    <span v-text="player?.playername"></span>
                 </template>
                 <el-menu-item disabled index="profile" class="qp-multiline">
                     <span v-text="$t('SignedInAs')"></span><br />
-                    <strong v-text="player?.name"></strong>
+                    <strong v-text="player?.playername"></strong>
                 </el-menu-item>
                 <hr />
                 <el-menu-item disabled index="profile">
