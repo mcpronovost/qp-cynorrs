@@ -8,6 +8,19 @@
                 </h1>
             </header>
             <router-view :world="world" />
+            <footer class="qp-world-footer">
+                <div class="qp-world-footer-inner">
+                    <el-row>
+                        <el-col>
+                            <div class="qp-world-footer-copyright">
+                                <small>
+                                    <span v-text="`&copy;&nbsp;${world.copyright}&nbsp;${world.creator.playername} - ${$t('AllRightsReserved')}`"></span>
+                                </small>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+            </footer>
         </div>
 
         <qpForumLoadError v-else :isloading="isLoading" :hasError="hasError" />

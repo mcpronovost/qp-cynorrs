@@ -40,6 +40,9 @@ const props = defineProps({
 </script>
 
 <style scoped>
+.qp-forum-footer {
+    padding: 0 0 120px;
+}
 .qp-forum-footer-buttons {
     text-align: right;
 }

@@ -17,6 +17,7 @@ class qpWorldSerializer(serializers.ModelSerializer):
     count_heros = serializers.ReadOnlyField(default=0)
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
+    copyright = serializers.ReadOnlyField()
 
     class Meta:
         model = qpWorld
@@ -34,7 +35,8 @@ class qpWorldSerializer(serializers.ModelSerializer):
             "count_messages",
             "forum",
             "visibility",
-            "is_active"
+            "is_active",
+            "copyright"
         ]
         depth = 1
 

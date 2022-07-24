@@ -27,7 +27,7 @@
             </header>
             <div class="qp-forum-message-text">
                 <div class="qp-forum-message-text-inner">
-                    <div v-text="props.message.text"></div>
+                    <div v-html="qpcode(props.message.text)"></div>
                 </div>
             </div>
         </div>
@@ -37,6 +37,7 @@
 <script setup>
 
 import { datetostr } from "@/plugins/filters/datetostr";
+import { qpcode } from "@/plugins/filters/qpcode";
 
 const props = defineProps({
     world: {

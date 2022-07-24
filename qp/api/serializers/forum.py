@@ -36,9 +36,6 @@ class qpForumAuthorSerializer(serializers.ModelSerializer):
         model = qpPlayerHero
         fields = ["id", "name", "initials", "avatar"]
         depth = 1
-    
-    def get_route(self, obj):
-        return obj.get_route(self.context["request"])
 
 
 class qpForumMessageSerializer(serializers.ModelSerializer):

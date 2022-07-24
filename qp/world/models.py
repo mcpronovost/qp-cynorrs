@@ -108,6 +108,18 @@ class qpWorld(models.Model):
         return False
     
     @property
+    def copyright(self):
+        year = self.created_at.year
+        if year != self.updated_at.year:
+            year = "%s-%s" % (
+                str(year),
+                str(self.updated_at.year)
+            )
+        return "%s" % (
+            str(year)
+        )
+    
+    @property
     def count_players(self):
         result = 0
         try:
