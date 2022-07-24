@@ -665,3 +665,12 @@ class qpForumMessage(models.Model):
         except:
             pass
         return result
+    
+    @property
+    def world(self):
+        result = None
+        try:
+            result = self.chapter.territory.zone.forum.world
+        except:
+            pass
+        return result

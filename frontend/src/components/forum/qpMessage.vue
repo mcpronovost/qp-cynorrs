@@ -38,7 +38,7 @@
                         </el-button>
                     </el-tooltip>
                     <el-tooltip :content="$t('DeleteMessage')" placement="bottom-end">
-                        <el-button size="small" @click="sendDeleteMessage()">
+                        <el-button size="small" @click="doDeleteMessage()">
                             <el-icon class="mdi mdi-close" />
                         </el-button>
                     </el-tooltip>
@@ -53,7 +53,7 @@
 import { computed, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { ElNotification } from "element-plus";
+import { ElNotification, ElMessageBox } from "element-plus";
 import { API } from "@/main.js";
 import { datetostr } from "@/plugins/filters/datetostr";
 import { qpcode } from "@/plugins/filters/qpcode";
@@ -83,6 +83,23 @@ const props = defineProps({
 })
 
 const isLoadingSend = ref(false)
+
+const doDeleteMessage = () => {
+    isLoadingSend.value = true
+    ElMessageBox.confirm(
+        t("Areyousureyouwanttodeletethismessage"),
+        t("DeleteMessage"),
+        {
+            confirmButtonText: t("Delete"),
+            cancelButtonText: t("Cancel"),
+            type: "warning"
+        }
+    ).then(() => {
+        sendDeleteMessage()
+    }).catch(() => {
+        isLoadingSend.value = false
+    })
+}
 
 const sendDeleteMessage = async () => {
     isLoadingSend.value = true

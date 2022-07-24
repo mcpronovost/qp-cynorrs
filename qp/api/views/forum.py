@@ -3,7 +3,7 @@ from django.core.exceptions import BadRequest
 from rest_framework.generics import CreateAPIView, DestroyAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT
+from rest_framework.status import HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 
 from qp.forum.models import (
     qpForum,
@@ -89,8 +89,13 @@ class qpForumChapterMessageDeleteAPIView(DestroyAPIView):
         return queryset
 
     def delete(self, request, *args, **kwargs):
-        print("------------------------------ DELETE")
         instance = self.get_object()
-        print(instance)
-        self.perform_destroy(instance)
-        return Response({"valid": True}, status=HTTP_204_NO_CONTENT)
+        try:
+            player = request.user.player
+            author = instance.author.player
+            if player == author or player == instance.world.creator or player in instance.world.administrators.all():
+                self.perform_destroy(instance)
+                return Response(status=HTTP_204_NO_CONTENT)
+        except Exception as e:
+            print("Error on qpForumChapterMessageDeleteAPIView > delete : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)

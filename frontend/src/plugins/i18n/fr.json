@@ -95,5 +95,6 @@
     "EditMessage": "Modifier le message",
     "DeleteMessage": "Supprimer le message",
     "Success": "Succès",
-    "MessageDeletedSuccessfully": "Message supprimé avec succès !"
+    "MessageDeletedSuccessfully": "Message supprimé avec succès !",
+    "Areyousureyouwanttodeletethismessage": "Êtes-vous certain de vouloir supprimer définitivement ce message ? Cette action est irréversible."
 }
