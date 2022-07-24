@@ -162,7 +162,7 @@ const sendNewChapter = async () => {
         })
         let r = await response.json()
         if (response.status === 201) {
-            router.push(r.route)
+            sendChapterMessage(r.id)
         } else {
             for (let [key, val] of Object.entries(r)) {
                 let k = t(`error${key}`)
@@ -173,6 +173,37 @@ const sendNewChapter = async () => {
         }
     } catch (e) {
         console.log(e)
+        hasErrorSend.value = t("AnErrorOccurred")
+    }
+    isLoadingSend.value = false
+}
+
+const sendChapterMessage = async (chapter) => {
+    hasErrorSend.value = null
+    isLoadingSend.value = true
+    // ===---
+    try {
+        let data = new FormData()
+        data.append("chapter", chapter)
+        data.append("author", formNewChapter.character)
+        data.append("text", formNewChapter.text)
+        let response = await fetch(`${API}/worlds/chapters/${chapter}/messages/create/`, {
+            method: "POST",
+            headers: {"Authorization": rat.value},
+            body: data
+        })
+        let r = await response.json()
+        if (response.status === 201) {
+            router.push(r.route)
+        } else {
+            for (let [key, val] of Object.entries(r)) {
+                let k = t(`error${key}`)
+                for (let v of val) {
+                    hasErrorSend.value = `${k} : ${v}`
+                }
+            }
+        }
+    } catch {
         hasErrorSend.value = t("AnErrorOccurred")
     }
     isLoadingSend.value = false

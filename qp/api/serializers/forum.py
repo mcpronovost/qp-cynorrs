@@ -33,7 +33,7 @@ class qpForumChapterCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpForumChapter
-        fields = ["author", "territory", "sector", "title", "route"]
+        fields = ["id", "author", "territory", "sector", "title", "route"]
 
 
 class qpForumAuthorSerializer(serializers.ModelSerializer):
