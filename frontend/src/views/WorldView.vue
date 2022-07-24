@@ -7,14 +7,14 @@
                     <span v-text="world.name"></span>
                 </h1>
             </header>
-            <router-view :world="world" />
+            <router-view :key="$route.params.slug" :world="world" />
             <footer class="qp-world-footer">
                 <div class="qp-world-footer-inner">
                     <el-row>
                         <el-col>
                             <div class="qp-world-footer-copyright">
                                 <small>
-                                    <span v-text="`&copy;&nbsp;${world.copyright}&nbsp;${world.creator.playername} - ${$t('AllRightsReserved')}`"></span>
+                                    <span v-text="`&copy;&nbsp;${world.copyright}&nbsp;${world.creator?.playername} - ${$t('AllRightsReserved')}`"></span>
                                 </small>
                             </div>
                         </el-col>
