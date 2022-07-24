@@ -17,6 +17,17 @@ from qp.forum.models import (
 )
 
 
+class qpForumMessageCreateSerializer(serializers.ModelSerializer):
+    route = serializers.SerializerMethodField(source="get_route")
+
+    class Meta:
+        model = qpForumMessage
+        fields = ["author", "chapter", "text", "route"]
+    
+    def get_route(self, obj):
+        return obj.get_route(self.context["request"], True)
+
+
 class qpForumAuthorSerializer(serializers.ModelSerializer):
     name = serializers.ReadOnlyField()
     initials = serializers.ReadOnlyField()

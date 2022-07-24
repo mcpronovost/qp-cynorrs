@@ -619,36 +619,46 @@ class qpForumMessage(models.Model):
         }
 
     def save(self, *args, **kwargs):
-        if self.pk is not None:
-            self.count_updates += 1
-        super().save(*args, **kwargs)
-        self.chapter.update_last_message()
+        try:
+            if self.pk is not None:
+                self.count_updates += 1
+            super().save(*args, **kwargs)
+            self.chapter.update_last_message()
+        except:
+            pass
         return
 
     def delete(self):
-        super().delete()
-        self.chapter.update_last_message()
+        try:
+            super().delete()
+            self.chapter.update_last_message()
+        except:
+            pass
         return
     
     def get_route(self, request, last = False):
-        route_name = "WorldForumTerritoryChapter"
-        if self.chapter.sector:
-            route_name = "WorldForumSectorChapter"
-        result = {"name": route_name, "params": {
-            "slug": self.chapter.territory.forum.world.slug,
-            "zone_pk": self.chapter.territory.zone.id,
-            "zone_slug": slugify(self.chapter.territory.zone.name),
-            "territory_pk": self.chapter.territory.id,
-            "territory_slug": slugify(self.chapter.territory.name),
-            "chapter_pk": self.chapter.id,
-            "chapter_slug": slugify(self.chapter.title)
-        }, "hash": "#m%s" % (self.id)}
-        if self.chapter.sector is not None:
-            result["params"]["sector_pk"] = self.chapter.sector.pk
-            result["params"]["sector_slug"] = slugify(self.chapter.sector.name)
-        if last:
-            perpage = get_perpage(request, "messages")
-            result["query"] = {
-                "page": math.ceil(self.chapter.messages.count() / perpage)
-            }
+        result = ""
+        try:
+            route_name = "WorldForumTerritoryChapter"
+            if self.chapter.sector:
+                route_name = "WorldForumSectorChapter"
+            result = {"name": route_name, "params": {
+                "slug": self.chapter.territory.forum.world.slug,
+                "zone_pk": self.chapter.territory.zone.id,
+                "zone_slug": slugify(self.chapter.territory.zone.name),
+                "territory_pk": self.chapter.territory.id,
+                "territory_slug": slugify(self.chapter.territory.name),
+                "chapter_pk": self.chapter.id,
+                "chapter_slug": slugify(self.chapter.title)
+            }, "hash": "#m%s" % (self.id)}
+            if self.chapter.sector is not None:
+                result["params"]["sector_pk"] = self.chapter.sector.pk
+                result["params"]["sector_slug"] = slugify(self.chapter.sector.name)
+            if last:
+                perpage = get_perpage(request, "messages")
+                result["query"] = {
+                    "page": math.ceil(self.chapter.messages.count() / perpage)
+                }
+        except:
+            pass
         return result

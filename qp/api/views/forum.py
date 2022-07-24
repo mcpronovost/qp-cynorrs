@@ -1,5 +1,9 @@
-from rest_framework.generics import RetrieveAPIView, ListAPIView
+from django.core.exceptions import BadRequest
+
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.status import HTTP_201_CREATED
 
 from qp.forum.models import (
     qpForum,
@@ -16,7 +20,8 @@ from qp.api.serializers.forum import (
     qpForumTerritorySerializer,
     qpForumSectorSerializer,
     qpForumChapterSerializer,
-    qpForumMessageSerializer
+    qpForumMessageSerializer,
+    qpForumMessageCreateSerializer
 )
 
 class qpForumRetrieveAPIView(RetrieveAPIView):
@@ -61,3 +66,7 @@ class qpForumChapterMessagesListAPIView(ListAPIView):
             chapter=pk
         )
         return queryset
+
+class qpForumChapterMessageCreateAPIView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpForumMessageCreateSerializer

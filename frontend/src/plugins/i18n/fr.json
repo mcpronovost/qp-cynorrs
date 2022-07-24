@@ -85,5 +85,7 @@
     "ToReply": "Répondre",
     "ChooseACharacter": "Choisir un personnage",
     "YourReply": "Votre réponse",
-    "ThisPageDoesntExistAnymore": "Cette page n'existe pas ou plus"
+    "ThisPageDoesntExistAnymore": "Cette page n'existe pas ou plus",
+    "errorcharacter": "Personnage",
+    "errortext": "Texte"
 }

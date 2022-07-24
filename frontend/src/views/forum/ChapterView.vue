@@ -16,7 +16,7 @@
                     </article>
                 </section>
                 <section v-if="showWritingReply" id="reply" class="qp-forum-writing">
-                    <qpForumWritingReply :world="props.world" @close="closeNewReply()" />
+                    <qpForumWritingReply :world="props.world" :chapter="chapter" @close="closeNewReply()" />
                 </section>
             </div>
         </div>
@@ -158,7 +158,7 @@ const scrollToHash = () => {
                 el.scrollIntoView({behavior: "smooth"})
             }
         }
-    }, 600)
+    }, 400)
 }
 
 const paginateCurrentPage = computed(() => {

@@ -159,19 +159,19 @@ class qpForumMessageAdmin(admin.ModelAdmin):
     get_forum.short_description = str(_("Forum"))
 
     def get_zone(self, obj):
-        if obj.chapter.territory:
+        if obj.chapter and obj.chapter.territory:
             return obj.chapter.territory.zone
         return None
     get_zone.short_description = str(_("Zone"))
 
     def get_territory(self, obj):
-        if obj.chapter.territory:
+        if obj.chapter and obj.chapter.territory:
             return obj.chapter.territory.zone
         return None
     get_territory.short_description = str(_("Territory"))
 
     def get_sector(self, obj):
-        if obj.chapter.sector:
+        if obj.chapter and obj.chapter.sector:
             return obj.chapter.sector
         return None
     get_sector.short_description = str(_("Sector"))
