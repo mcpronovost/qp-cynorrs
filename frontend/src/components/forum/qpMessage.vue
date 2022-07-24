@@ -106,9 +106,9 @@ const props = defineProps({
     height: 150px;
     position: absolute;
     top: 80px;
-    left: 32px;
+    left: 0;
     right: 0;
-    margin: 0 auto 0 0;
+    margin: 0 auto;
 }
 .qp-forum-header-profile-avatar .el-avatar {
     font-size: 24px;
@@ -118,8 +118,8 @@ const props = defineProps({
 }
 /* =- infos */
 .qp-forum-header-profile-infos {
-    text-align: left;
-    padding: 12px 32px 12px 220px;
+    text-align: center;
+    padding: 86px 32px 12px;
 }
 .qp-forum-header-profile-name {
     font-family: "Quicksand", sans-serif;
@@ -134,16 +134,6 @@ const props = defineProps({
     opacity: 0.6;
     margin: 0 0 0 1px;
 }
-@media (max-width: 767px) {
-    .qp-forum-header-profile-avatar {
-        left: 0;
-        margin: 0 auto;
-    }
-    .qp-forum-header-profile-infos {
-        text-align: center;
-        padding: 86px 32px 12px;
-    }
-}
 /* ===--- TEXT ---=== */
 .qp-forum-message-text {
     padding: 24px 32px 64px;
@@ -153,7 +143,7 @@ const props = defineProps({
     font-size: 18px;
     line-height: 200%;
     text-align: justify;
-    max-width: 600px;
+    max-width: 640px;
     padding: 0;
     margin: 0 auto;
 }
