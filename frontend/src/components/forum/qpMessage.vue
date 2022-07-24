@@ -25,15 +25,16 @@
                     </div>
                 </div>
             </header>
-            <div class="qp-forum-message-text">
+            <qpForumWritingEdit v-if="showEditMessage" :message="props.message" @close="closeEditMessage()" />
+            <div v-else class="qp-forum-message-text">
                 <div class="qp-forum-message-text-inner">
                     <div v-html="qpcode(props.message.text)"></div>
                 </div>
             </div>
             <footer class="qp-forum-message-footer">
-                <div v-if="rat && player?.id == props.message.author?.player?.id">
+                <div v-if="rat && player?.id == props.message.author?.player?.id && !showEditMessage">
                     <el-tooltip :content="$t('EditMessage')" placement="bottom-end">
-                        <el-button size="small" disabled>
+                        <el-button size="small" @click="openEditMessage()">
                             <el-icon class="mdi mdi-pencil" />
                         </el-button>
                     </el-tooltip>
@@ -58,6 +59,8 @@ import { API } from "@/main.js";
 import { datetostr } from "@/plugins/filters/datetostr";
 import { qpcode } from "@/plugins/filters/qpcode";
 import i18n from "@/plugins/i18n";
+
+import qpForumWritingEdit from "@/components/forum/qpWritingEdit.vue";
 
 const { t } = i18n.global
 
@@ -135,6 +138,16 @@ const sendDeleteMessage = async () => {
         })
         isLoadingSend.value = false
     }
+}
+
+const showEditMessage = ref(false)
+
+const openEditMessage = () => {
+    showEditMessage.value = true
+}
+
+const closeEditMessage = () => {
+    showEditMessage.value = false
 }
 
 </script>

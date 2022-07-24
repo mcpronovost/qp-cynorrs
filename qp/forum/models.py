@@ -485,6 +485,10 @@ class qpForumChapter(models.Model):
         blank=True,
         null=True
     )
+    is_locked = models.BooleanField(
+        verbose_name=_("Locked"),
+        default=False
+    )
     created_at = models.DateTimeField(
         verbose_name=_("Created"),
         auto_now_add=True
@@ -671,6 +675,24 @@ class qpForumMessage(models.Model):
         result = None
         try:
             result = self.chapter.territory.zone.forum.world
+        except:
+            pass
+        return result
+    
+    @property
+    def is_first(self):
+        result = False
+        try:
+            result = self == self.chapter.messages.first()
+        except:
+            pass
+        return result
+    
+    @property
+    def is_last(self):
+        result = False
+        try:
+            result = self == self.chapter.messages.last()
         except:
             pass
         return result

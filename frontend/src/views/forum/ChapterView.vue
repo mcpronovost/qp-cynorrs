@@ -3,8 +3,8 @@
 
         <div v-if="!isLoading && !hasError && chapter">
             <div class="qp-container">
-                <section class="qp-forum-chapters">
-                    <article v-if="chapter" :id="`c${chapter.id}`" class="qp-forum-chapter">
+                <section v-if="chapter" class="qp-forum-chapters">
+                    <article :id="`c${chapter.id}`" class="qp-forum-chapter">
                         <div class="qp-forum-chapter-inner">
                             <qpForumHeader show-btn-reply :title="chapter.title" :description="chapter.description" :crumbs="listBreadcrumbs" @open-new-reply="openNewReply()" />
                             <section v-if="messages" class="qp-forum-messages">
@@ -14,6 +14,28 @@
                             <el-pagination v-if="messages?.results.length" background hide-on-single-page layout="prev, pager, next" :total="messages.count" :page-size="messages.size" :current-page="paginateCurrentPage" @update:current-page="updateCurrentPage" />
                         </div>
                     </article>
+                    <footer>
+                        <el-row>
+                            <el-col :span="24" :md="12">
+                                <el-tooltip :content="$t('DeleteChapter')" placement="bottom-start">
+                                    <el-button size="small" disabled>
+                                        <el-icon class="mdi mdi-delete-forever" />
+                                    </el-button>
+                                </el-tooltip>
+                                <el-tooltip v-if="chapter.is_locked" :content="$t('UnlockChapter')" placement="bottom-start">
+                                    <el-button size="small" disabled>
+                                        <el-icon class="mdi mdi-lock-open" />
+                                    </el-button>
+                                </el-tooltip>
+                                <el-tooltip v-else :content="$t('LockChapter')" placement="bottom-start">
+                                    <el-button size="small" disabled>
+                                        <el-icon class="mdi mdi-lock" />
+                                    </el-button>
+                                </el-tooltip>
+                            </el-col>
+                            <el-col :span="24" :md="12"></el-col>
+                        </el-row>
+                    </footer>
                 </section>
                 <section v-if="showWritingReply" id="reply" class="qp-forum-writing">
                     <qpForumWritingReply :world="props.world" :chapter="chapter" @close="closeNewReply()" />

@@ -96,5 +96,8 @@
     "DeleteMessage": "Supprimer le message",
     "Success": "Succès",
     "MessageDeletedSuccessfully": "Message supprimé avec succès !",
-    "Areyousureyouwanttodeletethismessage": "Êtes-vous certain de vouloir supprimer définitivement ce message ? Cette action est irréversible."
+    "Areyousureyouwanttodeletethismessage": "Êtes-vous certain de vouloir supprimer définitivement ce message ? Cette action est irréversible.",
+    "DeleteChapter": "Supprimer le chapitre",
+    "LockChapter": "Verrouiller le chapitre",
+    "UnlockChapter": "Déverrouiller le chapitre"
 }

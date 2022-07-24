@@ -51,15 +51,15 @@
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\poppins-bold.ttf",
       "publicPath": "/fonts/poppins-bold.ttf"
     },
-    "fonts/indieflower.ttf": {
-      "name": "fonts/indieflower.ttf",
-      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\indieflower.ttf",
-      "publicPath": "/fonts/indieflower.ttf"
-    },
     "fonts/oswald.ttf": {
       "name": "fonts/oswald.ttf",
       "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\oswald.ttf",
       "publicPath": "/fonts/oswald.ttf"
+    },
+    "fonts/indieflower.ttf": {
+      "name": "fonts/indieflower.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\indieflower.ttf",
+      "publicPath": "/fonts/indieflower.ttf"
     },
     "css/app.css": {
       "name": "css/app.css",

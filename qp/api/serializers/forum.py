@@ -57,11 +57,13 @@ class qpForumAuthorSerializer(serializers.ModelSerializer):
 
 class qpForumMessageSerializer(serializers.ModelSerializer):
     author = qpForumAuthorSerializer()
+    is_first = serializers.ReadOnlyField()
+    is_last = serializers.ReadOnlyField()
     route = serializers.SerializerMethodField(source="get_route")
 
     class Meta:
         model = qpForumMessage
-        fields = ["id", "author", "chapter", "text", "route", "created_at", "updated_at"]
+        fields = ["id", "author", "chapter", "text", "is_first", "is_last", "route", "created_at", "updated_at"]
         depth = 2
     
     def get_route(self, obj):
