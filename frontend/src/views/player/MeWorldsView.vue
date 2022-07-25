@@ -11,7 +11,7 @@
               </h1>
             </el-col>
             <el-col :span="24" :sm="12" :align="app.win.w >= 768 ? 'right' : 'left'">
-              <el-button :disabled="!player.limits.can_create_worlds" @click="openCreateWorld()">
+              <el-button :disabled="!player?.limits?.can_create_worlds" @click="openCreateWorld()">
                 <span v-text="$t('CreateWorld')"></span>
               </el-button>
             </el-col>
@@ -176,7 +176,8 @@ const sizeWorlds = ref(0)
 
 onMounted(() => {
     if (rat.value) {
-        initWorlds()
+        // initWorlds()
+        isLoading.value = false
     } else {
         router.push({name: "AuthLogin"})
     }

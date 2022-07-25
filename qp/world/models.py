@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from colorfield.fields import ColorField
 
 from qp.utils import (
     CHOIX_VISIBILITY
@@ -106,6 +107,10 @@ class qpWorld(models.Model):
         except:
             pass
         return False
+    
+    @property
+    def style(self):
+        return self.styles.filter(is_active=True).last()
     
     @property
     def copyright(self):
@@ -237,6 +242,74 @@ class qpWorldNationality(models.Model):
     
     class Qapi:
         admin_order = 40
+    
+    def __str__(self):
+        return "%s" % (
+            str(self.name)
+        )
+
+
+class qpWorldStyle(models.Model):
+    world = models.ForeignKey(
+        qpWorld,
+        on_delete=models.CASCADE,
+        related_name="styles",
+        verbose_name=_("World"),
+        blank=True,
+        null=True
+    )
+    name = models.CharField(
+        verbose_name=_("Name"),
+        max_length=32,
+        blank=False,
+        null=False
+    )
+    app_body_bg = ColorField(
+        verbose_name=_("App Background Colour"),
+        default="#c9cfd1"
+    )
+    app_body_txt = ColorField(
+        verbose_name=_("App Text Colour"),
+        default="#435259"
+    )
+    app_header_bg = ColorField(
+        verbose_name=_("App Header Background Colour"),
+        default="#435259"
+    )
+    app_header_txt = ColorField(
+        verbose_name=_("App Header Text Colour"),
+        default="#c9cfd1"
+    )
+    app_header_txt_hov = ColorField(
+        verbose_name=_("App Header Text Hover Colour"),
+        default="#dbe0e2"
+    )
+    app_sidebar_bg = ColorField(
+        verbose_name=_("App Sidebar Background Colour"),
+        default="#dbe0e2"
+    )
+    app_smallbar_bg = ColorField(
+        verbose_name=_("App Smallbar Background Colour"),
+        default="#dbe0e2"
+    )
+    stylesheet = models.TextField(
+        verbose_name=_("Custom Stylesheet"),
+        default="",
+        blank=True,
+        null=False
+    )
+    is_active = models.BooleanField(
+        verbose_name=_("Active"),
+        default=False
+    )
+
+    class Meta:
+        verbose_name = _("Style")
+        verbose_name_plural = _("Styles")
+        ordering = ["name"]
+    
+    class Qapi:
+        admin_order = 1000
     
     def __str__(self):
         return "%s" % (

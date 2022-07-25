@@ -33,7 +33,7 @@
 import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { API } from "@/main.js";
+import { API, SITE } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
 import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
@@ -66,6 +66,8 @@ const initWorld = async () => {
         let r = await response.json()
         if (response.status === 200) {
             world.value = r
+            initMetadata(r.name)
+            initStyle(r.style)
         } else {
             throw response
         }
@@ -82,8 +84,34 @@ const initWorld = async () => {
     isLoading.value = false
 }
 
+const initMetadata = (pagetitle) => {
+     document.title = `${pagetitle} - ${SITE.name}`
+}
+
+const initStyle = (style) => {
+    if (style) {
+        let styletag;
+        if (document.getElementById("qp-custom-style")) {
+            styletag = document.getElementById("qp-custom-style")
+        } else {
+            styletag = document.createElement("style");
+            styletag.setAttribute("id", "qp-custom-style");
+        }
+        styletag.innerHTML = `html,body{background-color:${style.app_body_bg};color:${style.app_body_txt};}`
+        styletag.innerHTML += `#qp-app-header{--el-menu-text-color:${style.app_header_txt};--el-menu-active-color:${style.app_header_txt};--el-menu-hover-text-color:${style.app_header_txt_hov};background-color:${style.app_header_bg};}#app #qp-header-logo-title{color:${style.app_header_txt};}#app #qp-header-toggle-sidebar{color:${style.app_header_txt};}`
+        styletag.innerHTML += `#qp-app-sidebar{background-color:${style.app_sidebar_bg};}#app #qp-sidebar-avatar{border-color:${style.app_sidebar_bg};}`
+        styletag.innerHTML += `#qp-app-smallbar{background-color:${style.app_smallbar_bg};}`
+        styletag.innerHTML += style.stylesheet;
+        document.head.appendChild(styletag);
+    }
+}
+
 const goToWorld = () => {
-    router.go({name: "WorldForum", params: {slug: world.value.slug}})
+    if (route.name == "WorldForum") {
+        router.go(route.fullPath)
+    } else {
+        router.push({name: "WorldForum", params: {slug: world.value.slug}})
+    }
 }
 
 </script>

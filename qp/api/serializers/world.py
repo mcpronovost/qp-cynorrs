@@ -4,12 +4,20 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 
 from qp.world.models import (
-    qpWorld
+    qpWorld,
+    qpWorldStyle
 )
 
 from qp.api.serializers.forum import (
     qpForumSerializer
 )
+
+
+class qpWorldStyleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpWorldStyle
+        fields = "__all__"
 
 
 class qpWorldSerializer(serializers.ModelSerializer):
@@ -18,6 +26,7 @@ class qpWorldSerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0, allow_null=False)
     count_messages = serializers.ReadOnlyField(default=0)
     copyright = serializers.ReadOnlyField()
+    style = serializers.SerializerMethodField(source="get_style")
 
     class Meta:
         model = qpWorld
@@ -36,7 +45,8 @@ class qpWorldSerializer(serializers.ModelSerializer):
             "forum",
             "visibility",
             "is_active",
-            "copyright"
+            "copyright",
+            "style"
         ]
         depth = 1
 
@@ -47,6 +57,14 @@ class qpWorldSerializer(serializers.ModelSerializer):
         if world_is_visible:
             return ret
         raise PermissionDenied()
+    
+    def get_style(self, obj):
+        result = None
+        style = obj.style
+        if style is not None:
+            result = qpWorldStyleSerializer(style).data
+        return result
+
 
 class qpWorldNavSerializer(serializers.ModelSerializer):
 

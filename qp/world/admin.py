@@ -5,8 +5,14 @@ from qp.world.models import (
     qpWorld,
     qpWorldRace,
     qpWorldEthnicity,
-    qpWorldNationality
+    qpWorldNationality,
+    qpWorldStyle
 )
+
+
+class qpWorldStyleInline(admin.StackedInline):
+    model = qpWorldStyle
+    extra = 0
 
 
 @admin.register(qpWorld)
@@ -20,6 +26,7 @@ class qpWorldAdmin(admin.ModelAdmin):
         "administrators",
         "moderators"
     ]
+    inlines = [qpWorldStyleInline]
 
 @admin.register(qpWorldRace)
 class qpWorldRaceAdmin(admin.ModelAdmin):

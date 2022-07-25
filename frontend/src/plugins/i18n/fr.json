@@ -99,5 +99,6 @@
     "Areyousureyouwanttodeletethismessage": "Êtes-vous certain de vouloir supprimer définitivement ce message ? Cette action est irréversible.",
     "DeleteChapter": "Supprimer le chapitre",
     "LockChapter": "Verrouiller le chapitre",
-    "UnlockChapter": "Déverrouiller le chapitre"
+    "UnlockChapter": "Déverrouiller le chapitre",
+    "NoCharacterCreated": "Aucun personnage créé"
 }

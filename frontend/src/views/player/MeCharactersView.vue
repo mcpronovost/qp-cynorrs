@@ -28,33 +28,13 @@
                       <p>Lorem ipsum dolor sit amet.</p>
                     </div>
                   </el-col>
-                  <el-col :span="24" :md="12" align="right">
-                    <ul class="qp-mecharacters-infolist">
-                      <li>
-                        <span class="qp-label" v-text="$t('Player', 12)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(12, 1)"></span>
-                      </li>
-                      <li>
-                        <span class="qp-label" v-text="$t('Character', 16)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(16, 1)"></span>
-                      </li>
-                      <li>
-                        <span class="qp-label" v-text="$t('Chapter', 1)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(1, 1)"></span>
-                      </li>
-                      <li>
-                        <span class="qp-label" v-text="$t('Message', 2346)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(2346, 1)"></span>
-                      </li>
-                    </ul>
-                  </el-col>
                 </el-row>
               </qpCard>
             </el-col>
           </el-row>
           <el-row v-else>
             <el-col>
-              <el-empty>
+              <el-empty :description="$t('NoCharacterCreated')">
                 <template #image>
                   <el-icon class="mdi mdi-emoticon-sad-outline mdi-48px" />
                 </template>
