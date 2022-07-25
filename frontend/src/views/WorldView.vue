@@ -3,7 +3,7 @@
 
         <div v-if="!isLoading && !hasError && world">
             <header class="qp-world-header">
-                <h1 class="qp-world-header-name">
+                <h1 class="qp-world-header-name" @click="goToWorld()">
                     <span v-text="world.name"></span>
                 </h1>
             </header>
@@ -31,7 +31,7 @@
 <script setup>
 
 import { computed, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
@@ -41,6 +41,7 @@ import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
 const { t } = i18n.global
 
 const route = useRoute()
+const router = useRouter()
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 
@@ -79,6 +80,10 @@ const initWorld = async () => {
     }
     // ===---
     isLoading.value = false
+}
+
+const goToWorld = () => {
+    router.go({name: "WorldForum", params: {slug: world.value.slug}})
 }
 
 </script>

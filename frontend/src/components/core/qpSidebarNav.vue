@@ -6,7 +6,7 @@
                 <span v-text="$t('Home')"></span>
             </el-menu-item>
             <!---->
-            <template v-for="(world, n) in worlds">
+            <template v-for="(world, n) in player.worldnavs">
                 <el-sub-menu v-if="$route.params.slug && $route.params.slug == world.slug" :key="`world-nav-group-${n}`" :index="world.slug">
                     <template #title>
                         <i class="mdi mdi-hops"></i>
@@ -49,7 +49,7 @@ import { useStore } from "vuex";
 
 const store = useStore()
 const app = computed(() => store.getters.app)
-const worlds = computed(() => store.getters.worlds)
+const player = computed(() => store.getters.player)
 
 // =================================================================================== //
 

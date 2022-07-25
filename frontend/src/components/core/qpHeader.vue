@@ -2,7 +2,7 @@
     <div id="qp-app-header">
         <el-row :gutter="20" align="middle">
             <el-col :span="10" class="text-left">
-                <div id="qp-header-logo" @click="$router.push({name: 'Home'})">
+                <div id="qp-header-logo" @click="$router.go({name: 'Home'})">
                     <div id="qp-header-logo-img">
                         <el-image :src="logo" fit="cover">
                             <template #error>

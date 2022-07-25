@@ -47,3 +47,10 @@ class qpWorldSerializer(serializers.ModelSerializer):
         if world_is_visible:
             return ret
         raise PermissionDenied()
+
+class qpWorldNavSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpWorld
+        fields = ["id", "slug", "name"]
+        depth = 1

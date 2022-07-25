@@ -31,9 +31,9 @@ const rat = computed(() => store.getters.rat)
 const heros = computed(() => store.getters.heros)
 
 const listHeros = computed(() => {
-    if ("world_pk" in route.params) {
+    if ("slug" in route.params) {
         return heros.value.filter((obj) => {
-            return obj.world == route.params.world_pk
+            return obj.world?.slug == route.params.slug
         })
     }
     return heros.value

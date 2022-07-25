@@ -4,15 +4,25 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView,
 from rest_framework.permissions import IsAuthenticated
 
 from qp.player.models import (
-    qpPlayer
+    qpPlayer,
+    qpPlayerHero
+)
+
+from qp.world.models import (
+    qpWorld
 )
 
 from qp.api.serializers.player import (
-    qpPlayerMeSerializer
+    qpPlayerMeSerializer,
+    qpPlayerMeHeroSerializer
+)
+
+from qp.api.serializers.world import (
+    qpWorldNavSerializer
 )
 
 
-class qpPlayerRetrieveView(RetrieveAPIView):
+class qpPlayerMeRetrieveView(RetrieveAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = qpPlayerMeSerializer
     queryset = qpPlayer.objects.all()
@@ -24,3 +34,16 @@ class qpPlayerRetrieveView(RetrieveAPIView):
         except Exception as e:
             print("Error on qpPlayerRetrieveView : ", e)
         return None
+
+
+class qpPlayerMeHerosListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeHeroSerializer
+    queryset = qpPlayerHero.objects.all()
+    pagination_class = None
+
+    def get_queryset(self):
+        queryset = self.request.user.player.heros.filter(
+            is_active=True
+        )
+        return queryset

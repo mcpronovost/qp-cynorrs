@@ -83,7 +83,7 @@ const listCharacters = ref([])
 const initCharacters = () => {
     listCharacters.value = []
     for (const h of heros.value) {
-        if (h.world == props.world.id) {
+        if (h.world.id == props.world.id) {
             // vérifier si le personnage est localisé ici
             listCharacters.value.push(h)
         }
