@@ -143,6 +143,14 @@ class qpForumSectorSerializer(serializers.ModelSerializer):
             return {"id": obj.territory.zone.pk,"name": obj.territory.zone.name}
         except:
             return None
+    
+    def get_chapters(self, obj):
+        queryset = obj.chapters.filter(sector=None)
+        # ===---
+        result = []
+        for q in queryset.distinct():
+            result.append(qpForumChapterListSerializer(q).data)
+        return result
 
 
 class qpForumSectorListSerializer(serializers.ModelSerializer):
@@ -163,7 +171,7 @@ class qpForumTerritorySerializer(serializers.ModelSerializer):
     count_sectors = serializers.ReadOnlyField(default=0)
     count_chapters = serializers.ReadOnlyField(default=0)
     count_messages = serializers.ReadOnlyField(default=0)
-    chapters = qpForumChapterListSerializer(many=True)
+    chapters = serializers.SerializerMethodField(source="get_chapters")
     last_chapter = qpForumChapterListSerializer()
     
     class Meta:
@@ -182,6 +190,14 @@ class qpForumTerritorySerializer(serializers.ModelSerializer):
             return {"id": obj.zone.forum.pk,"name": obj.zone.forum.name}
         except:
             return None
+    
+    def get_chapters(self, obj):
+        queryset = obj.chapters.filter(sector=None)
+        # ===---
+        result = []
+        for q in queryset.distinct():
+            result.append(qpForumChapterListSerializer(q).data)
+        return result
 
 
 class qpForumTerritoryListSerializer(serializers.ModelSerializer):
