@@ -146,6 +146,12 @@
     color: var(--qp-default-txt);
 }
 
+.el-select-dropdown__item.hover,
+.el-select-dropdown__item:hover {
+    background-color: transparent;
+    opacity: 0.6;
+}
+
 /* ===--- LOADING ---=== */
 
 .el-image__placeholder {
