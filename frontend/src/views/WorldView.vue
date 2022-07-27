@@ -30,7 +30,7 @@
 
 <script setup>
 
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onBeforeUnmount, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { API, SITE } from "@/main.js";
@@ -50,6 +50,10 @@ const hasError = ref(null)
 
 onMounted(() => {
     initWorld()
+})
+
+onBeforeUnmount (() => {
+    clearStyle()
 })
 
 const world = ref(null)
@@ -89,21 +93,51 @@ const initMetadata = (pagetitle) => {
 }
 
 const initStyle = (style) => {
-    if (style) {
-        let styletag;
-        if (document.getElementById("qp-custom-style")) {
-            styletag = document.getElementById("qp-custom-style")
-        } else {
-            styletag = document.createElement("style");
-            styletag.setAttribute("id", "qp-custom-style");
-        }
-        styletag.innerHTML = `html,body{background-color:${style.app_body_bg};color:${style.app_body_txt};}`
-        styletag.innerHTML += `#qp-app-header{--el-menu-text-color:${style.app_header_txt};--el-menu-active-color:${style.app_header_txt};--el-menu-hover-text-color:${style.app_header_txt_hov};background-color:${style.app_header_bg};}#app #qp-header-logo-title{color:${style.app_header_txt};}#app #qp-header-toggle-sidebar{color:${style.app_header_txt};}`
-        styletag.innerHTML += `#qp-app-sidebar{background-color:${style.app_sidebar_bg};}#app #qp-sidebar-avatar{border-color:${style.app_sidebar_bg};}`
-        styletag.innerHTML += `#qp-app-smallbar{background-color:${style.app_smallbar_bg};}`
-        styletag.innerHTML += style.stylesheet;
-        document.head.appendChild(styletag);
+    let styletag;
+    if (document.getElementById("qp-custom-style")) {
+        styletag = document.getElementById("qp-custom-style")
+    } else {
+        styletag = document.createElement("style");
+        styletag.setAttribute("id", "qp-custom-style");
     }
+    if (style) {
+        styletag.innerHTML = `:root{`
+        styletag.innerHTML += `--qp-primary:${style.primary};`
+
+        styletag.innerHTML += `--qp-app-bg:${style.app_body_bg};`
+        styletag.innerHTML += `--qp-app-txt:${style.app_body_txt};`
+
+        styletag.innerHTML += `--qp-app-header-bg:${style.app_header_bg};`
+        styletag.innerHTML += `--qp-app-header-txt:${style.app_header_txt};`
+        styletag.innerHTML += `--qp-app-header-txt-hov:${style.app_header_txt_hov};`
+
+        styletag.innerHTML += `--qp-app-sidebar-bg:${style.app_sidebar_bg};`
+        styletag.innerHTML += `--qp-app-sidebar-txt:${style.app_sidebar_txt};`
+        styletag.innerHTML += `--qp-app-sidebar-accent:${style.app_sidebar_accent};`
+
+        styletag.innerHTML += `--qp-app-smallbar-bg:${style.app_smallbar_bg};`
+        styletag.innerHTML += `--qp-app-smallbar-txt:${style.app_smallbar_txt};`
+        styletag.innerHTML += `--qp-app-smallbar-accent:${style.app_smallbar_accent};`
+
+        styletag.innerHTML += `--qp-default-bg:${style.default_bg};`
+        styletag.innerHTML += `--qp-default-txt:${style.default_txt};`
+        styletag.innerHTML += `--qp-default-accented-bg:${style.default_accented_bg};`
+        styletag.innerHTML += `--qp-default-accented-txt:${style.default_accented_txt};`
+        styletag.innerHTML += `--qp-default-disabled-bg:${style.default_disabled_bg};`
+        styletag.innerHTML += `--qp-default-disabled-txt:${style.default_disabled_txt};`
+
+        styletag.innerHTML += `--qp-form-bg:${style.form_bg};`
+        styletag.innerHTML += `--qp-form-txt:${style.form_txt};`
+        styletag.innerHTML += `--qp-form-placeholder:${style.form_placeholder};`
+        styletag.innerHTML += `}`
+    } else {
+        styletag.innerHTML = ""
+    }
+    document.head.appendChild(styletag);
+}
+
+const clearStyle = () => {
+
 }
 
 const goToWorld = () => {

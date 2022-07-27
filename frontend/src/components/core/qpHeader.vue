@@ -66,14 +66,15 @@ const toggleSidebar = () => {
 <style scoped>
     /* ===--- logo ---=== */
     #qp-header-logo {
+        color: var(--qp-app-header-txt);
         display: inline-block;
-        transition: opacity 0.4s;
+        transition: color 0.4s;
         padding: 0 32px 0 0;
         margin: 0px 75px 0px 0;
     }
     #qp-header-logo:hover {
+        color: var(--qp-app-header-txt-hov);
         cursor: pointer;
-        opacity: 0.6;
     }
     #qp-header-logo-img {
         background-color: #505f65;
@@ -90,7 +91,6 @@ const toggleSidebar = () => {
         height: 100%;
     }
     #qp-header-logo-title {
-        color: var(--qp-bg);
         font-family: "Indie Flower", sans-serif;
         font-size: 32px;
         line-height: 120%;
@@ -114,16 +114,16 @@ const toggleSidebar = () => {
     }
     /* ===--- toggle-sidebar ---=== */
     #qp-header-toggle-sidebar {
-        color: var(--qp-bg);
+        color: var(--qp-app-header-txt);
         font-size: 24px;
         line-height: 0;
         vertical-align: middle;
         display: inline-block;
-        transition: opacity 0.4s;
+        transition: color 0.4s;
     }
     #qp-header-toggle-sidebar:hover {
+        color: var(--qp-app-header-txt-hov);
         cursor: pointer;
-        opacity: 0.6;
     }
     /* ===--- MENU-APP ---=== */
     #qp-header-menu-app {

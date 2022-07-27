@@ -49,7 +49,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-    if (!("world_pk" in to.params)) {
+    if (!("slug" in to.params)) {
         if (document.getElementById("qp-custom-style")) {
             document.getElementById("qp-custom-style").remove();
         }

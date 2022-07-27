@@ -49,7 +49,7 @@ class qpPlayerMeHeroSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpPlayerHero
-        fields = ["id", "name", "avatar", "world", "is_valid", "geo"]
+        fields = ["id", "name", "initials", "avatar", "world", "is_valid", "geo"]
         depth = 1
     
     def get_world(self, obj):

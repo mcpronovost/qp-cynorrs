@@ -57,6 +57,7 @@ const props = defineProps({
     padding: 12px;
 }
 .qp-forum-header-title {
+    color: var(--qp-app-txt);
     font-family: "Quicksand", sans-serif;
     font-size: 52px;
     font-weight: 300;
@@ -66,21 +67,26 @@ const props = defineProps({
     margin: 0;
 }
 .qp-forum-header-description {
-    color: var(--qp-tertiary);
+    color: var(--qp-app-txt);
     font-size: 14px;
     font-weight: 400;
     line-height: 150%;
     letter-spacing: 1px;
     position: relative;
+    opacity: 0.6;
     padding: 0 30% 12px 2px;
     margin: 0;
 }
 .qp-forum-header-divider {
     background-color: var(--qp-primary);
     border: none;
+    border-radius: 0;
+    box-shadow: none;
     display: block;
     width: 64px;
     height: 2px;
+    opacity: 1;
+    padding: 0;
     margin: 12px auto 12px 2px;
 }
 .qp-forum-header-buttons {

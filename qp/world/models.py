@@ -264,6 +264,10 @@ class qpWorldStyle(models.Model):
         blank=False,
         null=False
     )
+    primary = ColorField(
+        verbose_name=_("Primary Colour"),
+        default="#435259"
+    )
     app_body_bg = ColorField(
         verbose_name=_("App Background Colour"),
         default="#c9cfd1"
@@ -288,9 +292,61 @@ class qpWorldStyle(models.Model):
         verbose_name=_("App Sidebar Background Colour"),
         default="#dbe0e2"
     )
+    app_sidebar_txt = ColorField(
+        verbose_name=_("App Sidebar Text Colour"),
+        default="#435259"
+    )
+    app_sidebar_accent = ColorField(
+        verbose_name=_("App Sidebar Accent Colour"),
+        default="#937c0c"
+    )
     app_smallbar_bg = ColorField(
         verbose_name=_("App Smallbar Background Colour"),
         default="#dbe0e2"
+    )
+    app_smallbar_txt = ColorField(
+        verbose_name=_("App Smallbar Text Colour"),
+        default="#435259"
+    )
+    app_smallbar_accent = ColorField(
+        verbose_name=_("App Smallbar Accent Colour"),
+        default="#937c0c"
+    )
+    default_bg = ColorField(
+        verbose_name=_("Default Background Colour"),
+        default="#dbe0e2"
+    )
+    default_txt = ColorField(
+        verbose_name=_("Default Text Colour"),
+        default="#5a6b72"
+    )
+    default_accented_bg = ColorField(
+        verbose_name=_("Default Accented Background Colour"),
+        default="#435259"
+    )
+    default_accented_txt = ColorField(
+        verbose_name=_("Default Accented Text Colour"),
+        default="#dbe0e2"
+    )
+    default_disabled_bg = ColorField(
+        verbose_name=_("Default Disabled Background Colour"),
+        default="#b7c1c5"
+    )
+    default_disabled_txt = ColorField(
+        verbose_name=_("Default Disabled Text Colour"),
+        default="#6e7f86"
+    )
+    form_bg = ColorField(
+        verbose_name=_("Form Background Colour"),
+        default="#d2d7d9"
+    )
+    form_txt = ColorField(
+        verbose_name=_("Form Text Colour"),
+        default="#7a8489"
+    )
+    form_placeholder = ColorField(
+        verbose_name=_("Form Placeholder Colour"),
+        default="#899295"
     )
     stylesheet = models.TextField(
         verbose_name=_("Custom Stylesheet"),

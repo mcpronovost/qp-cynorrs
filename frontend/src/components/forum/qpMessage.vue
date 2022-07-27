@@ -157,9 +157,10 @@ const closeEditMessage = () => {
     padding: 12px;
 }
 .qp-forum-message-inner {
-    background-color: var(--qp-base);
+    background-color: var(--qp-default-bg);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
+    color: var(--qp-default-txt);
     text-align: center;
     overflow: hidden;
     align-content: center;
@@ -179,7 +180,7 @@ const closeEditMessage = () => {
     margin: 0;
 }
 .qp-forum-header-profile-banner  {
-    background-color: var(--qp-secondary);
+    background-color: var(--qp-default-disabled-bg);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     overflow: hidden;
@@ -194,8 +195,8 @@ const closeEditMessage = () => {
     filter: blur(3px);
 }
 .qp-forum-header-profile-avatar {
-    background-color: var(--qp-secondary);
-    border: 6px solid var(--qp-base);
+    background-color: var(--qp-default-bg);
+    border: 6px solid var(--qp-default-bg);
     border-radius: 100%;
     overflow: hidden;
     width: 150px;

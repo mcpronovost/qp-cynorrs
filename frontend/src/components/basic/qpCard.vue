@@ -72,8 +72,8 @@ const marginBottom = computed(() => {
 
 <style scoped>
     .qp-card {
-        background-color: var(--qp-base);
-        color: var(--qp-secondary);
+        background-color: var(--qp-default-bg);
+        color: var(--qp-default-txt);
         border-radius: 4px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
         overflow: hidden;
@@ -86,18 +86,18 @@ const marginBottom = computed(() => {
     .qp-card.qp-card-clickable:hover,
     .qp-card.qp-card-clickable:focus {
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-        opacity: 0.9;
+        opacity: 0.6;
         cursor: pointer;
     }
     .qp-card.qp-card-clickable:active {
-        opacity: 0.5;
+        opacity: 0.4;
     }
     .qp-card.qp-card-overflow {
         overflow: visible;
     }
     .qp-card.qp-card-bg-primary {
-        background-color: var(--qp-primary);
-        color: var(--qp-base);
+        background-color: var(--qp-default-accented-bg);
+        color: var(--qp-default-accented-txt);
     }
     /* ===--- header ---=== */
     .qp-card-header {

@@ -126,8 +126,8 @@ onMounted(() => {
     margin: 4px;
 }
 .qp-action-travel-choosetravellers .qp-action-travel-traveller-avatar {
-    background-color: var(--qp-secondary);
-    border: 4px solid var(--qp-base);
+    background-color: var(--qp-default-bg);
+    border: 4px solid var(--qp-default-bg);
     border-radius: 100%;
     overflow: hidden;
     width: 64px;

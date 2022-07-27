@@ -67,7 +67,7 @@ class qpForumMessageSerializer(serializers.ModelSerializer):
         depth = 2
     
     def get_route(self, obj):
-        return obj.get_route(self.context["request"])
+        return obj.get_route(self.context["request"] if "request" in self.context else None)
 
 
 class qpForumChapterSerializer(serializers.ModelSerializer):

@@ -62,6 +62,7 @@ import qpCard from "@/components/basic/qpCard.vue";
     opacity: 0.6;
 }
 .qp-quests-item-icon {
+    color: var(--qp-default-txt);
     font-size: 32px;
     line-height: 120%;
     flex: 1 1 48px;
@@ -70,13 +71,16 @@ import qpCard from "@/components/basic/qpCard.vue";
     flex: 1 1 calc(100% - 48px);
 }
 .qp-quests-item-title {
+    color: var(--qp-default-txt);
     font-weight: 600;
     padding: 0;
     margin: 0 0 6px;
 }
 .qp-quests-item-description {
+    color: var(--qp-default-txt);
     font-size: 12px;
     line-height: 150%;
+    opacity: 0.6;
     padding: 0;
     margin: 0;
 }

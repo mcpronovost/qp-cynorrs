@@ -39,11 +39,12 @@ const app = computed(() => store.getters.app)
         flex: 1 1 auto;
     }
     #qp-sidebar-footer {
-        color: var(--qp-secondary);
+        color: var(--qp-app-sidebar-txt);
         font-size: 12px;
         line-height: 120%;
         text-align: center;
         flex: 0 0 auto;
+        opacity: 0.6;
         padding: 12px;
     }
     @media (max-width: 1199px) {

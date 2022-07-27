@@ -58,7 +58,7 @@ const player = computed(() => store.getters.player)
 <style scoped>
     #qp-sidebar-nav i.mdi {
         border-radius: 6px;
-        color: var(--qp-secondary);
+        color: var(--qp-app-sidebar-txt);
         font-size: 24px;
         line-height: 32px;
         text-align: center;
@@ -69,7 +69,7 @@ const player = computed(() => store.getters.player)
         margin: 0 12px 3px 0;
     }
     #qp-sidebar-nav span {
-        color: var(--qp-secondary);
+        color: var(--qp-app-sidebar-txt);
         font-size: 14px;
         font-weight: 500;
         line-height: 120%;
@@ -78,10 +78,16 @@ const player = computed(() => store.getters.player)
         margin: 0;
     }
     #qp-sidebar-nav .el-menu-item.is-active i.mdi {
-        color: var(--qp-primary);
+        color: var(--qp-app-sidebar-accent);
     }
     #qp-sidebar-nav .el-menu-item.is-active span {
-        color: var(--qp-primary);
+        color: var(--qp-app-sidebar-accent);
+    }
+    #qp-sidebar-nav .el-menu-item:not(.is-disabled):hover i.mdi,
+    #qp-sidebar-nav .el-menu-item:not(.is-disabled):hover span,
+    #qp-sidebar-nav .el-sub-menu__title:not(.is-disabled):hover i.mdi,
+    #qp-sidebar-nav .el-sub-menu__title:not(.is-disabled):hover span {
+        opacity: 0.7;
     }
     #qp-sidebar-nav .el-menu-item-group .el-menu-item span {
         display: inline-block;
@@ -96,7 +102,7 @@ const player = computed(() => store.getters.player)
 
 <style>
     #qp-sidebar-nav .el-icon.el-sub-menu__icon-arrow {
-        color: var(--qp-secondary);
+        color: var(--qp-app-sidebar-txt);
     }
     @media (max-width: 1199px) {
         #qp-sidebar-nav > .el-menu {

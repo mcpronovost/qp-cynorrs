@@ -3,33 +3,39 @@
 
 :root {
     --qp-primary: #435259;
-    --qp-primary-lighten-1: #4e5f68;
-    --qp-primary-lighten-2: #596d76;
-    --qp-primary-lighten-3: #647a85;
-    --qp-primary-lighten-4: #6f8793;
-    --qp-primary-lighten-5: #7e949e;
-    --qp-primary-lighten-6: #8ca0a9;
-    --qp-primary-lighten-7: #9bacb4;
-    --qp-primary-lighten-8: #b8c4ca;
-    --qp-primary-lighten-9: #c7d0d5;
-    --qp-primary-darken-1: #38454a;
-    --qp-primary-darken-2: #2d373c;
-    --qp-primary-darken-3: #222a2d;
-    --qp-primary-darken-4: #171c1f;
-    --qp-primary-darken-5: #0c0f10;
-    --qp-primary-darken-6: #010202;
-    --qp-secondary: #7a8489;
-    --qp-tertiary: #899295;
-    --qp-accent: #a89630;
-    --qp-base: #dbe0e2;
-    --qp-base-midbg: #d2d7d9;
-    --qp-bg: #c9cfd1;
+
+    --qp-app-bg: #c9cfd1;
+    --qp-app-txt: #435259;
+
+    --qp-app-header-bg: #435259;
+    --qp-app-header-txt: #c9cfd1;
+    --qp-app-header-txt-hov: #dbe0e2;
+
+    --qp-app-sidebar-bg: #dbe0e2;
+    --qp-app-sidebar-txt: #435259;
+    --qp-app-sidebar-accent: #937c0c;
+
+    --qp-app-smallbar-bg: #dbe0e2;
+    --qp-app-smallbar-txt: #435259;
+    --qp-app-smallbar-accent: #937c0c;
+
+    --qp-default-bg: #dbe0e2;
+    --qp-default-txt: #5a6b72;
+    --qp-default-accented-bg: #435259;
+    --qp-default-accented-txt: #dbe0e2;
+    --qp-default-disabled-bg: #b7c1c5;
+    --qp-default-disabled-txt: #6e7f86;
+
+    --qp-form-bg: #d2d7d9;
+    --qp-form-txt: #7a8489;
+    --qp-form-placeholder: #899295;
+
     --c-cynorrs: #937c0c;
 }
 
 html, body {
-    background-color: var(--qp-bg);
-    color: var(--qp-primary);
+    background-color: var(--qp-app-bg);
+    color: var(--qp-app-txt);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 16px;
     font-weight: 400;
@@ -46,12 +52,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 a, a:link, a:visited {
-    color: var(--qp-primary);
+    color: var(--qp-app-txt);
     text-decoration: none;
     transition: color 0.3s;
 }
 a:focus, a:hover {
-    color: var(--qp-accent);
+    color: var(--qp-primary);
     text-decoration: none;
 }
 
@@ -68,7 +74,7 @@ input:-webkit-autofill:active {
 }
 
 hr {
-    background-color: var(--qp-base);
+    background-color: var(--qp-default-bg);
     border: none;
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
@@ -111,9 +117,10 @@ hr {
 /* ===--- header ---=== */
 
 #qp-app-header {
-    background-color: var(--qp-primary);
+    background-color: var(--qp-app-header-bg);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
     box-sizing: border-box;
+    color: var(--qp-app-header-txt);
     flex: 1 0 100%;
     height: 64px;
     position: relative;
@@ -123,7 +130,7 @@ hr {
 /* ===--- sidebar ---=== */
 
 #qp-app-sidebar {
-    background-color: var(--qp-base);
+    background-color: var(--qp-app-sidebar-bg);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
     box-sizing: border-box;
     vertical-align: top;
@@ -156,7 +163,7 @@ hr {
 /* ===--- smallbar ---=== */
 
 #qp-app-smallbar {
-    background-color: var(--qp-base);
+    background-color: var(--qp-app-smallbar-bg);
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.04);
     box-sizing: border-box;
     vertical-align: top;
@@ -200,9 +207,9 @@ hr {
 /* =================================================================================== */
 
 #qp-app-header {
-    --el-menu-text-color: var(--qp-bg);
-    --el-menu-hover-text-color: var(--qp-base);
-    --el-menu-active-color: var(--qp-bg);
+    --el-menu-text-color: var(--qp-app-header-txt);
+    --el-menu-hover-text-color: var(--qp-app-header-txt-hov);
+    --el-menu-active-color: var(--qp-app-header-txt);
     --el-menu-item-height: 32px;
 }
 
@@ -228,8 +235,8 @@ hr {
 /* =================================================================================== */
 
 .qp-action-travel-button.el-button {
-    background-color: var(--qp-base);
-    border: 1px solid var(--qp-base);
+    background-color: var(--qp-default-bg);
+    border: 1px solid var(--qp-default-bg);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
     color: var(--qp-primary);
@@ -240,10 +247,10 @@ hr {
     border: 1px solid var(--qp-primary);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
-    color: var(--qp-base);
+    color: var(--qp-default-bg);
 }
 .qp-action-travel-button.el-button:active {
-    background-color: var(--qp-base);
+    background-color: var(--qp-default-bg);
     border: 1px solid var(--qp-primary);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
@@ -257,7 +264,6 @@ hr {
 /* ===--- FORUM: h1-header ---=== */
 
 .qp-world-header {
-    background-color: var(--qp-base-midbg);
     text-align: center;
     padding: 64px 32px;
     margin: 0 0 32px;
@@ -287,7 +293,9 @@ hr {
 /* ===--- FORUM: h1-footer ---=== */
 
 .qp-world-footer {
+    color: var(--qp-app-txt);
     text-align: center;
+    opacity: 0.6;
     padding: 64px 32px 12px;
     margin: 32px 0 0;
 }
@@ -311,7 +319,7 @@ hr {
     vertical-align: middle;
     list-style: none;
     display: inline-block;
-    opacity: 0.7;
+    opacity: 0.6;
     transition: opacity 0.3s;
     padding: 8px 12px 8px 0;
     margin: 0;
@@ -354,7 +362,7 @@ hr {
 .qp-forum.qp-singleton-index .qp-forum-territory-inner,
 .qp-forum.qp-singleton-zone .qp-forum-territory-inner,
 .qp-forum.qp-singleton-territory .qp-forum-sector-inner {
-    background-color: var(--qp-base);
+    background-color: var(--qp-default-bg);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
     text-align: center;
@@ -418,7 +426,7 @@ hr {
     cursor: pointer;
 }
 .qp-forum-header-lastmessage-gotolast {
-    background-color: var(--qp-base);
+    background-color: var(--qp-default-bg);
     border-radius: 100%;
     font-size: 64px;
     line-height: 106px;
@@ -453,13 +461,14 @@ hr {
     cursor: pointer;
 }
 .qp-forum-header-lastmessage-infos-link span.title {
-    color: var(--qp-primary);
+    color: var(--qp-default-txt);
     display: block;
     padding: 0 6px;
 }
 .qp-forum-header-lastmessage-infos-link span.date {
-    color: var(--qp-tertiary);
+    color: var(--qp-default-txt);
     display: block;
+    opacity: 0.6;
     padding: 4px 6px 0;
 }
 
@@ -486,7 +495,7 @@ hr {
 }
 .qp-singleton-territory .qp-forum-chapters .qp-forum-chapter-inner,
 .qp-singleton-sector .qp-forum-chapters .qp-forum-chapter-inner {
-    background-color: var(--qp-base);
+    background-color: var(--qp-default-bg);
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
     text-align: center;
@@ -518,7 +527,7 @@ hr {
 }
 .qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-banner,
 .qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-banner  {
-    background-color: var(--qp-secondary);
+    background-color: var(--qp-default-disabled-bg);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     overflow: hidden;
@@ -533,8 +542,8 @@ hr {
 }
 .qp-singleton-territory .qp-forum-chapters .qp-forum-header-profile-avatar,
 .qp-singleton-sector .qp-forum-chapters .qp-forum-header-profile-avatar {
-    background-color: var(--qp-secondary);
-    border: 6px solid var(--qp-base);
+    background-color: var(--qp-default-bg);
+    border: 6px solid var(--qp-default-bg);
     border-radius: 100%;
     overflow: hidden;
     width: 110px;
@@ -569,12 +578,12 @@ hr {
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-title:hover,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-title:hover {
-    color: var(--qp-secondary);
+    color: var(--qp-default-txt);
     cursor: pointer;
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-date,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-date {
-    color: var(--qp-secondary);
+    color: var(--qp-default-txt);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -589,7 +598,7 @@ hr {
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos {
-    color: var(--qp-secondary);
+    color: var(--qp-default-txt);
     list-style: none;
     display: flex;
     flex: 0 1 auto;
@@ -602,7 +611,7 @@ hr {
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-lastmessagedate,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-lastmessagedate {
-    color: var(--qp-tertiary);
+    color: var(--qp-default-txt);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 12px;
     font-weight: 400;
@@ -612,6 +621,7 @@ hr {
     flex: 1 1 75%;
     align-items: center;
     justify-content: flex-start;
+    opacity: 0.6;
     padding: 0 6px 0 0;
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-lastmessagedate i.mdi,
@@ -622,7 +632,7 @@ hr {
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-countmessages,
 .qp-forum.qp-singleton-sector .qp-forum-chapters .qp-forum-header-infos-countmessages {
-    color: var(--qp-tertiary);
+    color: var(--qp-default-txt);
     font-family: "Roboto Condensed", sans-serif;
     font-size: 12px;
     font-weight: 400;
@@ -632,6 +642,7 @@ hr {
     flex: 1 1 25%;
     align-items: center;
     justify-content: flex-end;
+    opacity: 0.6;
     padding: 0 0 0 6px;
 }
 .qp-forum.qp-singleton-territory .qp-forum-chapters .qp-forum-header-infos-countmessages i.mdi,
