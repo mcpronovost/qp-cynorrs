@@ -101,5 +101,10 @@
     "LockChapter": "Verrouiller le chapitre",
     "UnlockChapter": "Déverrouiller le chapitre",
     "NoCharacterCreated": "Aucun personnage créé",
-    "YouDoesntHaveAccessToThisPage": "Vous n'avez pas accès à cette page"
+    "YouDoesntHaveAccessToThisPage": "Vous n'avez pas accès à cette page",
+    "Name": "Nom",
+    "Slug": "Slug",
+    "Visibility": "Visibilité",
+    "NameOfTheWorld": "Nom du monde",
+    "AShortDescription": "Une description courte"
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-16 23:08-0400\n"
+"POT-Creation-Date: 2022-07-26 23:22-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,9 +22,144 @@ msgstr ""
 msgid "API"
 msgstr "API"
 
-#: .\qp\api\serializers\player.py:46
+#: .\qp\api\serializers\user.py:49
 msgid "Invalid details."
 msgstr "Détails invalides."
+
+#: .\qp\forum\admin.py:49 .\qp\forum\admin.py:70 .\qp\forum\admin.py:117
+#: .\qp\forum\admin.py:159 .\qp\forum\apps.py:6 .\qp\forum\models.py:50
+#: .\qp\forum\models.py:129
+msgid "Forum"
+msgstr "Forum"
+
+#: .\qp\forum\admin.py:76 .\qp\forum\admin.py:123 .\qp\forum\admin.py:165
+#: .\qp\forum\models.py:152 .\qp\forum\models.py:210
+msgid "Zone"
+msgstr "Zone"
+
+#: .\qp\forum\admin.py:105 .\qp\forum\admin.py:153 .\qp\forum\models.py:476
+#: .\qp\forum\models.py:602
+msgid "Author"
+msgstr "Auteur"
+
+#: .\qp\forum\admin.py:111 .\qp\forum\models.py:626
+#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
+msgid "Messages"
+msgstr "Messages"
+
+#: .\qp\forum\admin.py:171 .\qp\forum\models.py:245 .\qp\forum\models.py:354
+#: .\qp\forum\models.py:460
+msgid "Territory"
+msgstr "Territoire"
+
+#: .\qp\forum\admin.py:177 .\qp\forum\models.py:389 .\qp\forum\models.py:468
+#: .\qp\game\models.py:19
+msgid "Sector"
+msgstr "Secteur"
+
+#: .\qp\forum\models.py:21 .\qp\game\models.py:159 .\qp\player\models.py:317
+#: .\qp\player\models.py:343 .\qp\world\apps.py:6 .\qp\world\models.py:68
+#: .\qp\world\models.py:167 .\qp\world\models.py:197 .\qp\world\models.py:227
+#: .\qp\world\models.py:257
+msgid "World"
+msgstr "Monde"
+
+#: .\qp\forum\models.py:26 .\qp\forum\models.py:134 .\qp\forum\models.py:215
+#: .\qp\forum\models.py:359 .\qp\game\models.py:171 .\qp\world\models.py:12
+#: .\qp\world\models.py:172 .\qp\world\models.py:202 .\qp\world\models.py:232
+#: .\qp\world\models.py:262
+msgid "Name"
+msgstr "Nom"
+
+#: .\qp\forum\models.py:32 .\qp\world\models.py:50
+msgid "Visibility"
+msgstr "Visibilité"
+
+#: .\qp\forum\models.py:39 .\qp\game\models.py:54 .\qp\player\models.py:237
+#: .\qp\world\models.py:57 .\qp\world\models.py:358
+msgid "Active"
+msgstr "Actif"
+
+#: .\qp\forum\models.py:51
+msgid "Forums"
+msgstr "Forums"
+
+#: .\qp\forum\models.py:140 .\qp\forum\models.py:221 .\qp\forum\models.py:365
+#: .\qp\forum\models.py:487 .\qp\game\models.py:37 .\qp\game\models.py:128
+#: .\qp\game\models.py:177 .\qp\world\models.py:24
+msgid "Description"
+msgstr "Description"
+
+#: .\qp\forum\models.py:145 .\qp\forum\models.py:238 .\qp\forum\models.py:382
+#: .\qp\game\models.py:42 .\qp\game\models.py:133
+msgid "Ordering"
+msgstr "Ordre"
+
+#: .\qp\forum\models.py:153
+msgid "Zones"
+msgstr "Zones"
+
+#: .\qp\forum\models.py:226 .\qp\forum\models.py:370
+msgid "Colour"
+msgstr "Couleur"
+
+#: .\qp\forum\models.py:231 .\qp\forum\models.py:375
+msgid "Flex Basis"
+msgstr "Flex Basis"
+
+#: .\qp\forum\models.py:246
+msgid "Territories"
+msgstr "Territoires"
+
+#: .\qp\forum\models.py:390
+msgid "Sectors"
+msgstr "Secteurs"
+
+#: .\qp\forum\models.py:481 .\qp\game\models.py:31 .\qp\game\models.py:122
+msgid "Title"
+msgstr "Titre"
+
+#: .\qp\forum\models.py:496
+msgid "Last Message"
+msgstr "Dernier Message"
+
+#: .\qp\forum\models.py:501
+msgid "Locked"
+msgstr "Verrouillé"
+
+#: .\qp\forum\models.py:505 .\qp\forum\models.py:616
+msgid "Created"
+msgstr "Créé"
+
+#: .\qp\forum\models.py:509 .\qp\forum\models.py:620
+msgid "Updated"
+msgstr "Mis à jour"
+
+#: .\qp\forum\models.py:514 .\qp\forum\models.py:594
+msgid "Chapter"
+msgstr "Chapitre"
+
+#: .\qp\forum\models.py:515
+msgid "Chapters"
+msgstr "Chapitres"
+
+#: .\qp\forum\models.py:607
+#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2304
+msgid "Text"
+msgstr "Texte"
+
+#: .\qp\forum\models.py:612
+msgid "Updates"
+msgstr "Mises à jour"
+
+#: .\qp\forum\models.py:625
+msgid "Message"
+msgstr "Message"
+
+#: .\qp\forum\models.py:633
+#, python-format
+msgid "Message #%(pk)s"
+msgstr "Message #%(pk)s"
 
 #: .\qp\game\apps.py:6
 msgid "Game"
@@ -38,37 +173,13 @@ msgstr "Voyage"
 msgid "Ressource"
 msgstr "Ressource"
 
-#: .\qp\game\models.py:19 .\qp\world\admin.py:174 .\qp\world\models.py:303
-#: .\qp\world\models.py:370
-msgid "Sector"
-msgstr "Secteur"
-
 #: .\qp\game\models.py:24 .\qp\game\models.py:164
 msgid "Type"
 msgstr "Type"
 
-#: .\qp\game\models.py:31 .\qp\game\models.py:122 .\qp\world\models.py:383
-msgid "Title"
-msgstr "Titre"
-
-#: .\qp\game\models.py:37 .\qp\game\models.py:128 .\qp\game\models.py:177
-#: .\qp\world\models.py:107 .\qp\world\models.py:178 .\qp\world\models.py:284
-#: .\qp\world\models.py:389
-msgid "Description"
-msgstr "Description"
-
-#: .\qp\game\models.py:42 .\qp\game\models.py:133 .\qp\world\models.py:112
-#: .\qp\world\models.py:190 .\qp\world\models.py:296
-msgid "Ordering"
-msgstr "Ordre"
-
 #: .\qp\game\models.py:48
 msgid "Counter"
 msgstr "Compteur"
-
-#: .\qp\game\models.py:54 .\qp\player\models.py:193
-msgid "Active"
-msgstr "Actif"
 
 #: .\qp\game\models.py:58
 msgid "Lucky Roll"
@@ -118,38 +229,32 @@ msgstr "Bonus"
 msgid "Malus"
 msgstr "Malus"
 
-#: .\qp\game\models.py:159 .\qp\player\models.py:273 .\qp\player\models.py:299
-#: .\qp\world\admin.py:53 .\qp\world\admin.py:74 .\qp\world\admin.py:114
-#: .\qp\world\admin.py:156 .\qp\world\apps.py:6 .\qp\world\models.py:53
-#: .\qp\world\models.py:96 .\qp\world\models.py:497 .\qp\world\models.py:533
-#: .\qp\world\models.py:569
-msgid "World"
-msgstr "Monde"
-
-#: .\qp\game\models.py:171 .\qp\world\models.py:8 .\qp\world\models.py:101
-#: .\qp\world\models.py:172 .\qp\world\models.py:278 .\qp\world\models.py:502
-#: .\qp\world\models.py:538 .\qp\world\models.py:574
-msgid "Name"
-msgstr "Nom"
-
 #: .\qp\game\models.py:183 .\qp\game\models.py:184
 msgid "Bonus / Malus"
 msgstr "Bonus / Malus"
 
-#: .\qp\player\admin.py:35 .\qp\player\admin.py:75
+#: .\qp\player\admin.py:35 .\qp\player\admin.py:90
 msgid "Informations"
 msgstr "Informations"
 
-#: .\qp\player\admin.py:82
+#: .\qp\player\admin.py:44
+msgid "Limits"
+msgstr "Limites"
+
+#: .\qp\player\admin.py:50
+msgid "Settings"
+msgstr "Paramètres"
+
+#: .\qp\player\admin.py:97
 msgid "Resistances"
 msgstr "Résistances"
 
-#: .\qp\player\admin.py:89
+#: .\qp\player\admin.py:104
 msgid "Attributes"
 msgstr "Attributs"
 
-#: .\qp\player\apps.py:6 .\qp\player\models.py:58 .\qp\player\models.py:265
-#: .\qp\player\models.py:291
+#: .\qp\player\apps.py:6 .\qp\player\models.py:88 .\qp\player\models.py:309
+#: .\qp\player\models.py:335
 msgid "Player"
 msgstr "Joueur"
 
@@ -173,8 +278,7 @@ msgstr "Utilisateur"
 msgid "Playername"
 msgstr "Nom de joueur"
 
-#: .\qp\player\models.py:36 .\qp\world\models.py:14 .\qp\world\models.py:508
-#: .\qp\world\models.py:544 .\qp\world\models.py:580
+#: .\qp\player\models.py:36 .\qp\world\models.py:18
 msgid "Slug"
 msgstr "Slug"
 
@@ -182,217 +286,287 @@ msgstr "Slug"
 msgid "Affinity"
 msgstr "Affinité"
 
-#: .\qp\player\models.py:48 .\qp\player\models.py:133
+#: .\qp\player\models.py:48 .\qp\player\models.py:173
 msgid "Avatar"
 msgstr "Avatar"
 
-#: .\qp\player\models.py:59
+#: .\qp\player\models.py:54
+msgid "Banner"
+msgstr "Bannière"
+
+#: .\qp\player\models.py:60
+msgid "World Creation Limit"
+msgstr "Limite de création de mondes"
+
+#: .\qp\player\models.py:66
+msgid "Hero Creation Limit"
+msgstr "Limite de créations de héros"
+
+#: .\qp\player\models.py:72
+msgid "Chapitres per page"
+msgstr "Chapitres par page"
+
+#: .\qp\player\models.py:78
+msgid "Messages per page"
+msgstr "Messages par page"
+
+#: .\qp\player\models.py:89 .\qp\utils.py:10
 msgid "Players"
 msgstr "Joueurs"
 
-#: .\qp\player\models.py:102
+#: .\qp\player\models.py:142
 msgid "First Name"
 msgstr "Prénom"
 
-#: .\qp\player\models.py:108
+#: .\qp\player\models.py:148
 msgid "Middle Name"
 msgstr "Autre(s) nom(s)"
 
-#: .\qp\player\models.py:114
+#: .\qp\player\models.py:154
 msgid "Last Name"
 msgstr "Nom de famille"
 
-#: .\qp\player\models.py:120
+#: .\qp\player\models.py:160
 msgid "Gender"
 msgstr "Genre"
 
-#: .\qp\player\models.py:128
+#: .\qp\player\models.py:168
 msgid "Geolocalisation"
 msgstr "Localisation"
 
-#: .\qp\player\models.py:139
+#: .\qp\player\models.py:179
 msgid "Physical Resistance"
 msgstr "Résistance physique"
 
-#: .\qp\player\models.py:145
+#: .\qp\player\models.py:185
 msgid "Mental Resistance"
 msgstr "Résistance mentale"
 
-#: .\qp\player\models.py:151
+#: .\qp\player\models.py:191
 msgid "Spiritual Resistance"
 msgstr "Résistance spirituelle"
 
-#: .\qp\player\models.py:157
+#: .\qp\player\models.py:197
 msgid "Strength"
 msgstr "Force"
 
-#: .\qp\player\models.py:163
+#: .\qp\player\models.py:203
 msgid "Constitution"
 msgstr "Constitution"
 
-#: .\qp\player\models.py:169
+#: .\qp\player\models.py:209
 msgid "Dexterity"
 msgstr "Dextérité"
 
-#: .\qp\player\models.py:175
+#: .\qp\player\models.py:215
 msgid "Perception"
 msgstr "Perception"
 
-#: .\qp\player\models.py:181
+#: .\qp\player\models.py:221
 msgid "Intelligence"
 msgstr "Intelligence"
 
-#: .\qp\player\models.py:187
+#: .\qp\player\models.py:227
 msgid "Composure"
 msgstr "Sang-froid"
 
-#: .\qp\player\models.py:279
+#: .\qp\player\models.py:233
+msgid "Valid"
+msgstr "Validé"
+
+#: .\qp\player\models.py:323
 msgid "Hero"
 msgstr "Héros"
 
-#: .\qp\player\models.py:280
+#: .\qp\player\models.py:324
 msgid "Heros"
 msgstr "Héros"
 
-#: .\qp\player\models.py:305
+#: .\qp\player\models.py:349
 msgid "Companion"
 msgstr "Compagnon"
 
-#: .\qp\player\models.py:306
+#: .\qp\player\models.py:350
 msgid "Companions"
 msgstr "Compagnons"
 
-#: .\qp\world\admin.py:80 .\qp\world\admin.py:120 .\qp\world\admin.py:162
-#: .\qp\world\models.py:119 .\qp\world\models.py:167
-msgid "Zone"
-msgstr "Zone"
+#: .\qp\utils.py:4
+msgid "Everyone"
+msgstr "Tout le monde"
 
-#: .\qp\world\admin.py:108 .\qp\world\admin.py:150 .\qp\world\models.py:378
-#: .\qp\world\models.py:451
-msgid "Author"
-msgstr "Auteur"
+#: .\qp\utils.py:5
+msgid "Creator Only"
+msgstr "Créateur seulement"
 
-#: .\qp\world\admin.py:168 .\qp\world\models.py:197 .\qp\world\models.py:273
-#: .\qp\world\models.py:362
-msgid "Territory"
-msgstr "Territoire"
-
-#: .\qp\world\models.py:23
-msgid "Creator"
-msgstr "Créateur"
-
-#: .\qp\world\models.py:30
+#: .\qp\utils.py:6 .\qp\world\models.py:40
 msgid "Administrators"
 msgstr "Administrateurs"
 
-#: .\qp\world\models.py:36
+#: .\qp\utils.py:7 .\qp\world\models.py:46
 msgid "Moderators"
 msgstr "Modérateurs"
 
-#: .\qp\world\models.py:40
-msgid "Custom Stylesheet"
-msgstr "Feuille de style personnalisée"
+#: .\qp\utils.py:8
+msgid "Validated Players"
+msgstr "Joueurs validés"
 
-#: .\qp\world\models.py:54
+#: .\qp\utils.py:9
+msgid "Registered Players"
+msgstr "Joueurs enregistrés"
+
+#: .\qp\world\models.py:33
+msgid "Creator"
+msgstr "Créateur"
+
+#: .\qp\world\models.py:69
 msgid "Worlds"
 msgstr "Mondes"
 
-#: .\qp\world\models.py:120
-msgid "Zones"
-msgstr "Zones"
-
-#: .\qp\world\models.py:183 .\qp\world\models.py:289
-msgid "Flex Basis"
-msgstr "Flex Basis"
-
-#: .\qp\world\models.py:198
-msgid "Territories"
-msgstr "Territoires"
-
-#: .\qp\world\models.py:304
-msgid "Sectors"
-msgstr "Secteurs"
-
-#: .\qp\world\models.py:395 .\qp\world\models.py:465
-msgid "Created"
-msgstr "Créé"
-
-#: .\qp\world\models.py:399 .\qp\world\models.py:469
-msgid "Updated"
-msgstr "Mis à jour"
-
-#: .\qp\world\models.py:404 .\qp\world\models.py:443
-msgid "Chapter"
-msgstr "Chapitre"
-
-#: .\qp\world\models.py:405
-msgid "Chapters"
-msgstr "Chapitres"
-
-#: .\qp\world\models.py:456
-#: .\venv\Lib\site-packages\django\db\models\fields\__init__.py:2304
-msgid "Text"
-msgstr "Texte"
-
-#: .\qp\world\models.py:461
-msgid "Updates"
-msgstr "Mises à jour"
-
-#: .\qp\world\models.py:474
-msgid "Message"
-msgstr "Message"
-
-#: .\qp\world\models.py:475
-#: .\venv\Lib\site-packages\django\contrib\messages\apps.py:7
-msgid "Messages"
-msgstr "Messages"
-
-#: .\qp\world\models.py:482
-#, python-format
-msgid "Message #%(pk)s"
-msgstr "Message #%(pk)s"
-
-#: .\qp\world\models.py:515
+#: .\qp\world\models.py:179
 msgid "Race"
 msgstr "Race"
 
-#: .\qp\world\models.py:516
+#: .\qp\world\models.py:180
 msgid "Races"
 msgstr "Races"
 
-#: .\qp\world\models.py:551
+#: .\qp\world\models.py:209
 msgid "Ethnicity"
 msgstr "Ethnie"
 
-#: .\qp\world\models.py:552
+#: .\qp\world\models.py:210
 msgid "Ethnicities"
 msgstr "Ethnies"
 
-#: .\qp\world\models.py:587
+#: .\qp\world\models.py:239
 msgid "Nationality"
 msgstr "Nationalité"
 
-#: .\qp\world\models.py:588
+#: .\qp\world\models.py:240
 msgid "Nationalities"
 msgstr "Nationalités"
 
+#: .\qp\world\models.py:268
+msgid "Primary Colour"
+msgstr "Couleur primaire"
+
+#: .\qp\world\models.py:272
+msgid "App Background Colour"
+msgstr "Couleur de fond de l'app"
+
+#: .\qp\world\models.py:276
+msgid "App Text Colour"
+msgstr "Couleur du texte de l'app"
+
+#: .\qp\world\models.py:280
+msgid "App Header Background Colour"
+msgstr "Couleur de fond de l'entête de l'app"
+
+#: .\qp\world\models.py:284
+msgid "App Header Text Colour"
+msgstr "Couleur du texte de l'entête de l'app"
+
+#: .\qp\world\models.py:288
+msgid "App Header Text Hover Colour"
+msgstr "Couleur du texte en surbrillance de l'entête de l'app"
+
+#: .\qp\world\models.py:292
+msgid "App Sidebar Background Colour"
+msgstr "Couleur de fond de la sidebar"
+
+#: .\qp\world\models.py:296
+msgid "App Sidebar Text Colour"
+msgstr "Couleur du texte de la sidebar"
+
+#: .\qp\world\models.py:300
+msgid "App Sidebar Accent Colour"
+msgstr "Couleur d'accent de la sidebar"
+
+#: .\qp\world\models.py:304
+msgid "App Smallbar Background Colour"
+msgstr "Couleur de fond de la smallbar"
+
+#: .\qp\world\models.py:308
+msgid "App Smallbar Text Colour"
+msgstr "Couleur du texte de la smallbar"
+
+#: .\qp\world\models.py:312
+msgid "App Smallbar Accent Colour"
+msgstr "Couleur d'accent de la smallbar"
+
+#: .\qp\world\models.py:316
+msgid "Default Background Colour"
+msgstr "Couleur de fond par défaut"
+
+#: .\qp\world\models.py:320
+msgid "Default Text Colour"
+msgstr "Couleur du texte par défaut"
+
+#: .\qp\world\models.py:324
+msgid "Default Accented Background Colour"
+msgstr "Couleur de fond accentué par défaut"
+
+#: .\qp\world\models.py:328
+msgid "Default Accented Text Colour"
+msgstr "Couleur du texte accentué par défaut"
+
+#: .\qp\world\models.py:332
+msgid "Default Disabled Background Colour"
+msgstr "Couleur de fond désactivé par défaut"
+
+#: .\qp\world\models.py:336
+msgid "Default Disabled Text Colour"
+msgstr "Couleur du texte désactivé par défaut"
+
+#: .\qp\world\models.py:340
+msgid "Form Background Colour"
+msgstr "Couleur de fond des formulaires"
+
+#: .\qp\world\models.py:344
+msgid "Form Text Colour"
+msgstr "Couleur du texte des formulaires"
+
+#: .\qp\world\models.py:348
+msgid "Form Placeholder Colour"
+msgstr "Couleur du texte de remplissage des formulaires"
+
+#: .\qp\world\models.py:352
+msgid "Custom Stylesheet"
+msgstr "Feuille de style personnalisée"
+
+#: .\qp\world\models.py:363
+msgid "Style"
+msgstr "Style"
+
+#: .\qp\world\models.py:364
+msgid "Styles"
+msgstr "Styles"
+
+#: .\venv\Lib\site-packages\colorfield\validators.py:14
+msgid "Enter a valid hex color, eg. #000000"
+msgstr "Entrez une couleur hexadécimale valide (ex.: #000000)"
+
+#: .\venv\Lib\site-packages\colorfield\validators.py:20
+msgid "Enter a valid hexa color, eg. #00000000"
+msgstr "Entrez une couleur alpha-hexadécimale valide (ex.: #00000000)"
+
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "Sitemaps"
 
 #: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "Fichiers statiques"
 
 #: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
 msgid "Syndication"
-msgstr ""
+msgstr "Syndication"
 
 #. Translators: String used to replace omitted page numbers in elided page
 #. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
 #: .\venv\Lib\site-packages\django\core\paginator.py:30
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #: .\venv\Lib\site-packages\django\core\paginator.py:50
 msgid "That page number is not an integer"
@@ -1549,7 +1723,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:240
 msgid "Get started with Django"
-msgstr ""
+msgstr "Débutez avec Django"
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
 msgid "Django Community"
