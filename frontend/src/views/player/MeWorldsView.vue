@@ -40,19 +40,19 @@
                     <ul class="qp-meworlds-infolist">
                       <li>
                         <span class="qp-label" v-text="$t('Player', world.count_players)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(world.count_players, 1)"></span>
+                        <span class="qp-value" v-text="numtostr(world.count_players, 1)"></span>
                       </li>
                       <li>
                         <span class="qp-label" v-text="$t('Character', world.count_heros)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(world.count_heros, 1)"></span>
+                        <span class="qp-value" v-text="numtostr(world.count_heros, 1)"></span>
                       </li>
                       <li>
                         <span class="qp-label" v-text="$t('Chapter', world.count_chapters)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(world.count_chapters, 1)"></span>
+                        <span class="qp-value" v-text="numtostr(world.count_chapters, 1)"></span>
                       </li>
                       <li>
                         <span class="qp-label" v-text="$t('Message', world.count_messages)"></span>
-                        <span class="qp-value" v-text="$filters.num_to_element(world.count_messages, 1)"></span>
+                        <span class="qp-value" v-text="numtostr(world.count_messages, 1)"></span>
                       </li>
                     </ul>
                   </el-col>
@@ -153,6 +153,7 @@ import { computed, onMounted, reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { API } from "@/main.js";
+import { numtostr } from "@/plugins/filters/numtostr";
 import i18n from "@/plugins/i18n";
 
 import qpCard from "@/components/basic/qpCard.vue";
@@ -176,8 +177,7 @@ const sizeWorlds = ref(0)
 
 onMounted(() => {
     if (rat.value) {
-        // initWorlds()
-        isLoading.value = false
+        initWorlds()
     } else {
         router.push({name: "AuthLogin"})
     }
@@ -188,17 +188,25 @@ const initWorlds = async () => {
     hasError.value = null
     listWorlds.value = []
     // ===---
-    let response = await fetch(`${API}/worlds/?page=${pageWorlds.value}`, {
-        method: "GET",
-        headers: {"Authorization": rat.value}
-    })
-    let r = await response.json()
-    if (response.status === 200) {
-        totalWorlds.value = r.count
-        listWorlds.value = r.results
-        sizeWorlds.value = r.size
-    } else {
-        hasError.value = t("ThisWorldDoesntExistAnymore")
+    try {
+        let response = await fetch(`${API}/me/worlds/?page=${pageWorlds.value}`, {
+            method: "GET",
+            headers: {"Authorization": rat.value}
+        })
+        let r = await response.json()
+        if (response.status === 200) {
+            totalWorlds.value = r.count
+            listWorlds.value = r.results
+            sizeWorlds.value = r.size
+        } else {
+            throw response
+        }
+    } catch (e) {
+        if (e.status === 403) {
+            hasError.value = t("YouDoesntHaveAccessToThisPage")
+        } else {
+            hasError.value = t("AnErrorOccurred")
+        }
     }
     // ===---
     isLoading.value = false

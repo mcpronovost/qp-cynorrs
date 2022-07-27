@@ -100,5 +100,6 @@
     "DeleteChapter": "Supprimer le chapitre",
     "LockChapter": "Verrouiller le chapitre",
     "UnlockChapter": "Déverrouiller le chapitre",
-    "NoCharacterCreated": "Aucun personnage créé"
+    "NoCharacterCreated": "Aucun personnage créé",
+    "YouDoesntHaveAccessToThisPage": "Vous n'avez pas accès à cette page"
 }

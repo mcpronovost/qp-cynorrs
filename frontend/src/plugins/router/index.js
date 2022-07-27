@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router"
 import store from "@/plugins/store"
 
 import HomeView from "@/views/HomeView.vue";
+import MeProfileView from "@/views/player/MeProfileView.vue";
 import MeCharactersView from "@/views/player/MeCharactersView.vue";
 import MeWorldsView from "@/views/player/MeWorldsView.vue";
 import HeroDetailView from "@/views/player/HeroDetailView.vue";
@@ -17,6 +18,11 @@ const routes = [
     component: HomeView
   },
   /* ===--- PLAYER ---=== */
+  {
+    path: "/me/profile",
+    name: "MeProfile",
+    component: MeProfileView
+  },
   {
     path: "/me/characters",
     name: "MeCharacters",

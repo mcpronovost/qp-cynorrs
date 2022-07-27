@@ -14,7 +14,8 @@ from qp.world.models import (
 
 from qp.api.serializers.player import (
     qpPlayerMeSerializer,
-    qpPlayerMeHeroSerializer
+    qpPlayerMeHeroSerializer,
+    qpPlayerMeWorldSerializer
 )
 
 from qp.api.serializers.world import (
@@ -44,6 +45,18 @@ class qpPlayerMeHerosListView(ListAPIView):
 
     def get_queryset(self):
         queryset = self.request.user.player.heros.filter(
+            is_active=True
+        )
+        return queryset
+
+
+class qpPlayerMeWorldsListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldSerializer
+    queryset = qpWorld.objects.all()
+
+    def get_queryset(self):
+        queryset = self.request.user.player.creator_worlds.filter(
             is_active=True
         )
         return queryset

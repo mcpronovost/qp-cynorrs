@@ -62,6 +62,9 @@ const title = ref("Qui ne fait que passer")
         transition: height 0.4s;
         margin: 0 0 96px;
     }
+    #qp-sidebar-banner .el-image {
+        opacity: 0.6;
+    }
     #qp-app-sidebar.qp-collapsed #qp-sidebar-banner {
         height: 48px;
         margin-bottom: 48px;

@@ -186,7 +186,7 @@ class qpForumZone(models.Model):
         result = 0
         try:
             for territory in self.territories.all():
-                result += territory.count_chapters
+                result += territory.count_chapters_all
         except Exception:
             pass
         return result
@@ -196,7 +196,7 @@ class qpForumZone(models.Model):
         result = 0
         try:
             for territory in self.territories.all():
-                result += territory.count_messages
+                result += territory.count_messages_all
         except Exception:
             pass
         return result

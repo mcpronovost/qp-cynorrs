@@ -27,12 +27,12 @@
                 <template #title>
                     <span v-text="player?.playername"></span>
                 </template>
-                <el-menu-item disabled index="profile" class="qp-multiline">
+                <el-menu-item index="MeProfile" :route="{name:'MeProfile'}" :disabled="($route.name && $route.name == 'MeProfile')" class="qp-multiline">
                     <span v-text="$t('SignedInAs')"></span><br />
                     <strong v-text="player?.playername"></strong>
                 </el-menu-item>
                 <hr />
-                <el-menu-item disabled index="profile">
+                <el-menu-item index="MeProfile" :route="{name:'MeProfile'}" :disabled="($route.name && $route.name == 'MeProfile')">
                     <span v-text="$t('YourProfile')"></span>
                 </el-menu-item>
                 <el-menu-item index="MeCharacters" :route="{name:'MeCharacters'}" :disabled="($route.name && $route.name == 'MeCharacters')">

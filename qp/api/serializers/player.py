@@ -64,3 +64,11 @@ class qpPlayerMeHeroSerializer(serializers.ModelSerializer):
         except:
             pass
         return result
+
+
+class qpPlayerMeWorldSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpWorld
+        fields = ["id", "name", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "is_active"]
+        depth = 1
