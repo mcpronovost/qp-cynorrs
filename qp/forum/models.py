@@ -303,6 +303,18 @@ class qpForumTerritory(models.Model):
     def count_messages(self):
         result = 0
         try:
+            for chapter in self.chapters.filter(
+                sector=None
+            ):
+                result += chapter.count_messages
+        except Exception:
+            pass
+        return result
+    
+    @property
+    def count_messages_all(self):
+        result = 0
+        try:
             for chapter in self.chapters.all():
                 result += chapter.count_messages
         except Exception:
