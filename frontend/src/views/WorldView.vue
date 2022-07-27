@@ -130,6 +130,7 @@ const initStyle = (style) => {
         styletag.innerHTML += `--qp-form-txt:${style.form_txt};`
         styletag.innerHTML += `--qp-form-placeholder:${style.form_placeholder};`
         styletag.innerHTML += `}`
+        styletag.innerHTML += `${style.stylesheet}`
     } else {
         styletag.innerHTML = ""
     }
