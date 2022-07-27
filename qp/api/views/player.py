@@ -16,6 +16,7 @@ from qp.api.serializers.player import (
     qpPlayerMeSerializer,
     qpPlayerMeHeroSerializer,
     qpPlayerMeCharactersHerosListSerializer,
+    qpPlayerMeCharactersHeroSerializer,
     qpPlayerMeWorldListSerializer,
     qpPlayerMeWorldSerializer
 )
@@ -67,7 +68,7 @@ class qpPlayerMeCharactersHerosListView(ListAPIView):
 
 class qpPlayerMeCharactersRetrieveView(RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = qpPlayerMeHeroSerializer
+    serializer_class = qpPlayerMeCharactersHeroSerializer
     queryset = qpPlayerHero.objects.all()
     lookup_field = "pk"
 

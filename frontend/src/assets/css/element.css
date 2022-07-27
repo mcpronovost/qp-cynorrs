@@ -68,6 +68,7 @@
     color: var(--qp-default-accented-txt);
     opacity: 0.6;
 }
+.el-button.is-disabled.el-button--primary,
 .el-button.el-button--primary:active {
     background-color: var(--qp-default-accented-bg);
     border-color: var(--qp-default-accented-bg);

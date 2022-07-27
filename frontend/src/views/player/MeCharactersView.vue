@@ -15,7 +15,7 @@
         <section>
           <el-row v-if="listHeros.length">
             <el-col v-for="(character, n) in listHeros" :key="`world-${n}`" :span="24" :sm="12" :md="6">
-              <qpCard clickable overflow pa="0" @click="goToCharacter(character.id)">
+              <qpCard clickable overflow pa="0" @click="goToCharacter(character.id, 'hero')">
                 <div class="qp-profile-header">
                     <div class="qp-profile-header-banner">
                         <el-image v-if="character.avatar" :src="character.avatar" fit="cover">
@@ -149,8 +149,10 @@ const updatePageHeros = ($event) => {
     initHeros()
 }
 
-const goToCharacter = (id) => {
-    router.push({name: "MeCharactersDetail", params: {pk: id}})
+const goToCharacter = (id, type_of) => {
+    if (type_of == "hero") {
+      router.push({name: "MeCharactersHerosDetail", params: {pk: id}})
+    }
 }
 
 </script>
@@ -181,10 +183,10 @@ const goToCharacter = (id) => {
     border: 6px solid var(--qp-default-bg);
     border-radius: 100%;
     overflow: hidden;
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     position: absolute;
-    top: -20px;
+    top: -8px;
     left: 0;
     right: 0;
     margin: 0 auto;

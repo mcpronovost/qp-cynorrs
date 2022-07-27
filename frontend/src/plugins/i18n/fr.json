@@ -106,5 +106,15 @@
     "Slug": "Slug",
     "Visibility": "Visibilité",
     "NameOfTheWorld": "Nom du monde",
-    "AShortDescription": "Une description courte"
+    "AShortDescription": "Une description courte",
+    "First Name": "Prénom",
+    "Middle Name": "Autre(s) nom(s)",
+    "Last Name": "Nom de famille",
+    "Reset": "Réinitialiser",
+    "ChangeAvatar": "Modifier l'avatar",
+    "ShowProfile": "Voir le profil",
+    "FileFormatMustBeJPG": "Le fichier doit être au format JPG",
+    "FileSizeCanNotExceed1MB": "La taille du fichier ne doit pas excéder 1MB",
+    "150x150pxSizeMinimum": "Taille minimale : 150x150",
+    "Gender": "Genre"
 }

@@ -346,7 +346,7 @@ class qpWorldStyle(models.Model):
     )
     form_placeholder = ColorField(
         verbose_name=_("Form Placeholder Colour"),
-        default="#899295"
+        default="#a5afb3"
     )
     stylesheet = models.TextField(
         verbose_name=_("Custom Stylesheet"),

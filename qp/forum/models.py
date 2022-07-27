@@ -325,7 +325,7 @@ class qpForumTerritory(models.Model):
     def last_chapter(self):
         result = None
         try:
-            if self.count_messages:
+            if self.count_messages_all:
                 result = qpForumMessage.objects.filter(
                     chapter__territory=self
                 ).last().chapter
@@ -337,7 +337,7 @@ class qpForumTerritory(models.Model):
     def last_message(self):
         result = None
         try:
-            if self.count_messages:
+            if self.count_messages_all:
                 result = qpForumMessage.objects.filter(
                     chapter__territory=self
                 ).last()

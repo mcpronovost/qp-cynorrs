@@ -9,12 +9,7 @@ from qp.settings import TIME_ZONE
 
 from qp.world.models import qpWorld
 
-
-CHOIX_GENDER = [
-    ("m", _("Male")),
-    ("f", _("Female")),
-    ("o", _("Other"))
-]
+from qp.utils import CHOIX_GENDER
 
 
 class qpPlayer(models.Model):

@@ -37,7 +37,7 @@ const listHeros = computed(() => {
 })
 
 const goToCharacter = (id) => {
-    router.push({name: "MeCharactersDetail", params: {pk: id}})
+    router.push({name: "MeCharactersHerosDetail", params: {pk: id}})
 }
 
 </script>

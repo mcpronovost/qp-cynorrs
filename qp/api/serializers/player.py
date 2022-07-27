@@ -15,7 +15,10 @@ from qp.api.serializers.world import (
     qpWorldNavSerializer
 )
 
-from qp.utils import CHOIX_VISIBILITY
+from qp.utils import (
+    CHOIX_GENDER,
+    CHOIX_VISIBILITY
+)
 
 
 class qpPlayerMeSerializer(serializers.ModelSerializer):
@@ -75,6 +78,32 @@ class qpPlayerMeCharactersHerosListSerializer(serializers.ModelSerializer):
         model = qpPlayerHero
         fields = ["id", "name", "initials", "avatar", "world", "is_valid", "geo"]
         depth = 1
+    
+    def get_world(self, obj):
+        result = None
+        try:
+            world = obj.world
+            result = {
+                "id": world.pk,
+                "name": str(world.name),
+                "slug": str(world.slug)
+            }
+        except:
+            pass
+        return result
+
+
+class qpPlayerMeCharactersHeroSerializer(serializers.ModelSerializer):
+    gender_choix = serializers.SerializerMethodField(source="get_gender_choix")
+    world = serializers.SerializerMethodField(source="get_world")
+
+    class Meta:
+        model = qpPlayerHero
+        fields = ["id","name", "first_name", "middle_name", "last_name", "initials", "gender", "gender_choix", "avatar", "world", "is_valid", "geo"]
+        depth = 1
+    
+    def get_gender_choix(self, obj):
+        return CHOIX_GENDER
     
     def get_world(self, obj):
         result = None
