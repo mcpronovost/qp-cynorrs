@@ -20,7 +20,7 @@
         <section>
           <el-row v-if="listWorlds.length">
             <el-col v-for="(world, n) in listWorlds" :key="`world-${n}`">
-              <qpCard clickable pa="12px">
+              <qpCard clickable pa="12px" @click="goToWorld(world.id)">
                 <el-row align="middle">
                   <el-col :span="24" :md="12" align="left">
                     <div class="qp-meworlds-overview">
@@ -215,6 +215,10 @@ const initWorlds = async () => {
 const updatePageWorlds = ($event) => {
     pageWorlds.value = $event
     initWorlds()
+}
+
+const goToWorld = (id) => {
+    router.push({name: "MeWorldsDetail", params: {pk: id}})
 }
 
 const showCreateWorld = ref(false)

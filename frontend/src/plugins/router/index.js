@@ -2,13 +2,10 @@ import { createRouter, createWebHistory } from "vue-router"
 import store from "@/plugins/store"
 
 import HomeView from "@/views/HomeView.vue";
-import MeProfileView from "@/views/player/MeProfileView.vue";
-import MeCharactersView from "@/views/player/MeCharactersView.vue";
-import MeWorldsView from "@/views/player/MeWorldsView.vue";
-import HeroDetailView from "@/views/player/HeroDetailView.vue";
 import ErrorView from "@/views/ErrorView.vue";
 
 import { authRoutes } from "@/plugins/router/auth";
+import { playerRoutes } from "@/plugins/router/player";
 import { worldRoutes } from "@/plugins/router/world";
 
 const routes = [
@@ -16,27 +13,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomeView
-  },
-  /* ===--- PLAYER ---=== */
-  {
-    path: "/me/profile",
-    name: "MeProfile",
-    component: MeProfileView
-  },
-  {
-    path: "/me/characters",
-    name: "MeCharacters",
-    component: MeCharactersView
-  },
-  {
-    path: "/me/worlds",
-    name: "MeWorlds",
-    component: MeWorldsView
-  },
-  {
-    path: "/heros/:pk",
-    name: "HeroDetail",
-    component: HeroDetailView
   },
   /* ===--- FALLBACK ---=== */
   {
@@ -47,6 +23,7 @@ const routes = [
 ]
 
 routes.push(...authRoutes)
+routes.push(...playerRoutes)
 routes.push(...worldRoutes)
 
 const router = createRouter({

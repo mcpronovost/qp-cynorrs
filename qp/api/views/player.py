@@ -1,6 +1,6 @@
 from django.core.exceptions import BadRequest
 
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from qp.player.models import (
@@ -15,6 +15,7 @@ from qp.world.models import (
 from qp.api.serializers.player import (
     qpPlayerMeSerializer,
     qpPlayerMeHeroSerializer,
+    qpPlayerMeWorldListSerializer,
     qpPlayerMeWorldSerializer
 )
 
@@ -52,7 +53,7 @@ class qpPlayerMeHerosListView(ListAPIView):
 
 class qpPlayerMeWorldsListView(ListAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = qpPlayerMeWorldSerializer
+    serializer_class = qpPlayerMeWorldListSerializer
     queryset = qpWorld.objects.all()
 
     def get_queryset(self):
@@ -60,3 +61,19 @@ class qpPlayerMeWorldsListView(ListAPIView):
             is_active=True
         )
         return queryset
+
+
+class qpPlayerMeWorldRetrieveView(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldSerializer
+    queryset = qpWorld.objects.all()
+    lookup_field = "pk"
+
+    def get_queryset(self):
+        try:
+            return self.request.user.player.creator_worlds.filter(
+                pk=int(self.kwargs.get("pk"))
+            )
+        except Exception as e:
+            print("Error on qpPlayerMeWorldRetrieveView : ", e)
+        return None

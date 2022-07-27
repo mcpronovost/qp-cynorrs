@@ -15,6 +15,8 @@ from qp.api.serializers.world import (
     qpWorldNavSerializer
 )
 
+from qp.utils import CHOIX_VISIBILITY
+
 
 class qpPlayerMeSerializer(serializers.ModelSerializer):
     worldnavs = serializers.SerializerMethodField(source="get_worldnavs")
@@ -66,9 +68,22 @@ class qpPlayerMeHeroSerializer(serializers.ModelSerializer):
         return result
 
 
-class qpPlayerMeWorldSerializer(serializers.ModelSerializer):
+class qpPlayerMeWorldListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpWorld
         fields = ["id", "name", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "is_active"]
         depth = 1
+
+
+class qpPlayerMeWorldSerializer(serializers.ModelSerializer):
+    visibility_choix = serializers.SerializerMethodField(source="get_visibility_choix")
+
+    class Meta:
+        model = qpWorld
+        fields = ["id", "name", "slug", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "visibility", "is_active",
+        "visibility_choix"]
+        depth = 1
+    
+    def get_visibility_choix(self, obj):
+        return CHOIX_VISIBILITY
