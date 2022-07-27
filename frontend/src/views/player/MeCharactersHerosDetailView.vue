@@ -63,8 +63,11 @@
                             </el-row>
                             <el-row>
                                 <el-col :span="24">
-                                    <qpCard class="qp-mecharacter-form-general" :style="app.win.w < 1200 ? '' : 'padding-right:60px'">
-                                        <el-form ref="formCharacterRef" :model="formCharacter" :label-position="app.win.w < 1200 ? 'top' : 'right'" :rules="formCharacterRules" label-width="120px" status-icon>
+                                    <qpCard class="qp-mecharacter-form-general">
+                                        <template #header>
+                                            <span v-text="$t('GeneralInformations')"></span>
+                                        </template>
+                                        <el-form ref="formCharacterRef" :model="formCharacter" :label-position="app.win.w < 1200 ? 'top' : 'right'" :rules="formCharacterRules" label-width="120px" status-icon :style="app.win.w < 1200 ? 'margin-top:12px;' : 'padding-right:60px;margin-top:12px;'">
                                             <el-form-item :label="$t('First Name')" prop="first_name">
                                                 <el-input v-model="formCharacter.first_name" :placeholder="$t('First Name')" :maxlength="32" show-word-limit />
                                             </el-form-item>
@@ -82,10 +85,10 @@
                                         </el-form>
                                         <el-row>
                                             <el-col>
-                                                <el-button :disabled="isLoadingSend" @click="resetFormCharacter()">
+                                                <el-button :disabled="isLoadingSend" class="ma-6" @click="resetFormCharacter()">
                                                     <span v-text="$t('Reset')"></span>
                                                 </el-button>
-                                                <el-button :loading="isLoadingSend" type="primary" @click="doFormCharacter()">
+                                                <el-button :loading="isLoadingSend" class="ma-6" type="primary" @click="doFormCharacter()">
                                                     <span v-text="$t('Send')"></span>
                                                 </el-button>
                                             </el-col>
@@ -237,6 +240,7 @@ const sendFormCharacter = async () => {
         })
         let r = await response.json()
         if (response.status === 200) {
+            ElMessage.success(t("CharacterUpdatedSuccessfully"))
             character.value = r
             initFormCharacter(r)
         } else {

@@ -88,9 +88,7 @@ class qpPlayerMeWorldsListView(ListAPIView):
     queryset = qpWorld.objects.all()
 
     def get_queryset(self):
-        queryset = self.request.user.player.creator_worlds.filter(
-            is_active=True
-        )
+        queryset = self.request.user.player.creator_worlds.all()
         return queryset
 
 

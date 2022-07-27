@@ -76,6 +76,8 @@
     opacity: 0.4;
 }
 
+/* ===--- CARD ---=== */
+
 .el-card {
     background-color: transparent;
     border: none;
@@ -96,9 +98,13 @@
     padding: 0;
 }
 
+/* ===--- COL ---=== */
+
 .el-col {
     padding: 12px;
 }
+
+/* ===--- DIALOG ---=== */
 
 .el-dialog {
     background-color: var(--qp-default-bg);
@@ -148,7 +154,19 @@
 .el-form-item__label {
     color: var(--qp-default-txt);
 }
+.el-form-item__label:hover {
+    cursor: pointer;
+}
 
+.el-checkbox__inner {
+    background-color: var(--qp-form-bg);
+    border-color: var(--qp-form-txt);
+}
+
+.el-select {
+    display: block;
+    width: 100%;
+}
 .el-select-dropdown__item.hover,
 .el-select-dropdown__item:hover {
     background-color: transparent;
@@ -209,6 +227,19 @@
     opacity: 0.1;
     padding: 0;
     margin: 5px 0;
+}
+
+/* ===--- MESSAGE ---=== */
+
+.el-message--error {
+    --el-message-bg-color: #cc2418;
+    --el-message-border-color: #cc2418;
+    --el-message-text-color: #fff;
+}
+.el-message--success {
+    --el-message-bg-color: #4caf50;
+    --el-message-border-color: #4caf50;
+    --el-message-text-color: #fff;
 }
 
 /* ===--- PAGINATION ---=== */

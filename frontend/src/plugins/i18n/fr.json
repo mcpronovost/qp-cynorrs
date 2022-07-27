@@ -116,5 +116,9 @@
     "FileFormatMustBeJPG": "Le fichier doit être au format JPG",
     "FileSizeCanNotExceed1MB": "La taille du fichier ne doit pas excéder 1MB",
     "150x150pxSizeMinimum": "Taille minimale : 150x150",
-    "Gender": "Genre"
+    "Gender": "Genre",
+    "GeneralInformations": "Informations générales",
+    "Open": "Ouvert",
+    "WorldUpdatedSuccessfully": "Monde mis à jour avec succès !",
+    "CharacterUpdatedSuccessfully": "Personnage mis à jour avec succès !"
 }
