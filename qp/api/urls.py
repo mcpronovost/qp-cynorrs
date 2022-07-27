@@ -11,6 +11,8 @@ from qp.api.views.game import (
 
 from qp.api.views.player import (
     qpPlayerMeRetrieveView,
+    qpPlayerMeCharactersHerosListView,
+    qpPlayerMeCharactersRetrieveView,
     qpPlayerMeHerosListView,
     qpPlayerMeWorldsListView,
     qpPlayerMeWorldRetrieveView
@@ -42,6 +44,8 @@ urlpatterns = [
     path("", qpPingView.as_view()),
 
     path("me/", qpPlayerMeRetrieveView.as_view()),
+    path("me/characters/heros/", qpPlayerMeCharactersHerosListView.as_view()),
+    path("me/characters/<int:pk>/", qpPlayerMeCharactersRetrieveView.as_view()),
     path("me/heros/", qpPlayerMeHerosListView.as_view()),
     path("me/worlds/", qpPlayerMeWorldsListView.as_view()),
     path("me/worlds/<int:pk>/", qpPlayerMeWorldRetrieveView.as_view()),

@@ -15,6 +15,7 @@ from qp.world.models import (
 from qp.api.serializers.player import (
     qpPlayerMeSerializer,
     qpPlayerMeHeroSerializer,
+    qpPlayerMeCharactersHerosListSerializer,
     qpPlayerMeWorldListSerializer,
     qpPlayerMeWorldSerializer
 )
@@ -49,6 +50,35 @@ class qpPlayerMeHerosListView(ListAPIView):
             is_active=True
         )
         return queryset
+
+
+class qpPlayerMeCharactersHerosListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeCharactersHerosListSerializer
+    queryset = qpPlayerHero.objects.all()
+
+    def get_queryset(self):
+        try:
+            return self.request.user.player.heros.all()
+        except Exception as e:
+            print("Error on qpPlayerMeCharactersHerosListView : ", e)
+        return None
+
+
+class qpPlayerMeCharactersRetrieveView(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeHeroSerializer
+    queryset = qpPlayerHero.objects.all()
+    lookup_field = "pk"
+
+    def get_queryset(self):
+        try:
+            return self.request.user.player.heros.filter(
+                pk=int(self.kwargs.get("pk"))
+            )
+        except Exception as e:
+            print("Error on qpPlayerMeCharactersRetrieveView : ", e)
+        return None
 
 
 class qpPlayerMeWorldsListView(ListAPIView):

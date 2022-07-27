@@ -13,23 +13,44 @@
           </el-row>
         </header>
         <section>
-          <el-row v-if="listCharacters.length">
-            <el-col v-for="(world, n) in listCharacters" :key="`character-${n}`">
-              <qpCard clickable pa="12px">
-                <el-row align="middle">
-                  <el-col :span="24" :md="12" align="left">
-                    <div class="qp-mecharacters-overview">
-                      <h2 class="qp-mecharacters-overview-title">
-                        <span v-text="'Qalatlán'"></span>
-                      </h2>
-                      <div v-if="false" class="qp-mecharacters-overview-tags">
-                        <el-tag type="danger" effect="plain" size="small"><span v-text="$t('Closed')"></span></el-tag>
-                      </div>
-                      <p>Lorem ipsum dolor sit amet.</p>
+          <el-row v-if="listHeros.length">
+            <el-col v-for="(character, n) in listHeros" :key="`world-${n}`" :span="24" :sm="12" :md="6">
+              <qpCard clickable overflow pa="0" @click="goToCharacter(character.id)">
+                <div class="qp-profile-header">
+                    <div class="qp-profile-header-banner">
+                        <el-image v-if="character.avatar" :src="character.avatar" fit="cover">
+                            <template #error>
+                                <div class="image-slot"></div>
+                            </template>
+                        </el-image>
                     </div>
-                  </el-col>
-                </el-row>
+                    <div class="qp-profile-header-avatar">
+                        <el-avatar :src="character.avatar">
+                            <span v-text="character.initials"></span>
+                        </el-avatar>
+                    </div>
+                </div>
+                <div class="qp-profile-identity">
+                    <h2 class="qp-profile-identity-name">
+                        <span v-text="character.name"></span>
+                    </h2>
+                    <p class="qp-profile-identity-worldname">
+                        <span v-text="character.world?.name"></span>
+                    </p>
+                </div>
               </qpCard>
+            </el-col>
+            <el-col>
+                <el-pagination
+                    v-if="listHeros.length"
+                    background
+                    hide-on-single-page
+                    layout="prev, pager, next"
+                    :total="totalHeros"
+                    :page-size="sizeHeros"
+                    :current-page="pageHeros"
+                    @update:current-page="updatePageHeros"
+                />
             </el-col>
           </el-row>
           <el-row v-else>
@@ -65,77 +86,155 @@
 <script setup>
 
 import { computed, onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { API } from "@/main.js";
+import i18n from "@/plugins/i18n";
 
 import qpCard from "@/components/basic/qpCard.vue";
 
+const { t } = i18n.global
+
+const router = useRouter()
 const store = useStore()
 const rat = computed(() => store.getters.rat)
 
 const isLoading = ref(true)
 const hasError = ref(null)
-const listCharacters = ref([])
+
+const listHeros = ref([])
+const totalHeros = ref(0)
+const sizeHeros = ref(0)
+const pageHeros = ref(1)
 
 onMounted(() => {
-  console.log("onMounted")
-  isLoading.value = false
+    if (rat.value) {
+        initHeros()
+    } else {
+        router.push({name: "AuthLogin"})
+    }
 })
+
+const initHeros = async () => {
+    isLoading.value = true
+    hasError.value = null
+    listHeros.value = []
+    // ===---
+    try {
+        let response = await fetch(`${API}/me/characters/heros/?page=${pageHeros.value}`, {
+            method: "GET",
+            headers: {"Authorization": rat.value}
+        })
+        let r = await response.json()
+        if (response.status === 200) {
+            totalHeros.value = r.count
+            listHeros.value = r.results
+            sizeHeros.value = r.size
+        } else {
+            throw response
+        }
+    } catch (e) {
+        if (e.status === 403) {
+            hasError.value = t("YouDoesntHaveAccessToThisPage")
+        } else {
+            hasError.value = t("AnErrorOccurred")
+        }
+    }
+    // ===---
+    isLoading.value = false
+}
+
+const updatePageHeros = ($event) => {
+    pageHeros.value = $event
+    initHeros()
+}
+
+const goToCharacter = (id) => {
+    router.push({name: "MeCharactersDetail", params: {pk: id}})
+}
 
 </script>
 
 <style scoped>
-/* ===--- overview ---=== */
-.qp-mecharacters-overview-title {
-  font-family: "Quicksand", sans-serif;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 120%;
-  padding: 0;
-  margin: 0 0 12px;
-}
-.qp-mecharacters-overview-tags {
-  margin: 12px 0;
-}
-/* ===--- infolist ---=== */
-.qp-mecharacters-infolist {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.qp-mecharacters-infolist li {
-  text-align: center;
-  list-style: none;
-  display: inline-flex;
-  flex: 1 1 25%;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 0;
-  margin: 4px 12px;
-}
-.qp-mecharacters-infolist span {
-  display: block;
-  padding: 0;
-  margin: 0;
-}
-.qp-mecharacters-infolist .qp-value {
-  color: var(--qp-primary);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 120%;
-  order: 1;
-}
-.qp-mecharacters-infolist .qp-label {
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 120%;
-  display: block;
-  order: 2;
-  margin: 6px 0 0;
-}
-@media (max-width: 991px) {
-  .qp-mecharacters-overview,
-  .qp-mecharacters-infolist {
+/* ===--- profile ---=== */
+.qp-profile-header {
     text-align: center;
-  }
+    min-height: 150px;
+    position: relative;
+    margin: 0;
+}
+.qp-profile-header-banner  {
+    background-color: var(--qp-default-disabled-bg);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+    height: 100px;
+    margin: 0;
+}
+.qp-profile-header-banner .el-image {
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+}
+.qp-profile-header-avatar {
+    background-color: var(--qp-default-bg);
+    border: 6px solid var(--qp-default-bg);
+    border-radius: 100%;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.qp-profile-header-avatar .el-avatar {
+    font-size: 24px;
+    line-height: 100%;
+    width: 100%;
+    height: 100%;
+}
+@media (max-width: 767px) {
+    .qp-profile-header {
+        min-height: 160px;
+    }
+    .qp-profile-header-banner  {
+        height: 100px;
+    }
+    .qp-profile-header-avatar {
+        width: 100px;
+        height: 100px;
+        top: 40px;
+    }
+}
+/* ===--- identity ---=== */
+.qp-profile-identity {
+    padding: 6px 12px 20px;
+}
+.qp-profile-identity-name {
+    font-family: "Quicksand", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 120%;
+    word-break: break-word;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.qp-profile-identity-worldname {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 120%;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    padding: 0;
+    margin: 0 0 12px;
+}
+@media (max-width: 767px) {
+    .qp-profile-identity-name {
+        font-size: 16px;
+    }
 }
 </style>

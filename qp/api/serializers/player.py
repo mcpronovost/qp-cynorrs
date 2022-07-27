@@ -68,6 +68,28 @@ class qpPlayerMeHeroSerializer(serializers.ModelSerializer):
         return result
 
 
+class qpPlayerMeCharactersHerosListSerializer(serializers.ModelSerializer):
+    world = serializers.SerializerMethodField(source="get_world")
+
+    class Meta:
+        model = qpPlayerHero
+        fields = ["id", "name", "initials", "avatar", "world", "is_valid", "geo"]
+        depth = 1
+    
+    def get_world(self, obj):
+        result = None
+        try:
+            world = obj.world
+            result = {
+                "id": world.pk,
+                "name": str(world.name),
+                "slug": str(world.slug)
+            }
+        except:
+            pass
+        return result
+
+
 class qpPlayerMeWorldListSerializer(serializers.ModelSerializer):
 
     class Meta:

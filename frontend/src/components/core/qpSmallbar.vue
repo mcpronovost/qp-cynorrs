@@ -2,7 +2,7 @@
     <div v-if="app.win.w > 767" id="qp-app-smallbar">
         <el-scrollbar height="100%">
             <div v-if="rat" id="qp-smallbar-inner">
-                <div v-for="(hero, n) in listHeros" :key="`hero-${n}`" class="qp-smallbar-hero">
+                <div v-for="(hero, n) in listHeros" :key="`hero-${n}`" class="qp-smallbar-hero" @click="goToCharacter(hero.id)">
                     <el-tooltip :content="hero.name" placement="left">
                         <el-avatar :src="hero.avatar">
                             <span v-text="hero.initials"></span>
@@ -17,14 +17,11 @@
 <script setup>
 
 import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { useRoute } from "vue-router";
-
-// =================================================================================== //
-// ===--- STORE
 
 const route = useRoute()
-
+const router = useRouter()
 const store = useStore()
 const app = computed(() => store.getters.app)
 const rat = computed(() => store.getters.rat)
@@ -39,7 +36,9 @@ const listHeros = computed(() => {
     return heros.value
 })
 
-// =================================================================================== //
+const goToCharacter = (id) => {
+    router.push({name: "MeCharactersDetail", params: {pk: id}})
+}
 
 </script>
 
@@ -57,5 +56,8 @@ const listHeros = computed(() => {
     .qp-smallbar-hero {
         text-align: center;
         padding: 6px;
+    }
+    .qp-smallbar-hero:hover {
+        cursor: pointer;
     }
 </style>
