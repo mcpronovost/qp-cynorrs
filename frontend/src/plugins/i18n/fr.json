@@ -120,5 +120,10 @@
     "GeneralInformations": "Informations générales",
     "Open": "Ouvert",
     "WorldUpdatedSuccessfully": "Monde mis à jour avec succès !",
-    "CharacterUpdatedSuccessfully": "Personnage mis à jour avec succès !"
+    "CharacterUpdatedSuccessfully": "Personnage mis à jour avec succès !",
+    "NameDescriptionVisibilityAndMore": "Nom, description, visibilité et plus encore",
+    "Style": "Style",
+    "ColoursAndCustomStylesheet": "Couleurs et feuilles de style personnalisée",
+    "UnderDevelopment": "En développement",
+    "ZonesTerritoriesSectorsAndSettings": "Zones, territoires, secteurs et paramètres"
 }

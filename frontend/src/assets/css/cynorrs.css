@@ -685,3 +685,70 @@ hr {
 .qp-forum-message-text img {
     max-width: 100%;
 }
+
+/* =================================================================================== */
+/* ====================================--- ME ---===================================== */
+/* =================================================================================== */
+
+.qp-menav .el-collapse {
+    border: none;
+}
+.qp-menav .el-collapse-item__header {
+    height: auto;
+}
+.qp-menav .el-collapse-item__header > div {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+}
+.qp-menav-icon {
+    color: var(--qp-primary);
+    font-size: 28px;
+    line-height: 120%;
+    text-align: left;
+    flex: 1 1 32px;
+}
+.qp-menav-text {
+    font-size: 16px;
+    line-height: 120%;
+    text-align: left;
+    flex: 1 1 calc(100% - 44px);
+    padding: 0 0 0 12px;
+}
+.qp-menav-title {
+    color: var(--qp-default-txt);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 120%;
+    display: block;
+    margin: 0 0 6px;
+}
+.qp-menav-caption {
+    color: var(--qp-default-txt);
+    font-size: 12px;
+    line-height: 120%;
+    display: block;
+    opacity: 0.6;
+}
+.qp-menav .el-collapse-item__content {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+.qp-menav .el-collapse-item__content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.qp-menav .el-collapse-item__content li {
+    font-size: 14px;
+    line-height: 120%;
+    list-style: none;
+    transition: opacity 0.4s;
+    padding: 0 32px;
+    margin: 12px 0;
+}
+.qp-menav .el-collapse-item__content li:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
