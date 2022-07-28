@@ -15,17 +15,27 @@
                     <el-row>
                         <el-col :span="24" :md="6">
                             <qpCard h="auto" pa="0">
-                                <qpPlayerMeNav :tab="tab" @goto="goToTab" />
+                                <qpPlayerMeNav :navs="navs" :tab="tab" @goto="goToTab" />
                             </qpCard>
                         </el-col>
                         <el-col :span="24" :md="18" style="padding:0">
-                            <qpPlayerMeWorldGeneral v-if="tab == 'general'" :world="world" @init-world="initWorld" />
-                            <qpPlayerMeWorldForum v-else-if="tab == 'forum'" :world="world" @init-world="initWorld" />
+                            <qpPlayerMeWorldGeneral v-if="tab.startsWith('general')" :world="world" @init-world="initWorld" />
+                            <qpPlayerMeWorldForum v-else-if="tab.startsWith('forum')" :tab="tab" :world="world" @init-world="initWorld" />
                             <el-row v-else-if="tab == 'style'">
                                 <el-col :span="24">
                                     <qpCard class="qp-meworld-form-style">
                                         <template #header>
                                             <span v-text="$t('Style')"></span>
+                                        </template>
+                                        <el-result icon="info" :title="$t('UnderDevelopment')" />
+                                    </qpCard>
+                                </el-col>
+                            </el-row>
+                            <el-row v-else-if="tab == 'style-stylesheets'">
+                                <el-col :span="24">
+                                    <qpCard class="qp-meworld-form-style">
+                                        <template #header>
+                                            <span v-text="$t('Stylesheets')"></span>
                                         </template>
                                         <el-result icon="info" :title="$t('UnderDevelopment')" />
                                     </qpCard>
@@ -75,6 +85,35 @@ const rat = computed(() => store.getters.rat);
 const isLoading = ref(true);
 const hasError = ref(null);
 
+const navs = ref([
+    {
+        tab: "general",
+        title: t("GeneralInformations"),
+        caption: t("NameDescriptionVisibilityAndMore"),
+        icon: "mdi mdi-account-outline"
+    },
+    {
+        tab: "forum",
+        title: t("Forum"),
+        caption: t("ZonesTerritoriesSectorsAndSettings"),
+        icon: "mdi mdi-forum-outline"
+    },
+    {
+        tab: "style",
+        title: t("Style"),
+        caption: t("ColoursAndCustomStylesheet"),
+        icon: "mdi mdi-brush-variant",
+        subs: [
+            {
+                tab: "style-stylesheets",
+                title: t("Stylesheets")
+            }
+        ]
+    }
+])
+const tab = ref("general")
+const goToTab = (t) => {tab.value = t}
+
 onMounted(() => {
     if (rat.value) {
         initWorld()
@@ -109,12 +148,6 @@ const initWorld = async () => {
     }
     // ===---
     isLoading.value = false
-}
-
-const tab = ref("general")
-
-const goToTab = (t) => {
-    tab.value = t
 }
 
 </script>

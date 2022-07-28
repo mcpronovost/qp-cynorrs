@@ -132,8 +132,7 @@ class qpPlayerMeWorldSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpWorld
-        fields = ["id", "name", "slug", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "visibility", "is_active",
-        "visibility_choix"]
+        fields = ["id", "name", "slug", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "visibility", "is_active", "forum", "visibility_choix"]
         depth = 1
     
     def get_visibility_choix(self, obj):

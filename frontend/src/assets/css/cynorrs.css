@@ -741,6 +741,7 @@ hr {
     margin: 0;
 }
 .qp-menav .el-collapse-item__content li {
+    color: var(--qp-default-txt);
     font-size: 14px;
     line-height: 120%;
     list-style: none;
@@ -751,4 +752,7 @@ hr {
 .qp-menav .el-collapse-item__content li:hover {
     cursor: pointer;
     opacity: 0.6;
+}
+.qp-menav .el-collapse-item__content li.qp-active {
+    color: var(--qp-primary);
 }

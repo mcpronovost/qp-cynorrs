@@ -1,67 +1,47 @@
 <template>
     <nav class="qp-menav">
-        <el-collapse accordion>
-            <el-collapse-item name="general">
+        <el-collapse v-model="currentTab" accordion>
+            <el-collapse-item v-for="(nav, n) in props.navs" :key="`nav-${n}`" :name="nav.tab">
                 <template #title>
-                    <div @click="$emit('goto', 'general')">
+                    <div @click="$emit('goto', nav.tab)">
                         <div class="qp-menav-icon">
-                            <el-icon class="mdi mdi-account-outline" />
+                            <el-icon :class="nav.icon" />
                         </div>
                         <div class="qp-menav-text">
-                            <span class="qp-menav-title" v-text="$t('GeneralInformations')"></span>
-                            <span class="qp-menav-caption" v-text="$t('NameDescriptionVisibilityAndMore')"></span>
-                        </div>
-                    </div>
-                </template>
-                <div>
-                    (à venir)
-                </div>
-            </el-collapse-item>
-            <el-collapse-item name="forum">
-                <template #title>
-                    <div @click="$emit('goto', 'forum')">
-                        <div class="qp-menav-icon">
-                            <el-icon class="mdi mdi-forum-outline" />
-                        </div>
-                        <div class="qp-menav-text">
-                            <span class="qp-menav-title" v-text="$t('Forum')"></span>
-                            <span class="qp-menav-caption" v-text="$t('ZonesTerritoriesSectorsAndSettings')"></span>
+                            <span class="qp-menav-title" v-text="nav.title"></span>
+                            <span class="qp-menav-caption" v-text="nav.caption"></span>
                         </div>
                     </div>
                 </template>
                 <ul>
-                    <li>
-                        <span v-text="$t('Settings')"></span>
+                    <li @click="$emit('goto', nav.tab)" :class="nav.tab == tab ? 'qp-active' : ''">
+                        <span v-text="$t('General')"></span>
                     </li>
-                    <li>
-                        <span v-text="$t('Settings')"></span>
+                    <li v-for="(sub, nn) in nav.subs" :key="`nav-${n}-sub-${nn}`" :class="sub.tab == tab ? 'qp-active' : ''" @click="$emit('goto', sub.tab)">
+                        <span v-text="sub.title"></span>
                     </li>
                 </ul>
-            </el-collapse-item>
-            <el-collapse-item name="style">
-                <template #title>
-                    <div @click="$emit('goto', 'style')">
-                        <div class="qp-menav-icon">
-                            <el-icon class="mdi mdi-brush-variant" />
-                        </div>
-                        <div class="qp-menav-text">
-                            <span class="qp-menav-title" v-text="$t('Style')"></span>
-                            <span class="qp-menav-caption" v-text="$t('ColoursAndCustomStylesheet')"></span>
-                        </div>
-                    </div>
-                </template>
-                <div>
-                    (à venir)
-                </div>
             </el-collapse-item>
         </el-collapse>
     </nav>
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
+const props = defineProps({
+    navs: {
+        type: Array,
+        default: () => []
+    },
+    tab: {
+        type: String,
+        default: ""
+    }
+})
 
+const currentTab = ref("")
+
+onMounted(() => {
+    currentTab.value = props.tab
+})
 </script>
-
-<style scoped>
-
-</style>

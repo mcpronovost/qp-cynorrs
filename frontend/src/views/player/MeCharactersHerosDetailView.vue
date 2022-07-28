@@ -19,8 +19,8 @@
                 <section>
                     <el-row>
                         <el-col :span="24" :md="6">
-                            <qpCard h="auto">
-                                (navigation)
+                            <qpCard h="auto" pa="0">
+                                <qpPlayerMeNav :navs="navs" :tab="tab" @goto="goToTab" />
                             </qpCard>
                         </el-col>
                         <el-col :span="24" :md="18" style="padding:0">
@@ -128,6 +128,7 @@ import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
 import qpCard from "@/components/basic/qpCard.vue";
+import qpPlayerMeNav from "@/components/player/core/qpMeNav.vue";
 
 const { t } = i18n.global
 
@@ -139,6 +140,17 @@ const rat = computed(() => store.getters.rat);
 
 const isLoading = ref(true);
 const hasError = ref(null);
+
+const navs = ref([
+    {
+        tab: "general",
+        title: t("GeneralInformations"),
+        caption: t("NameAvatarGenderAndMore"),
+        icon: "mdi mdi-account-outline"
+    }
+])
+const tab = ref("general")
+const goToTab = (t) => {tab.value = t}
 
 onMounted(() => {
     if (rat.value) {

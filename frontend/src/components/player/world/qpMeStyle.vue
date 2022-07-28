@@ -1,32 +1,24 @@
 <template>
     <div v-if="props.world">
 
-        <div v-if="!isLoading && forum">
-            <el-row v-if="props.tab == 'forum'">
+        <div v-if="!isLoading && style">
+            <el-row v-if="props.tab == 'style'">
                 <el-col :span="24">
-                    <qpCard class="qp-meworld-form-forum">
+                    <qpCard class="qp-meworld-form-style">
                         <template #header>
-                            <span v-text="$t('Forum')"></span>
+                            <span v-text="$t('Style')"></span>
                         </template>
-                        <el-form ref="formForumGeneralRef" :model="formForumGeneral" :label-position="app.win.w < 1200 ? 'top' : 'right'" :rules="formForumGeneralRules" label-width="120px" status-icon :style="app.win.w < 1200 ? 'margin-top:12px;' : 'padding-right:60px;margin-top:12px;'">
+                        <el-form ref="formForumStyleRef" :model="formForumStyle" :label-position="app.win.w < 1200 ? 'top' : 'right'" :rules="formForumStyleRules" label-width="120px" status-icon :style="app.win.w < 1200 ? 'margin-top:12px;' : 'padding-right:60px;margin-top:12px;'">
                             <el-form-item :label="$t('Name')" prop="name">
-                                <el-input v-model="formForumGeneral.name" :placeholder="$t('NameOfTheWorld')" :maxlength="32" show-word-limit />
-                            </el-form-item>
-                            <el-form-item :label="$t('Visibility')" prop="visibility">
-                                <el-select v-model="formForumGeneral.visibility" :placeholder="$t('Visibility')">
-                                    <el-option v-for="(visibility, n) in world.visibility_choix" :key="`visibility-${n}`" :label="visibility[1]" :value="visibility[0]" />
-                                </el-select>
-                            </el-form-item>
-                            <el-form-item :label="$t('Open')" prop="is_active">
-                                <el-checkbox v-model="formForumGeneral.is_active" />
+                                <el-input v-model="formForumStyle.name" :placeholder="$t('NameOfTheWorld')" :maxlength="32" show-word-limit />
                             </el-form-item>
                         </el-form>
                         <el-row>
                             <el-col>
-                                <el-button :disabled="isLoadingSend" class="ma-6" @click="resetformForumGeneral()">
+                                <el-button :disabled="isLoadingSend" class="ma-6" @click="resetformForumStyle()">
                                     <span v-text="$t('Reset')"></span>
                                 </el-button>
-                                <el-button :loading="isLoadingSend" class="ma-6" type="primary" @click="doformForumGeneral()">
+                                <el-button :loading="isLoadingSend" class="ma-6" type="primary" @click="doformForumStyle()">
                                     <span v-text="$t('Send')"></span>
                                 </el-button>
                             </el-col>
@@ -75,7 +67,7 @@ const emit = defineEmits(["init-world"])
 const props = defineProps({
     tab: {
         type: String,
-        default: "general"
+        default: "style"
     },
     world: {
         type: Object,
@@ -84,13 +76,13 @@ const props = defineProps({
 })
 
 onMounted(() => {
-    initForum()
+    initStyle()
 })
 
 const isLoading = ref(false)
 const forum = ref(null)
 
-const initForum = async () => {
+const initStyle = async () => {
     isLoading.value = true
     // ===---
     try {
@@ -117,33 +109,33 @@ const initForum = async () => {
 
 const isLoadingSend = ref(false)
 
-const formForumGeneralRef = ref()
-const formForumGeneral = reactive({
+const formForumStyleRef = ref()
+const formForumStyle = reactive({
     name: "",
     slug: "",
     description: "",
     visibility: 0,
     is_active: false
 })
-const formForumGeneralRules = reactive({})
+const formForumStyleRules = reactive({})
 
-const initformForumGeneral = (r) => {
-    formForumGeneral.name = r.name
-    formForumGeneral.slug = r.slug
-    formForumGeneral.description = r.description
-    formForumGeneral.visibility = r.visibility
-    formForumGeneral.is_active = r.is_active
+const initformForumStyle = (r) => {
+    formForumStyle.name = r.name
+    formForumStyle.slug = r.slug
+    formForumStyle.description = r.description
+    formForumStyle.visibility = r.visibility
+    formForumStyle.is_active = r.is_active
 }
 
-const resetformForumGeneral = () => {
-    initformForumGeneral(props.world)
+const resetformForumStyle = () => {
+    initformForumStyle(props.world)
 }
 
-const doformForumGeneral = async () => {
+const doformForumStyle = async () => {
     isLoadingSend.value = true
-    await formForumGeneralRef.value.validate((valid, fields) => {
+    await formForumStyleRef.value.validate((valid, fields) => {
         if (valid) {
-            sendformForumGeneral()
+            sendformForumStyle()
         } else {
             for (let [key, val] of Object.entries(fields)) {
                 let k = t(`error${key}`)
@@ -156,16 +148,16 @@ const doformForumGeneral = async () => {
     })
 }
 
-const sendformForumGeneral = async () => {
+const sendformForumStyle = async () => {
     isLoadingSend.value = true
     // ===---
     try {
         let data = new FormData()
-        data.append("name", formForumGeneral.name)
-        // data.append("slug", formForumGeneral.slug)
-        data.append("description", formForumGeneral.description ? formForumGeneral.description : "")
-        data.append("visibility", formForumGeneral.visibility)
-        data.append("is_active", formForumGeneral.is_active)
+        data.append("name", formForumStyle.name)
+        // data.append("slug", formForumStyle.slug)
+        data.append("description", formForumStyle.description ? formForumStyle.description : "")
+        data.append("visibility", formForumStyle.visibility)
+        data.append("is_active", formForumStyle.is_active)
         let response = await fetch(`${API}/me/worlds/${route.params.pk}/`, {
             method: "PATCH",
             headers: {"Authorization": rat.value},
@@ -175,7 +167,7 @@ const sendformForumGeneral = async () => {
         if (response.status === 200) {
             ElMessage.success(t("WorldUpdatedSuccessfully"))
             emit("init-world", r)
-            // initformForumGeneral(r)
+            // initformForumStyle(r)
         } else {
             for (let [key, val] of Object.entries(r)) {
                 let k = t(`error${key}`)
