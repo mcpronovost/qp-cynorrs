@@ -12,13 +12,18 @@ from qp.world.models import (
     qpWorld
 )
 
+from qp.forum.models import (
+    qpForum
+)
+
 from qp.api.serializers.player import (
     qpPlayerMeSerializer,
     qpPlayerMeHeroSerializer,
     qpPlayerMeCharactersHerosListSerializer,
     qpPlayerMeCharactersHeroSerializer,
     qpPlayerMeWorldListSerializer,
-    qpPlayerMeWorldSerializer
+    qpPlayerMeWorldSerializer,
+    qpPlayerMeWorldForumSerializer
 )
 
 from qp.api.serializers.world import (
@@ -105,4 +110,21 @@ class qpPlayerMeWorldRetrieveView(RetrieveUpdateAPIView):
             )
         except Exception as e:
             print("Error on qpPlayerMeWorldRetrieveView : ", e)
+        return None
+
+
+class qpPlayerMeWorldForumRetrieveView(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumSerializer
+    queryset = qpForum.objects.all()
+    lookup_field = "pk"
+
+    def get_queryset(self):
+        try:
+            return qpForum.objects.filter(
+                pk=int(self.kwargs.get("pk")),
+                world__creator=self.request.user.player
+            )
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumRetrieveView : ", e)
         return None

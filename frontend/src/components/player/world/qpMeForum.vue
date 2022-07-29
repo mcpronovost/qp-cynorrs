@@ -55,7 +55,6 @@
 
 <script setup>
 import { computed, onMounted, reactive, ref } from "vue";
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { ElMessage } from "element-plus";
 import { API } from "@/main.js";
@@ -65,12 +64,9 @@ import qpCard from "@/components/basic/qpCard.vue";
 
 const { t } = i18n.global
 
-const route = useRoute();
 const store = useStore();
 const app = computed(() => store.getters.app)
 const rat = computed(() => store.getters.rat)
-
-const emit = defineEmits(["init-world"])
 
 const props = defineProps({
     tab: {
@@ -101,6 +97,7 @@ const initForum = async () => {
         let r = await response.json()
         if (response.status === 200) {
             forum.value = r
+            initformForumGeneral(r)
         } else {
             throw response
         }
@@ -129,14 +126,12 @@ const formForumGeneralRules = reactive({})
 
 const initformForumGeneral = (r) => {
     formForumGeneral.name = r.name
-    formForumGeneral.slug = r.slug
-    formForumGeneral.description = r.description
     formForumGeneral.visibility = r.visibility
     formForumGeneral.is_active = r.is_active
 }
 
 const resetformForumGeneral = () => {
-    initformForumGeneral(props.world)
+    initformForumGeneral(forum)
 }
 
 const doformForumGeneral = async () => {
@@ -162,11 +157,9 @@ const sendformForumGeneral = async () => {
     try {
         let data = new FormData()
         data.append("name", formForumGeneral.name)
-        // data.append("slug", formForumGeneral.slug)
-        data.append("description", formForumGeneral.description ? formForumGeneral.description : "")
         data.append("visibility", formForumGeneral.visibility)
         data.append("is_active", formForumGeneral.is_active)
-        let response = await fetch(`${API}/me/worlds/${route.params.pk}/`, {
+        let response = await fetch(`${API}/me/forums/${forum.value.id}/`, {
             method: "PATCH",
             headers: {"Authorization": rat.value},
             body: data
@@ -174,8 +167,7 @@ const sendformForumGeneral = async () => {
         let r = await response.json()
         if (response.status === 200) {
             ElMessage.success(t("WorldUpdatedSuccessfully"))
-            emit("init-world", r)
-            // initformForumGeneral(r)
+            initForum()
         } else {
             for (let [key, val] of Object.entries(r)) {
                 let k = t(`error${key}`)

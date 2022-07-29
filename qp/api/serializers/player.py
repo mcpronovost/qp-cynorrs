@@ -11,6 +11,13 @@ from qp.world.models import (
     qpWorld
 )
 
+from qp.forum.models import (
+    qpForum,
+    qpForumZone,
+    qpForumTerritory,
+    qpForumSector
+)
+
 from qp.api.serializers.world import (
     qpWorldNavSerializer
 )
@@ -47,6 +54,11 @@ class qpPlayerMeSerializer(serializers.ModelSerializer):
         for q in queryset.distinct():
             result.append(qpWorldNavSerializer(q).data)
         return result
+
+
+#########################################################################################
+# ===--- CHARACTERS ---================================================================ #
+#########################################################################################
 
 
 class qpPlayerMeHeroSerializer(serializers.ModelSerializer):
@@ -119,6 +131,11 @@ class qpPlayerMeCharactersHeroSerializer(serializers.ModelSerializer):
         return result
 
 
+#########################################################################################
+# ===--- WORLDS ---==================================================================== #
+#########################################################################################
+
+
 class qpPlayerMeWorldListSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -132,8 +149,44 @@ class qpPlayerMeWorldSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = qpWorld
-        fields = ["id", "name", "slug", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "visibility", "is_active", "forum", "visibility_choix"]
+        fields = ["id", "name", "slug", "description", "administrators", "moderators", "count_players", "count_heros", "count_chapters", "count_messages", "visibility", "is_active", "forum", "styles", "visibility_choix"]
         depth = 1
     
     def get_visibility_choix(self, obj):
         return CHOIX_VISIBILITY
+
+
+#########################################################################################
+# ===--- FORUMS ---==================================================================== #
+#########################################################################################
+
+
+class qpPlayerMeWorldForumSectorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpForumSector
+        fields = "__all__"
+
+
+class qpPlayerMeWorldForumTerritorySerializer(serializers.ModelSerializer):
+    sectors = qpPlayerMeWorldForumSectorSerializer(many=True)
+
+    class Meta:
+        model = qpForumTerritory
+        fields = "__all__"
+
+
+class qpPlayerMeWorldForumZoneSerializer(serializers.ModelSerializer):
+    territories = qpPlayerMeWorldForumTerritorySerializer(many=True)
+
+    class Meta:
+        model = qpForumZone
+        fields = "__all__"
+
+
+class qpPlayerMeWorldForumSerializer(serializers.ModelSerializer):
+    zones = qpPlayerMeWorldForumZoneSerializer(many=True)
+
+    class Meta:
+        model = qpForum
+        fields = "__all__"
