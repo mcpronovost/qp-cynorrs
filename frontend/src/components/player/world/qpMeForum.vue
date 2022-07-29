@@ -34,6 +34,7 @@
                     </qpCard>
                 </el-col>
             </el-row>
+            <qpPlayerMeForumIndex v-if="props.tab == 'forum-index'" :world="props.world" :forum="forum" />
         </div>
 
         <div v-else-if="isLoading">
@@ -61,6 +62,7 @@ import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
 import qpCard from "@/components/basic/qpCard.vue";
+import qpPlayerMeForumIndex from "@/components/player/world/qpMeForumIndex.vue";
 
 const { t } = i18n.global
 

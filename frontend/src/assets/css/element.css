@@ -332,6 +332,20 @@
     --el-scrollbar-hover-bg-color: var(--qp-default-txt);
 }
 
+/* ===--- TAB ---=== */
+
+.el-tabs__nav-wrap::after {
+    background-color: var(--qp-default-disabled-bg);
+}
+.el-tabs__new-tab {
+    border: 1px solid var(--qp-default-disabled-bg);
+    color: var(--qp-default-disabled-txt);
+}
+.el-tabs__new-tab:hover {
+    border: 1px solid var(--qp-default-txt);
+    color: var(--qp-default-txt);
+}
+
 /* ===--- TAG ---=== */
 
 .el-tag--plain {

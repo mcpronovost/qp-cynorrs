@@ -96,7 +96,13 @@ const navs = ref([
         tab: "forum",
         title: t("Forum"),
         caption: t("ZonesTerritoriesSectorsAndSettings"),
-        icon: "mdi mdi-forum-outline"
+        icon: "mdi mdi-forum-outline",
+        subs: [
+            {
+                tab: "forum-index",
+                title: t("Index")
+            }
+        ]
     },
     {
         tab: "style",
