@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     "qp.world",
     "qp.forum",
     # ===---
-    "qp.test"
+    "qp.test",
+    # ===---
+    "django_cleanup.apps.CleanupConfig" # last
 ]
 
 MIDDLEWARE = [
