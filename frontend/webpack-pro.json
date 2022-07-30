@@ -3,132 +3,132 @@
   "assets": {
     "fonts/robotocondensed-light.ttf": {
       "name": "fonts/robotocondensed-light.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/robotocondensed-light.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-light.ttf",
       "publicPath": "/fonts/robotocondensed-light.ttf"
     },
     "fonts/robotocondensed.ttf": {
       "name": "fonts/robotocondensed.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/robotocondensed.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed.ttf",
       "publicPath": "/fonts/robotocondensed.ttf"
     },
     "fonts/robotocondensed-bold.ttf": {
       "name": "fonts/robotocondensed-bold.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/robotocondensed-bold.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\robotocondensed-bold.ttf",
       "publicPath": "/fonts/robotocondensed-bold.ttf"
     },
     "fonts/quicksand-light.ttf": {
       "name": "fonts/quicksand-light.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/quicksand-light.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-light.ttf",
       "publicPath": "/fonts/quicksand-light.ttf"
     },
     "fonts/quicksand.ttf": {
       "name": "fonts/quicksand.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/quicksand.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand.ttf",
       "publicPath": "/fonts/quicksand.ttf"
     },
     "fonts/quicksand-semibold.ttf": {
       "name": "fonts/quicksand-semibold.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/quicksand-semibold.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-semibold.ttf",
       "publicPath": "/fonts/quicksand-semibold.ttf"
     },
     "fonts/quicksand-bold.ttf": {
       "name": "fonts/quicksand-bold.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/quicksand-bold.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\quicksand-bold.ttf",
       "publicPath": "/fonts/quicksand-bold.ttf"
     },
     "fonts/poppins-light.ttf": {
       "name": "fonts/poppins-light.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/poppins-light.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\poppins-light.ttf",
       "publicPath": "/fonts/poppins-light.ttf"
     },
     "fonts/poppins.ttf": {
       "name": "fonts/poppins.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/poppins.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\poppins.ttf",
       "publicPath": "/fonts/poppins.ttf"
     },
     "fonts/poppins-bold.ttf": {
       "name": "fonts/poppins-bold.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/poppins-bold.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\poppins-bold.ttf",
       "publicPath": "/fonts/poppins-bold.ttf"
     },
     "fonts/oswald.ttf": {
       "name": "fonts/oswald.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/oswald.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\oswald.ttf",
       "publicPath": "/fonts/oswald.ttf"
     },
     "fonts/indieflower.ttf": {
       "name": "fonts/indieflower.ttf",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/fonts/indieflower.ttf",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\fonts\\indieflower.ttf",
       "publicPath": "/fonts/indieflower.ttf"
     },
     "css/app.css": {
       "name": "css/app.css",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/css/app.css",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\css\\app.css",
       "publicPath": "/css/app.css"
     },
     "js/app.js": {
       "name": "js/app.js",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/js/app.js",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\js\\app.js",
       "publicPath": "/js/app.js"
     },
     "img/logo-square-trans.png": {
       "name": "img/logo-square-trans.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/img/logo-square-trans.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\img\\logo-square-trans.png",
       "publicPath": "/img/logo-square-trans.png"
     },
     "css/chunk-vendors.css": {
       "name": "css/chunk-vendors.css",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/css/chunk-vendors.css",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\css\\chunk-vendors.css",
       "publicPath": "/css/chunk-vendors.css"
     },
     "js/chunk-vendors.js": {
       "name": "js/chunk-vendors.js",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/js/chunk-vendors.js",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\js\\chunk-vendors.js",
       "publicPath": "/js/chunk-vendors.js"
     },
     "site.webmanifest": {
       "name": "site.webmanifest",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/site.webmanifest",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\site.webmanifest",
       "publicPath": "/site.webmanifest"
     },
     "ico/favicon-1024.png": {
       "name": "ico/favicon-1024.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon-1024.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon-1024.png",
       "publicPath": "/ico/favicon-1024.png"
     },
     "ico/favicon-16.png": {
       "name": "ico/favicon-16.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon-16.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon-16.png",
       "publicPath": "/ico/favicon-16.png"
     },
     "ico/favicon-180.png": {
       "name": "ico/favicon-180.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon-180.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon-180.png",
       "publicPath": "/ico/favicon-180.png"
     },
     "ico/favicon-192.png": {
       "name": "ico/favicon-192.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon-192.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon-192.png",
       "publicPath": "/ico/favicon-192.png"
     },
     "ico/favicon-32.png": {
       "name": "ico/favicon-32.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon-32.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon-32.png",
       "publicPath": "/ico/favicon-32.png"
     },
     "ico/favicon-512.png": {
       "name": "ico/favicon-512.png",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon-512.png",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon-512.png",
       "publicPath": "/ico/favicon-512.png"
     },
     "ico/favicon.ico": {
       "name": "ico/favicon.ico",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/ico/favicon.ico",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\ico\\favicon.ico",
       "publicPath": "/ico/favicon.ico"
     },
     "index.html": {
       "name": "index.html",
-      "path": "/home/marie-christine/web/qp-cynorrs/frontend/bundles/pro/index.html",
+      "path": "E:\\qp-cynorrs\\frontend\\bundles\\pro\\index.html",
       "publicPath": "/index.html"
     }
   },
