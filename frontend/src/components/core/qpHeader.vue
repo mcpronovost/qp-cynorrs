@@ -2,7 +2,7 @@
     <div id="qp-app-header">
         <el-row :gutter="20" align="middle">
             <el-col :span="10" class="text-left">
-                <div id="qp-header-logo" @click="$router.go({name: 'Home'})">
+                <div id="qp-header-logo" @click="goToHome()">
                     <div id="qp-header-logo-img">
                         <el-image :src="logo" fit="cover">
                             <template #error>
@@ -41,21 +41,27 @@
 <script setup>
 
 import { computed, ref } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { SITE } from "@/main.js";
 
 import { Expand, Fold } from "@element-plus/icons-vue";
 import qpHeaderNavPlayer from "@/components/core/qpHeaderNavPlayer.vue";
 
-// =================================================================================== //
-
+const route = useRoute()
+const router = useRouter()
 const store = useStore()
 const app = computed(() => store.getters.app)
 
-// =================================================================================== //
-// ===--- DATA
-
 const logo = ref(require("@/assets/img/logo-square-trans.png"))
+
+const goToHome = () => {
+    if (route.name == "Home") {
+        router.go(route.fullPath)
+    } else {
+        router.push({name: "Home"})
+    }
+}
 
 const toggleSidebar = () => {
     store.commit("TOGGLE_SIDEBAR")
