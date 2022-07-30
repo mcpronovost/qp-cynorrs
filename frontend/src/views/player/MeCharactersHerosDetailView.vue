@@ -197,7 +197,8 @@ const formCharacter = reactive({
     first_name: "",
     middle_name: "",
     last_name: "",
-    gender: ""
+    gender: "",
+    avatar: null
 })
 const formCharacterRules = reactive({})
 

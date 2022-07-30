@@ -26,6 +26,12 @@ class qpWorld(models.Model):
         blank=True,
         null=True
     )
+    banner = models.ImageField(
+        verbose_name=_("Banner"),
+        upload_to="worlds/banners",
+        blank=True,
+        null=True
+    )
     creator = models.ForeignKey(
         "player.qpPlayer",
         on_delete=models.SET_NULL,
@@ -250,6 +256,10 @@ class qpWorldNationality(models.Model):
 
 
 class qpWorldStyle(models.Model):
+    HEADER_CHOIX = [
+        ("default", _("Default")),
+        ("simple", _("Simple"))
+    ]
     world = models.ForeignKey(
         qpWorld,
         on_delete=models.CASCADE,
@@ -261,6 +271,14 @@ class qpWorldStyle(models.Model):
     name = models.CharField(
         verbose_name=_("Name"),
         max_length=32,
+        blank=False,
+        null=False
+    )
+    header = models.CharField(
+        verbose_name=_("Header"),
+        max_length=12,
+        choices=HEADER_CHOIX,
+        default="default",
         blank=False,
         null=False
     )

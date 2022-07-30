@@ -34,6 +34,7 @@ class qpWorldSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "description",
+            "banner",
             "slug",
             "creator",
             "administrators",

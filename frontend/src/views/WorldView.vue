@@ -3,9 +3,34 @@
 
         <div v-if="!isLoading && !hasError && world">
             <header class="qp-world-header">
-                <h1 class="qp-world-header-name" @click="goToWorld()">
+                <h1 v-if="world.style && world.style.header == 'simple'" class="qp-world-header-name" @click="goToWorld()">
                     <span v-text="world.name"></span>
                 </h1>
+                <div v-else class="qp-container">
+                    <el-row>
+                        <el-col>
+                            <qpCard pa="0">
+                                <div class="qp-world-header-banner">
+                                    <div class="qp-world-header-banner-inner">
+                                        <el-image v-if="world.banner" :src="world.banner" fit="cover">
+                                            <template #error>
+                                                <div class="image-slot"></div>
+                                            </template>
+                                        </el-image>
+                                    </div>
+                                </div>
+                                <div class="qp-world-header-identity">
+                                    <h1 class="qp-world-header-identity-name" @click="goToWorld()">
+                                        <span v-text="world.name"></span>
+                                    </h1>
+                                    <p class="qp-world-header-identity-description">
+                                        <span v-text="world.description"></span>
+                                    </p>
+                                </div>
+                            </qpCard>
+                        </el-col>
+                    </el-row>
+                </div>
             </header>
             <router-view :key="$route.params.slug" :world="world" />
             <footer class="qp-world-footer">
@@ -36,6 +61,7 @@ import { useStore } from "vuex";
 import { API, SITE } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
+import qpCard from "@/components/basic/qpCard.vue";
 import qpForumLoadError from "@/components/forum/core/qpLoadError.vue";
 
 const { t } = i18n.global
@@ -150,3 +176,63 @@ const goToWorld = () => {
 }
 
 </script>
+
+<style scoped>
+/* =- header */
+.qp-world-header-banner {
+    text-align: center;
+    min-height: 250px;
+    position: relative;
+    margin: 0;
+}
+.qp-world-header-banner-inner  {
+    background-color: var(--qp-default-disabled-bg);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+    height: 250px;
+    margin: 0;
+}
+.qp-world-header-banner-inner .el-image {
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+}
+@media (max-width: 767px) {
+    .qp-world-header-banner {
+        min-height: 150px;
+    }
+    .qp-world-header-banner-inner  {
+        height: 150px;
+    }
+}
+/* ===--- identity ---=== */
+.qp-world-header-identity {
+    padding: 20px 12px 20px;
+}
+.qp-world-header-identity-name {
+    font-family: "Quicksand", sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 120%;
+    word-break: break-word;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.qp-world-header-identity-description {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 120%;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    padding: 0;
+    margin: 0 0 12px;
+}
+@media (max-width: 767px) {
+    .qp-world-header-identity-name {
+        font-size: 48px;
+    }
+}
+</style>

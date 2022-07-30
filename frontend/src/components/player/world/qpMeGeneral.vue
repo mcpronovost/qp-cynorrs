@@ -1,5 +1,43 @@
 <template>
     <el-row v-if="props.world">
+        <el-col :span="24" :sm="17">
+            <qpCard pa="0">
+                <div class="qp-meworld-banner">
+                    <div class="qp-meworld-banner-inner">
+                        <el-image v-if="formWorld.banner" :src="formWorld.banner" fit="cover">
+                            <template #error>
+                                <div class="image-slot"></div>
+                            </template>
+                        </el-image>
+                    </div>
+                </div>
+                <div class="qp-meworld-identity">
+                    <h1 class="qp-meworld-identity-name">
+                        <span v-text="formWorld.name"></span>
+                    </h1>
+                    <p class="qp-meworld-identity-description">
+                        <span v-text="formWorld.description"></span>
+                    </p>
+                </div>
+            </qpCard>
+        </el-col>
+        <el-col :span="24" :sm="7">
+            <qpCard class="qp-meworld-general-upload">
+                <el-upload ref="formWorldBannerRef" action="#" accept="image/*" :auto-upload="false" :show-file-list="false" :limit="1" :on-change="doChangeBanner" :on-exceed="doExceedBanner">
+                    <div class="qp-meworld-general-upload-icon">
+                        <el-icon>
+                            <Picture />
+                        </el-icon>
+                    </div>
+                    <div class="qp-meworld-general-upload-text">
+                        <span v-text="$t('ChangeBanner')"></span>
+                    </div>
+                    <div class="qp-meworld-general-upload-info">
+                        <span v-text="$t('1200x250pxSizeRecommended')"></span>
+                    </div>
+                </el-upload>
+            </qpCard>
+        </el-col>
         <el-col :span="24">
             <qpCard class="qp-meworld-form-general">
                 <template #header>
@@ -44,6 +82,7 @@ import { computed, onMounted, reactive, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { ElMessage } from "element-plus";
+import { Picture } from "@element-plus/icons-vue";
 import { API } from "@/main.js";
 import i18n from "@/plugins/i18n";
 
@@ -76,6 +115,8 @@ const formWorld = reactive({
     name: "",
     slug: "",
     description: "",
+    banner: null,
+    banner_file: null,
     visibility: 0,
     is_active: false
 })
@@ -85,6 +126,8 @@ const initFormWorld = (r) => {
     formWorld.name = r.name
     formWorld.slug = r.slug
     formWorld.description = r.description
+    formWorld.banner = r.banner
+    formWorld.banner_file = null
     formWorld.visibility = r.visibility
     formWorld.is_active = r.is_active
 }
@@ -120,6 +163,9 @@ const sendFormWorld = async () => {
         data.append("description", formWorld.description ? formWorld.description : "")
         data.append("visibility", formWorld.visibility)
         data.append("is_active", formWorld.is_active)
+        if (formWorld.banner_file) {
+            data.append("banner", formWorld.banner_file)
+        }
         let response = await fetch(`${API}/me/worlds/${route.params.pk}/`, {
             method: "PATCH",
             headers: {"Authorization": rat.value},
@@ -143,4 +189,111 @@ const sendFormWorld = async () => {
     }
     isLoadingSend.value = false
 }
+
+const formWorldBannerRef = ref()
+
+const doExceedBanner = (event) => {
+    formWorldBannerRef.value.clearFiles()
+    formWorldBannerRef.value.handleStart(event[0])
+}
+
+const doChangeBanner = (event) => {
+    if (event.raw.type !== "image/jpeg") {
+        ElMessage.error(t("FileFormatMustBeJPG"))
+        return false
+    } else if (event.raw.size / 1024 / 1024 > 1) {
+        ElMessage.error(t("FileSizeCanNotExceed1MB"))
+        return false
+    }
+    formWorld.banner = URL.createObjectURL(event.raw)
+    formWorld.banner_file = event.raw
+}
+
 </script>
+
+<style>
+/* ===--- banner ---=== */
+.qp-meworld-banner {
+    text-align: center;
+    min-height: 150px;
+    position: relative;
+    margin: 0;
+}
+.qp-meworld-banner-inner  {
+    background-color: var(--qp-default-disabled-bg);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+    height: 150px;
+    margin: 0;
+}
+.qp-meworld-banner-inner .el-image {
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+}
+@media (max-width: 767px) {
+    .qp-meworld-banner {
+        min-height: 100px;
+    }
+    .qp-meworld-banner-inner  {
+        height: 100px;
+    }
+}
+/* ===--- identity ---=== */
+.qp-meworld-identity {
+    padding: 20px 12px 20px;
+}
+.qp-meworld-identity-name {
+    font-family: "Quicksand", sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 120%;
+    word-break: break-word;
+    padding: 0;
+    margin: 0 0 12px;
+}
+.qp-meworld-identity-description {
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 120%;
+    letter-spacing: 1px;
+    opacity: 0.6;
+    padding: 0;
+    margin: 0 0 12px;
+}
+@media (max-width: 767px) {
+    .qp-meworld-identity-name {
+        font-size: 20px;
+    }
+}
+/* ===--- upload ---=== */
+.qp-meworld-general-upload {
+    display: flex;
+    align-items: center;
+}
+.qp-meworld-general-upload .el-upload {
+    flex-direction: column;
+    transition: opacity 0.4s;
+}
+.qp-meworld-general-upload .el-upload:hover {
+    opacity: 0.6;
+}
+.qp-meworld-general-upload-icon {
+    font-size: 24px;
+    line-height: 120%;
+    margin: 0 0 8px;
+}
+.qp-meworld-general-upload-text {
+    font-size: 16px;
+    line-height: 120%;
+    margin: 0 0 4px;
+}
+.qp-meworld-general-upload-info {
+    font-size: 12px;
+    line-height: 120%;
+    opacity: 0.6;
+}
+</style>

@@ -47,6 +47,8 @@ from qp.api.views.world import (
     qpWorldsRetrieveAPIView
 )
 
+from qp.api.utils import download_style
+
 urlpatterns = [
     path("", qpPingView.as_view()),
 
@@ -56,6 +58,7 @@ urlpatterns = [
     path("me/heros/", qpPlayerMeHerosListView.as_view()),
     path("me/worlds/", qpPlayerMeWorldsListView.as_view()),
     path("me/worlds/<int:pk>/", qpPlayerMeWorldRetrieveView.as_view()),
+    path("me/worlds/styles/<int:pk>/download/", download_style),
     path("me/forums/<int:pk>/", qpPlayerMeWorldForumRetrieveView.as_view()),
     path("me/forums/<int:pk>/zones/create/", qpPlayerMeWorldForumZoneCreateView.as_view()),
     path("me/zones/<int:pk>/edit/", qpPlayerMeWorldForumZoneEditView.as_view()),

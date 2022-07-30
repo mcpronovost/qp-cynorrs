@@ -206,7 +206,7 @@ hr {
     padding: 0;
 }
 .qp-container {
-    max-width: 1024px;
+    max-width: 1224px;
     padding: 20px;
     margin: 0 auto;
 }
@@ -280,8 +280,11 @@ hr {
 
 .qp-world-header {
     text-align: center;
-    padding: 64px 32px;
-    margin: 0 0 32px;
+    padding: 32px 0 0;
+    margin: 0;
+}
+.qp-world-header .qp-container {
+    padding-bottom: 0;
 }
 .qp-world-header-name {
     font-family: "Quicksand", sans-serif;
