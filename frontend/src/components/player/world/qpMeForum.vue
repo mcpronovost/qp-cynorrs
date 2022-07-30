@@ -34,7 +34,7 @@
                     </qpCard>
                 </el-col>
             </el-row>
-            <qpPlayerMeForumIndex v-if="props.tab == 'forum-index'" :world="props.world" :forum="forum" />
+            <qpPlayerMeForumIndex v-if="props.tab == 'forum-index'" :world="props.world" :forum="forum" @init-forum="initForum()" />
         </div>
 
         <div v-else-if="isLoading">

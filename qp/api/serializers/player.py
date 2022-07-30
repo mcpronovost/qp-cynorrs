@@ -190,3 +190,24 @@ class qpPlayerMeWorldForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = qpForum
         fields = "__all__"
+
+
+class qpPlayerMeWorldForumZoneEditSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpForumZone
+        fields = ["id", "forum", "name", "description", "ordering"]
+
+
+class qpPlayerMeWorldForumTerritoryEditSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpForumTerritory
+        fields = ["id", "zone", "name", "description", "colour", "flexbasis", "ordering"]
+
+
+class qpPlayerMeWorldForumSectorEditSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = qpForumSector
+        fields = ["id", "territory", "name", "description", "colour", "flexbasis", "ordering"]

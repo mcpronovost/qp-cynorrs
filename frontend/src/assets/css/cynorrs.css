@@ -98,6 +98,10 @@ hr {
     text-align: right;
 }
 
+.pa-6 {
+    padding: 12px;
+}
+
 .ma-6 {
     margin: 12px;
 }
@@ -164,6 +168,16 @@ hr {
     height: 100vh;
 }
 
+#qp-app-sidebar.qp-collapsed + #qp-app-main {
+    max-width: calc(100vw - 128px);
+}
+
+@media (max-width: 767px) {
+    #qp-app-sidebar.qp-collapsed + #qp-app-main {
+        max-width: calc(100vw - 64px);
+    }
+}
+
 /* ===--- smallbar ---=== */
 
 #qp-app-smallbar {
@@ -175,9 +189,6 @@ hr {
     height: calc(100vh - 64px);
     width: 64px;
     transition: width 0.4s;
-}
-#qp-app-sidebar.qp-collapsed + #qp-app-main + #qp-app-smallbar {
-    width: 0;
 }
 
 /* ===--- MAIN SCROLLBAR ---=== */
@@ -755,4 +766,9 @@ hr {
 }
 .qp-menav .el-collapse-item__content li.qp-active {
     color: var(--qp-primary);
+}
+
+/* ===---=== */
+.qp-dialog-footer {
+    margin: 32px 0 -12px;
 }

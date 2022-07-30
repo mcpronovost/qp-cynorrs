@@ -1,7 +1,7 @@
-from django.core.exceptions import BadRequest
-
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.status import HTTP_204_NO_CONTENT, HTTP_400_BAD_REQUEST
 
 from qp.player.models import (
     qpPlayer,
@@ -13,7 +13,10 @@ from qp.world.models import (
 )
 
 from qp.forum.models import (
-    qpForum
+    qpForum,
+    qpForumZone,
+    qpForumTerritory,
+    qpForumSector
 )
 
 from qp.api.serializers.player import (
@@ -23,7 +26,10 @@ from qp.api.serializers.player import (
     qpPlayerMeCharactersHeroSerializer,
     qpPlayerMeWorldListSerializer,
     qpPlayerMeWorldSerializer,
-    qpPlayerMeWorldForumSerializer
+    qpPlayerMeWorldForumSerializer,
+    qpPlayerMeWorldForumZoneEditSerializer,
+    qpPlayerMeWorldForumTerritoryEditSerializer,
+    qpPlayerMeWorldForumSectorEditSerializer
 )
 
 from qp.api.serializers.world import (
@@ -128,3 +134,135 @@ class qpPlayerMeWorldForumRetrieveView(RetrieveUpdateAPIView):
         except Exception as e:
             print("Error on qpPlayerMeWorldForumRetrieveView : ", e)
         return None
+
+
+class qpPlayerMeWorldForumZoneCreateView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumZoneEditSerializer
+
+
+class qpPlayerMeWorldForumZoneEditView(RetrieveUpdateDestroyAPIView):
+    model = qpForumZone
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumZoneEditSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs["pk"]
+        queryset = self.model.objects.filter(
+            pk=pk
+        )
+        return queryset
+
+    def patch(self, request, *args, **kwargs):
+        instance = self.get_object()
+        try:
+            player = request.user.player
+            if player == instance.forum.world.creator or player in instance.forum.world.administrators.all():
+                serializer = self.get_serializer(instance, data=request.data, partial=True)
+                serializer.is_valid(raise_exception=True)
+                self.perform_update(serializer)
+                if getattr(instance, "_prefetched_objects_cache", None):
+                    instance._prefetched_objects_cache = {}
+                return Response(serializer.data)
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumZoneEditView > patch : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        try:
+            player = request.user.player
+            if player == instance.forum.world.creator or player in instance.forum.world.administrators.all():
+                self.perform_destroy(instance)
+                return Response(status=HTTP_204_NO_CONTENT)
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumZoneEditView > delete : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)
+
+
+class qpPlayerMeWorldForumTerritoryCreateView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumTerritoryEditSerializer
+
+
+class qpPlayerMeWorldForumTerritoryEditView(RetrieveUpdateDestroyAPIView):
+    model = qpForumTerritory
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumTerritoryEditSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs["pk"]
+        queryset = self.model.objects.filter(
+            pk=pk
+        )
+        return queryset
+
+    def patch(self, request, *args, **kwargs):
+        instance = self.get_object()
+        try:
+            player = request.user.player
+            if player == instance.zone.forum.world.creator or player in instance.zone.forum.world.administrators.all():
+                serializer = self.get_serializer(instance, data=request.data, partial=True)
+                serializer.is_valid(raise_exception=True)
+                self.perform_update(serializer)
+                if getattr(instance, "_prefetched_objects_cache", None):
+                    instance._prefetched_objects_cache = {}
+                return Response(serializer.data)
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumTerritoryEditView > patch : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        try:
+            player = request.user.player
+            if player == instance.zone.forum.world.creator or player in instance.zone.forum.world.administrators.all():
+                self.perform_destroy(instance)
+                return Response(status=HTTP_204_NO_CONTENT)
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumTerritoryEditView > delete : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)
+
+
+class qpPlayerMeWorldForumSectorCreateView(CreateAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumSectorEditSerializer
+
+
+class qpPlayerMeWorldForumSectorEditView(RetrieveUpdateDestroyAPIView):
+    model = qpForumSector
+    permission_classes = [IsAuthenticated]
+    serializer_class = qpPlayerMeWorldForumSectorEditSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs["pk"]
+        queryset = self.model.objects.filter(
+            pk=pk
+        )
+        return queryset
+
+    def patch(self, request, *args, **kwargs):
+        instance = self.get_object()
+        try:
+            player = request.user.player
+            if player == instance.territory.zone.forum.world.creator or player in instance.territory.zone.world.administrators.all():
+                serializer = self.get_serializer(instance, data=request.data, partial=True)
+                serializer.is_valid(raise_exception=True)
+                self.perform_update(serializer)
+                if getattr(instance, "_prefetched_objects_cache", None):
+                    instance._prefetched_objects_cache = {}
+                return Response(serializer.data)
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumSectorEditView > patch : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, *args, **kwargs):
+        instance = self.get_object()
+        try:
+            player = request.user.player
+            if player == instance.territory.zone.world.creator or player in instance.territory.zone.world.administrators.all():
+                self.perform_destroy(instance)
+                return Response(status=HTTP_204_NO_CONTENT)
+        except Exception as e:
+            print("Error on qpPlayerMeWorldForumSectorEditView > delete : ", e)
+        return Response(status=HTTP_400_BAD_REQUEST)

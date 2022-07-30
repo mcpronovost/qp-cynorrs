@@ -48,7 +48,7 @@ const goToCharacter = (id) => {
     }
     @media (max-width: 1199px) {
         #qp-app-smallbar {
-            width: 10vw;
+            width: 64px;
             min-width: 64px;
         }
     }

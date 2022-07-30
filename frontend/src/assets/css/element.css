@@ -75,6 +75,26 @@
     color: var(--qp-default-accented-txt);
     opacity: 0.4;
 }
+.el-button.el-button--danger {
+    background-color: transparent;
+    border-color: #cc2418;
+    color: #cc2418;
+    opacity: 1;
+}
+.el-button.el-button--danger:hover,
+.el-button.el-button--danger:focus {
+    background-color: transparent;
+    border-color: #cc2418;
+    color: #cc2418;
+    opacity: 0.6;
+}
+.el-button.is-disabled.el-button--danger,
+.el-button.el-button--danger:active {
+    background-color: transparent;
+    border-color: #cc2418;
+    color: #cc2418;
+    opacity: 0.4;
+}
 
 /* ===--- CARD ---=== */
 
@@ -131,6 +151,7 @@
 .el-dialog {
     background-color: var(--qp-default-bg);
     color: var(--qp-default-txt);
+    max-width: 90vw;
 }
 .el-dialog__title {
     color: var(--qp-default-txt);
@@ -193,6 +214,17 @@
 .el-select-dropdown__item:hover {
     background-color: transparent;
     opacity: 0.6;
+}
+
+.el-input-number__decrease,
+.el-input-number__increase {
+    background-color: var(--qp-default-disabled-bg);
+    border-color: var(--qp-default-disabled-bg);
+    color: var(--qp-default-disabled-txt);
+}
+.el-input-number__decrease:hover,
+.el-input-number__increase:hover {
+    color: var(--qp-default-txt);
 }
 
 /* ===--- LOADING ---=== */
@@ -344,6 +376,48 @@
 .el-tabs__new-tab:hover {
     border: 1px solid var(--qp-default-txt);
     color: var(--qp-default-txt);
+}
+
+/* ===--- TABLE ---=== */
+
+.el-table {
+    --el-bg-color: var(--qp-default-bg);
+}
+.el-table td.el-table__cell,
+.el-table th.el-table__cell.is-leaf {
+    border-color: var(--qp-form-bg);
+}
+.el-table--border .el-table__inner-wrapper::after,
+.el-table--border::after,
+.el-table--border::before,
+.el-table__inner-wrapper::before {
+    background-color: var(--qp-form-bg);
+}
+.el-table th.el-table__cell {
+    background-color: var(--qp-form-bg);
+}
+.el-table__body tr.hover-row.current-row>td.el-table__cell,
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td.el-table__cell,
+.el-table__body tr.hover-row.el-table__row--striped>td.el-table__cell,
+.el-table__body tr.hover-row>td.el-table__cell {
+    background-color: transparent;
+}
+.el-table .el-table__body tr:hover > td.el-table__cell {
+    background-color: var(--qp-form-bg);
+}
+.el-table__body-wrapper tr td.el-table-fixed-column--left,
+.el-table__body-wrapper tr td.el-table-fixed-column--right,
+.el-table__body-wrapper tr th.el-table-fixed-column--left,
+.el-table__body-wrapper tr th.el-table-fixed-column--right,
+.el-table__footer-wrapper tr td.el-table-fixed-column--left,
+.el-table__footer-wrapper tr td.el-table-fixed-column--right,
+.el-table__footer-wrapper tr th.el-table-fixed-column--left,
+.el-table__footer-wrapper tr th.el-table-fixed-column--right,
+.el-table__header-wrapper tr td.el-table-fixed-column--left,
+.el-table__header-wrapper tr td.el-table-fixed-column--right,
+.el-table__header-wrapper tr th.el-table-fixed-column--left,
+.el-table__header-wrapper tr th.el-table-fixed-column--right {
+    background-color: var(--qp-default-bg);
 }
 
 /* ===--- TAG ---=== */

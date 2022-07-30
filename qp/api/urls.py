@@ -16,7 +16,13 @@ from qp.api.views.player import (
     qpPlayerMeHerosListView,
     qpPlayerMeWorldsListView,
     qpPlayerMeWorldRetrieveView,
-    qpPlayerMeWorldForumRetrieveView
+    qpPlayerMeWorldForumRetrieveView,
+    qpPlayerMeWorldForumZoneCreateView,
+    qpPlayerMeWorldForumZoneEditView,
+    qpPlayerMeWorldForumTerritoryCreateView,
+    qpPlayerMeWorldForumTerritoryEditView,
+    qpPlayerMeWorldForumSectorCreateView,
+    qpPlayerMeWorldForumSectorEditView
 )
 
 from qp.api.views.forum import (
@@ -51,6 +57,15 @@ urlpatterns = [
     path("me/worlds/", qpPlayerMeWorldsListView.as_view()),
     path("me/worlds/<int:pk>/", qpPlayerMeWorldRetrieveView.as_view()),
     path("me/forums/<int:pk>/", qpPlayerMeWorldForumRetrieveView.as_view()),
+    path("me/forums/<int:pk>/zones/create/", qpPlayerMeWorldForumZoneCreateView.as_view()),
+    path("me/zones/<int:pk>/edit/", qpPlayerMeWorldForumZoneEditView.as_view()),
+    path("me/zones/<int:pk>/delete/", qpPlayerMeWorldForumZoneEditView.as_view()),
+    path("me/zones/<int:pk>/territories/create/", qpPlayerMeWorldForumTerritoryCreateView.as_view()),
+    path("me/territories/<int:pk>/edit/", qpPlayerMeWorldForumTerritoryEditView.as_view()),
+    path("me/territories/<int:pk>/delete/", qpPlayerMeWorldForumTerritoryEditView.as_view()),
+    path("me/territories/<int:pk>/sectors/create/", qpPlayerMeWorldForumSectorCreateView.as_view()),
+    path("me/sectors/<int:pk>/edit/", qpPlayerMeWorldForumSectorEditView.as_view()),
+    path("me/sectors/<int:pk>/delete/", qpPlayerMeWorldForumSectorEditView.as_view()),
 
     path("game/action/travel/", qpGameActionTravelView.as_view()),
 
