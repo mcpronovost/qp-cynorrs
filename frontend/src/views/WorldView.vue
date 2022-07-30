@@ -55,7 +55,7 @@
 
 <script setup>
 
-import { computed, onMounted, onBeforeUnmount, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { API, SITE } from "@/main.js";
@@ -76,10 +76,6 @@ const hasError = ref(null)
 
 onMounted(() => {
     initWorld()
-})
-
-onBeforeUnmount (() => {
-    clearStyle()
 })
 
 const world = ref(null)
@@ -161,10 +157,6 @@ const initStyle = (style) => {
         styletag.innerHTML = ""
     }
     document.head.appendChild(styletag);
-}
-
-const clearStyle = () => {
-
 }
 
 const goToWorld = () => {
