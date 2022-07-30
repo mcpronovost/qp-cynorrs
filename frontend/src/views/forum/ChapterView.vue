@@ -176,8 +176,9 @@ const scrollToHash = () => {
     setTimeout(() => {
         if (route.hash && (route.hash.startsWith("#c") || route.hash.startsWith("#m"))) {
             const el = document.getElementById(route.hash.replace("#", ""))
+            const scrollbar = document.getElementById("qp-app-main").firstChild.firstChild
             if (el) {
-                el.scrollIntoView({behavior: "smooth"})
+                scrollbar.scrollTo({top: el.offsetTop, behavior: "smooth"})
             }
         }
     }, 200)
