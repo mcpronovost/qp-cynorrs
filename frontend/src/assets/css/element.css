@@ -324,18 +324,18 @@
 
 /* ===--- POPPER ---=== */
 
-.el-popper.is-light {
-    background-color: var(--qp-default-bg);
+.el-popper.is-light,
+.el-popper.is-dark {
+    background-color: var(--qp-popper-bg);
     border: none;
     border-radius: 4px;
     box-shadow: 0 0 3px rgb(0, 0, 0, 4%);
+    color: var(--qp-popper-txt);
 }
-.el-popper.is-light .el-popper__arrow::before {
-    background-color: var(--qp-default-bg);
+.el-popper.is-light .el-popper__arrow::before,
+.el-popper.is-dark .el-popper__arrow::before {
+    background-color: var(--qp-popper-bg);
     border: none;
-}
-.el-popover.el-popper {
-    color: var(--qp-default-txt);
 }
 
 /* ===--- PROGRESS ---=== */

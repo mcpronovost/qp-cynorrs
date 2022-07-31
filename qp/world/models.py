@@ -366,6 +366,14 @@ class qpWorldStyle(models.Model):
         verbose_name=_("Form Placeholder Colour"),
         default="#a5afb3"
     )
+    popper_bg = ColorField(
+        verbose_name=_("Popper Background Colour"),
+        default="#e4e9eb"
+    )
+    popper_txt = ColorField(
+        verbose_name=_("Popper Text Colour"),
+        default="#7a8489"
+    )
     stylesheet = models.TextField(
         verbose_name=_("Custom Stylesheet"),
         default="",

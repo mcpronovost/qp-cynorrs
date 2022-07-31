@@ -151,6 +151,9 @@ const initStyle = (style) => {
         styletag.innerHTML += `--qp-form-bg:${style.form_bg};`
         styletag.innerHTML += `--qp-form-txt:${style.form_txt};`
         styletag.innerHTML += `--qp-form-placeholder:${style.form_placeholder};`
+
+        styletag.innerHTML += `--qp-popper-bg:${style.popper_bg};`
+        styletag.innerHTML += `--qp-popper-txt:${style.popper_txt};`
         styletag.innerHTML += `}`
         styletag.innerHTML += `${style.stylesheet}`
     } else {
