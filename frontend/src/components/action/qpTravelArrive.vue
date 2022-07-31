@@ -95,7 +95,6 @@ const doSendTravelArrive = async () => {
     })
     if (r.status === 200) {
         let result = await r.json()
-        console.log(result)
         hasSuccess.value = t('Youhavearrivedatyourdestination')
         store.commit("BATCH_HEROS", result.heros)
     } else {

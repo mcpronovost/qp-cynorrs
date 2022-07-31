@@ -36,6 +36,9 @@
                         <div v-if="props.sector.last_chapter?.last_message" class="qp-forum-header-lastmessage-gotolast" @click="goToRoute(props.sector.last_chapter.last_message.route)">
                             <el-icon class="mdi mdi-arrow-bottom-right-thin-circle-outline" />
                         </div>
+                        <div v-if="props.sector.last_chapter && props.sector.is_unread" class="qp-forum-header-lastmessage-unread">
+                            <el-icon class="mdi mdi-bell" />
+                        </div>
                     </div>
                     <div v-if="props.sector.last_chapter?.last_message" class="qp-forum-header-lastmessage-infos">
                         <div class="qp-forum-header-lastmessage-infos-link" @click="goToRoute(props.sector.last_chapter.route)">

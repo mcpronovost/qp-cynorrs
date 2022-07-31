@@ -13,7 +13,8 @@ from qp.forum.models import (
     qpForumTerritory,
     qpForumSector,
     qpForumChapter,
-    qpForumMessage
+    qpForumMessage,
+    qpForumTrack
 )
 
 
@@ -105,11 +106,15 @@ class qpForumChapterListSerializer(serializers.ModelSerializer):
     count_messages = serializers.ReadOnlyField(default=0)
     last_message = qpForumMessageSerializer()
     route = serializers.ReadOnlyField(source="get_route")
+    is_unread = serializers.SerializerMethodField(source="get_is_unread")
 
     class Meta:
         model = qpForumChapter
-        fields = "__all__"
+        fields = ["id", "title", "description", "territory", "sector", "count_messages", "last_message", "route", "is_unread", "is_locked", "created_at", "updated_at", "author"]
         depth = 2
+    
+    def get_is_unread(self, obj):
+        return obj.get_is_unread(self.context["request"])
 
 
 class qpForumSectorSerializer(serializers.ModelSerializer):
@@ -149,7 +154,7 @@ class qpForumSectorSerializer(serializers.ModelSerializer):
         # ===---
         result = []
         for q in queryset.distinct():
-            result.append(qpForumChapterListSerializer(q).data)
+            result.append(qpForumChapterListSerializer(q, context=self.context).data)
         return result
 
 
@@ -157,11 +162,15 @@ class qpForumSectorListSerializer(serializers.ModelSerializer):
     count_chapters = serializers.ReadOnlyField(default=0)
     count_messages = serializers.ReadOnlyField(default=0)
     last_chapter = qpForumChapterListSerializer()
+    is_unread = serializers.SerializerMethodField(source="get_is_unread")
     
     class Meta:
         model = qpForumSector
-        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_chapters", "count_messages", "last_chapter", "territory"]
+        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_chapters", "count_messages", "last_chapter", "is_unread", "territory"]
         depth = 1
+    
+    def get_is_unread(self, obj):
+        return obj.get_is_unread(self.context["request"])
 
 
 class qpForumTerritorySerializer(serializers.ModelSerializer):
@@ -196,7 +205,7 @@ class qpForumTerritorySerializer(serializers.ModelSerializer):
         # ===---
         result = []
         for q in queryset.distinct():
-            result.append(qpForumChapterListSerializer(q).data)
+            result.append(qpForumChapterListSerializer(q, context=self.context).data)
         return result
 
 
@@ -205,10 +214,11 @@ class qpForumTerritoryListSerializer(serializers.ModelSerializer):
     count_chapters = serializers.SerializerMethodField(source="get_count_chapters")
     count_messages = serializers.SerializerMethodField(source="get_count_messages")
     last_chapter = qpForumChapterListSerializer()
+    is_unread = serializers.SerializerMethodField(source="get_is_unread")
     
     class Meta:
         model = qpForumTerritory
-        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_sectors", "count_chapters", "count_messages", "last_chapter", "zone"]
+        fields = ["id", "name", "description", "flexbasis", "colour", "ordering", "count_sectors", "count_chapters", "count_messages", "last_chapter", "is_unread", "zone"]
         depth = 1
     
     def get_count_chapters(self, obj):
@@ -222,6 +232,9 @@ class qpForumTerritoryListSerializer(serializers.ModelSerializer):
             return obj.count_messages_all
         except:
             return 0
+    
+    def get_is_unread(self, obj):
+        return obj.get_is_unread(self.context["request"])
 
 
 class qpForumZoneSerializer(serializers.ModelSerializer):

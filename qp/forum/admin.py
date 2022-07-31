@@ -8,6 +8,7 @@ from qp.forum.models import (
     qpForumSector,
     qpForumChapter,
     qpForumMessage,
+    qpForumTrack
 )
 
 
@@ -175,3 +176,12 @@ class qpForumMessageAdmin(admin.ModelAdmin):
             return obj.chapter.sector
         return None
     get_sector.short_description = str(_("Sector"))
+
+
+@admin.register(qpForumTrack)
+class qpForumTrackAdmin(admin.ModelAdmin):
+    list_display = [
+        "player",
+        "chapter",
+        "tracked_at"
+    ]

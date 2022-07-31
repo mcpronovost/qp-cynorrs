@@ -264,6 +264,24 @@ class qpForumTerritory(models.Model):
             self.ordering = (lastorder + 1)
         return super().save(*args, **kwargs)
     
+    def get_is_unread(self, request):
+        if request.user.is_authenticated and self.last_chapter is not None:
+            player = request.user.player
+            tracking = qpForumTrack.objects.filter(
+                chapter__territory=self
+            )
+            if not tracking and (self.last_chapter.last_message.created_at > player.user.date_joined):
+                return True
+            elif tracking:
+                for c in self.chapters.all():
+                    tracked_chapter = tracking.filter(chapter=c).first()
+                    if tracked_chapter is None and c.last_message.created_at > player.user.date_joined:
+                        return True
+                    elif tracked_chapter is not None and c.last_message.created_at > tracked_chapter.tracked_at:
+                        return True
+                return False
+        return False
+    
     @property
     def forum(self):
         if self.zone is not None:
@@ -407,6 +425,24 @@ class qpForumSector(models.Model):
             ).last() is not None else 0
             self.ordering = (lastorder + 1)
         return super().save(*args, **kwargs)
+    
+    def get_is_unread(self, request):
+        if request.user.is_authenticated and self.last_chapter is not None:
+            player = request.user.player
+            tracking = qpForumTrack.objects.filter(
+                chapter__sector=self
+            )
+            if not tracking and (self.last_chapter.last_message.created_at > player.user.date_joined):
+                return True
+            elif tracking:
+                for c in self.chapters.all():
+                    tracked_chapter = tracking.filter(chapter=c).first()
+                    if tracked_chapter is None and c.last_message.created_at > player.user.date_joined:
+                        return True
+                    elif tracked_chapter is not None and c.last_message.created_at > tracked_chapter.tracked_at:
+                        return True
+                return False
+        return False
     
     @property
     def count_chapters(self):
@@ -560,6 +596,23 @@ class qpForumChapter(models.Model):
             pass
         return result
     
+    def get_is_unread(self, request):
+        if request.user.is_authenticated and self.last_message is not None:
+            player = request.user.player
+            tracking = qpForumTrack.objects.filter(
+                chapter=self
+            )
+            if not tracking and (self.last_message.created_at > player.user.date_joined):
+                return True
+            elif tracking:
+                tracked_chapter = tracking.filter(chapter=self).first()
+                if tracked_chapter is None and self.last_message.created_at > player.user.date_joined:
+                    return True
+                elif tracked_chapter is not None and self.last_message.created_at > tracked_chapter.tracked_at:
+                    return True
+                return False
+        return False
+    
     def get_route(self):
         route_name = "WorldForumTerritoryChapter"
         if self.sector:
@@ -708,3 +761,40 @@ class qpForumMessage(models.Model):
         except:
             pass
         return result
+
+
+class qpForumTrack(models.Model):
+    player = models.ForeignKey(
+        "player.qpPlayer",
+        on_delete=models.CASCADE,
+        related_name="tracks",
+        verbose_name=_("Player"),
+        blank=False,
+        null=False
+    )
+    chapter = models.ForeignKey(
+        qpForumChapter,
+        on_delete=models.CASCADE,
+        related_name="tracks",
+        verbose_name=_("Chapter"),
+        blank=False,
+        null=False
+    )
+    tracked_at = models.DateTimeField(
+        verbose_name=_("Tracked"),
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = _("Track")
+        verbose_name_plural = _("Tracks")
+        ordering = ["-tracked_at"]
+    
+    def __str__(self):
+        return "%s - %s" % (
+            str(self.player.playername),
+            str(self.chapter.title)
+        )
+    
+    class Qapi:
+        admin_order = 7

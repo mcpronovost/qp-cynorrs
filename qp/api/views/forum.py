@@ -11,7 +11,8 @@ from qp.forum.models import (
     qpForumTerritory,
     qpForumSector,
     qpForumChapter,
-    qpForumMessage
+    qpForumMessage,
+    qpForumTrack
 )
 
 from qp.api.serializers.forum import (
@@ -54,6 +55,16 @@ class qpForumChapterRetrieveView(RetrieveAPIView):
     serializer_class = qpForumChapterSerializer
     queryset = qpForumChapter.objects.all()
     lookup_field = "pk"
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            instance = self.get_object()
+            track, created = qpForumTrack.objects.get_or_create(
+                player=request.user.player,
+                chapter=instance
+            )
+            track.save()
+        return self.retrieve(request, *args, **kwargs)
 
 class qpForumChapterMessagesListView(ListAPIView):
     model = qpForumMessage

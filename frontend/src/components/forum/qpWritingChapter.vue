@@ -172,8 +172,7 @@ const sendNewChapter = async () => {
             }
         }
     } catch (e) {
-        console.log(e)
-        hasErrorSend.value = t("AnErrorOccurred")
+        hasErrorSend.value = `${t("AnErrorOccurred")} : ${e}`
     }
     isLoadingSend.value = false
 }

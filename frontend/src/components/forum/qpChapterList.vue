@@ -14,6 +14,9 @@
                         <el-avatar :src="props.chapter.last_message?.author?.avatar">
                             <span v-text="props.chapter.last_message?.author?.initials"></span>
                         </el-avatar>
+                        <div v-if="props.chapter.last_message && props.chapter.is_unread" class="qp-forum-header-profile-unread">
+                            <el-icon class="mdi mdi-bell" />
+                        </div>
                     </div>
                 </div>
                 <h2 class="qp-forum-header-title" @click="goToChapter()">
